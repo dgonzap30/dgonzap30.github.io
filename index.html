@@ -313,6 +313,11 @@
     box-shadow: 0 0 8px rgba(168, 181, 196, 0.6);
     animation: pulse 2.6s ease-in-out infinite;
   }
+  .board-head .live-static {
+    color: var(--accent-bright);
+    font-family: var(--mono);
+    letter-spacing: 0.18em;
+  }
   .board-list { display: flex; flex-direction: column; }
   .board-item {
     display: grid;
@@ -397,6 +402,84 @@
   /* ===== Sections ===== */
   section { padding: 4.5rem 0; position: relative; z-index: 2; }
   @media (min-width: 768px) { section { padding: 6rem 0; } }
+
+  /* ===== About ===== */
+  .about-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+  @media (min-width: 900px) {
+    .about-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 3.4rem; align-items: start; }
+  }
+  .about-copy h2 {
+    font-family: "Clash Display", "Satoshi", sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.1rem, 4vw, 3.2rem);
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    margin-top: 1.2rem;
+    color: var(--text-1);
+    text-wrap: balance;
+  }
+  .about-copy h2 em {
+    font-family: "Fraunces", "Times New Roman", serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-bright);
+  }
+  .about-prose {
+    margin-top: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    color: var(--text-2);
+    font-size: 1rem;
+    line-height: 1.66;
+    max-width: 60ch;
+  }
+  .about-prose b { color: var(--text-1); font-weight: 500; }
+  .about-card {
+    position: relative;
+    border-radius: 18px;
+    padding: 1.6rem 1.7rem 1.4rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.003));
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+  .about-card-head {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 0.5rem;
+  }
+  .about-facts { display: flex; flex-direction: column; }
+  .about-facts > div {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .about-facts > div:last-child { border-bottom: 0; }
+  .about-facts dt {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .about-facts dd {
+    font-size: 0.86rem;
+    color: var(--text-1);
+    letter-spacing: -0.005em;
+  }
 
   /* ===== Thesis ===== */
   .thesis-stack { position: relative; margin-top: 1.8rem; }
@@ -825,10 +908,9 @@
     </a>
     <div class="nav-links">
       <a href="#work">Work</a>
-      <a href="#thesis">Thesis</a>
+      <a href="#about">About</a>
       <a href="#stack">Stack</a>
-      <a href="#numbers">Numbers</a>
-      <a href="#contact" class="btn btn-ghost btn-sm">Get in touch</a>
+      <a href="#contact" class="btn btn-ghost btn-sm">Say hi</a>
     </div>
     <button id="mob-toggle" class="mob-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span>
@@ -838,9 +920,8 @@
 
 <div id="mob-menu" class="mob-menu" aria-hidden="true">
   <a href="#work">Work</a>
-  <a href="#thesis">Thesis</a>
+  <a href="#about">About</a>
   <a href="#stack">Stack</a>
-  <a href="#numbers">Numbers</a>
   <a href="#contact">Contact</a>
 </div>
 
@@ -855,15 +936,14 @@
         <div>
           <span class="hero-pill reveal d1">
             <span class="dot" aria-hidden="true"></span>
-            Product engineer · Cofounder, LOJIK Labs
+            Product engineer · Madison + San Diego
           </span>
           <h1 class="reveal d2">
-            One builder.<br/>
-            Full <em>stack</em>.<br/>
-            Real users.
+            Hi, I'm<br/>
+            <em>Diego.</em>
           </h1>
           <p class="lede reveal d3">
-            I'm <b>Diego Gonzalez Zapiain</b> — co-founder of <b>LOJIK Labs</b> with my brother Mariano. We build vertical software for niches too small for big tech and too complex for no-code. One engineer runs each product end-to-end — schema to App Store.
+            I'm a CS senior at <b>UW-Madison</b> and cofounder of <b>LOJIK Labs</b> with my brother Mariano. I ship full-stack mobile and web apps end-to-end — schema, migrations, edge functions, app, deploy, users. I'm happiest when the product is the only thing standing between me and a real person.
           </p>
           <div class="hero-cta reveal d4">
             <a href="#work" class="btn btn-primary">
@@ -872,27 +952,27 @@
                 <path d="M4 12L12 4M12 4H6M12 4v6"/>
               </svg>
             </a>
-            <a href="#contact" class="btn btn-ghost">Get in touch</a>
+            <a href="#contact" class="btn btn-ghost">Say hi</a>
           </div>
           <div class="hero-meta reveal d5" aria-label="At a glance">
             <div><span class="k">Based</span><b>Madison · San Diego</b></div>
-            <div><span class="k">Studying</span><b>UW-Madison '26</b></div>
-            <div><span class="k">Markets</span><b>US · MX</b></div>
-            <div><span class="k">Status</span><b>Building</b></div>
+            <div><span class="k">School</span><b>UW-Madison CS '26</b></div>
+            <div><span class="k">Studio</span><b>LOJIK Labs</b></div>
+            <div><span class="k">Status</span><b>Open to work</b></div>
           </div>
         </div>
 
-        <aside class="now-board reveal d4" aria-label="What I'm shipping now">
+        <aside class="now-board reveal d4" aria-label="What I'm working on">
           <div class="board-head">
-            <span>What I'm shipping</span>
-            <span class="live"><span class="d" aria-hidden="true"></span>live</span>
+            <span>Currently</span>
+            <span class="live-static">Spring '26</span>
           </div>
           <div class="board-list">
             <div class="board-item">
               <span class="n">01</span>
               <div>
                 <span class="nm">Mövee</span>
-                <span class="nm-sub">Nightlife coordination · Expo + Supabase</span>
+                <span class="nm-sub">Nightlife coordination · lead engineer</span>
               </div>
               <span class="v">MVP</span>
             </div>
@@ -900,30 +980,30 @@
               <span class="n">02</span>
               <div>
                 <span class="nm">Medivoz</span>
-                <span class="nm-sub">Clinic AI voice agent · Fastify + Twilio</span>
+                <span class="nm-sub">Clinic AI voice agent · solo builder</span>
               </div>
               <span class="v">MVP</span>
             </div>
             <div class="board-item">
               <span class="n">03</span>
               <div>
-                <span class="nm">The Protocol</span>
-                <span class="nm-sub">Daily habit tracker · App Store</span>
+                <span class="nm">Passway</span>
+                <span class="nm-sub">Travel-doc SaaS · sellzap JV</span>
               </div>
-              <span class="v">Shipped</span>
+              <span class="v">Closing</span>
             </div>
             <div class="board-item">
               <span class="n">04</span>
               <div>
-                <span class="nm">Coco</span>
-                <span class="nm-sub">Daily affirmations · App Store</span>
+                <span class="nm">CS '26</span>
+                <span class="nm-sub">Wrapping my last semester at UW</span>
               </div>
-              <span class="v">Shipped</span>
+              <span class="v">May '26</span>
             </div>
           </div>
           <div class="board-foot">
-            <span>+ 7 smaller bets</span>
-            <a href="#work">See work →</a>
+            <span>Updated monthly</span>
+            <a href="#work">See past work →</a>
           </div>
         </aside>
       </div>
@@ -935,68 +1015,39 @@
     <div class="mq-track" id="mq-track"></div>
   </div>
 
-  <!-- THESIS -->
-  <section id="thesis">
+  <!-- ABOUT -->
+  <section id="about">
     <div class="wrap">
       <div class="hr-glow reveal"></div>
-      <div class="section-head" style="margin-top: 1.4rem;">
-        <span class="eyebrow reveal d1">How I work</span>
-        <h2 class="reveal d2">AI handles syntax. I handle judgment.</h2>
-        <p class="reveal d3">
-          What took a twelve-person team in 2022 takes one engineer and Claude Code in 2026. That changes the math on which markets are worth entering — and how a single person can ship a real product.
-        </p>
-      </div>
 
-      <div class="thesis-stack" id="thesis-stack">
-        <div class="thesis-thread" aria-hidden="true"></div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <span class="eyebrow reveal d1">About</span>
+          <h2 class="reveal d2">A bit of <em>context</em>.</h2>
 
-        <div class="thesis-row reveal d2">
-          <span class="thesis-node" aria-hidden="true"></span>
-          <div class="thesis-side">
-            <div class="thesis-bignum">01</div>
-            <div class="thesis-tag">Velocity</div>
-          </div>
-          <div>
-            <p class="thesis-statement">Three weeks, schema to production.</p>
-            <p class="thesis-evidence">→ Average time from a new <b>idea</b> to a deployed vertical with real users: <b>~3 weeks</b>. Shared infra makes launch #N cost a weekend, not a quarter.</p>
+          <div class="about-prose reveal d3">
+            <p>I split my time between <b>Madison</b> and <b>San Diego</b>. I grew up between Mexico and the US, picked up code in high school, and have been shipping production software since my sophomore year at UW-Madison.</p>
+            <p>In 2024 my brother Mariano and I started <b>LOJIK Labs</b> — a tiny studio for vertical software in niches the big players don't bother with. I lead engineering on every product we ship. Mariano runs ops, partnerships, and the parts of the business I'm not good at.</p>
+            <p>When I'm not in a terminal: producing in <b>Logic Pro X</b>, playing golf when Wisconsin lets me, and thinking about how a two-person team can build like a twenty-person one. I read a lot of systems design and indie-hacker postmortems, and I take Spanish more seriously than my résumé would suggest.</p>
+            <p>I graduate this month and I'm <b>open to founding-engineer roles, contract product builds, and serious side projects</b>. The easiest way to find out if we'd work well together is to email me.</p>
           </div>
         </div>
 
-        <div class="thesis-row reveal d3">
-          <span class="thesis-node" aria-hidden="true"></span>
-          <div class="thesis-side">
-            <div class="thesis-bignum">02</div>
-            <div class="thesis-tag">Ownership</div>
-          </div>
-          <div>
-            <p class="thesis-statement">One builder. End to end. No handoffs.</p>
-            <p class="thesis-evidence">→ I design the schema, write the migrations, ship the edge functions, build the app, and instrument the funnel. <b>No ticket queues. No standups.</b> Real engineering from day one.</p>
-          </div>
-        </div>
-
-        <div class="thesis-row reveal d4">
-          <span class="thesis-node" aria-hidden="true"></span>
-          <div class="thesis-side">
-            <div class="thesis-bignum">03</div>
-            <div class="thesis-tag">Verticals</div>
-          </div>
-          <div>
-            <p class="thesis-statement">Niches too small for big tech. Too complex for no-code.</p>
-            <p class="thesis-evidence">→ Clinic scheduling in Mexico. Nightlife coordination on campus. Habit protocols. Markets in the <b>$5M–$50M ARR</b> band — big enough to own, small enough to be ignored.</p>
-          </div>
-        </div>
-
-        <div class="thesis-row reveal d5">
-          <span class="thesis-node" aria-hidden="true"></span>
-          <div class="thesis-side">
-            <div class="thesis-bignum">04</div>
-            <div class="thesis-tag">Stack</div>
-          </div>
-          <div>
-            <p class="thesis-statement">One stack. Zero handoff debt.</p>
-            <p class="thesis-evidence">→ <b>Expo · Next.js · Supabase · Claude · Twilio · Vercel</b>. The same primitives across every product means I move faster on launch #6 than most teams move on launch #1.</p>
-          </div>
-        </div>
+        <aside class="about-card reveal d4" aria-label="Personal details">
+          <div class="about-card-head">Facts</div>
+          <dl class="about-facts">
+            <div><dt>Lives</dt><dd>Madison · San Diego</dd></div>
+            <div><dt>From</dt><dd>Mexico → US</dd></div>
+            <div><dt>School</dt><dd>UW-Madison CS '26</dd></div>
+            <div><dt>Building since</dt><dd>2022</dd></div>
+            <div><dt>Studio</dt><dd>LOJIK Labs (2024)</dd></div>
+            <div><dt>Cofounder</dt><dd>Mariano (brother)</dd></div>
+            <div><dt>Editor</dt><dd>Claude Code + Cursor</dd></div>
+            <div><dt>Music</dt><dd>Logic Pro X</dd></div>
+            <div><dt>Off-hours</dt><dd>Golf, reading, walks</dd></div>
+            <div><dt>Languages</dt><dd>Spanish · English</dd></div>
+          </dl>
+        </aside>
       </div>
     </div>
   </section>
@@ -1007,8 +1058,8 @@
       <div class="hr-glow reveal"></div>
       <div class="section-head" style="margin-top: 1.4rem;">
         <span class="eyebrow reveal">Selected work</span>
-        <h2 class="reveal d2">Vertical software across industries.</h2>
-        <p class="reveal d3">A snapshot of what I've built recently. Each one is a full-stack product — schema, migrations, app, edge functions, deploy, users.</p>
+        <h2 class="reveal d2">A few things I've built.</h2>
+        <p class="reveal d3">Mostly LOJIK Labs products, plus a few independent builds. Each one is a full-stack product I shipped end-to-end — schema, migrations, edge functions, app, deploy, users.</p>
       </div>
 
       <div class="port-grid">
@@ -1158,9 +1209,9 @@
     <div class="wrap">
       <div class="hr-glow reveal"></div>
       <div class="section-head" style="margin-top: 1.4rem;">
-        <span class="eyebrow reveal">The stack</span>
-        <h2 class="reveal d2">One stack across every product.</h2>
-        <p class="reveal d3">Same primitives, same patterns, same observability. Boring infrastructure is what makes the surface area exciting.</p>
+        <span class="eyebrow reveal">What I use</span>
+        <h2 class="reveal d2">My toolbox.</h2>
+        <p class="reveal d3">Same primitives across every project — fewer moving parts means I can move faster on the thing that actually matters.</p>
       </div>
 
       <div class="stack-grid reveal d2">
@@ -1228,18 +1279,18 @@
     <div class="wrap">
       <div class="hr-glow reveal"></div>
       <div class="section-head" style="margin-top: 1.4rem;">
-        <span class="eyebrow reveal">By the numbers</span>
-        <h2 class="reveal d2">The studio, right now.</h2>
+        <span class="eyebrow reveal">Past 12 months</span>
+        <h2 class="reveal d2">Receipts.</h2>
       </div>
 
       <div class="numbers-grid">
         <div class="num reveal d2">
-          <span class="n">11<em>+</em></span>
-          <div class="l">Products shipped<br/>at LOJIK</div>
+          <span class="n">6<em>+</em></span>
+          <div class="l">Apps I led<br/>or built solo</div>
         </div>
         <div class="num reveal d3">
           <span class="n">1.2k<em>+</em></span>
-          <div class="l">Commits<br/>past year</div>
+          <div class="l">Commits<br/>shipped</div>
         </div>
         <div class="num reveal d4">
           <span class="n">85<em>+</em></span>
@@ -1247,7 +1298,7 @@
         </div>
         <div class="num reveal d5">
           <span class="n">31</span>
-          <div class="l">Edge functions<br/>shipping live traffic</div>
+          <div class="l">Edge functions<br/>serving real traffic</div>
         </div>
       </div>
     </div>
@@ -1258,9 +1309,9 @@
     <div class="wrap">
       <div class="hr-glow reveal"></div>
       <div class="section-head" style="margin-top: 1.4rem;">
-        <span class="eyebrow reveal">Get in touch</span>
-        <h2 class="reveal d2">Open to interesting work.</h2>
-        <p class="reveal d3">Founding engineer roles, partner builds, and side projects with people who ship. Easiest path is email.</p>
+        <span class="eyebrow reveal">Say hi</span>
+        <h2 class="reveal d2">Let's talk.</h2>
+        <p class="reveal d3">Founding-engineer roles, partner builds, indie projects, or just to compare notes on something you're building. Email is the fastest way to reach me.</p>
       </div>
 
       <div class="contact-grid">
