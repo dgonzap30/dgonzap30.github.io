@@ -714,17 +714,21 @@
       }
 
       .nav {
-        align-items: flex-start;
+        align-items: center;
         padding-block: var(--space-3);
       }
 
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: var(--space-1) var(--space-4);
+      .monogram > span:last-child {
+        display: none;
       }
 
-      .nav-links li:first-child {
+      .nav-links {
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        gap: var(--space-4);
+      }
+
+      .nav-links li:not(:last-child) {
         display: none;
       }
 
