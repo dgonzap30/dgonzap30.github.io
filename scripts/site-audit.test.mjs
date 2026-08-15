@@ -138,3 +138,22 @@ test('javascript is a small progressive enhancement', async () => {
   assert.doesNotMatch(script, /\bsetInterval\s*\(/);
   assert.doesNotMatch(script, /\brequestAnimationFrame\s*\(/);
 });
+
+test('case studies preserve role and evidence boundaries', async () => {
+  const pazz = (await readFile(join(repoRoot, 'work/pazz/index.html'), 'utf8')).toLowerCase();
+  const lojik = (await readFile(join(repoRoot, 'work/lojik/index.html'), 'utf8')).toLowerCase();
+
+  assert.match(pazz, /technical lead/);
+  assert.doesNotMatch(pazz, /co-founder/);
+  assert.match(pazz, /evidence boundary/);
+  assert.match(pazz, /private commercial platform/);
+
+  assert.match(lojik, /co-founder &amp; technical lead/);
+  assert.match(lojik, /evidence boundary/);
+  assert.match(lojik, /company-building and systems-design case study/);
+
+  for (const html of [pazz, lojik]) {
+    assert.doesNotMatch(html, /\b\d+(?:\.\d+)?%\b/);
+    assert.doesNotMatch(html, /\$\s?\d/);
+  }
+});
