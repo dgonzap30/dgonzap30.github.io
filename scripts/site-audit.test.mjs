@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { access, mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { access, mkdtemp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import test from 'node:test';
@@ -15,6 +15,37 @@ const REQUIRED_PAGES = [
 ];
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+
+function pngDimensions(buffer) {
+  assert.equal(buffer.subarray(1, 4).toString('ascii'), 'PNG');
+  return [buffer.readUInt32BE(16), buffer.readUInt32BE(20)];
+}
+
+function webpDimensions(buffer) {
+  assert.equal(buffer.subarray(0, 4).toString('ascii'), 'RIFF');
+  assert.equal(buffer.subarray(8, 12).toString('ascii'), 'WEBP');
+
+  let offset = 12;
+  while (offset + 8 <= buffer.length) {
+    const type = buffer.subarray(offset, offset + 4).toString('ascii');
+    const size = buffer.readUInt32LE(offset + 4);
+    const data = offset + 8;
+    if (type === 'VP8X') {
+      const width = 1 + buffer[data + 4] + (buffer[data + 5] << 8) + (buffer[data + 6] << 16);
+      const height = 1 + buffer[data + 7] + (buffer[data + 8] << 8) + (buffer[data + 9] << 16);
+      return [width, height];
+    }
+    if (type === 'VP8 ') {
+      return [buffer.readUInt16LE(data + 6) & 0x3fff, buffer.readUInt16LE(data + 8) & 0x3fff];
+    }
+    if (type === 'VP8L') {
+      const bits = buffer.readUInt32LE(data + 1);
+      return [(bits & 0x3fff) + 1, ((bits >> 14) & 0x3fff) + 1];
+    }
+    offset = data + size + (size % 2);
+  }
+  throw new Error('WebP dimensions not found');
+}
 
 const validHead = `
   <meta name="description" content="A useful description">
@@ -92,6 +123,10 @@ test('brand assets are clean, bounded, and path-based', async () => {
 
   const canonical = await readFile(join(repoRoot, 'assets/brand/dgz-trace.svg'), 'utf8');
   assert.match(canonical, /data-continuous-route="dgz"/);
+
+  const rootFavicon = await readFile(join(repoRoot, 'favicon.svg'), 'utf8');
+  const brandFavicon = await readFile(join(repoRoot, 'assets/brand/favicon.svg'), 'utf8');
+  assert.equal(rootFavicon, brandFavicon);
 });
 
 test('brand raster fallbacks have exact dimensions', async () => {
@@ -102,7 +137,7 @@ test('brand raster fallbacks have exact dimensions', async () => {
 
   for (const [relativePath, dimensions] of expected) {
     const png = await readFile(join(repoRoot, relativePath));
-    assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], dimensions);
+    assert.deepEqual(pngDimensions(png), dimensions);
   }
 });
 
@@ -139,6 +174,36 @@ test('javascript is a small progressive enhancement', async () => {
   assert.doesNotMatch(script, /\brequestAnimationFrame\s*\(/);
 });
 
+test('fonts are self-hosted, licensed, and bounded', async () => {
+  const fontPaths = [
+    'assets/fonts/instrument-sans-latin.woff2',
+    'assets/fonts/newsreader-roman-latin.woff2',
+    'assets/fonts/newsreader-italic-latin.woff2',
+  ];
+
+  for (const relativePath of fontPaths) {
+    const font = await readFile(join(repoRoot, relativePath));
+    assert.equal(font.subarray(0, 4).toString('ascii'), 'wOF2');
+    assert(font.length < 160 * 1024, `${relativePath} exceeds 160 KB`);
+  }
+
+  for (const name of ['OFL-Instrument-Sans.txt', 'OFL-Newsreader.txt']) {
+    const license = await readFile(join(repoRoot, `assets/fonts/${name}`), 'utf8');
+    assert.match(license, /SIL OPEN FONT LICENSE Version 1\.1/);
+  }
+
+  const fontCss = await readFile(join(repoRoot, 'assets/css/fonts.css'), 'utf8');
+  assert.match(fontCss, /font-family: "Instrument Sans"/);
+  assert.match(fontCss, /font-family: "Newsreader"/);
+  assert.doesNotMatch(fontCss, /https?:\/\//);
+
+  for (const relativePath of REQUIRED_PAGES) {
+    const html = await readFile(join(repoRoot, relativePath), 'utf8');
+    assert.match(html, /href="\/assets\/css\/fonts\.css"/);
+    assert.doesNotMatch(html, /fonts\.(?:googleapis|gstatic)\.com/);
+  }
+});
+
 test('case studies preserve role and evidence boundaries', async () => {
   const pazz = (await readFile(join(repoRoot, 'work/pazz/index.html'), 'utf8')).toLowerCase();
   const lojik = (await readFile(join(repoRoot, 'work/lojik/index.html'), 'utf8')).toLowerCase();
@@ -155,5 +220,17 @@ test('case studies preserve role and evidence boundaries', async () => {
   for (const html of [pazz, lojik]) {
     assert.doesNotMatch(html, /\b\d+(?:\.\d+)?%\b/);
     assert.doesNotMatch(html, /\$\s?\d/);
+  }
+});
+
+test('media and social cards meet publication dimensions and budgets', async () => {
+  const headshotPath = join(repoRoot, 'assets/media/diego-headshot.webp');
+  const headshot = await readFile(headshotPath);
+  assert.deepEqual(webpDimensions(headshot), [460, 460]);
+  assert((await stat(headshotPath)).size < 180 * 1024, 'headshot exceeds 180 KB');
+
+  for (const name of ['home', 'pazz', 'lojik']) {
+    const png = await readFile(join(repoRoot, `assets/social/${name}.png`));
+    assert.deepEqual(pngDimensions(png), [1200, 630], `${name} social card has incorrect dimensions`);
   }
 });

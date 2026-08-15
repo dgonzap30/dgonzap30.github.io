@@ -10,11 +10,18 @@ const REQUIRED_PAGES = [
 ];
 
 const REQUIRED_ASSETS = [
+  'favicon.svg',
+  'assets/css/fonts.css',
   'assets/css/tokens.css',
   'assets/css/base.css',
   'assets/css/components.css',
   'assets/css/pages.css',
   'assets/js/site.js',
+  'assets/fonts/instrument-sans-latin.woff2',
+  'assets/fonts/newsreader-roman-latin.woff2',
+  'assets/fonts/newsreader-italic-latin.woff2',
+  'assets/fonts/OFL-Instrument-Sans.txt',
+  'assets/fonts/OFL-Newsreader.txt',
   'assets/brand/dgz-trace.svg',
   'assets/brand/dgz-lockup.svg',
   'assets/brand/dgz-compact.svg',
@@ -44,6 +51,7 @@ const HTML_BUDGET = 75 * 1024;
 const SVG_BUDGET = 20 * 1024;
 const SCRIPT_BUDGET = 12 * 1024;
 const HEADSHOT_BUDGET = 180 * 1024;
+const FONT_BUDGET = 160 * 1024;
 
 function matches(html, expression) {
   return [...html.matchAll(expression)];
@@ -146,6 +154,8 @@ function auditMetadata(relativePath, html, errors) {
     if (!hasMeta(html, 'property', property)) errors.push(`${relativePath}: missing ${property}`);
   }
   if (!hasMeta(html, 'name', 'twitter:card')) errors.push(`${relativePath}: missing twitter:card`);
+  if (/fonts\.(?:googleapis|gstatic)\.com/i.test(html)) errors.push(`${relativePath}: external font dependency`);
+  if (!/href=["']\/assets\/css\/fonts\.css["']/i.test(html)) errors.push(`${relativePath}: missing local font stylesheet`);
 
   const jsonLdBlocks = matches(
     html,
@@ -207,6 +217,7 @@ async function auditRequiredAssets(root, errors) {
     const { size } = await stat(absolutePath);
     const extension = extname(relativePath).toLowerCase();
     if (extension === '.svg') auditBudget(relativePath, size, SVG_BUDGET, errors);
+    if (extension === '.woff2') auditBudget(relativePath, size, FONT_BUDGET, errors);
     if (relativePath === 'assets/js/site.js') auditBudget(relativePath, size, SCRIPT_BUDGET, errors);
     if (relativePath === 'assets/media/diego-headshot.webp') auditBudget(relativePath, size, HEADSHOT_BUDGET, errors);
   }

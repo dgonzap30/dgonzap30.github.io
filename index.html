@@ -18,12 +18,12 @@
   <meta name="twitter:title" content="Diego Gonzalez Zapiain — Technical Lead &amp; Systems Builder">
   <meta name="twitter:description" content="Current technical leadership, accountable systems delivery, and inspectable engineering.">
   <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500&amp;display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/css/components.css">
@@ -35,6 +35,7 @@
       "@type": "Person",
       "name": "Diego Gonzalez Zapiain",
       "url": "https://dgonzap30.github.io/",
+      "image": "https://dgonzap30.github.io/assets/media/diego-headshot.webp",
       "jobTitle": ["Technical Lead", "Co-Founder & Technical Lead"],
       "sameAs": [
         "https://github.com/dgonzap30",
@@ -222,9 +223,9 @@
       </header>
 
       <div class="profile-grid">
-        <div>
-          <img src="/assets/brand/dgz-lockup.svg" width="284" height="48" alt="Diego Gonzalez Zapiain">
-        </div>
+        <figure class="portrait-frame">
+          <img src="/assets/media/diego-headshot.webp" width="460" height="460" alt="Diego Gonzalez Zapiain">
+        </figure>
         <div>
           <p class="profile-copy">I work from the first ambiguous conversation to the last production gate. The through-line is turning uncertainty into <em>explicit, owned, working software.</em></p>
           <ul class="profile-background">
