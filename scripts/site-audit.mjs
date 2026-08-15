@@ -54,7 +54,14 @@ function textContent(html) {
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
     .replace(/<[^>]+>/g, ' ')
-    .replace(/&(?:nbsp|amp|lt|gt|quot|apos);/gi, ' ')
+    .replace(/&(nbsp|amp|lt|gt|quot|apos);/gi, (_, entity) => ({
+      nbsp: ' ',
+      amp: '&',
+      lt: '<',
+      gt: '>',
+      quot: '"',
+      apos: "'",
+    })[entity.toLowerCase()])
     .replace(/\s+/g, ' ')
     .trim();
 }

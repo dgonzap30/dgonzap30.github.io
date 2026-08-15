@@ -1,1005 +1,216 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Diego Gonzalez Zapiain — Technical Lead & Product Engineer</title>
-  <meta name="description" content="Diego Gonzalez Zapiain is Technical Lead at PAZZ Marketplace and Co-Founder of LOJIK Labs, building dependable mobile, web, data, and applied-AI products.">
+  <title>Diego Gonzalez Zapiain — Technical Lead &amp; Systems Builder</title>
+  <meta name="description" content="Technical Lead at PAZZ Marketplace and Co-Founder &amp; Technical Lead at LOJIK Labs. Diego builds mobile, web, data, and applied-AI systems from architecture through recovery.">
   <meta name="theme-color" content="#f2ede3">
   <link rel="canonical" href="https://dgonzap30.github.io/">
-  <meta property="og:title" content="Diego Gonzalez Zapiain — Technical Lead & Product Engineer">
-  <meta property="og:description" content="Technical leadership, product engineering, and dependable systems delivery across PAZZ Marketplace and LOJIK Labs.">
+  <meta property="og:title" content="Diego Gonzalez Zapiain — Technical Lead &amp; Systems Builder">
+  <meta property="og:description" content="Current technical leadership, accountable systems delivery, and inspectable engineering.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dgonzap30.github.io/">
+  <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Diego Gonzalez Zapiain — Technical Lead &amp; Systems Builder">
+  <meta name="twitter:description" content="Current technical leadership, accountable systems delivery, and inspectable engineering.">
+  <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='10' fill='%23f2ede3'/%3E%3Cpath d='M14 18h68v60H14z' fill='none' stroke='%23242b36' stroke-width='4'/%3E%3Cpath d='M24 30h21c13 0 21 7 21 18s-8 18-21 18H24V30zm12 10v16h9c6 0 9-3 9-8s-3-8-9-8h-9z' fill='%23b83f2e'/%3E%3C/svg%3E">
-  <style>
-    :root {
-      --paper: #f2ede3;
-      --paper: oklch(94.8% 0.015 76);
-      --paper-deep: #e7dfd1;
-      --paper-deep: oklch(90.3% 0.021 76);
-      --ink: #242b36;
-      --ink: oklch(28% 0.026 255);
-      --ink-soft: #5f6670;
-      --ink-soft: oklch(49% 0.022 255);
-      --rule: #c8c0b3;
-      --rule: oklch(79% 0.018 76);
-      --accent: #b83f2e;
-      --accent: oklch(52% 0.145 32);
-      --blue: #2f5378;
-      --blue: oklch(42% 0.078 250);
-      --night: #252a32;
-      --night: oklch(27% 0.022 255);
-      --night-soft: #aeb4bc;
-      --night-soft: oklch(76% 0.018 255);
-      --max: 78rem;
-      --pad: clamp(1.25rem, 4vw, 4.5rem);
-      --space-1: 0.25rem;
-      --space-2: 0.5rem;
-      --space-3: 0.75rem;
-      --space-4: 1rem;
-      --space-6: 1.5rem;
-      --space-8: 2rem;
-      --space-12: 3rem;
-      --space-16: 4rem;
-      --space-24: 6rem;
-      --space-32: 8rem;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      text-size-adjust: 100%;
-    }
-
-    body {
-      margin: 0;
-      min-width: 20rem;
-      color: var(--ink);
-      background: var(--paper);
-      font-family: "Instrument Sans", sans-serif;
-      font-size: 1rem;
-      line-height: 1.55;
-      font-kerning: normal;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background-image:
-        linear-gradient(90deg, transparent calc(50% - 0.5px), color-mix(in oklch, var(--rule) 38%, transparent) calc(50% - 0.5px), color-mix(in oklch, var(--rule) 38%, transparent) calc(50% + 0.5px), transparent calc(50% + 0.5px));
-      opacity: 0.48;
-    }
-
-    ::selection {
-      color: var(--paper);
-      background: var(--blue);
-    }
-
-    a {
-      color: inherit;
-      text-decoration-thickness: 0.08em;
-      text-underline-offset: 0.18em;
-    }
-
-    a:focus-visible,
-    button:focus-visible {
-      outline: 0.18rem solid var(--accent);
-      outline-offset: 0.24rem;
-    }
-
-    .skip-link {
-      position: fixed;
-      top: var(--space-4);
-      left: var(--space-4);
-      z-index: 20;
-      padding: var(--space-3) var(--space-4);
-      color: var(--paper);
-      background: var(--ink);
-      transform: translateY(-180%);
-      transition: transform 180ms var(--ease-out);
-    }
-
-    .skip-link:focus {
-      transform: translateY(0);
-    }
-
-    .shell {
-      width: min(100%, var(--max));
-      margin-inline: auto;
-      padding-inline: var(--pad);
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: color-mix(in oklch, var(--paper) 92%, transparent);
-      border-bottom: 1px solid var(--rule);
-      backdrop-filter: blur(0.7rem);
-    }
-
-    .nav {
-      min-height: 4.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-6);
-    }
-
-    .monogram {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-3);
-      font-weight: 700;
-      text-decoration: none;
-      letter-spacing: -0.03em;
-    }
-
-    .monogram-mark {
-      display: grid;
-      place-items: center;
-      width: 2.25rem;
-      aspect-ratio: 1;
-      color: var(--paper);
-      background: var(--ink);
-      font-size: 0.72rem;
-      letter-spacing: 0.04em;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: clamp(1rem, 3vw, 2rem);
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 0.875rem;
-      font-weight: 600;
-    }
-
-    .nav-links a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 2.75rem;
-      text-decoration: none;
-    }
-
-    .nav-links a::after {
-      content: "↗";
-      margin-left: 0.38rem;
-      color: var(--accent);
-      transition: transform 180ms var(--ease-out);
-    }
-
-    @media (hover: hover) {
-      .nav-links a:hover::after {
-        transform: translate(0.14rem, -0.14rem);
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500&amp;display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Diego Gonzalez Zapiain",
+      "url": "https://dgonzap30.github.io/",
+      "jobTitle": ["Technical Lead", "Co-Founder & Technical Lead"],
+      "sameAs": [
+        "https://github.com/dgonzap30",
+        "https://www.linkedin.com/in/diego-gonzap/",
+        "https://pazz.mx/",
+        "https://wearelojik.com/"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Wisconsin–Madison"
+      },
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "Bachelor of Science",
+        "about": "Computer Science",
+        "dateCreated": "2026"
       }
     }
-
-    .hero {
-      min-height: calc(100svh - 4.5rem);
-      display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.55fr);
-      align-items: end;
-      gap: clamp(3rem, 8vw, 8rem);
-      padding-block: clamp(5rem, 12vh, 9rem) clamp(4rem, 10vh, 7rem);
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      margin: 0 0 var(--space-8);
-      color: var(--ink-soft);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 0.58rem;
-      aspect-ratio: 1;
-      background: var(--accent);
-      border-radius: 50%;
-    }
-
-    .hero h1 {
-      max-width: 10ch;
-      margin: 0;
-      font-family: "Newsreader", serif;
-      font-size: clamp(4rem, 9vw, 8.25rem);
-      font-weight: 400;
-      line-height: 0.86;
-      letter-spacing: -0.065em;
-      text-wrap: balance;
-    }
-
-    .hero h1 em {
-      color: var(--accent);
-      font-weight: 400;
-    }
-
-    .hero-lede {
-      max-width: 44rem;
-      margin: var(--space-8) 0 0;
-      font-size: clamp(1.12rem, 2vw, 1.42rem);
-      line-height: 1.55;
-      text-wrap: pretty;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-4) var(--space-8);
-      margin-top: var(--space-8);
-    }
-
-    .text-link {
-      display: inline-flex;
-      align-items: center;
-      min-height: 2.75rem;
-      font-weight: 700;
-      text-decoration: none;
-      border-bottom: 2px solid var(--ink);
-    }
-
-    .text-link::after {
-      content: "↘";
-      margin-left: var(--space-3);
-      color: var(--accent);
-      transition: transform 180ms var(--ease-out);
-    }
-
-    @media (hover: hover) {
-      .text-link:hover::after {
-        transform: translate(0.18rem, 0.18rem);
-      }
-    }
-
-    .docket {
-      align-self: end;
-      border-top: 0.22rem solid var(--ink);
-    }
-
-    .docket-title {
-      margin: 0;
-      padding-block: var(--space-4);
-      border-bottom: 1px solid var(--rule);
-      color: var(--ink-soft);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-    }
-
-    .docket dl {
-      margin: 0;
-    }
-
-    .docket-row {
-      display: grid;
-      grid-template-columns: 4.4rem 1fr;
-      gap: var(--space-4);
-      padding-block: var(--space-4);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .docket dt {
-      color: var(--accent);
-      font-size: 0.78rem;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .docket dd {
-      margin: 0;
-      font-size: 0.94rem;
-    }
-
-    .docket dd strong {
-      display: block;
-      margin-bottom: var(--space-1);
-      font-size: 1rem;
-    }
-
-    .intro > * {
-      opacity: 0;
-      transform: translateY(1rem);
-      animation: enter 700ms var(--ease-out) forwards;
-    }
-
-    .intro > *:nth-child(2) { animation-delay: 70ms; }
-    .intro > *:nth-child(3) { animation-delay: 140ms; }
-    .intro > *:nth-child(4) { animation-delay: 210ms; }
-
-    @keyframes enter {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .section {
-      padding-block: clamp(5.5rem, 11vw, 9rem);
-      border-top: 1px solid var(--rule);
-    }
-
-    .section-heading {
-      display: grid;
-      grid-template-columns: minmax(5rem, 0.3fr) minmax(0, 1.7fr);
-      gap: var(--space-8);
-      align-items: start;
-      margin-bottom: clamp(3.5rem, 7vw, 6.5rem);
-    }
-
-    .section-index {
-      color: var(--accent);
-      font-size: 0.82rem;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0.08em;
-    }
-
-    .section-heading h2 {
-      max-width: 13ch;
-      margin: 0;
-      font-family: "Newsreader", serif;
-      font-size: clamp(2.7rem, 6vw, 5.6rem);
-      font-weight: 400;
-      line-height: 0.92;
-      letter-spacing: -0.045em;
-    }
-
-    .section-heading p {
-      max-width: 49rem;
-      margin: var(--space-6) 0 0;
-      color: var(--ink-soft);
-      font-size: 1.12rem;
-    }
-
-    .case {
-      display: grid;
-      grid-template-columns: minmax(5rem, 0.3fr) minmax(0, 1.7fr);
-      gap: var(--space-8);
-      padding-block: clamp(2.5rem, 6vw, 5rem);
-      border-top: 1px solid var(--rule);
-    }
-
-    .case:last-child {
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .case-number {
-      color: var(--ink-soft);
-      font-family: "Newsreader", serif;
-      font-size: 1.9rem;
-    }
-
-    .case-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-2) var(--space-6);
-      margin-bottom: var(--space-4);
-      color: var(--accent);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .case h3 {
-      margin: 0;
-      font-family: "Newsreader", serif;
-      font-size: clamp(2.4rem, 5vw, 4.8rem);
-      font-weight: 400;
-      line-height: 0.94;
-      letter-spacing: -0.04em;
-    }
-
-    .case-summary {
-      max-width: 52rem;
-      margin: var(--space-6) 0 0;
-      font-size: clamp(1.08rem, 2vw, 1.32rem);
-      line-height: 1.6;
-    }
-
-    .case-detail {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-8);
-      margin-top: var(--space-8);
-    }
-
-    .case-detail p {
-      margin: 0;
-      color: var(--ink-soft);
-    }
-
-    .scope-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .scope-list li {
-      position: relative;
-      padding: var(--space-3) 0 var(--space-3) var(--space-6);
-      border-top: 1px solid var(--rule);
-    }
-
-    .scope-list li:last-child {
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .scope-list li::before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-
-    .case-link {
-      display: inline-flex;
-      align-items: center;
-      min-height: 2.75rem;
-      margin-top: var(--space-8);
-      color: var(--blue);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .case-link::after {
-      content: "↗";
-      margin-left: var(--space-3);
-      transition: transform 180ms var(--ease-out);
-    }
-
-    @media (hover: hover) {
-      .case-link:hover::after {
-        transform: translate(0.16rem, -0.16rem);
-      }
-    }
-
-    .method-band {
-      color: var(--paper);
-      background: var(--night);
-    }
-
-    .method-band .section {
-      border-color: color-mix(in oklch, var(--night-soft) 25%, transparent);
-    }
-
-    .method-band .section-index {
-      color: #e1715f;
-      color: oklch(68% 0.13 32);
-    }
-
-    .method-band .section-heading p {
-      color: var(--night-soft);
-    }
-
-    .principles {
-      border-top: 1px solid color-mix(in oklch, var(--night-soft) 28%, transparent);
-    }
-
-    .principle {
-      display: grid;
-      grid-template-columns: minmax(5rem, 0.3fr) minmax(12rem, 0.7fr) minmax(0, 1fr);
-      gap: var(--space-8);
-      align-items: baseline;
-      padding-block: clamp(1.75rem, 4vw, 3rem);
-      border-bottom: 1px solid color-mix(in oklch, var(--night-soft) 28%, transparent);
-    }
-
-    .principle-number {
-      color: #e1715f;
-      color: oklch(68% 0.13 32);
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    .principle h3 {
-      margin: 0;
-      font-family: "Newsreader", serif;
-      font-size: clamp(1.8rem, 3vw, 2.7rem);
-      font-weight: 400;
-    }
-
-    .principle p {
-      max-width: 43rem;
-      margin: 0;
-      color: var(--night-soft);
-    }
-
-    .repo-list {
-      border-top: 0.22rem solid var(--ink);
-    }
-
-    .repo-row {
-      display: grid;
-      grid-template-columns: minmax(10rem, 0.65fr) minmax(14rem, 1.35fr) minmax(9rem, 0.65fr) 2rem;
-      gap: var(--space-6);
-      align-items: center;
-      min-height: 6.25rem;
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid var(--rule);
-      transition: color 180ms var(--ease-out), transform 180ms var(--ease-out);
-    }
-
-    .repo-name {
-      font-family: "Newsreader", serif;
-      font-size: 1.55rem;
-    }
-
-    .repo-description,
-    .repo-stack {
-      color: var(--ink-soft);
-      font-size: 0.92rem;
-    }
-
-    .repo-arrow {
-      color: var(--accent);
-      font-size: 1.35rem;
-      transition: transform 180ms var(--ease-out);
-    }
-
-    @media (hover: hover) {
-      .repo-row:hover {
-        color: var(--blue);
-        transform: translateX(0.35rem);
-      }
-
-      .repo-row:hover .repo-arrow {
-        transform: translate(0.16rem, -0.16rem);
-      }
-    }
-
-    .profile-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(17rem, 0.85fr);
-      gap: clamp(3rem, 8vw, 8rem);
-      align-items: start;
-    }
-
-    .profile-copy {
-      margin: 0;
-      font-family: "Newsreader", serif;
-      font-size: clamp(1.9rem, 4vw, 3.5rem);
-      line-height: 1.12;
-      letter-spacing: -0.03em;
-    }
-
-    .profile-copy em {
-      color: var(--accent);
-      font-weight: 400;
-    }
-
-    .stack {
-      border-top: 0.22rem solid var(--ink);
-    }
-
-    .stack h3 {
-      margin: 0;
-      padding-block: var(--space-4);
-      border-bottom: 1px solid var(--rule);
-      color: var(--ink-soft);
-      font-size: 0.76rem;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-    }
-
-    .stack p {
-      margin: 0;
-      padding-block: var(--space-4);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .site-footer {
-      color: var(--paper);
-      background: var(--accent);
-    }
-
-    .footer-inner {
-      padding-block: clamp(4.5rem, 10vw, 8rem) var(--space-8);
-    }
-
-    .footer-kicker {
-      margin: 0 0 var(--space-6);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-    }
-
-    .footer-title {
-      max-width: 15ch;
-      margin: 0;
-      font-family: "Newsreader", serif;
-      font-size: clamp(2.7rem, 7vw, 6.6rem);
-      font-weight: 400;
-      line-height: 0.92;
-      letter-spacing: -0.05em;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-3) var(--space-8);
-      margin-top: var(--space-12);
-    }
-
-    .footer-links a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 2.75rem;
-      font-weight: 700;
-      text-decoration: none;
-      border-bottom: 2px solid color-mix(in oklch, var(--paper) 72%, transparent);
-    }
-
-    .footer-links a::after {
-      content: "↗";
-      margin-left: var(--space-2);
-    }
-
-    .footer-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: var(--space-6);
-      margin-top: var(--space-24);
-      padding-top: var(--space-4);
-      border-top: 1px solid color-mix(in oklch, var(--paper) 42%, transparent);
-      font-size: 0.78rem;
-    }
-
-    @media (max-width: 54rem) {
-      body::before {
-        display: none;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        align-items: start;
-      }
-
-      .docket {
-        max-width: 36rem;
-      }
-
-      .section-heading,
-      .case {
-        grid-template-columns: 4rem minmax(0, 1fr);
-      }
-
-      .principle {
-        grid-template-columns: 3rem minmax(0, 1fr);
-      }
-
-      .principle p {
-        grid-column: 2;
-      }
-
-      .repo-row {
-        grid-template-columns: minmax(9rem, 0.7fr) minmax(0, 1.3fr) 2rem;
-      }
-
-      .repo-stack {
-        display: none;
-      }
-
-      .profile-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 40rem) {
-      .site-header {
-        position: static;
-      }
-
-      .nav {
-        align-items: center;
-        padding-block: var(--space-3);
-      }
-
-      .monogram > span:last-child {
-        display: none;
-      }
-
-      .nav-links {
-        flex-wrap: nowrap;
-        justify-content: flex-end;
-        gap: var(--space-4);
-      }
-
-      .nav-links li:not(:last-child) {
-        display: none;
-      }
-
-      .hero {
-        padding-top: var(--space-16);
-      }
-
-      .hero h1 {
-        font-size: clamp(3.6rem, 18vw, 5.8rem);
-      }
-
-      .section-heading,
-      .case {
-        grid-template-columns: 1fr;
-        gap: var(--space-4);
-      }
-
-      .case-number {
-        font-size: 1.3rem;
-      }
-
-      .case-detail {
-        grid-template-columns: 1fr;
-      }
-
-      .principle {
-        grid-template-columns: 2.5rem minmax(0, 1fr);
-        gap: var(--space-4);
-      }
-
-      .repo-row {
-        grid-template-columns: minmax(0, 1fr) 1.5rem;
-        gap: var(--space-2);
-        padding-block: var(--space-4);
-      }
-
-      .repo-description {
-        grid-column: 1;
-      }
-
-      .repo-arrow {
-        grid-column: 2;
-        grid-row: 1 / span 2;
-      }
-
-      .footer-meta {
-        flex-direction: column;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-delay: 0ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    @media print {
-      .site-header {
-        position: static;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .method-band,
-      .site-footer {
-        color: var(--ink);
-        background: var(--paper);
-      }
-    }
-  </style>
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header">
-    <nav class="nav shell" aria-label="Primary">
-      <a class="monogram" href="#top" aria-label="Diego Gonzalez Zapiain, home">
-        <span class="monogram-mark" aria-hidden="true">DGZ</span>
+    <nav class="site-nav shell" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="Diego Gonzalez Zapiain, home">
+        <img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="">
         <span>Diego Gonzalez Zapiain</span>
       </a>
       <ul class="nav-links">
         <li><a href="#work">Work</a></li>
         <li><a href="#method">Method</a></li>
-        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+        <li><a class="nav-external" href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
       </ul>
     </nav>
   </header>
 
   <main id="main-content">
-    <section class="shell hero" id="top">
-      <div class="intro">
-        <p class="eyebrow">Technical Lead at PAZZ · Co-Founder, LOJIK Labs</p>
-        <h1>I build systems that survive contact with <em>reality.</em></h1>
-        <p class="hero-lede">I turn complex operating workflows into dependable mobile, web, data, and applied-AI products—owning the path from product architecture through implementation, integrations, release, and recovery.</p>
-        <div class="hero-actions">
-          <a class="text-link" href="#work">See current work</a>
-          <a class="text-link" href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
+    <section class="hero shell" id="top">
+      <div class="hero-copy">
+        <span class="hero-register" aria-hidden="true"></span>
+        <p class="kicker">Technical Lead at PAZZ · Co-Founder &amp; Technical Lead at LOJIK</p>
+        <h1 class="display">I build systems that survive contact with <em>reality.</em></h1>
+        <p class="lede">I turn ambiguous operating problems into explicit products, shared rules, release evidence, and recovery paths—across mobile, web, data, and applied AI.</p>
+        <div class="actions">
+          <a class="action action-primary" href="#work">Inspect current work</a>
+          <a class="action action-secondary" href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">Connect on LinkedIn</a>
         </div>
       </div>
 
-      <aside class="docket" aria-label="Current roles">
-        <p class="docket-title">Current docket / 2026</p>
-        <dl>
-          <div class="docket-row">
-            <dt>01</dt>
-            <dd><strong>PAZZ Marketplace</strong>Technical Lead · May 2026–present</dd>
-          </div>
-          <div class="docket-row">
-            <dt>02</dt>
-            <dd><strong>LOJIK Labs</strong>Co-founder · accountable systems delivery</dd>
-          </div>
-          <div class="docket-row">
-            <dt>03</dt>
-            <dd><strong>UW–Madison</strong>B.S. Computer Science · 2026</dd>
-          </div>
-        </dl>
+      <aside class="hero-aside" aria-label="Current roles and education">
+        <p class="coordinate-label">Current docket / 2026</p>
+        <ul class="fact-list">
+          <li><strong>01 · PAZZ</strong><span>Technical Lead · Current</span></li>
+          <li><strong>02 · LOJIK</strong><span>Co-Founder &amp; Technical Lead</span></li>
+          <li><strong>03 · UW</strong><span>B.S. Computer Science · Completed 2026</span></li>
+        </ul>
       </aside>
     </section>
 
     <section class="section shell" id="work">
       <header class="section-heading">
-        <span class="section-index">01 / Current work</span>
+        <span class="section-index">01 / Current systems</span>
         <div>
           <h2>Work with an operating consequence.</h2>
-          <p>My recent work sits where product, engineering, business rules, external providers, and release discipline meet. The software has to work for customers—and for the people responsible when it does not.</p>
+          <p>Recent work where product, engineering, business rules, external systems, and release discipline meet. The software has to work for customers—and for the people responsible when it does not.</p>
         </div>
       </header>
 
-      <article class="case">
-        <div class="case-number">01</div>
-        <div>
-          <div class="case-meta">
-            <span>PAZZ Marketplace</span>
-            <span>Technical Lead</span>
-            <span>Mexico</span>
+      <div class="system-list">
+        <article class="system">
+          <div class="system-index"><span>01</span><span class="coordinate-label">Mexico</span></div>
+          <div class="system-content">
+            <div class="system-copy">
+              <p class="kicker">PAZZ Marketplace · Technical Lead</p>
+              <h3>Rebuilding automotive leasing as one operable marketplace.</h3>
+              <p class="system-summary">Automotive leasing crosses vehicle data, pricing and tax rules, eligibility, documents, partners, external providers, and human judgment. I lead the technical work that makes those handoffs behave as one coherent product.</p>
+              <p class="system-detail">My scope spans technical direction and hands-on delivery across discovery, quoting, prequalification, conversational intake, partner and operator workflows, shared domain models, integrations, observability, releases, and recovery.</p>
+              <div class="actions">
+                <a class="action action-primary" href="/work/pazz/">Read the case study</a>
+                <a class="action action-secondary" href="https://pazz.mx/" target="_blank" rel="noopener noreferrer">Visit PAZZ</a>
+              </div>
+            </div>
+            <aside class="system-aside">
+              <span class="evidence-tag">Current work · Private platform</span>
+              <ul class="fact-list">
+                <li><strong>Authority</strong><span>Shared business rules</span></li>
+                <li><strong>Handoffs</strong><span>Customer, partner, operator</span></li>
+                <li><strong>Recovery</strong><span>Observable operating states</span></li>
+              </ul>
+            </aside>
           </div>
-          <h3>Automotive leasing, rebuilt end to end.</h3>
-          <p class="case-summary">Automotive leasing is full of disconnected decisions, documents, partners, and handoffs. I lead the technical work that turns those pieces into one reliable marketplace experience for customers and operators in Mexico.</p>
-          <div class="case-detail">
-            <p>My scope spans product architecture, hands-on delivery, vehicle discovery, quoting, prequalification, conversational intake, partner routing, document workflows, internal tools, data, integrations, observability, and releases.</p>
-            <ul class="scope-list" aria-label="PAZZ technical scope">
-              <li>Mobile and web product delivery</li>
-              <li>Shared data models and integrations</li>
-              <li>Observability and release reliability</li>
-              <li>Customer and operator workflows</li>
-            </ul>
-          </div>
-          <a class="case-link" href="https://pazz.mx" target="_blank" rel="noopener noreferrer">Visit PAZZ</a>
-        </div>
-      </article>
+        </article>
 
-      <article class="case">
-        <div class="case-number">02</div>
-        <div>
-          <div class="case-meta">
-            <span>LOJIK Labs</span>
-            <span>Co-founder</span>
-            <span>Systems delivery</span>
+        <article class="system">
+          <div class="system-index"><span>02</span><span class="coordinate-label">Madison · San Diego</span></div>
+          <div class="system-content">
+            <div class="system-copy">
+              <p class="kicker">LOJIK Labs · Co-Founder &amp; Technical Lead</p>
+              <h3>Building the operating system behind accountable delivery.</h3>
+              <p class="system-summary">LOJIK rebuilds recurring operational work as dependable software. We start with the workflow, define who owns each decision and failure, then deliver the product, integrations, recovery paths, and acceptance evidence as one system.</p>
+              <p class="system-detail">I lead company-building, systems architecture, and hands-on implementation across the public business-systems review, delivery model, and private evidence, approval, and recovery tools.</p>
+              <div class="actions">
+                <a class="action action-primary" href="/work/lojik/">Read the case study</a>
+                <a class="action action-secondary" href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer">Start a LOJIK review</a>
+              </div>
+            </div>
+            <aside class="system-aside">
+              <span class="evidence-tag">Company building · Systems delivery</span>
+              <ul class="fact-list">
+                <li><strong>Source</strong><span>Facts and constraints</span></li>
+                <li><strong>Authority</strong><span>Approval and ownership</span></li>
+                <li><strong>Evidence</strong><span>Bound to the claim</span></li>
+              </ul>
+            </aside>
           </div>
-          <h3>Find the break. Build the right system.</h3>
-          <p class="case-summary">LOJIK rebuilds recurring operational work as dependable software. We start with the workflow, define who owns each decision and failure, then deliver the product, integrations, recovery paths, and operating evidence together.</p>
-          <div class="case-detail">
-            <p>My role covers product strategy, technical architecture, implementation, delivery, and the accountability that continues after launch.</p>
-            <ul class="scope-list" aria-label="LOJIK delivery model">
-              <li>Operating problem and workflow definition</li>
-              <li>Professional implementation</li>
-              <li>Acceptance evidence and failure behavior</li>
-              <li>Explicit ownership after launch</li>
-            </ul>
-          </div>
-          <a class="case-link" href="https://wearelojik.com" target="_blank" rel="noopener noreferrer">Visit LOJIK</a>
-        </div>
-      </article>
+        </article>
+      </div>
     </section>
 
     <div class="method-band" id="method">
       <section class="section shell">
         <header class="section-heading">
-          <span class="section-index">02 / Method</span>
+          <span class="section-index">02 / Operating method</span>
           <div>
             <h2>Correctness is a product feature.</h2>
-            <p>I care about the unglamorous parts because they determine whether a product becomes dependable infrastructure or another prototype people work around.</p>
+            <p>Five stages for moving from an ambiguous operating problem to software people can rely on—and recover when reality disagrees.</p>
           </div>
         </header>
 
-        <div class="principles">
-          <article class="principle">
-            <span class="principle-number">01</span>
-            <h3>Find operating truth</h3>
-            <p>Map the real actors, data, constraints, handoffs, and incentives before picking a solution.</p>
-          </article>
-          <article class="principle">
-            <span class="principle-number">02</span>
-            <h3>Specify the whole system</h3>
-            <p>Make permissions, integrations, failure behavior, acceptance criteria, and ownership explicit.</p>
-          </article>
-          <article class="principle">
-            <span class="principle-number">03</span>
-            <h3>Ship evidence</h3>
-            <p>Move in small, verifiable increments with source gates, observability, and production proof.</p>
-          </article>
-          <article class="principle">
-            <span class="principle-number">04</span>
-            <h3>Own the aftermath</h3>
-            <p>Design recovery paths and stay accountable after launch, when the system meets the real world.</p>
-          </article>
+        <div class="method-list">
+          <article class="method-step"><span class="method-number">01</span><strong>Find operating truth</strong><span>Map the real actors, data, constraints, incentives, and failure modes before choosing a product shape.</span></article>
+          <article class="method-step"><span class="method-number">02</span><strong>Establish authority</strong><span>Make the source of truth, permissions, decisions, and human ownership explicit.</span></article>
+          <article class="method-step"><span class="method-number">03</span><strong>Build the interface</strong><span>Connect product surfaces, workflow, data, and integrations around the same operating rules.</span></article>
+          <article class="method-step"><span class="method-number">04</span><strong>Ship evidence</strong><span>Separate source, hosted, runtime, and production proof—and bind claims to what was actually verified.</span></article>
+          <article class="method-step"><span class="method-number">05</span><strong>Design recovery</strong><span>Treat interruption, partial failure, stale state, and human correction as system behavior, not cleanup.</span></article>
         </div>
       </section>
     </div>
 
-    <section class="section shell" id="public-work">
+    <section class="section shell" id="engineering">
       <header class="section-heading">
-        <span class="section-index">03 / Public work</span>
+        <span class="section-index">03 / Inspectable engineering</span>
         <div>
-          <h2>Selected code and case studies.</h2>
-          <p>Most of my active production work is private. These public repositories are a focused set of packages, case studies, research, and small product work.</p>
+          <h2>Public proof, selected for relevance.</h2>
+          <p>Most active production work is private. These artifacts expose the decisions, boundaries, and code that can be inspected responsibly.</p>
         </div>
       </header>
 
-      <div class="repo-list">
-        <a class="repo-row" href="https://github.com/dgonzap30/brainkit" target="_blank" rel="noopener noreferrer">
-          <strong class="repo-name">BrainKit</strong>
-          <span class="repo-description">A Swift package for Lodestar personal-app integration.</span>
-          <span class="repo-stack">Swift · SPM</span>
-          <span class="repo-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="repo-row" href="https://github.com/dgonzap30/movee-case-study" target="_blank" rel="noopener noreferrer">
-          <strong class="repo-name">Mövee</strong>
-          <span class="repo-description">A historical case study for a real-time nightlife coordination product.</span>
-          <span class="repo-stack">Expo · PostGIS</span>
-          <span class="repo-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="repo-row" href="https://github.com/dgonzap30/nfl-predictor" target="_blank" rel="noopener noreferrer">
-          <strong class="repo-name">NFL Predictor</strong>
-          <span class="repo-description">Forecasting research in progress with calibrated-probability goals.</span>
-          <span class="repo-stack">Python · ML</span>
-          <span class="repo-arrow" aria-hidden="true">↗</span>
-        </a>
-        <a class="repo-row" href="https://github.com/dgonzap30/reading-list" target="_blank" rel="noopener noreferrer">
-          <strong class="repo-name">Reading List</strong>
-          <span class="repo-description">A focused 20-week curriculum tracker.</span>
-          <span class="repo-stack">React · JavaScript</span>
-          <span class="repo-arrow" aria-hidden="true">↗</span>
-        </a>
+      <div class="artifact-list">
+        <a class="artifact-row" href="/work/pazz/"><strong>PAZZ case study</strong><span class="artifact-description">Technical leadership across one operating marketplace.</span><span class="artifact-kind">Current system</span><span class="artifact-arrow" aria-hidden="true">↗</span></a>
+        <a class="artifact-row" href="/work/lojik/"><strong>LOJIK case study</strong><span class="artifact-description">Accountable systems delivery and its evidence model.</span><span class="artifact-kind">Current system</span><span class="artifact-arrow" aria-hidden="true">↗</span></a>
+        <a class="artifact-row" href="https://github.com/dgonzap30/brainkit" target="_blank" rel="noopener noreferrer"><strong>BrainKit</strong><span class="artifact-description">Swift package for Lodestar personal-app integration.</span><span class="artifact-kind">Swift · SPM</span><span class="artifact-arrow" aria-hidden="true">↗</span></a>
+        <a class="artifact-row" href="https://github.com/dgonzap30/dgonzap30.github.io" target="_blank" rel="noopener noreferrer"><strong>Systems Atlas</strong><span class="artifact-description">The static, progressive-enhancement source for this portfolio.</span><span class="artifact-kind">HTML · CSS · SVG</span><span class="artifact-arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
 
     <section class="section shell" id="profile">
       <header class="section-heading">
         <span class="section-index">04 / Profile</span>
-        <div>
-          <h2>Product judgment, backed by implementation.</h2>
-        </div>
+        <div><h2>Product judgment, backed by implementation.</h2></div>
       </header>
 
       <div class="profile-grid">
-        <p class="profile-copy">I work comfortably from the first ambiguous conversation to the last production gate. The through-line is turning uncertainty into <em>explicit, owned, working software.</em></p>
-        <aside class="stack">
-          <h3>Working stack</h3>
-          <p>TypeScript · React Native / Expo · Next.js</p>
-          <p>Postgres / Supabase · Redis · Vercel</p>
-          <p>Sentry · PostHog · GitHub Actions</p>
-          <p>Python · Swift · applied AI</p>
+        <div>
+          <img src="/assets/brand/dgz-lockup.svg" width="284" height="48" alt="Diego Gonzalez Zapiain">
+        </div>
+        <div>
+          <p class="profile-copy">I work from the first ambiguous conversation to the last production gate. The through-line is turning uncertainty into <em>explicit, owned, working software.</em></p>
+          <ul class="profile-background">
+            <li><strong>Education</strong>B.S. Computer Science, University of Wisconsin–Madison, 2026</li>
+            <li><strong>Working range</strong>Product · Interfaces · Data · Integrations · Applied AI · Release · Recovery</li>
+          </ul>
+        </div>
+        <aside class="profile-diagram">
+          <p class="coordinate-label">Operating range / boundary map</p>
+          <p>TypeScript · React Native / Expo · Next.js · PostgreSQL / Supabase · Python · Swift · applied AI</p>
         </aside>
       </div>
     </section>
@@ -1007,18 +218,13 @@
 
   <footer class="site-footer">
     <div class="footer-inner shell">
-      <p class="footer-kicker">The interesting problems cross boundaries.</p>
-      <h2 class="footer-title">Product, data, integrations, operations—the system is all of it.</h2>
-      <nav class="footer-links" aria-label="External profiles">
-        <a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a>
-        <a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a>
-        <a href="https://pazz.mx" target="_blank" rel="noopener noreferrer">PAZZ</a>
-        <a href="https://wearelojik.com" target="_blank" rel="noopener noreferrer">LOJIK</a>
-      </nav>
-      <div class="footer-meta">
-        <span>Diego Gonzalez Zapiain</span>
-        <span>B.S. Computer Science · UW–Madison, 2026</span>
+      <p class="kicker">Choose the conversation</p>
+      <h2 class="footer-title">The interesting problems cross boundaries.</h2>
+      <div class="contact-paths">
+        <a class="contact-path" href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer"><span>Technical leadership · Product engineering</span><strong>Connect on LinkedIn</strong></a>
+        <a class="contact-path" href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer"><span>Recurring business workflow · Systems delivery</span><strong>Start a LOJIK review</strong></a>
       </div>
+      <div class="footer-meta"><span>Diego Gonzalez Zapiain</span><span>B.S. Computer Science · University of Wisconsin–Madison · 2026</span></div>
     </div>
   </footer>
 </body>
