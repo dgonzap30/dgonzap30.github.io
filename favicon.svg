@@ -1,11 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#6366F1;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <rect width="100" height="100" fill="#0f0a1a"/>
-  <text x="50" y="70" font-family="Inter, sans-serif" font-size="60" font-weight="bold" fill="url(#grad)" text-anchor="middle">D</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+  <rect width="2048" height="2048" rx="280" fill="#0a0a0c"/>
+  <g fill="#f0f0f2">
+    <path d="M 1063.8 486.055 L 1499.71 486.041 L 1499.77 796.342 C 1474.8 817.204 1445.18 839.029 1419.18 859.13 L 1282.19 965.499 L 799.844 1339.72 C 861.74 1339.38 923.637 1339.39 985.533 1339.73 L 985.687 1562.18 L 548.37 1562.17 L 548.551 1252.83 C 578.662 1230.89 611.713 1204.08 641.115 1181.03 L 785.763 1067.89 L 1249.24 705.899 L 1063.69 705.717 L 1063.8 486.055 z"/>
+    <path d="M 1279.32 1021.89 L 1499.79 1021.99 C 1498.11 1084.85 1500.03 1155.67 1500.06 1219.21 L 1499.84 1562.24 L 1283.5 1562.13 L 1063.61 1562.12 L 1063.62 1339.66 L 1279.2 1339.63 L 1279.32 1021.89 z"/>
+    <path d="M 548.471 486.116 L 985.403 486.005 L 985.65 705.684 L 768.257 705.75 L 768.102 813.75 L 768.156 1025.11 L 548.516 1025.17 L 548.471 486.116 z"/>
+  </g>
 </svg>
