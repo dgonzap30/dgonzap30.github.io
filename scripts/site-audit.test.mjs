@@ -105,3 +105,36 @@ test('brand raster fallbacks have exact dimensions', async () => {
     assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], dimensions);
   }
 });
+
+test('graphics are accessible, bounded SVG documents', async () => {
+  const graphicPaths = [
+    'assets/graphics/system-trace.svg',
+    'assets/graphics/pazz-handoff.svg',
+    'assets/graphics/lojik-evidence.svg',
+    'assets/graphics/operating-range.svg',
+  ];
+
+  for (const relativePath of graphicPaths) {
+    const svg = await readFile(join(repoRoot, relativePath), 'utf8');
+    assert.match(svg, /<title\b[^>]*>[^<]+<\/title>/i);
+    assert.match(svg, /<desc\b[^>]*>[^<]+<\/desc>/i);
+    assert.doesNotMatch(svg, /<(?:filter|linearGradient|radialGradient)\b/i);
+    assert(Buffer.byteLength(svg) < 20 * 1024, `${relativePath} exceeds 20 KB`);
+  }
+});
+
+test('javascript is a small progressive enhancement', async () => {
+  const script = await readFile(join(repoRoot, 'assets/js/site.js'), 'utf8');
+  assert(Buffer.byteLength(script) < 12 * 1024, 'site.js exceeds 12 KB');
+  for (const functionName of [
+    'motionAllowed',
+    'setTraceStage',
+    'enhanceTrace',
+    'enhanceReveals',
+    'enhanceSectionNav',
+  ]) {
+    assert.match(script, new RegExp(`function ${functionName}\\(`));
+  }
+  assert.doesNotMatch(script, /\bsetInterval\s*\(/);
+  assert.doesNotMatch(script, /\brequestAnimationFrame\s*\(/);
+});

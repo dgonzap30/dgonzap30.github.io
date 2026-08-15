@@ -309,8 +309,15 @@
 .diagram-frame {
   position: relative;
   padding: var(--space-6);
+  margin-inline: 0;
   background: var(--paper-bright);
   border: 1px solid var(--rule);
+}
+
+.diagram-frame img,
+.profile-diagram img {
+  width: 100%;
+  height: auto;
 }
 
 .diagram-frame::before,

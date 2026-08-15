@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/css/components.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
+  <script src="/assets/js/site.js" defer></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -64,14 +65,14 @@
         <span>Diego Gonzalez Zapiain</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#work">Work</a></li>
-        <li><a href="#method">Method</a></li>
+        <li><a href="#work" data-section-link>Work</a></li>
+        <li><a href="#method" data-section-link>Method</a></li>
         <li><a class="nav-external" href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
       </ul>
     </nav>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" data-trace-root>
     <section class="hero shell" id="top">
       <div class="hero-copy">
         <span class="hero-register" aria-hidden="true"></span>
@@ -84,13 +85,28 @@
         </div>
       </div>
 
-      <aside class="hero-aside" aria-label="Current roles and education">
-        <p class="coordinate-label">Current docket / 2026</p>
-        <ul class="fact-list">
-          <li><strong>01 · PAZZ</strong><span>Technical Lead · Current</span></li>
-          <li><strong>02 · LOJIK</strong><span>Co-Founder &amp; Technical Lead</span></li>
-          <li><strong>03 · UW</strong><span>B.S. Computer Science · Completed 2026</span></li>
-        </ul>
+      <aside class="hero-aside" aria-label="Systems Atlas operating trace">
+        <div class="trace-field" data-reveal data-visible="true">
+          <div class="trace-field-header"><span>DGZ / System trace</span><span class="tabular">43.0748° N · 89.3848° W</span></div>
+          <svg viewBox="0 0 720 420" role="img" aria-labelledby="trace-title trace-desc">
+            <title id="trace-title">Operating trace</title>
+            <desc id="trace-desc">A continuous path connects ambiguity, authority, interface, evidence, and recovery.</desc>
+            <path class="trace-route" d="M82 286C138 286 151 154 220 154S292 258 360 258s76-152 142-152 67 126 136 126"/>
+            <path class="trace-route-active" pathLength="1" d="M82 286C138 286 151 154 220 154S292 258 360 258s76-152 142-152 67 126 136 126"/>
+            <g data-trace-node="ambiguity" transform="translate(82 286)"><circle class="node-core" r="10"/><text x="-42" y="39">Ambiguity</text></g>
+            <g data-trace-node="authority" transform="translate(220 154)"><circle class="node-core" r="10"/><text x="-38" y="-28">Authority</text></g>
+            <g data-trace-node="interface" transform="translate(360 258)"><circle class="node-core" r="10"/><text x="-36" y="39">Interface</text></g>
+            <g data-trace-node="evidence" transform="translate(502 106)"><circle class="node-core" r="10"/><text x="-34" y="-28">Evidence</text></g>
+            <g data-trace-node="recovery" transform="translate(638 232)"><circle class="node-core" r="12"/><text x="-37" y="42">Recovery</text></g>
+          </svg>
+          <ol class="trace-key" aria-label="Operating trace stages">
+            <li><button type="button" data-trace-stage="ambiguity">01 · Find</button></li>
+            <li><button type="button" data-trace-stage="authority">02 · Own</button></li>
+            <li><button type="button" data-trace-stage="interface">03 · Build</button></li>
+            <li><button type="button" data-trace-stage="evidence">04 · Prove</button></li>
+            <li><button type="button" data-trace-stage="recovery">05 · Return</button></li>
+          </ol>
+        </div>
       </aside>
     </section>
 
@@ -124,6 +140,10 @@
                 <li><strong>Handoffs</strong><span>Customer, partner, operator</span></li>
                 <li><strong>Recovery</strong><span>Observable operating states</span></li>
               </ul>
+              <figure class="diagram-frame">
+                <img src="/assets/graphics/pazz-handoff.svg" width="760" height="420" alt="Five marketplace stages share one rule authority and return failed handoffs to owned recovery.">
+                <figcaption class="diagram-caption"><span>Marketplace handoff map</span><span>Sanitized</span></figcaption>
+              </figure>
             </aside>
           </div>
         </article>
@@ -148,6 +168,10 @@
                 <li><strong>Authority</strong><span>Approval and ownership</span></li>
                 <li><strong>Evidence</strong><span>Bound to the claim</span></li>
               </ul>
+              <figure class="diagram-frame">
+                <img src="/assets/graphics/lojik-evidence.svg" width="720" height="460" alt="Evidence advances from source to production while commercial outcome remains explicitly unclaimed.">
+                <figcaption class="diagram-caption"><span>Evidence ladder</span><span>Claim bounded</span></figcaption>
+              </figure>
             </aside>
           </div>
         </article>
@@ -165,11 +189,11 @@
         </header>
 
         <div class="method-list">
-          <article class="method-step"><span class="method-number">01</span><strong>Find operating truth</strong><span>Map the real actors, data, constraints, incentives, and failure modes before choosing a product shape.</span></article>
-          <article class="method-step"><span class="method-number">02</span><strong>Establish authority</strong><span>Make the source of truth, permissions, decisions, and human ownership explicit.</span></article>
-          <article class="method-step"><span class="method-number">03</span><strong>Build the interface</strong><span>Connect product surfaces, workflow, data, and integrations around the same operating rules.</span></article>
-          <article class="method-step"><span class="method-number">04</span><strong>Ship evidence</strong><span>Separate source, hosted, runtime, and production proof—and bind claims to what was actually verified.</span></article>
-          <article class="method-step"><span class="method-number">05</span><strong>Design recovery</strong><span>Treat interruption, partial failure, stale state, and human correction as system behavior, not cleanup.</span></article>
+          <button class="method-step" type="button" data-trace-stage="ambiguity"><span class="method-number">01</span><strong>Find operating truth</strong><span>Map the real actors, data, constraints, incentives, and failure modes before choosing a product shape.</span></button>
+          <button class="method-step" type="button" data-trace-stage="authority"><span class="method-number">02</span><strong>Establish authority</strong><span>Make the source of truth, permissions, decisions, and human ownership explicit.</span></button>
+          <button class="method-step" type="button" data-trace-stage="interface"><span class="method-number">03</span><strong>Build the interface</strong><span>Connect product surfaces, workflow, data, and integrations around the same operating rules.</span></button>
+          <button class="method-step" type="button" data-trace-stage="evidence"><span class="method-number">04</span><strong>Ship evidence</strong><span>Separate source, hosted, runtime, and production proof—and bind claims to what was actually verified.</span></button>
+          <button class="method-step" type="button" data-trace-stage="recovery"><span class="method-number">05</span><strong>Design recovery</strong><span>Treat interruption, partial failure, stale state, and human correction as system behavior, not cleanup.</span></button>
         </div>
       </section>
     </div>
@@ -209,8 +233,8 @@
           </ul>
         </div>
         <aside class="profile-diagram">
-          <p class="coordinate-label">Operating range / boundary map</p>
-          <p>TypeScript · React Native / Expo · Next.js · PostgreSQL / Supabase · Python · Swift · applied AI</p>
+          <img src="/assets/graphics/operating-range.svg" width="720" height="450" alt="Product, interfaces, data, integrations, applied AI, release, recovery, and authority connected as one operating system.">
+          <p>Relationships, not proficiency scores. The operating boundary is the work.</p>
         </aside>
       </div>
     </section>
