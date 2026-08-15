@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" role="img" aria-labelledby="title desc">
+  <title id="title">LOJIK evidence ladder</title>
+  <desc id="desc">Evidence progresses from source through production, while commercial outcome remains explicitly unclaimed.</desc>
+  <rect width="720" height="460" fill="#171c23"/>
+  <path d="M36 36h648v388H36z" fill="none" stroke="#424954"/>
+  <g font-family="Instrument Sans, sans-serif" font-weight="700" letter-spacing="1.25">
+    <text x="52" y="66" fill="#b3bbc6" font-size="10">LOJIK / EVIDENCE LADDER</text>
+    <text x="506" y="66" fill="#f29a85" font-size="10">CLAIMS STOP AT PROOF</text>
+  </g>
+  <path d="M92 352h86v-48h86v-48h86v-48h86v-48h86v-48h106" fill="none" stroke="#b3bbc6" stroke-width="2"/>
+  <path d="M92 352h86v-48h86v-48h86v-48h86v-48h86" fill="none" stroke="#f29a85" stroke-width="4"/>
+  <path d="M522 160v-48h106" fill="none" stroke="#424954" stroke-width="3" stroke-dasharray="8 8"/>
+  <g font-family="Instrument Sans, sans-serif" font-size="10" font-weight="700" text-anchor="middle">
+    <g transform="translate(135 352)"><circle r="7" fill="#f29a85"/><text y="30" fill="#f2ede3">SOURCE</text><text y="46" fill="#b3bbc6" font-size="8">FACTS</text></g>
+    <g transform="translate(221 304)"><circle r="7" fill="#f29a85"/><text y="30" fill="#f2ede3">LOCAL</text><text y="46" fill="#b3bbc6" font-size="8">SOURCE GATE</text></g>
+    <g transform="translate(307 256)"><circle r="7" fill="#f29a85"/><text y="30" fill="#f2ede3">HOSTED</text><text y="46" fill="#b3bbc6" font-size="8">CI EVIDENCE</text></g>
+    <g transform="translate(393 208)"><circle r="7" fill="#f29a85"/><text y="30" fill="#f2ede3">RUNTIME</text><text y="46" fill="#b3bbc6" font-size="8">PRIVATE PROOF</text></g>
+    <g transform="translate(479 160)"><circle r="7" fill="#f29a85"/><text y="30" fill="#f2ede3">PRODUCTION</text><text y="46" fill="#b3bbc6" font-size="8">PUBLIC SITE</text></g>
+    <g transform="translate(575 112)"><circle r="7" fill="#171c23" stroke="#b3bbc6" stroke-width="2"/><text y="30" fill="#b3bbc6">OUTCOME</text><text y="46" fill="#f29a85" font-size="8">NOT CLAIMED</text></g>
+  </g>
+  <path d="M52 392h616" stroke="#424954"/>
+  <text x="52" y="410" fill="#b3bbc6" font-family="Instrument Sans, sans-serif" font-size="9" letter-spacing="1">TECHNICAL EVIDENCE DOES NOT AUTOMATICALLY BECOME COMMERCIAL PROOF</text>
+</svg>

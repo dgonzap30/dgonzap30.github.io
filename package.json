@@ -1,0 +1,10 @@
+{
+  "name": "dgonzap30-systems-atlas",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test scripts/site-audit.test.mjs",
+    "check": "node scripts/site-audit.mjs .",
+    "serve": "python3 -m http.server 4173"
+  }
+}

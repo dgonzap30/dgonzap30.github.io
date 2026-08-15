@@ -1,0 +1,77 @@
+:root {
+  color-scheme: light;
+
+  --paper: #f2ede3;
+  --paper: oklch(94.8% 0.015 76);
+  --paper-deep: #e6ddcf;
+  --paper-deep: oklch(89.8% 0.023 73);
+  --paper-bright: #faf7f0;
+  --paper-bright: oklch(97.8% 0.009 76);
+  --carbon: #171c23;
+  --carbon: oklch(22.5% 0.025 255);
+  --ink: #242b36;
+  --ink: oklch(28% 0.026 255);
+  --ink-soft: #606872;
+  --ink-soft: oklch(50.5% 0.022 255);
+  --rule: #c6bdaf;
+  --rule: oklch(78.5% 0.019 72);
+  --rule-strong: #968d80;
+  --rule-strong: oklch(64.8% 0.021 72);
+  --blueprint: #315a7d;
+  --blueprint: oklch(44.3% 0.083 248);
+  --vermilion: #bd4633;
+  --vermilion: oklch(53.8% 0.14 34);
+  --vermilion-light: #f29a85;
+  --vermilion-light: oklch(77% 0.11 34);
+  --moss: #64705f;
+  --moss: oklch(50.5% 0.036 132);
+  --night-text: #f2ede3;
+  --night-text: oklch(94.8% 0.015 76);
+  --night-soft: #b3bbc6;
+  --night-soft: oklch(79% 0.018 255);
+  --night-rule: #424954;
+  --night-rule: oklch(36.5% 0.024 255);
+
+  --font-sans: "Instrument Sans", "Helvetica Neue", sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+
+  --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.84rem);
+  --step-0: clamp(0.98rem, 0.94rem + 0.18vw, 1.08rem);
+  --step-1: clamp(1.12rem, 1.02rem + 0.42vw, 1.38rem);
+  --step-2: clamp(1.42rem, 1.2rem + 0.94vw, 2rem);
+  --step-3: clamp(2rem, 1.52rem + 1.9vw, 3.25rem);
+  --step-4: clamp(2.8rem, 1.85rem + 3.8vw, 5.35rem);
+  --step-5: clamp(4rem, 2.15rem + 7.4vw, 8.75rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-40: 10rem;
+
+  --shell: 84rem;
+  --measure: 46rem;
+  --gutter: clamp(1.25rem, 4.3vw, 4.75rem);
+  --header-height: 4.75rem;
+  --rule-width: 1px;
+  --focus-width: 0.2rem;
+  --z-header: 20;
+  --z-skip: 40;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --header-height: 4.25rem;
+  }
+}
