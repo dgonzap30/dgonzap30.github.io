@@ -21,14 +21,14 @@
   --blueprint: oklch(44.3% 0.083 248);
   --vermilion: #bd4633;
   --vermilion: oklch(53.8% 0.14 34);
-  --vermilion-light: #e3725f;
-  --vermilion-light: oklch(69% 0.13 34);
+  --vermilion-light: #f29a85;
+  --vermilion-light: oklch(77% 0.11 34);
   --moss: #64705f;
   --moss: oklch(50.5% 0.036 132);
   --night-text: #f2ede3;
   --night-text: oklch(94.8% 0.015 76);
-  --night-soft: #aeb4bb;
-  --night-soft: oklch(76% 0.018 255);
+  --night-soft: #b3bbc6;
+  --night-soft: oklch(79% 0.018 255);
   --night-rule: #424954;
   --night-rule: oklch(36.5% 0.024 255);
 

@@ -47,6 +47,33 @@ function webpDimensions(buffer) {
   throw new Error('WebP dimensions not found');
 }
 
+function oklchToLinearRgb([lightness, chroma, hue]) {
+  const radians = hue * Math.PI / 180;
+  const a = chroma * Math.cos(radians);
+  const b = chroma * Math.sin(radians);
+  const l = (lightness + 0.3963377774 * a + 0.2158037573 * b) ** 3;
+  const m = (lightness - 0.1055613458 * a - 0.0638541728 * b) ** 3;
+  const s = (lightness - 0.0894841775 * a - 1.291485548 * b) ** 3;
+  return [
+    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
+  ].map((channel) => Math.min(1, Math.max(0, channel)));
+}
+
+function contrastRatio(first, second) {
+  const luminance = (color) => 0.2126 * color[0] + 0.7152 * color[1] + 0.0722 * color[2];
+  const firstLuminance = luminance(oklchToLinearRgb(first));
+  const secondLuminance = luminance(oklchToLinearRgb(second));
+  return (Math.max(firstLuminance, secondLuminance) + 0.05) / (Math.min(firstLuminance, secondLuminance) + 0.05);
+}
+
+function oklchToken(css, name) {
+  const match = css.match(new RegExp(`--${name}: oklch\\(([\\d.]+)%\\s+([\\d.]+)\\s+([\\d.]+)\\)`));
+  assert(match, `missing oklch token: ${name}`);
+  return [Number(match[1]) / 100, Number(match[2]), Number(match[3])];
+}
+
 const validHead = `
   <meta name="description" content="A useful description">
   <link rel="canonical" href="https://example.com/">
@@ -172,6 +199,16 @@ test('javascript is a small progressive enhancement', async () => {
   }
   assert.doesNotMatch(script, /\bsetInterval\s*\(/);
   assert.doesNotMatch(script, /\brequestAnimationFrame\s*\(/);
+});
+
+test('dark-surface palette maintains WCAG AA contrast', async () => {
+  const tokens = await readFile(join(repoRoot, 'assets/css/tokens.css'), 'utf8');
+  const components = await readFile(join(repoRoot, 'assets/css/components.css'), 'utf8');
+  const carbon = oklchToken(tokens, 'carbon');
+
+  assert(contrastRatio(oklchToken(tokens, 'night-soft'), carbon) >= 4.5);
+  assert(contrastRatio(oklchToken(tokens, 'vermilion-light'), carbon) >= 4.5);
+  assert.match(components, /\.site-footer \.kicker\s*{[^}]*color:\s*var\(--night-soft\)/s);
 });
 
 test('fonts are self-hosted, licensed, and bounded', async () => {

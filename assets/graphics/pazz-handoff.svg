@@ -23,7 +23,7 @@
   <path d="m172 311-10 7 10 7" fill="none" stroke="#bd4633" stroke-width="2"/>
   <rect x="52" y="292" width="110" height="52" fill="#171c23"/>
   <text x="107" y="314" text-anchor="middle" fill="#f2ede3" font-family="Instrument Sans, sans-serif" font-size="10" font-weight="700">OWNED</text>
-  <text x="107" y="329" text-anchor="middle" fill="#e3725f" font-family="Instrument Sans, sans-serif" font-size="10" font-weight="700">RECOVERY</text>
+  <text x="107" y="329" text-anchor="middle" fill="#f29a85" font-family="Instrument Sans, sans-serif" font-size="10" font-weight="700">RECOVERY</text>
   <text x="184" y="338" fill="#606872" font-family="Instrument Sans, sans-serif" font-size="10">FAILED HANDOFFS RETURN TO AN OPERATING STATE</text>
   <circle cx="660" cy="318" r="5" fill="#bd4633"/>
 </svg>

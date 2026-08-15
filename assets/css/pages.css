@@ -361,6 +361,12 @@
   text-transform: uppercase;
 }
 
+.case-note a {
+  min-height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
 .case-diagram {
   padding-block: var(--space-16);
   border-top: 1px solid var(--rule);
