@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title desc">
+  <title id="title">DGZ Trace Mark, reversed</title>
+  <desc id="desc">A continuous route forms an open D, turns through a G, and crosses as a Z.</desc>
+  <path data-continuous-route="dgz" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="#f2ede3" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/>
+  <circle cx="40" cy="24" r="2.25" fill="#e1715f"/>
+</svg>
