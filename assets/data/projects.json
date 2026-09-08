@@ -1,8 +1,96 @@
 [
-  {"id":"neopazz","name":"PAZZ Marketplace","category":"Products & systems","stage":"Product","description":"A Mexican vehicle-leasing marketplace that brings discovery, qualification, and partner handoffs into a clearer path.","links":[{"label":"Case study","url":"/work/pazz/"},{"label":"Source","url":"https://github.com/dgonzap30/pazz-case-study"}]},
-  {"id":"lojik","name":"LOJIK Labs","category":"Products & systems","stage":"Product","description":"A workflow-first systems studio that turns recurring business work into dependable software.","links":[{"label":"Case study","url":"/work/lojik/"},{"label":"Source","url":"https://github.com/dgonzap30/lojik-systems-case-study"}]},
-  {"id":"intertitle","name":"Intertitle","category":"Side projects & play","stage":"Product","description":"Film recommendations and journaling shaped around a person’s taste, with room to revisit the films that stay with you.","links":[{"label":"Visit Intertitle","url":"https://intertitle.app"}]},
-  {"id":"uno-tally","name":"UNO Tally","category":"Side projects & play","stage":"Personal tool","description":"A local UNO scorekeeper for keeping a game moving, tracking rounds, and settling the tally together.","links":[{"label":"Try UNO Tally","url":"https://uno-tally.vercel.app"},{"label":"Source","url":"https://github.com/dgonzap30/uno-tally"}]},
-  {"id":"reading-list","name":"Reading List","category":"Side projects & play","stage":"Personal tool","description":"A structured reading curriculum with session planning, progress tracking, and space for insights.","links":[{"label":"Open Reading List","url":"https://reading-list-orpin.vercel.app"},{"label":"Source","url":"https://github.com/dgonzap30/reading-list"}]},
-  {"id":"brainkit","name":"BrainKit","category":"Products & systems","stage":"Public code","description":"A versioned Swift package with supported APIs for focused personal-app integrations.","links":[{"label":"Explore the code","url":"https://github.com/dgonzap30/brainkit"}]}
+  {
+    "id": "neopazz",
+    "name": "PAZZ Marketplace",
+    "category": "Products & systems",
+    "stage": "Product",
+    "description": "A Mexican vehicle-leasing marketplace that brings discovery, qualification, and partner handoffs into a clearer path.",
+    "links": [
+      {
+        "label": "Engineering decisions",
+        "url": "/work/pazz/"
+      },
+      {
+        "label": "Case-study source",
+        "url": "https://github.com/dgonzap30/pazz-case-study"
+      }
+    ]
+  },
+  {
+    "id": "lojik",
+    "name": "LOJIK Labs",
+    "category": "Products & systems",
+    "stage": "Product",
+    "description": "A workflow-first systems studio that turns recurring business work into dependable software.",
+    "links": [
+      {
+        "label": "Engineering decisions",
+        "url": "/work/lojik/"
+      },
+      {
+        "label": "Case-study source",
+        "url": "https://github.com/dgonzap30/lojik-systems-case-study"
+      }
+    ]
+  },
+  {
+    "id": "intertitle",
+    "name": "Intertitle",
+    "category": "Side projects & play",
+    "stage": "Product",
+    "description": "Film recommendations and journaling shaped around a person’s taste, with room to revisit the films that stay with you.",
+    "links": [
+      {
+        "label": "Visit Intertitle",
+        "url": "https://intertitle.app"
+      }
+    ]
+  },
+  {
+    "id": "uno-tally",
+    "name": "UNO Tally",
+    "category": "Side projects & play",
+    "stage": "Personal tool",
+    "description": "A local UNO scorekeeper for keeping a game moving, tracking rounds, and settling the tally together.",
+    "links": [
+      {
+        "label": "Try UNO Tally",
+        "url": "https://uno-tally.vercel.app"
+      },
+      {
+        "label": "View source",
+        "url": "https://github.com/dgonzap30/uno-tally"
+      }
+    ]
+  },
+  {
+    "id": "reading-list",
+    "name": "Reading List",
+    "category": "Side projects & play",
+    "stage": "Personal tool",
+    "description": "A structured reading curriculum with session planning, progress tracking, and space for insights.",
+    "links": [
+      {
+        "label": "Open Reading List",
+        "url": "https://reading-list-orpin.vercel.app"
+      },
+      {
+        "label": "View source",
+        "url": "https://github.com/dgonzap30/reading-list"
+      }
+    ]
+  },
+  {
+    "id": "brainkit",
+    "name": "BrainKit",
+    "category": "Products & systems",
+    "stage": "Public code",
+    "description": "A versioned Swift package with supported APIs for focused personal-app integrations.",
+    "links": [
+      {
+        "label": "Explore the code",
+        "url": "https://github.com/dgonzap30/brainkit"
+      }
+    ]
+  }
 ]
