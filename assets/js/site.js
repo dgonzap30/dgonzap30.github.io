@@ -66,53 +66,10 @@ function enhanceSectionNav() {
   sections.forEach((section) => observer.observe(section));
 }
 
-function enhanceProjectDirectory() {
-  const controls = document.querySelector('[data-project-controls]');
-  if (!controls) return;
-
-  const search = document.querySelector('#project-search');
-  const cards = [...document.querySelectorAll('[data-project-card]')];
-  const groups = [...document.querySelectorAll('[data-project-group]')];
-  const buttons = [...document.querySelectorAll('[data-project-filter]')];
-  const resets = [...document.querySelectorAll('[data-project-reset]')];
-  const count = document.querySelector('#project-count');
-  const empty = document.querySelector('[data-project-empty]');
-  let filter = 'all';
-
-  function update() {
-    const query = search.value.trim().toLowerCase();
-    let visible = 0;
-    cards.forEach((card) => {
-      const matchesFilter = filter === 'all' || card.dataset.category.split('|').includes(filter);
-      const matchesQuery = !query || card.textContent.toLowerCase().includes(query);
-      const show = matchesFilter && matchesQuery;
-      card.hidden = !show;
-      if (show) visible += 1;
-    });
-    groups.forEach((group) => { group.hidden = ![...group.querySelectorAll('[data-project-card]')].some((card) => !card.hidden); });
-    count.textContent = `${visible} ${visible === 1 ? 'project' : 'projects'} in view`;
-    empty.hidden = visible !== 0;
-  }
-
-  controls.hidden = false;
-  search.addEventListener('input', update);
-  buttons.forEach((button) => button.addEventListener('click', () => {
-    filter = button.dataset.projectFilter;
-    buttons.forEach((item) => { const active = item === button; item.classList.toggle('is-selected', active); item.setAttribute('aria-pressed', String(active)); });
-    update();
-  }));
-  resets.forEach((button) => button.addEventListener('click', () => {
-    filter = 'all'; search.value = '';
-    buttons.forEach((item) => { const active = item.dataset.projectFilter === 'all'; item.classList.toggle('is-selected', active); item.setAttribute('aria-pressed', String(active)); });
-    update(); search.focus();
-  }));
-}
-
 function initialize() {
   document.querySelectorAll('[data-trace-root]').forEach(enhanceTrace);
   enhanceReveals();
   enhanceSectionNav();
-  enhanceProjectDirectory();
 }
 
 if (document.readyState === 'loading') {
