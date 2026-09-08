@@ -12,6 +12,7 @@ const REQUIRED_PAGES = [
   '404.html',
   'work/pazz/index.html',
   'work/lojik/index.html',
+  'projects/index.html',
 ];
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -270,4 +271,16 @@ test('media and social cards meet publication dimensions and budgets', async () 
     const png = await readFile(join(repoRoot, `assets/social/${name}.png`));
     assert.deepEqual(pngDimensions(png), [1200, 630], `${name} social card has incorrect dimensions`);
   }
+});
+
+test('project registry and rendered directory stay in sync', async () => {
+  const registry = JSON.parse(await readFile(join(repoRoot, 'assets/data/projects.json'), 'utf8'));
+  const directory = await readFile(join(repoRoot, 'projects/index.html'), 'utf8');
+  const renderedIds = [...directory.matchAll(/<article id="([^"]+)" class="project-card/g)].map((match) => match[1]);
+
+  assert.equal(new Set(registry.map((project) => project.id)).size, registry.length, 'registry ids must be unique');
+  assert.deepEqual(new Set(renderedIds), new Set(registry.map((project) => project.id)));
+  assert.match(directory, /data-project-controls hidden/);
+  assert.match(directory, /data-project-filter="games & sports"/);
+  assert.match(directory, /data-project-empty hidden/);
 });
