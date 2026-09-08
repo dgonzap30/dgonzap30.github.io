@@ -336,7 +336,7 @@ test("project registry and rendered directory stay in sync", async () => {
     "utf8",
   );
   const renderedIds = [
-    ...directory.matchAll(/<article id="([^"]+)" class="project-card/g),
+    ...directory.matchAll(/<article id="([^"]+)" class="(?:curated-card|curated-code-proof)/g),
   ].map((match) => match[1]);
 
   assert.equal(
@@ -352,7 +352,7 @@ test("project registry and rendered directory stay in sync", async () => {
     const card = directory.match(
       new RegExp(`<article\\s+id="${project.id}"[\\s\\S]*?<\\/article>`),
     )?.[0] ?? "";
-    const normalizedCard = card.replace(/&amp;/g, "&").replace(/<[^>]+>/g, " ")
+    const normalizedCard = card.replace(/&amp;/g, "&").replace(/&rsquo;/g, "’").replace(/<[^>]+>/g, " ")
       .replace(/\s+/g, " ");
     assert(
       normalizedCard.includes(project.name),
@@ -367,7 +367,8 @@ test("project registry and rendered directory stay in sync", async () => {
       `${project.id} is missing its registry stage`,
     );
   }
-  assert.match(directory, /data-project-controls hidden/);
-  assert.match(directory, /data-project-filter="games & sports"/);
-  assert.match(directory, /data-project-empty\s+hidden/);
+  assert.deepEqual(
+    renderedIds,
+    ["neopazz", "lojik", "intertitle", "uno-tally", "reading-list", "brainkit"],
+  );
 });

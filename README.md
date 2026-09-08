@@ -11,7 +11,7 @@ Systems Atlas is a dependency-free, progressively enhanced field guide to curren
 | `/` | Current work, operating method, selected public engineering, and profile |
 | `/work/pazz/` | PAZZ technical-lead case study and sanitized marketplace handoff model |
 | `/work/lojik/` | LOJIK company-building and accountable-delivery case study |
-| `/projects/` | Public project collection across products, tools, experiments, and past work |
+| `/projects/` | A concise selection of public products, personal tools, and code |
 | `/404.html` | Branded recovery state for unresolved routes |
 
 ## Architecture
