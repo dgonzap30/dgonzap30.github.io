@@ -7,6 +7,7 @@ const REQUIRED_PAGES = [
   '404.html',
   'work/pazz/index.html',
   'work/lojik/index.html',
+  'projects/index.html',
 ];
 
 const REQUIRED_ASSETS = [
