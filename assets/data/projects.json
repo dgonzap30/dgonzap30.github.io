@@ -29,7 +29,7 @@
     "engineeringSummary": "Immutable snapshots and a separate permission boundary keep review distinct from action.",
     "demoFormat": "Captured synthetic walkthrough",
     "demoHref": "/demos/fcc/",
-    "proofLimit": "The capture uses fictional fixtures; forecast numbers are illustrative and no live league, roster, or draft writes occur. It does not claim a production action or a forecasting edge.",
+    "proofLimit": "The capture uses fictional fixtures; forecast numbers are illustrative and no live league, roster, or draft writes occur. It does not claim a production action or a forecasting edge. Large-text mobile layout still needs work.",
     "evidenceReviewedDate": "2026-09-08"
   },
   {
