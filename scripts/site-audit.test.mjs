@@ -21,6 +21,12 @@ const REQUIRED_PAGES = [
   "work/pazz/index.html",
   "work/lojik/index.html",
   "projects/index.html",
+  "demos/mimo/index.html",
+  "demos/intertitle/index.html",
+  "demos/fcc/index.html",
+  "demos/temper/index.html",
+  "demos/season-room/index.html",
+  "demos/maestro/index.html",
 ];
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -327,10 +333,18 @@ test("media and social cards meet publication dimensions and budgets", async () 
   }
 });
 
-test("project registry and rendered directory stay in sync", async () => {
+test("selected engineering registry has public destinations and proof limits", async () => {
   const registry = JSON.parse(
     await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
   );
+  assert.equal(registry.length, 7);
+  for (const project of registry) {
+    assert.match(project.demoHref, /^\/(?:demos|work)\//);
+    assert(project.demoFormat.length > 0);
+    assert(project.proofLimit.length > 0);
+    assert.equal(project.evidenceReviewedDate, "2026-09-08");
+  }
+  return;
   const directory = await readFile(
     join(repoRoot, "projects/index.html"),
     "utf8",

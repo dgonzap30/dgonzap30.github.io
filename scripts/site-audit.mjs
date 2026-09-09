@@ -8,6 +8,12 @@ const REQUIRED_PAGES = [
   'work/pazz/index.html',
   'work/lojik/index.html',
   'projects/index.html',
+  'demos/mimo/index.html',
+  'demos/intertitle/index.html',
+  'demos/fcc/index.html',
+  'demos/temper/index.html',
+  'demos/season-room/index.html',
+  'demos/maestro/index.html',
 ];
 
 const REQUIRED_ASSETS = [
@@ -17,6 +23,7 @@ const REQUIRED_ASSETS = [
   'assets/css/base.css',
   'assets/css/components.css',
   'assets/css/pages.css',
+  'assets/css/demos.css',
   'assets/js/site.js',
   'assets/fonts/instrument-sans-latin.woff2',
   'assets/fonts/newsreader-roman-latin.woff2',
