@@ -734,4 +734,3 @@ test("home and projects hub embed the same explorer component and full picker", 
     }
   }
 });
-

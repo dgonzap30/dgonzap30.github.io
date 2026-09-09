@@ -141,6 +141,10 @@ async function injectMarkers(relativePath, replacements) {
     if (!pattern.test(html)) throw new Error(`${relativePath}: missing marker explorer:${name}`);
     html = html.replace(pattern, replacement);
   }
+  // Template literals indent their blank lines, which lands trailing whitespace in
+  // the generated HTML and trips `git diff --check`. Strip it at the write seam so
+  // every generated route stays clean no matter how a chapter template is written.
+  html = html.replace(/[ \t]+$/gm, '');
   await writeFile(filePath, html);
 }
 
