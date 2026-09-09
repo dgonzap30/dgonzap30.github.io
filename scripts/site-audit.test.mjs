@@ -379,6 +379,53 @@ test("PAZZ explorer stays honest about Claudio, the partner flag, and the catalo
   );
 });
 
+test("Temper explorer never ships the internal-only 06b coach-thread frame", async () => {
+  assert.equal(
+    await exists(
+      join(repoRoot, "assets/media/demos/temper/coach-proposal.webp"),
+    ),
+    false,
+    "coach-proposal.webp (06b) must not be published — it shows a message thread the current build doesn't render",
+  );
+  const temperHtml = (
+    await readFile(join(repoRoot, "demos/temper/index.html"), "utf8")
+  ).toLowerCase();
+  // Check visible text only — chapter ids/filenames may legitimately carry
+  // "conversation" (from the source capture's own filename) without the
+  // rendered copy ever claiming a live chat.
+  const temperText = temperHtml
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ");
+  assert.doesNotMatch(temperHtml, /06b/);
+  assert.doesNotMatch(temperText, /conversation/);
+  // "chat" may appear only inside an explicit denial ("not a live chat"),
+  // never as a claim that one exists.
+  for (const match of temperText.matchAll(/(.{0,20}\bchat\b.{0,5})/g)) {
+    assert.match(
+      match[1],
+      /not a live chat/,
+      `unexpected "chat" usage: "${match[1]}"`,
+    );
+  }
+  // "ai-powered"/"autonomous" may appear only as an explicit denial that
+  // Coach is either, never as a claim that it is.
+  for (const term of [/ai-powered/, /autonomous/]) {
+    for (const match of temperText.matchAll(
+      new RegExp(`(.{0,25}${term.source}.{0,5})`, "g"),
+    )) {
+      assert.match(
+        match[1],
+        /not an? (?:autonomous|ai-powered)/,
+        `unexpected "${term.source}" usage: "${match[1]}"`,
+      );
+    }
+  }
+  assert(
+    temperText.includes("healthkit or whoop"),
+    "Temper must disclose no HealthKit/WHOOP sync",
+  );
+});
+
 test("media and social cards meet publication dimensions and budgets", async () => {
   const headshotPath = join(repoRoot, "assets/media/diego-headshot.webp");
   const headshot = await readFile(headshotPath);
