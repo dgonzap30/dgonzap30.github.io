@@ -369,6 +369,9 @@ test("selected engineering registry has public destinations and proof limits", a
     "assets/media/demos/fcc/command.webp",
     "assets/media/demos/temper/plan.webp",
     "assets/media/demos/season-room/review.webp",
+    "assets/media/demos/maestro/demo.mp4",
+    "assets/media/demos/maestro/poster.webp",
+    "assets/media/demos/maestro/spectrum.webp",
   ]) {
     assert((await stat(join(repoRoot, asset))).size > 0, `${asset} is missing`);
   }
@@ -382,6 +385,13 @@ test("selected engineering registry has public destinations and proof limits", a
   );
   assert.match(mimoDemo, /<video\b[^>]*\bcontrols\b[^>]*\bplaysinline\b/s);
   assert.match(mimoDemo, /Descriptive transcript/);
+  const maestroDemo = await readFile(
+    join(repoRoot, "demos/maestro/index.html"),
+    "utf8",
+  );
+  assert.match(maestroDemo, /<video\b[^>]*\bcontrols\b[^>]*\bplaysinline\b/s);
+  assert.match(maestroDemo, /Synthetic telemetry · real local application/);
+  assert.match(maestroDemo, /Logic\s+Pro is not running/);
   const directory = await readFile(
     join(repoRoot, "projects/index.html"),
     "utf8",

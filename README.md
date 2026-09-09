@@ -6,17 +6,22 @@ Systems Atlas is a dependency-free, progressively enhanced field guide to curren
 
 ## Routes
 
-| Route | Purpose |
-| --- | --- |
-| `/` | Current work, operating method, selected public engineering, and profile |
-| `/work/pazz/` | PAZZ technical-lead case study and sanitized marketplace handoff model |
-| `/work/lojik/` | LOJIK company-building and accountable-delivery case study |
-| `/projects/` | A concise selection of public products, personal tools, and code |
-| `/404.html` | Branded recovery state for unresolved routes |
+| Route                                                                        | Purpose                                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `/`                                                                          | Current work, operating method, selected public engineering, and profile                 |
+| `/work/pazz/`                                                                | PAZZ technical-lead case study and sanitized marketplace handoff model                   |
+| `/work/lojik/`                                                               | LOJIK company-building and accountable-delivery case study                               |
+| `/projects/`                                                                 | A concise selection of public products, personal tools, and code                         |
+| `/demos/mimo/`                                                               | Local Mimo interaction rehearsal with a descriptive transcript                           |
+| `/demos/intertitle/`, `/demos/fcc/`, `/demos/temper/`, `/demos/season-room/` | Captured product or fixture walkthroughs; all steps remain visible without JavaScript    |
+| `/demos/maestro/`                                                            | Real local Maestro application recording with synthetic telemetry, plus a spectrum still |
+| `/404.html`                                                                  | Branded recovery state for unresolved routes                                             |
 
 ## Architecture
 
 The site intentionally ships as plain HTML, CSS, JavaScript, and SVG. Its semantic content and navigation work without JavaScript; the script adds trace interaction, active-section navigation, and reveal behavior where motion preferences permit it.
+
+Demo recordings use native, user-controlled video with metadata preload and descriptive text. Captured walkthrough controls only navigate recorded images; they do not simulate private backend behavior. Each route names its evidence form and the boundary of what it proves.
 
 ```text
 assets/

@@ -1,9 +1,65 @@
 [
-  {"id":"mimo","name":"Mimo","stage":"In development","demoFormat":"Actual local rehearsal","demoHref":"/demos/mimo/","proofLimit":"One user controls both sides; remote pairing and two-phone behavior are not shown.","evidenceReviewedDate":"2026-09-08"},
-  {"id":"intertitle","name":"Intertitle","stage":"Public product","demoFormat":"Prior development fixture","demoHref":"/demos/intertitle/","proofLimit":"The fixture does not prove the current authenticated service or App Store build.","evidenceReviewedDate":"2026-09-08"},
-  {"id":"fcc","name":"Fantasy Football Control Center","stage":"Private tool","demoFormat":"Captured synthetic walkthrough","demoHref":"/demos/fcc/","proofLimit":"Fictional fixtures, no live league writes, and illustrative forecast numbers.","evidenceReviewedDate":"2026-09-08"},
-  {"id":"temper","name":"Temper","stage":"In development","demoFormat":"Captured simulator walkthrough","demoHref":"/demos/temper/","proofLimit":"Separate fixture scenarios; no interactive backend or physical-phone acceptance.","evidenceReviewedDate":"2026-09-08"},
-  {"id":"season-room","name":"Season Room","stage":"Local prototype","demoFormat":"Captured synthetic walkthrough","demoHref":"/demos/season-room/","proofLimit":"Recorded fictional views only; no live feed or automatic settlement.","evidenceReviewedDate":"2026-09-08"},
-  {"id":"maestro","name":"Maestro","stage":"Private beta","demoFormat":"Engineering case study","demoHref":"/demos/maestro/","proofLimit":"An approved synthetic-session capture is still being prepared.","evidenceReviewedDate":"2026-09-08"},
-  {"id":"pazz","name":"PAZZ Marketplace","stage":"Private commercial platform","demoFormat":"Sanitized engineering case study","demoHref":"/work/pazz/","proofLimit":"The public site is not the private platform.","evidenceReviewedDate":"2026-09-08"}
+  {
+    "id": "mimo",
+    "name": "Mimo",
+    "stage": "In development",
+    "demoFormat": "Actual local rehearsal",
+    "demoHref": "/demos/mimo/",
+    "proofLimit": "One user controls both sides; remote pairing and two-phone behavior are not shown.",
+    "evidenceReviewedDate": "2026-09-08"
+  },
+  {
+    "id": "intertitle",
+    "name": "Intertitle",
+    "stage": "Public product",
+    "demoFormat": "Prior development fixture",
+    "demoHref": "/demos/intertitle/",
+    "proofLimit": "The fixture does not prove the current authenticated service or App Store build.",
+    "evidenceReviewedDate": "2026-09-08"
+  },
+  {
+    "id": "fcc",
+    "name": "Fantasy Football Control Center",
+    "stage": "Private tool",
+    "demoFormat": "Captured synthetic walkthrough",
+    "demoHref": "/demos/fcc/",
+    "proofLimit": "Fictional fixtures, no live league writes, and illustrative forecast numbers.",
+    "evidenceReviewedDate": "2026-09-08"
+  },
+  {
+    "id": "temper",
+    "name": "Temper",
+    "stage": "In development",
+    "demoFormat": "Captured simulator walkthrough",
+    "demoHref": "/demos/temper/",
+    "proofLimit": "Separate fixture scenarios; no interactive backend or physical-phone acceptance.",
+    "evidenceReviewedDate": "2026-09-08"
+  },
+  {
+    "id": "season-room",
+    "name": "Season Room",
+    "stage": "Local prototype",
+    "demoFormat": "Captured synthetic walkthrough",
+    "demoHref": "/demos/season-room/",
+    "proofLimit": "Recorded fictional views only; no live feed or automatic settlement.",
+    "evidenceReviewedDate": "2026-09-08"
+  },
+  {
+    "id": "maestro",
+    "name": "Maestro",
+    "stage": "Private beta",
+    "demoFormat": "Synthetic telemetry walkthrough",
+    "demoHref": "/demos/maestro/",
+    "proofLimit": "Synthetic measurements only; no DAW bridge, plugin extraction, PCM analysis, or coaching API is demonstrated.",
+    "evidenceReviewedDate": "2026-09-08"
+  },
+  {
+    "id": "pazz",
+    "name": "PAZZ Marketplace",
+    "stage": "Private commercial platform",
+    "demoFormat": "Sanitized engineering case study",
+    "demoHref": "/work/pazz/",
+    "proofLimit": "The public site is not the private platform.",
+    "evidenceReviewedDate": "2026-09-08"
+  }
 ]

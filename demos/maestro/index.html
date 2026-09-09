@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Maestro engineering case study — Diego Gonzalez Zapiain</title>
+    <title>Maestro walkthrough — Diego Gonzalez Zapiain</title>
     <meta
       name="description"
-      content="Engineering context for Maestro, a private-beta music production workspace."
+      content="A local Maestro application recording with synthetic telemetry."
     />
     <link rel="canonical" href="https://dgonzap30.github.io/demos/maestro/" />
-    <meta property="og:title" content="Maestro engineering case study" />
+    <meta property="og:title" content="Maestro walkthrough" />
     <meta
       property="og:description"
-      content="A private-beta music-production workspace."
+      content="Synthetic telemetry in a real local music-production application."
     />
     <meta
       property="og:url"
@@ -20,7 +20,7 @@
     />
     <meta
       property="og:image"
-      content="https://dgonzap30.github.io/assets/social/home.png"
+      content="https://dgonzap30.github.io/assets/media/demos/maestro/poster.webp"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="/assets/css/fonts.css" />
@@ -31,8 +31,9 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "CreativeWork",
-        "name": "Maestro engineering case study"
+        "@type": "VideoObject",
+        "name": "Maestro local application walkthrough",
+        "contentUrl": "https://dgonzap30.github.io/assets/media/demos/maestro/demo.mp4"
       }
     </script>
   </head>
@@ -56,34 +57,67 @@
     <main id="main-content" class="demo-page">
       <header class="demo-hero shell">
         <p class="eyebrow">Maestro · Private beta</p>
-        <h1>Coaching evidence, kept inspectable.</h1>
+        <h1>Session evidence, kept inspectable.</h1>
         <p class="lede">
           A music-production workspace that turns session signals into material
           a producer can inspect.
         </p>
-        <p class="demo-meta">Engineering case study · Capture in preparation</p>
+        <p class="demo-meta">
+          Synthetic telemetry · real local application · recorded Sep 8, 2026
+        </p>
       </header>
+      <section class="walkthrough shell">
+        <div class="walkthrough-head">
+          <h2>Recorded product preview</h2>
+          <p>Native video · 26.5 seconds</p>
+        </div>
+        <video
+          class="demo-video demo-video-wide"
+          controls
+          playsinline
+          preload="metadata"
+          poster="/assets/media/demos/maestro/poster.webp"
+        >
+          <source src="/assets/media/demos/maestro/demo.mp4" type="video/mp4" />
+          Your browser does not support video.
+        </video>
+        <div class="transcript">
+          <p>
+            <strong>Descriptive transcript.</strong> A title card establishes
+            the recording scope. The local Maestro UI then shows three generic
+            tracks, a mixer view with visible masking evidence, and a spectrum
+            view. The “Logic Pro connected” badge remains visible as recorded.
+          </p>
+        </div>
+        <figure class="walkthrough-step maestro-still">
+          <img
+            src="/assets/media/demos/maestro/spectrum.webp"
+            width="2784"
+            height="1864"
+            alt="Maestro local application showing the Spectrum panel with a synthetic signal chart"
+          />
+          <figcaption>
+            <strong>Visible detail.</strong> The recorded spectrum panel is also
+            available as a still image.
+          </figcaption>
+        </figure>
+      </section>
       <section class="demo-copy shell">
         <div>
-          <h2>The engineering decision</h2>
+          <h2>What is shown</h2>
           <p>
-            Real-time ingest and audio analysis must cross plugin, native, and
-            interface boundaries without turning incomplete evidence into a
-            confident suggestion. Maestro keeps the evidence state visible so
-            coaching can be understood in context.
+            A real local Rust workspace/session-aggregation application with a
+            React and Tauri interface renders synthetic feature frames as a
+            mixer and spectrum review surface.
           </p>
         </div>
         <div>
-          <h2>What is available now</h2>
+          <h2>What is not shown</h2>
           <p>
-            An approved synthetic-session capture is being prepared. It will be
-            added when it can show a real product state without exposing private
-            session material. There is no runnable or recorded demo on this page
-            yet.
-          </p>
-          <p>
-            Any future capture will use synthetic input; it will not claim
-            autonomous DAW edits or model quality.
+            The measurements are synthetic. This recording does not show AU/VST
+            extraction, FFT from PCM, a DAW bridge, or a coaching API. The green
+            “Logic Pro connected” badge comes from synthetic registration; Logic
+            Pro is not running.
           </p>
         </div>
       </section>
