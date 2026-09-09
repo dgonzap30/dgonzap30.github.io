@@ -1212,3 +1212,51 @@
     gap: var(--space-4);
   }
 }
+
+.explorer-hero {
+  padding-block: clamp(var(--space-8), 5vw, var(--space-12)) var(--space-6);
+}
+
+.explorer-hero h1 {
+  max-width: 16ch;
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.6vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.explorer-hero .lede {
+  max-width: 40rem;
+  margin: var(--space-4) 0 0;
+  font-size: var(--step-1);
+}
+
+.explorer-hero .role-line {
+  margin-top: var(--space-4);
+}
+
+.portfolio-explorer {
+  padding-bottom: clamp(var(--space-16), 8vw, var(--space-28));
+}
+
+.explorer-more-link {
+  display: inline-block;
+  margin-top: var(--space-6);
+}
+
+.principle-columns > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.principle-columns .text-link {
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 48rem) {
+  .explorer-hero h1 {
+    font-size: 2.4rem;
+  }
+}

@@ -15,6 +15,15 @@ import { fileURLToPath } from "node:url";
 
 import { auditSite } from "./site-audit.mjs";
 
+async function exists(path) {
+  try {
+    await access(path);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 const REQUIRED_PAGES = [
   "index.html",
   "404.html",
@@ -232,10 +241,13 @@ test("javascript is a small progressive enhancement", async () => {
   assert(Buffer.byteLength(script) < 12 * 1024, "site.js exceeds 12 KB");
   for (const functionName of [
     "motionAllowed",
-    "setTraceStage",
-    "enhanceTrace",
     "enhanceReveals",
     "enhanceSectionNav",
+    "enhanceNavToggle",
+    "activateChapter",
+    "enhanceExplorerStage",
+    "enhanceStageDialog",
+    "enhanceExplorer",
   ]) {
     assert.match(script, new RegExp(`function ${functionName}\\(`));
   }
@@ -340,155 +352,145 @@ test("media and social cards meet publication dimensions and budgets", async () 
   }
 });
 
-test("selected engineering registry has public destinations and proof limits", async () => {
+function routeForProject(project) {
+  return project.id === "pazz" ? "work/pazz/index.html" : `demos/${project.id}/index.html`;
+}
+
+test("product registry has seven projects with a stable, honest editorial order", async () => {
   const registry = JSON.parse(
     await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
   );
   assert.equal(registry.length, 7);
   assert.deepEqual(
-    registry.map((project) => project.stage),
-    [
-      "In development",
-      "Public product",
-      "Private tool",
-      "In development",
-      "Local prototype",
-      "Private beta",
-      "In development",
-    ],
+    registry.map((project) => project.id),
+    ["maestro", "temper", "mimo", "intertitle", "fcc", "season-room", "pazz"],
   );
-  for (const project of registry) {
-    assert.match(project.demoHref, /^\/(?:demos|work)\//);
-    assert(project.demoFormat.length > 0);
-    assert(project.proofLimit.length > 0);
-    assert.equal(project.evidenceReviewedDate, "2026-09-08");
-  }
-  for (const asset of [
-    "assets/media/demos/mimo/rehearsal.mp4",
-    "assets/media/demos/intertitle/tonight.webp",
-    "assets/media/demos/fcc/command.webp",
-    "assets/media/demos/temper/plan.webp",
-    "assets/media/demos/season-room/review.webp",
-    "assets/media/demos/maestro/demo.mp4",
-    "assets/media/demos/maestro/poster.webp",
-    "assets/media/demos/maestro/spectrum.webp",
-  ]) {
-    assert((await stat(join(repoRoot, asset))).size > 0, `${asset} is missing`);
-  }
-  for (const project of registry) {
-    const route = join(repoRoot, project.demoHref.slice(1), "index.html");
-    await access(route);
-  }
-  const mimoDemo = await readFile(
-    join(repoRoot, "demos/mimo/index.html"),
-    "utf8",
-  );
-  assert.match(mimoDemo, /<video\b[^>]*\bcontrols\b[^>]*\bplaysinline\b/s);
-  assert.match(mimoDemo, /Descriptive transcript/);
-  const maestroDemo = await readFile(
-    join(repoRoot, "demos/maestro/index.html"),
-    "utf8",
-  );
-  assert.match(maestroDemo, /<video\b[^>]*\bcontrols\b[^>]*\bplaysinline\b/s);
-  assert.match(maestroDemo, /Synthetic telemetry · real local application/);
-  assert.match(maestroDemo, /Logic\s+Pro is not running/);
-  const demoCss = await readFile(
-    join(repoRoot, "assets/css/demos.css"),
-    "utf8",
-  );
-  const siteScript = await readFile(
-    join(repoRoot, "assets/js/site.js"),
-    "utf8",
-  );
-  assert.match(demoCss, /\.walkthrough-controls\s*{\s*display:\s*none;/s);
-  assert.match(demoCss, /\.js \.walkthrough-controls\s*{\s*display:\s*flex;/s);
-  assert.match(
-    siteScript,
-    /Captured step \$\{active \+ 1\} of \$\{steps\.length\}/,
-  );
-  const directory = await readFile(
-    join(repoRoot, "projects/index.html"),
-    "utf8",
-  );
-  const renderedIds = [
-    ...directory.matchAll(/<article id="([^"]+)" class="curated-card/g),
-  ].map((match) => match[1]);
-  const normalizeText = (value) =>
-    value
-      .replace(/&amp;/g, "&")
-      .replace(/<[^>]+>/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-
   assert.equal(
     new Set(registry.map((project) => project.id)).size,
     registry.length,
     "registry ids must be unique",
   );
-  assert.deepEqual(
-    new Set(renderedIds),
-    new Set(registry.map((project) => project.id)),
-  );
   for (const project of registry) {
-    const card =
-      directory.match(
-        new RegExp(`<article\\s+id="${project.id}"[\\s\\S]*?<\\/article>`),
-      )?.[0] ?? "";
-    const normalizedCard = normalizeText(card);
-    assert(
-      normalizedCard.includes(project.name),
-      `${project.id} is missing its registry name`,
-    );
-    assert(
-      normalizedCard.includes(project.stage),
-      `${project.id} is missing its registry stage`,
-    );
-    assert(
-      normalizedCard.includes(project.description),
-      `${project.id} is missing its registry purpose`,
-    );
-    assert(
-      normalizedCard.includes(project.engineeringSummary),
-      `${project.id} is missing its registry engineering summary`,
-    );
-    assert(
-      card.includes(`href="${project.demoHref}"`),
-      `${project.id} is missing its public demo destination`,
-    );
-    const routeText = normalizeText(
-      await readFile(
-        join(repoRoot, project.demoHref.slice(1), "index.html"),
-        "utf8",
-      ),
-    );
-    assert(
-      routeText.includes(project.proofLimit),
-      `${project.id} is missing its registry proof limit`,
-    );
-  }
-  assert.deepEqual(renderedIds, [
-    "mimo",
-    "intertitle",
-    "fcc",
-    "temper",
-    "season-room",
-    "maestro",
-    "pazz",
-  ]);
-  const previews = {
-    mimo: "/assets/media/demos/mimo/poster.webp",
-    intertitle: "/assets/media/demos/intertitle/tonight.webp",
-    fcc: "/assets/media/demos/fcc/command.webp",
-    temper: "/assets/media/demos/temper/plan.webp",
-    "season-room": "/assets/media/demos/season-room/review.webp",
-    maestro: "/assets/media/demos/maestro/poster.webp",
-    pazz: "/assets/graphics/pazz-handoff.svg",
-  };
-  for (const [id, source] of Object.entries(previews)) {
-    const card =
-      directory.match(
-        new RegExp(`<article\\s+id="${id}"[\\s\\S]*?<\\/article>`),
-      )?.[0] ?? "";
-    assert.match(card, new RegExp(`<img[^>]+src="${source}"`));
+    assert(project.name.length > 0, `${project.id} is missing a name`);
+    assert(project.purpose.length > 0, `${project.id} is missing a purpose`);
+    assert(project.status.length > 0, `${project.id} is missing a status`);
+    assert(project.category.length > 0, `${project.id} is missing a category`);
+    if (project.pending) {
+      assert(
+        project.pendingNote?.length > 0,
+        `${project.id} is pending but has no pendingNote`,
+      );
+    } else {
+      assert(project.chapters.length > 0, `${project.id} has no chapters`);
+      assert(
+        project.chapters.some((chapter) => chapter.id === project.defaultChapter),
+        `${project.id} defaultChapter does not match a real chapter`,
+      );
+    }
+    for (const chapter of project.chapters) {
+      assert(["image", "video"].includes(chapter.mediaType));
+      assert(["desktop", "portrait"].includes(chapter.layout));
+      assert(chapter.src.startsWith("/assets/media/demos/"));
+      assert(chapter.alt.length > 0, `${project.id}/${chapter.id} is missing alt text`);
+      assert(
+        await exists(join(repoRoot, chapter.src.slice(1))),
+        `${project.id}/${chapter.id} media is missing: ${chapter.src}`,
+      );
+      const { size } = await stat(join(repoRoot, chapter.src.slice(1)));
+      assert(size > 0, `${project.id}/${chapter.id} media is empty`);
+    }
   }
 });
+
+test("forbidden internal-only Intertitle fixtures are not published", async () => {
+  assert.equal(
+    await exists(join(repoRoot, "assets/media/demos/intertitle")),
+    false,
+    "assets/media/demos/intertitle must not exist in public output",
+  );
+});
+
+test("every product route renders the explorer stage for its own chapters", async () => {
+  const registry = JSON.parse(
+    await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
+  );
+  const normalizeText = (value) =>
+    value
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  for (const project of registry) {
+    const routePath = routeForProject(project);
+    await access(join(repoRoot, routePath));
+    const html = await readFile(join(repoRoot, routePath), "utf8");
+    const text = normalizeText(html);
+
+    assert(text.includes(project.name), `${routePath} is missing the product name`);
+    assert(text.includes(project.purpose), `${routePath} is missing its purpose`);
+    assert(text.includes(project.status), `${routePath} is missing its status`);
+
+    if (project.pending && !project.chapters.length) {
+      assert(
+        text.includes(project.pendingNote),
+        `${routePath} is missing its pending note`,
+      );
+      assert.match(html, /class="stage-pending"/);
+    } else {
+      const chapterMatches = [
+        ...html.matchAll(/data-chapter="([^"]+)"/g),
+      ].map((match) => match[1]);
+      assert.deepEqual(
+        new Set(chapterMatches),
+        new Set(project.chapters.map((chapter) => chapter.id)),
+        `${routePath} chapter markup does not match the registry`,
+      );
+      for (const chapter of project.chapters) {
+        assert(
+          text.includes(chapter.caption),
+          `${routePath} is missing the caption for chapter ${chapter.id}`,
+        );
+        if (chapter.mediaType === "video") {
+          const videoBlock = html.match(/<video\b[\s\S]*?<\/video>/)?.[0] ?? "";
+          assert.match(videoBlock, /\bcontrols\b/);
+          assert.match(videoBlock, /\bplaysinline\b/);
+          assert.doesNotMatch(videoBlock, /\bautoplay\b/);
+          if (chapter.transcript) {
+            assert(
+              text.includes(chapter.transcript),
+              `${routePath} is missing the transcript for chapter ${chapter.id}`,
+            );
+          }
+        }
+      }
+      if (project.pending) {
+        assert(
+          text.includes(project.pendingNote),
+          `${routePath} is missing its partial-capture note`,
+        );
+      }
+    }
+  }
+});
+
+test("home and projects hub embed the same explorer component and full picker", async () => {
+  const registry = JSON.parse(
+    await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
+  );
+  for (const routePath of ["index.html", "projects/index.html"]) {
+    const html = await readFile(join(repoRoot, routePath), "utf8");
+    assert.match(html, /class="explorer-picker"/);
+    assert.match(html, /data-explorer-stage/);
+    for (const project of registry) {
+      const href = project.id === "pazz" ? "/work/pazz/" : `/demos/${project.id}/`;
+      assert(
+        html.includes(`href="${href}"`),
+        `${routePath} picker is missing a link to ${href}`,
+      );
+    }
+  }
+});
+

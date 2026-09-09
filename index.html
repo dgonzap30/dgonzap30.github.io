@@ -6,20 +6,20 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <title>Diego Gonzalez Zapiain — Technical Lead &amp; Systems Builder</title>
+    <title>Diego Gonzalez Zapiain — Products you can explore</title>
     <meta
       name="description"
-      content="Technical Lead at PAZZ Marketplace and Co-Founder &amp; Technical Lead at LOJIK Labs. Diego builds considered products and dependable systems."
+      content="Technical Lead at PAZZ Marketplace and Co-Founder & Technical Lead at LOJIK Labs. Explore current products with real captured evidence."
     />
-    <meta name="theme-color" content="#f2ede3" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href="https://dgonzap30.github.io/" />
     <meta
       property="og:title"
-      content="Complex systems. Considered products. — Diego Gonzalez Zapiain"
+      content="Products you can explore — Diego Gonzalez Zapiain"
     />
     <meta
       property="og:description"
-      content="Technical leadership and product engineering for systems that need to work in the real world."
+      content="Technical leadership and product engineering, shown through current, honestly-labeled product captures."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dgonzap30.github.io/" />
@@ -32,11 +32,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Complex systems. Considered products. — Diego Gonzalez Zapiain"
+      content="Products you can explore — Diego Gonzalez Zapiain"
     />
     <meta
       name="twitter:description"
-      content="Technical leadership and product engineering for systems that need to work in the real world."
+      content="Technical leadership and product engineering, shown through current, honestly-labeled product captures."
     />
     <meta
       name="twitter:image"
@@ -45,13 +45,6 @@
     <link
       rel="preload"
       href="/assets/fonts/instrument-sans-latin.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/assets/fonts/newsreader-roman-latin.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -68,6 +61,7 @@
     <link rel="stylesheet" href="/assets/css/tokens.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/explorer.css" />
     <link rel="stylesheet" href="/assets/css/pages.css" />
     <link rel="stylesheet" href="/assets/css/projects.css" />
     <script src="/assets/js/site.js" defer></script>
@@ -111,204 +105,157 @@
           />
           <span>Diego Gonzalez Zapiain</span>
         </a>
-        <ul class="nav-links portfolio-nav">
+        <button
+          type="button"
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span class="nav-toggle-icon" aria-hidden="true"><span></span></span>
+          Menu
+        </button>
+        <ul class="nav-links portfolio-nav" id="primary-nav">
+          <li><a href="#work" aria-current="page">Work</a></li>
+          <li><a href="/#approach">Approach</a></li>
           <li>
-            <a href="#work" data-section-link>Work</a>
-          </li>
-          <li>
-            <a href="/projects/">Projects</a>
-          </li>
-          <li>
-            <a href="#about" data-section-link>About</a>
-          </li>
-          <li>
-            <a class="contact-link" href="#contact" data-section-link
-              >Let's talk</a
+            <a
+              href="https://github.com/dgonzap30"
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub</a
             >
           </li>
+          <li><a class="contact-link" href="#contact">Contact</a></li>
         </ul>
       </nav>
     </header>
     <main id="main-content">
-      <section class="portfolio-hero shell" id="top">
-        <div class="portfolio-intro">
-          <h1>Thoughtful products.<br /><em>Serious engineering.</em></h1>
-          <p class="lede">
-            I build native apps, creative tools, and systems that keep working
-            when the happy path ends.
-          </p>
-          <p class="role-line">
-            Technical Lead at PAZZ · Co-Founder &amp; Technical Lead at LOJIK
-          </p>
-          <div class="actions">
-            <a class="action action-primary" href="/projects/"
-              >Explore the demos</a
-            >
-            <a
-              class="action action-secondary"
-              href="https://www.linkedin.com/in/diego-gonzap/"
-              target="_blank"
-              rel="me noopener noreferrer"
-              >Connect on LinkedIn</a
-            >
+      <section class="explorer-hero shell" id="top">
+        <p class="eyebrow">Product explorer</p>
+        <h1>Products you can explore.</h1>
+        <p class="lede">
+          I'm Diego, a product engineer and technical lead. I build native
+          apps, creative tools, and the systems behind them.
+        </p>
+        <p class="role-line">PAZZ Marketplace · LOJIK Labs</p>
+      </section>
+      <section class="portfolio-explorer shell" id="work" aria-label="Current product explorer">
+        <div class="explorer">
+          <!-- explorer:picker:start -->
+<nav class="explorer-picker-nav" aria-label="Products"><ul class="explorer-picker"><li><a href="/demos/maestro/" aria-current="page"><strong>Maestro</strong><span class="picker-category">Music production</span></a></li><li><a href="/demos/temper/" data-pending="true"><strong>Temper</strong><span class="picker-category">Health &amp; training</span></a></li><li><a href="/demos/mimo/"><strong>Mimo</strong><span class="picker-category">Shared moments</span></a></li><li><a href="/demos/intertitle/" data-pending="true"><strong>Intertitle</strong><span class="picker-category">Film &amp; taste</span></a></li><li><a href="/demos/fcc/"><strong>FCC</strong><span class="picker-category">Fantasy football</span></a></li><li><a href="/demos/season-room/"><strong>Season Room</strong><span class="picker-category">Betting notebook</span></a></li><li><a href="/work/pazz/" data-pending="true"><strong>PAZZ</strong><span class="picker-category">Vehicle leasing</span></a></li></ul></nav>
+<!-- explorer:picker:end -->
+          <!-- explorer:stage:start -->
+<div class="explorer-stage" data-explorer-stage data-default-chapter="mixer">
+      <header class="stage-header">
+        <div>
+          <h2 class="stage-name">Maestro</h2>
+          <p class="stage-purpose">A closer look at what's happening inside a music session.</p>
+        </div>
+        <span class="stage-status">Private beta</span>
+      </header>
+      <div class="stage-viewer">
+        <div class="stage-chapter" id="chapter-session" data-chapter="session" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/maestro/session.webp" width="2696" height="1776" alt="Maestro session view showing three synthetic tracks registering with a live masking finding" loading="lazy" />
+          <p class="chapter-caption"><strong>Session.</strong> Live session state as tracks register, before anything is named or saved.</p>
+          
+        </div><div class="stage-chapter" id="chapter-mixer" data-chapter="mixer" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/maestro/poster.webp" width="2784" height="1864" alt="Maestro mixer showing synthetic track meters and a masking issue between Synthetic Bass and Synthetic Pulse" loading="lazy" />
+          <p class="chapter-caption"><strong>Mixer.</strong> 3 of 3 tracks live, with a masking issue between two synthetic tracks called out for review.</p>
+          
+        </div><div class="stage-chapter" id="chapter-spectrum" data-chapter="spectrum" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/maestro/spectrum.webp" width="2784" height="1864" alt="Maestro spectrum panel showing a synthetic integrated post-fader signal chart" loading="lazy" />
+          <p class="chapter-caption"><strong>Spectrum.</strong> Integrated post-fader spectrum, captured at 124 BPM, four bars back.</p>
+          
+        </div><div class="stage-chapter" id="chapter-walkthrough" data-chapter="walkthrough" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Recorded walkthrough · native controls · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <video class="chapter-media" controls playsinline preload="metadata" poster="/assets/media/demos/maestro/poster.webp" width="1392" height="932" aria-label="Recorded walkthrough of the real local Maestro application with synthetic telemetry">
+            <source src="/assets/media/demos/maestro/demo.mp4" type="video/mp4" />
+            Your browser does not support the video element.
+          </video>
+          <p class="chapter-caption"><strong>Walkthrough.</strong> 26.5 seconds of the real local application: session registration, the mixer with its masking finding, then spectrum.</p>
+          <div class="chapter-transcript"><strong>Descriptive transcript.</strong> A title card establishes the recording scope. The local Maestro UI shows three generic tracks registering, the mixer view with a visible masking finding, and the spectrum view. The &quot;Logic Pro connected&quot; badge stays visible as recorded — it reflects synthetic plugin registration, not a real Logic Pro connection.</div>
+        </div>
+      </div>
+      <div class="chapter-tabs" data-chapter-tabs aria-label="Chapters"><a href="#chapter-session" aria-selected="false">Session</a><a href="#chapter-mixer" aria-selected="true">Mixer</a><a href="#chapter-spectrum" aria-selected="false">Spectrum</a><a href="#chapter-walkthrough" aria-selected="false">Walkthrough</a></div>
+      <div class="stage-caption-row">
+        <p class="stage-scope">Synthetic session data traveling through the real local WebSocket server, session aggregation, and the real React/Tauri interface. No real audio, DAW, or coaching API is used.</p>
+        <div class="stage-actions">
+          <button type="button" class="stage-open-full" data-open-full-size>Open full size</button>
+        </div>
+      </div>
+      
+      <details class="stage-disclosure" data-disclosure>
+        <summary>Engineering detail: what's working, what's still in progress</summary>
+        <p>Missing or stale audio evidence stays visible in the UI instead of being papered over with a confident guess.</p>
+        <div class="stage-disclosure-grid">
+          <div>
+            <h4>What's working</h4>
+            <ul><li>Synthetic session registration and track ingest through the real local server</li><li>Masking analysis surfaced per track, with the finding kept visible in the UI</li><li>Mixer and spectrum views rendered by the real local application</li></ul>
+          </div>
+          <div>
+            <h4>Still in progress</h4>
+            <ul><li>No AU/VST or FFT extraction from real PCM audio</li><li>No Logic Pro or other DAW bridge — the bridge process is a safety stub</li><li>No coaching API; the assistant panel is not wired to a model</li></ul>
           </div>
         </div>
-        <aside class="project-index" aria-label="Selected projects">
-          <a href="#work">
-            <span>01</span>
-            <strong>Products &amp; systems</strong>
-            <em>PAZZ Marketplace and LOJIK Labs.</em>
-            <b aria-hidden="true">↗</b>
-          </a>
-          <a href="#play">
-            <span>02</span>
-            <strong>Side projects &amp; play</strong>
-            <em>Music, films, shared rituals, and decision tools.</em>
-            <b aria-hidden="true">↗</b>
-          </a>
-          <a href="/projects/">
-            <span>03</span>
-            <strong>Selected projects</strong>
-            <em>Useful purpose and inspectable work.</em>
-            <b aria-hidden="true">↗</b>
-          </a>
-        </aside>
-      </section>
-      <section class="portfolio-work shell" id="work">
-        <header class="editorial-heading">
-          <span>Selected work</span>
-          <h2>Built around real problems.</h2>
-          <p>
-            Two products shaped around demanding work and clear operating
-            decisions.
-          </p>
-        </header>
-        <div class="work-grid">
-          <article class="work-card">
-            <figure class="work-preview">
-              <img
-                src="/assets/graphics/pazz-handoff.svg"
-                width="1280"
-                height="720"
-                alt="Sanitized workflow diagram for the new PAZZ platform; not a product screenshot"
-              />
-            </figure>
-            <h3>PAZZ Marketplace</h3>
-            <p class="card-role">Technical Lead</p>
-            <p>Connecting vehicle discovery, quoting, and partner handoffs.</p>
-            <a class="text-link" href="/work/pazz/"
-              >Read the case study <span aria-hidden="true">→</span>
-            </a>
-          </article>
-          <article class="work-card">
-            <figure class="work-preview">
-              <img
-                src="/assets/media/work/lojik-public.webp"
-                width="1280"
-                height="720"
-                alt="Public LOJIK Labs website describing systems delivery"
-              />
-            </figure>
-            <h3>LOJIK Labs</h3>
-            <p class="card-role">Co-Founder &amp; Technical Lead</p>
-            <p>
-              Turning recurring business workflows into dependable software.
-            </p>
-            <a class="text-link" href="/work/lojik/"
-              >Read the case study <span aria-hidden="true">→</span>
-            </a>
-          </article>
+      </details>
+      <dialog data-stage-dialog aria-label="Maestro full-size view">
+        <button type="button" class="dialog-close" data-dialog-close aria-label="Close full-size view" formmethod="dialog">Close</button>
+        <div data-dialog-body></div>
+      </dialog>
+    </div>
+<!-- explorer:stage:end -->
         </div>
-        <a
-          class="brainkit-row"
-          href="https://github.com/dgonzap30/brainkit"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>03</span>
-          <strong>BrainKit</strong>
-          <span
-            >An inspectable Swift package for personal-app integration.</span
-          >
-          <em>Explore the code</em>
-          <b aria-hidden="true">→</b>
-        </a>
-      </section>
-      <section class="portfolio-play shell" id="play">
-        <header class="editorial-heading">
-          <span>Side projects &amp; play</span>
-          <h2>Built because I wanted it to exist.</h2>
-          <p>Music, films, shared rituals, and decision tools.</p>
-        </header>
-        <div class="play-grid">
-          <a class="play-feature" href="/demos/intertitle/"
-            ><img
-              src="/assets/media/demos/intertitle/tonight.webp"
-              width="1206"
-              height="2622"
-              alt="Intertitle captured development fixture"
-            /><span>Development fixture</span><strong>Intertitle</strong
-            ><em>Film discovery grounded in taste.</em></a
-          >
-          <a class="play-preview" href="/demos/mimo/"
-            ><img
-              src="/assets/media/demos/mimo/poster.webp"
-              width="368"
-              height="800"
-              alt="Mimo local rehearsal preview"
-            /><span>Local rehearsal</span><strong>Mimo</strong
-            ><em>A shared room for playful rituals.</em></a
-          >
-          <a class="play-preview" href="/demos/temper/"
-            ><img
-              src="/assets/media/demos/temper/plan.webp"
-              width="1206"
-              height="2622"
-              alt="Temper captured planning review"
-            /><span>Captured walkthrough</span><strong>Temper</strong
-            ><em>Training plans that respect constraints.</em></a
-          >
-        </div>
-        <a class="text-link" href="/projects/"
-          >See selected projects <span aria-hidden="true">→</span></a
+        <a class="text-link explorer-more-link" href="/projects/"
+          >See every current product <span aria-hidden="true">→</span></a
         >
       </section>
-      <section class="method-editorial" id="method">
+      <section class="method-editorial" id="approach">
         <div class="shell">
           <header class="editorial-heading">
-            <span>How I work</span>
-            <h2>From a messy brief to a working product.</h2>
-            <p>
-              I stay close to the product, the code, and the people who use it.
-            </p>
+            <span>A few ways I think about the work</span>
+            <h2>Products, not just screens.</h2>
           </header>
-          <div class="method-columns">
+          <div class="method-columns principle-columns">
             <div>
               <b>01</b>
-              <h3>Understand the workflow</h3>
-              <p>Map the people, decisions, and places work gets stuck.</p>
+              <h3>Make the decision legible.</h3>
+              <p>
+                FFCC shows the effect of a trade on both teams before an offer
+                goes out; Maestro keeps missing or stale evidence visible
+                instead of guessing.
+              </p>
+              <a class="text-link" href="/demos/fcc/#chapter-trade-result"
+                >See it in FFCC <span aria-hidden="true">→</span></a
+              >
             </div>
             <div>
               <b>02</b>
-              <h3>Build the whole path</h3>
+              <h3>Let people change their minds.</h3>
               <p>
-                Connect the interface, data, and integrations around shared
-                rules.
+                Temper presents a plan adjustment for review before it's
+                applied; Season Room keeps a receipt's transcription in
+                review before it's saved.
               </p>
+              <a class="text-link" href="/demos/temper/#chapter-coach"
+                >See it in Temper <span aria-hidden="true">→</span></a
+              >
             </div>
             <div>
               <b>03</b>
-              <h3>Make it dependable</h3>
+              <h3>Carry the detail through.</h3>
               <p>
-                Test the real behavior. Make failures visible and recovery
-                possible.
+                Mimo's marks persist with their moment and reach native
+                widgets; PAZZ connects discovery to qualification and
+                partner handoffs in one path.
               </p>
+              <a class="text-link" href="/demos/mimo/#chapter-mark"
+                >See it in Mimo <span aria-hidden="true">→</span></a
+              >
             </div>
           </div>
-          <a class="method-link" href="/work/pazz/"
-            >See this approach in the PAZZ case study
-            <span aria-hidden="true">→</span>
-          </a>
         </div>
       </section>
       <section class="about-editorial shell" id="about">
@@ -324,10 +271,10 @@
           <span>A little about me</span>
           <h2>Technical depth. Product instinct.</h2>
           <p>
-            I’m Diego Gonzalez Zapiain. I lead engineering at PAZZ Marketplace
-            and co-founded LOJIK Labs. My work spans mobile and web products,
-            data, integrations, applied AI, film and music tools, games, and
-            personal systems.
+            I'm Diego Gonzalez Zapiain. I'm Technical Lead at PAZZ
+            Marketplace and Co-Founder &amp; Technical Lead at LOJIK Labs. My
+            work spans mobile and web products, data, integrations, applied
+            AI, film and music tools, games, and personal systems.
           </p>
           <p class="about-detail">
             B.S. Computer Science, University of Wisconsin–Madison, 2026.<br />English
@@ -340,9 +287,10 @@
       <div class="footer-inner shell">
         <div class="footer-cta">
           <div>
-            <h2 class="footer-title">Let’s build something worth using.</h2>
+            <h2 class="footer-title">Let's build something worth using.</h2>
             <p>
-              A product to shape, a system to untangle, or a team to build with.
+              A product to shape, a system to untangle, or a team to build
+              with.
             </p>
           </div>
           <div class="actions">

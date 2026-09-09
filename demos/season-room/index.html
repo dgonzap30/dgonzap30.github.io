@@ -3,124 +3,120 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Season Room walkthrough — Diego Gonzalez Zapiain</title>
-    <meta
-      name="description"
-      content="Captured walkthrough of Season Room’s receipt review and season record."
-    />
-    <link
-      rel="canonical"
-      href="https://dgonzap30.github.io/demos/season-room/"
-    />
-    <meta property="og:title" content="Season Room walkthrough" />
-    <meta
-      property="og:description"
-      content="Captured receipt review and season record."
-    />
-    <meta
-      property="og:url"
-      content="https://dgonzap30.github.io/demos/season-room/"
-    />
-    <meta
-      property="og:image"
-      content="https://dgonzap30.github.io/assets/media/demos/season-room/review.webp"
-    />
+    <title>Season Room — Diego Gonzalez Zapiain</title>
+    <meta name="description" content="A personal season notebook that keeps original receipts, review decisions, and records together." />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="https://dgonzap30.github.io/demos/season-room/" />
+    <meta property="og:title" content="Season Room — Keep the ticket, the review and the season record together." />
+    <meta property="og:description" content="A personal season notebook that keeps original receipts, review decisions, and records together." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dgonzap30.github.io/demos/season-room/" />
+    <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/assets/css/fonts.css" />
     <link rel="stylesheet" href="/assets/css/tokens.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/explorer.css" />
     <link rel="stylesheet" href="/assets/css/demos.css" />
     <script src="/assets/js/site.js" defer></script>
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "CreativeWork",
-        "name": "Season Room captured walkthrough"
-      }
+      {"@context":"https://schema.org","@type":"CreativeWork","name":"Season Room","url":"https://dgonzap30.github.io/demos/season-room/"}
     </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <nav class="site-nav shell" aria-label="Primary">
-        <a class="brand" href="/"
-          ><img
-            src="/assets/brand/dgz-trace.svg"
-            width="48"
-            height="48"
-            alt=""
-          /><span>Diego Gonzalez Zapiain</span></a
-        >
-        <ul class="nav-links demo-nav">
-          <li><a href="/projects/">Projects</a></li>
+        <a class="brand" href="/"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="" /><span>Diego Gonzalez Zapiain</span></a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
+        <ul class="nav-links demo-nav" id="primary-nav">
+          <li><a href="/projects/">All products</a></li>
+          <li><a href="/#contact">Contact</a></li>
         </ul>
       </nav>
     </header>
     <main id="main-content" class="demo-page">
       <header class="demo-hero shell">
-        <p class="eyebrow">Season Room · Local prototype</p>
-        <h1>Keep the receipt with the decision.</h1>
-        <p class="lede">
-          A personal season notebook for records, review, and original receipts.
-        </p>
-        <p class="demo-meta">
-          Captured synthetic walkthrough · September 8, 2026
-        </p>
+        <p class="eyebrow">Betting notebook</p>
+        <h1>The ticket, the review, the record.</h1>
+        <p class="lede">A personal season notebook that keeps original receipts, review decisions, and records together.</p>
       </header>
-      <section class="walkthrough shell" data-walkthrough>
-        <div class="walkthrough-head">
-          <h2>Captured walkthrough</h2>
-          <p>Two recorded views</p>
-        </div>
-        <div class="walkthrough-controls">
-          <button type="button" data-walkthrough-prev>Previous</button
-          ><button type="button" data-walkthrough-next>Next</button>
-        </div>
-        <figure class="walkthrough-step">
-          <img
-            src="/assets/media/demos/season-room/review.webp"
-            width="1536"
-            height="1024"
-            alt="Season Room confirmation form showing OCR evidence beside a test receipt"
-          />
-          <figcaption>
-            <strong>1. Review OCR against the original.</strong> A stored test
-            receipt stays visible while a person confirms the proposed
-            transcription.
-          </figcaption>
-        </figure>
-        <figure class="walkthrough-step">
-          <img
-            src="/assets/media/demos/season-room/season.webp"
-            width="1536"
-            height="1024"
-            alt="Season Room season view showing timeline and record panels"
-          />
-          <figcaption>
-            <strong>2. View the season record.</strong> A separate captured
-            state presents the season timeline and context together.
-          </figcaption>
-        </figure>
-      </section>
-      <section class="demo-copy shell">
+      <section class="demo-explorer shell" aria-label="Season Room explorer">
+        <div class="explorer">
+          <!-- explorer:picker:start -->
+<nav class="explorer-picker-nav" aria-label="Products"><ul class="explorer-picker"><li><a href="/demos/maestro/"><strong>Maestro</strong><span class="picker-category">Music production</span></a></li><li><a href="/demos/temper/" data-pending="true"><strong>Temper</strong><span class="picker-category">Health &amp; training</span></a></li><li><a href="/demos/mimo/"><strong>Mimo</strong><span class="picker-category">Shared moments</span></a></li><li><a href="/demos/intertitle/" data-pending="true"><strong>Intertitle</strong><span class="picker-category">Film &amp; taste</span></a></li><li><a href="/demos/fcc/"><strong>FCC</strong><span class="picker-category">Fantasy football</span></a></li><li><a href="/demos/season-room/" aria-current="page"><strong>Season Room</strong><span class="picker-category">Betting notebook</span></a></li><li><a href="/work/pazz/" data-pending="true"><strong>PAZZ</strong><span class="picker-category">Vehicle leasing</span></a></li></ul></nav>
+<!-- explorer:picker:end -->
+          <!-- explorer:stage:start -->
+<div class="explorer-stage" data-explorer-stage data-default-chapter="review">
+      <header class="stage-header">
         <div>
-          <h2>What is shown</h2>
-          <p>
-            Original test-receipt evidence and a separate season state. The
-            product’s implementation uses explicit review, revision checks, and
-            idempotent writes to protect the canonical record.
-          </p>
+          <h2 class="stage-name">Season Room</h2>
+          <p class="stage-purpose">Keep the ticket, the review and the season record together.</p>
         </div>
-        <div>
-          <h2>What is not shown</h2>
-          <p>
-            This is fictional test data and recorded views only; the second
-            image is not presented as the result of the first. There is no live
-            feed, automatic settlement, or proven betting edge.
-          </p>
+        <span class="stage-status">Local prototype</span>
+      </header>
+      <div class="stage-viewer">
+        <div class="stage-chapter" id="chapter-review" data-chapter="review" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/season-room/review.webp" width="1536" height="1024" alt="Season Room receipt review screen with an original test receipt and its proposed transcription" loading="lazy" />
+          <p class="chapter-caption"><strong>Receipt review.</strong> An original test receipt with its OCR-proposed transcription held for review before it's saved.</p>
+          
+        </div><div class="stage-chapter" id="chapter-season" data-chapter="season" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/season-room/season.webp" width="1536" height="1024" alt="Season Room season record view with fictional recorded entries" loading="lazy" />
+          <p class="chapter-caption"><strong>Season record.</strong> The season record view, kept separately from any single receipt review.</p>
+          
         </div>
+      </div>
+      <div class="chapter-tabs" data-chapter-tabs aria-label="Chapters"><a href="#chapter-review" aria-selected="true">Receipt review</a><a href="#chapter-season" aria-selected="false">Season record</a></div>
+      <div class="stage-caption-row">
+        <p class="stage-scope">Fictional test receipts and recorded views. The season-record view is a separate example, not presented as the automatic result of the receipt review.</p>
+        <div class="stage-actions">
+          <button type="button" class="stage-open-full" data-open-full-size>Open full size</button>
+        </div>
+      </div>
+      
+      <details class="stage-disclosure" data-disclosure>
+        <summary>Engineering detail: what's working, what's still in progress</summary>
+        <p>OCR proposes a transcription; review, revision checks, and idempotent writes protect the record.</p>
+        <div class="stage-disclosure-grid">
+          <div>
+            <h4>What's working</h4>
+            <ul><li>OCR-proposed transcription held for review before it is written</li><li>A season record kept alongside individual receipt reviews</li></ul>
+          </div>
+          <div>
+            <h4>Still in progress</h4>
+            <ul><li>No live odds feed or automatic settlement</li><li>No proven betting edge — this is a record-keeping tool, not a prediction system</li></ul>
+          </div>
+        </div>
+      </details>
+      <dialog data-stage-dialog aria-label="Season Room full-size view">
+        <button type="button" class="dialog-close" data-dialog-close aria-label="Close full-size view" formmethod="dialog">Close</button>
+        <div data-dialog-body></div>
+      </dialog>
+    </div>
+<!-- explorer:stage:end -->
+        </div>
+        <a class="text-link demo-back-link" href="/projects/">See every current product <span aria-hidden="true">→</span></a>
       </section>
     </main>
+    <footer class="site-footer" id="contact-footer">
+      <div class="footer-inner shell">
+        <div class="footer-cta">
+          <div>
+            <h2 class="footer-title">Let's build something worth using.</h2>
+            <p>A product to shape, a system to untangle, or a team to build with.</p>
+          </div>
+          <div class="actions">
+            <a class="action action-primary" href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">Connect on LinkedIn</a>
+          </div>
+        </div>
+        <p class="footer-meta">© 2026 Diego Gonzalez Zapiain</p>
+      </div>
+    </footer>
   </body>
 </html>

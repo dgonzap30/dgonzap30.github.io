@@ -3,124 +3,133 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Maestro walkthrough — Diego Gonzalez Zapiain</title>
-    <meta
-      name="description"
-      content="A local Maestro application recording with synthetic telemetry."
-    />
+    <title>Maestro — Diego Gonzalez Zapiain</title>
+    <meta name="description" content="A music-production workspace that turns session signals into material a producer can inspect." />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href="https://dgonzap30.github.io/demos/maestro/" />
-    <meta property="og:title" content="Maestro walkthrough" />
-    <meta
-      property="og:description"
-      content="Synthetic telemetry in a real local music-production application."
-    />
-    <meta
-      property="og:url"
-      content="https://dgonzap30.github.io/demos/maestro/"
-    />
-    <meta
-      property="og:image"
-      content="https://dgonzap30.github.io/assets/media/demos/maestro/poster.webp"
-    />
+    <meta property="og:title" content="Maestro — A closer look at what's happening inside a music session." />
+    <meta property="og:description" content="A music-production workspace that turns session signals into material a producer can inspect." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dgonzap30.github.io/demos/maestro/" />
+    <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/assets/css/fonts.css" />
     <link rel="stylesheet" href="/assets/css/tokens.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/explorer.css" />
     <link rel="stylesheet" href="/assets/css/demos.css" />
+    <script src="/assets/js/site.js" defer></script>
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        "name": "Maestro local application walkthrough",
-        "contentUrl": "https://dgonzap30.github.io/assets/media/demos/maestro/demo.mp4"
-      }
+      {"@context":"https://schema.org","@type":"CreativeWork","name":"Maestro","url":"https://dgonzap30.github.io/demos/maestro/"}
     </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <nav class="site-nav shell" aria-label="Primary">
-        <a class="brand" href="/"
-          ><img
-            src="/assets/brand/dgz-trace.svg"
-            width="48"
-            height="48"
-            alt=""
-          /><span>Diego Gonzalez Zapiain</span></a
-        >
-        <ul class="nav-links demo-nav">
-          <li><a href="/projects/">Projects</a></li>
+        <a class="brand" href="/"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="" /><span>Diego Gonzalez Zapiain</span></a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
+        <ul class="nav-links demo-nav" id="primary-nav">
+          <li><a href="/projects/">All products</a></li>
+          <li><a href="/#contact">Contact</a></li>
         </ul>
       </nav>
     </header>
     <main id="main-content" class="demo-page">
       <header class="demo-hero shell">
-        <p class="eyebrow">Maestro · Private beta</p>
+        <p class="eyebrow">Music production</p>
         <h1>Session evidence, kept inspectable.</h1>
-        <p class="lede">
-          A music-production workspace that turns session signals into material
-          a producer can inspect.
-        </p>
-        <p class="demo-meta">
-          Synthetic telemetry · real local application · recorded Sep 8, 2026
-        </p>
+        <p class="lede">A music-production workspace that turns session signals into material a producer can inspect.</p>
       </header>
-      <section class="walkthrough shell">
-        <div class="walkthrough-head">
-          <h2>Recorded product preview</h2>
-          <p>Native video · 26.5 seconds</p>
-        </div>
-        <video
-          class="demo-video demo-video-wide"
-          controls
-          playsinline
-          preload="metadata"
-          poster="/assets/media/demos/maestro/poster.webp"
-        >
-          <source src="/assets/media/demos/maestro/demo.mp4" type="video/mp4" />
-          Your browser does not support video.
-        </video>
-        <div class="transcript">
-          <p>
-            <strong>Descriptive transcript.</strong> A title card establishes
-            the recording scope. The local Maestro UI then shows three generic
-            tracks, a mixer view with visible masking evidence, and a spectrum
-            view. The “Logic Pro connected” badge remains visible as recorded.
-          </p>
-        </div>
-        <figure class="walkthrough-step maestro-still">
-          <img
-            src="/assets/media/demos/maestro/spectrum.webp"
-            width="2784"
-            height="1864"
-            alt="Maestro local application showing the Spectrum panel with a synthetic signal chart"
-          />
-          <figcaption>
-            <strong>Visible detail.</strong> The recorded spectrum panel is also
-            available as a still image.
-          </figcaption>
-        </figure>
-      </section>
-      <section class="demo-copy shell">
+      <section class="demo-explorer shell" aria-label="Maestro explorer">
+        <div class="explorer">
+          <!-- explorer:picker:start -->
+<nav class="explorer-picker-nav" aria-label="Products"><ul class="explorer-picker"><li><a href="/demos/maestro/" aria-current="page"><strong>Maestro</strong><span class="picker-category">Music production</span></a></li><li><a href="/demos/temper/" data-pending="true"><strong>Temper</strong><span class="picker-category">Health &amp; training</span></a></li><li><a href="/demos/mimo/"><strong>Mimo</strong><span class="picker-category">Shared moments</span></a></li><li><a href="/demos/intertitle/" data-pending="true"><strong>Intertitle</strong><span class="picker-category">Film &amp; taste</span></a></li><li><a href="/demos/fcc/"><strong>FCC</strong><span class="picker-category">Fantasy football</span></a></li><li><a href="/demos/season-room/"><strong>Season Room</strong><span class="picker-category">Betting notebook</span></a></li><li><a href="/work/pazz/" data-pending="true"><strong>PAZZ</strong><span class="picker-category">Vehicle leasing</span></a></li></ul></nav>
+<!-- explorer:picker:end -->
+          <!-- explorer:stage:start -->
+<div class="explorer-stage" data-explorer-stage data-default-chapter="mixer">
+      <header class="stage-header">
         <div>
-          <h2>What is shown</h2>
-          <p>
-            A real local Rust workspace/session-aggregation application with a
-            React and Tauri interface renders synthetic feature frames as a
-            mixer and spectrum review surface.
-          </p>
+          <h2 class="stage-name">Maestro</h2>
+          <p class="stage-purpose">A closer look at what's happening inside a music session.</p>
         </div>
-        <div>
-          <h2>What is not shown</h2>
-          <p>
-            The measurements are synthetic. This recording does not show AU/VST
-            extraction, FFT from PCM, a DAW bridge, or a coaching API. The green
-            “Logic Pro connected” badge comes from synthetic registration; Logic
-            Pro is not running.
-          </p>
+        <span class="stage-status">Private beta</span>
+      </header>
+      <div class="stage-viewer">
+        <div class="stage-chapter" id="chapter-session" data-chapter="session" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/maestro/session.webp" width="2696" height="1776" alt="Maestro session view showing three synthetic tracks registering with a live masking finding" loading="lazy" />
+          <p class="chapter-caption"><strong>Session.</strong> Live session state as tracks register, before anything is named or saved.</p>
+          
+        </div><div class="stage-chapter" id="chapter-mixer" data-chapter="mixer" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/maestro/poster.webp" width="2784" height="1864" alt="Maestro mixer showing synthetic track meters and a masking issue between Synthetic Bass and Synthetic Pulse" loading="lazy" />
+          <p class="chapter-caption"><strong>Mixer.</strong> 3 of 3 tracks live, with a masking issue between two synthetic tracks called out for review.</p>
+          
+        </div><div class="stage-chapter" id="chapter-spectrum" data-chapter="spectrum" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/maestro/spectrum.webp" width="2784" height="1864" alt="Maestro spectrum panel showing a synthetic integrated post-fader signal chart" loading="lazy" />
+          <p class="chapter-caption"><strong>Spectrum.</strong> Integrated post-fader spectrum, captured at 124 BPM, four bars back.</p>
+          
+        </div><div class="stage-chapter" id="chapter-walkthrough" data-chapter="walkthrough" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Recorded walkthrough · native controls · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <video class="chapter-media" controls playsinline preload="metadata" poster="/assets/media/demos/maestro/poster.webp" width="1392" height="932" aria-label="Recorded walkthrough of the real local Maestro application with synthetic telemetry">
+            <source src="/assets/media/demos/maestro/demo.mp4" type="video/mp4" />
+            Your browser does not support the video element.
+          </video>
+          <p class="chapter-caption"><strong>Walkthrough.</strong> 26.5 seconds of the real local application: session registration, the mixer with its masking finding, then spectrum.</p>
+          <div class="chapter-transcript"><strong>Descriptive transcript.</strong> A title card establishes the recording scope. The local Maestro UI shows three generic tracks registering, the mixer view with a visible masking finding, and the spectrum view. The &quot;Logic Pro connected&quot; badge stays visible as recorded — it reflects synthetic plugin registration, not a real Logic Pro connection.</div>
         </div>
+      </div>
+      <div class="chapter-tabs" data-chapter-tabs aria-label="Chapters"><a href="#chapter-session" aria-selected="false">Session</a><a href="#chapter-mixer" aria-selected="true">Mixer</a><a href="#chapter-spectrum" aria-selected="false">Spectrum</a><a href="#chapter-walkthrough" aria-selected="false">Walkthrough</a></div>
+      <div class="stage-caption-row">
+        <p class="stage-scope">Synthetic session data traveling through the real local WebSocket server, session aggregation, and the real React/Tauri interface. No real audio, DAW, or coaching API is used.</p>
+        <div class="stage-actions">
+          <button type="button" class="stage-open-full" data-open-full-size>Open full size</button>
+        </div>
+      </div>
+      
+      <details class="stage-disclosure" data-disclosure>
+        <summary>Engineering detail: what's working, what's still in progress</summary>
+        <p>Missing or stale audio evidence stays visible in the UI instead of being papered over with a confident guess.</p>
+        <div class="stage-disclosure-grid">
+          <div>
+            <h4>What's working</h4>
+            <ul><li>Synthetic session registration and track ingest through the real local server</li><li>Masking analysis surfaced per track, with the finding kept visible in the UI</li><li>Mixer and spectrum views rendered by the real local application</li></ul>
+          </div>
+          <div>
+            <h4>Still in progress</h4>
+            <ul><li>No AU/VST or FFT extraction from real PCM audio</li><li>No Logic Pro or other DAW bridge — the bridge process is a safety stub</li><li>No coaching API; the assistant panel is not wired to a model</li></ul>
+          </div>
+        </div>
+      </details>
+      <dialog data-stage-dialog aria-label="Maestro full-size view">
+        <button type="button" class="dialog-close" data-dialog-close aria-label="Close full-size view" formmethod="dialog">Close</button>
+        <div data-dialog-body></div>
+      </dialog>
+    </div>
+<!-- explorer:stage:end -->
+        </div>
+        <a class="text-link demo-back-link" href="/projects/">See every current product <span aria-hidden="true">→</span></a>
       </section>
     </main>
+    <footer class="site-footer" id="contact-footer">
+      <div class="footer-inner shell">
+        <div class="footer-cta">
+          <div>
+            <h2 class="footer-title">Let's build something worth using.</h2>
+            <p>A product to shape, a system to untangle, or a team to build with.</p>
+          </div>
+          <div class="actions">
+            <a class="action action-primary" href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">Connect on LinkedIn</a>
+          </div>
+        </div>
+        <p class="footer-meta">© 2026 Diego Gonzalez Zapiain</p>
+      </div>
+    </footer>
   </body>
 </html>

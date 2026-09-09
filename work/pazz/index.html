@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/explorer.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
   <script src="/assets/js/site.js" defer></script>
   <script type="application/ld+json">
@@ -59,9 +60,10 @@
         <img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="">
         <span>Diego Gonzalez Zapiain</span>
       </a>
-      <ul class="nav-links">
-        <li><a href="/#work">Work</a></li>
-        <li><a href="/#method">Method</a></li>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="/projects/">All products</a></li>
+        <li><a href="/#approach">Approach</a></li>
         <li><a class="nav-external" href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
       </ul>
     </nav>
@@ -89,10 +91,28 @@
       </aside>
     </header>
 
-    <figure class="case-public-preview shell">
-      <img src="/assets/graphics/pazz-handoff.svg" width="1280" height="720" alt="Sanitized workflow diagram for the new PAZZ platform; not a product screenshot">
-      <figcaption>New PAZZ platform · Sanitized workflow diagram. The legacy company website is not my work and is not shown here.</figcaption>
-    </figure>
+    <section class="portfolio-explorer shell" aria-label="PAZZ Marketplace explorer">
+      <div class="explorer">
+        <!-- explorer:picker:start -->
+<nav class="explorer-picker-nav" aria-label="Products"><ul class="explorer-picker"><li><a href="/demos/maestro/"><strong>Maestro</strong><span class="picker-category">Music production</span></a></li><li><a href="/demos/temper/" data-pending="true"><strong>Temper</strong><span class="picker-category">Health &amp; training</span></a></li><li><a href="/demos/mimo/"><strong>Mimo</strong><span class="picker-category">Shared moments</span></a></li><li><a href="/demos/intertitle/" data-pending="true"><strong>Intertitle</strong><span class="picker-category">Film &amp; taste</span></a></li><li><a href="/demos/fcc/"><strong>FCC</strong><span class="picker-category">Fantasy football</span></a></li><li><a href="/demos/season-room/"><strong>Season Room</strong><span class="picker-category">Betting notebook</span></a></li><li><a href="/work/pazz/" aria-current="page" data-pending="true"><strong>PAZZ</strong><span class="picker-category">Vehicle leasing</span></a></li></ul></nav>
+<!-- explorer:picker:end -->
+        <!-- explorer:stage:start -->
+<div class="explorer-stage" data-explorer-stage data-default-chapter="">
+      <header class="stage-header">
+        <div>
+          <h2 class="stage-name">PAZZ Marketplace</h2>
+          <p class="stage-purpose">Follow a vehicle from discovery into a lease application.</p>
+        </div>
+        <span class="stage-status">In development</span>
+      </header>
+      <div class="stage-pending">
+        <p><strong>Capture pending.</strong> A meaningful populated capture of the current platform is being reviewed. An earlier attempt (empty catalog placeholders, a blank quote field, a redirected flow) was rejected and is not shown here; the legacy pazz.mx site is not this platform and is not used as a demo of it.</p>
+        <div class="stage-actions"><a class="text-link" href="/work/pazz/">Read the engineering case study <span aria-hidden="true">→</span></a></div>
+      </div>
+    </div>
+<!-- explorer:stage:end -->
+      </div>
+    </section>
 
     <section class="case-section shell" id="context">
       <span class="case-section-index">01 / Problem</span>

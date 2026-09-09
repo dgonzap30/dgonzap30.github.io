@@ -1,79 +1,437 @@
 [
   {
-    "id": "mimo",
-    "name": "Mimo",
-    "stage": "In development",
-    "description": "A shared room for couples, built around small rituals and playful interaction.",
-    "engineeringSummary": "An explicit interaction state keeps two sides, readiness, pause, and reset coherent.",
-    "demoFormat": "Actual local rehearsal",
-    "demoHref": "/demos/mimo/",
-    "proofLimit": "One person controls both sides in this recording. It does not demonstrate remote pairing, two-phone synchronization, physical-device behavior, or encrypted state.",
-    "evidenceReviewedDate": "2026-09-08"
-  },
-  {
-    "id": "intertitle",
-    "name": "Intertitle",
-    "stage": "Public product",
-    "description": "Film discovery and conversation grounded in personal taste.",
-    "engineeringSummary": "Recommendation constraints and retry-safe conversation state make the choice easier to revise.",
-    "demoFormat": "Prior development fixture",
-    "demoHref": "/demos/intertitle/",
-    "proofLimit": "Selected films are fixture data and artwork is intentionally omitted. This capture does not prove the current authenticated service, live backend, or App Store build.",
-    "evidenceReviewedDate": "2026-09-08"
-  },
-  {
-    "id": "fcc",
-    "name": "Fantasy Football Control Center",
-    "stage": "Private tool",
-    "description": "Football information organized into traceable weekly decisions.",
-    "engineeringSummary": "Immutable snapshots and a separate permission boundary keep review distinct from action.",
-    "demoFormat": "Captured synthetic walkthrough",
-    "demoHref": "/demos/fcc/",
-    "proofLimit": "The capture uses fictional fixtures; forecast numbers are illustrative and no live league, roster, or draft writes occur. It does not claim a production action or a forecasting edge. Large-text mobile layout still needs work.",
-    "evidenceReviewedDate": "2026-09-08"
+    "id": "maestro",
+    "name": "Maestro",
+    "shortLabel": "Maestro",
+    "category": "Music production",
+    "role": null,
+    "status": "Private beta",
+    "purpose": "A closer look at what's happening inside a music session.",
+    "description": "A music-production workspace that turns session signals into inspectable evidence before you act on them.",
+    "capturedAt": "2026-09-08",
+    "sourceLabel": "Local Rust/Tauri build, synthetic telemetry",
+    "demoScope": "Synthetic session data traveling through the real local WebSocket server, session aggregation, and the real React/Tauri interface. No real audio, DAW, or coaching API is used.",
+    "engineeringNotes": "Missing or stale audio evidence stays visible in the UI instead of being papered over with a confident guess.",
+    "working": [
+      "Synthetic session registration and track ingest through the real local server",
+      "Masking analysis surfaced per track, with the finding kept visible in the UI",
+      "Mixer and spectrum views rendered by the real local application"
+    ],
+    "remaining": [
+      "No AU/VST or FFT extraction from real PCM audio",
+      "No Logic Pro or other DAW bridge — the bridge process is a safety stub",
+      "No coaching API; the assistant panel is not wired to a model"
+    ],
+    "defaultChapter": "mixer",
+    "chapters": [
+      {
+        "id": "session",
+        "title": "Session",
+        "caption": "Live session state as tracks register, before anything is named or saved.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/maestro/session.webp",
+        "width": 2696,
+        "height": 1776,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Maestro session view showing three synthetic tracks registering with a live masking finding"
+      },
+      {
+        "id": "mixer",
+        "title": "Mixer",
+        "caption": "3 of 3 tracks live, with a masking issue between two synthetic tracks called out for review.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/maestro/poster.webp",
+        "width": 2784,
+        "height": 1864,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Maestro mixer showing synthetic track meters and a masking issue between Synthetic Bass and Synthetic Pulse"
+      },
+      {
+        "id": "spectrum",
+        "title": "Spectrum",
+        "caption": "Integrated post-fader spectrum, captured at 124 BPM, four bars back.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/maestro/spectrum.webp",
+        "width": 2784,
+        "height": 1864,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Maestro spectrum panel showing a synthetic integrated post-fader signal chart"
+      },
+      {
+        "id": "walkthrough",
+        "title": "Walkthrough",
+        "caption": "26.5 seconds of the real local application: session registration, the mixer with its masking finding, then spectrum.",
+        "mediaType": "video",
+        "layout": "desktop",
+        "src": "/assets/media/demos/maestro/demo.mp4",
+        "poster": "/assets/media/demos/maestro/poster.webp",
+        "width": 1392,
+        "height": 932,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Recorded walkthrough of the real local Maestro application with synthetic telemetry",
+        "transcript": "A title card establishes the recording scope. The local Maestro UI shows three generic tracks registering, the mixer view with a visible masking finding, and the spectrum view. The \"Logic Pro connected\" badge stays visible as recorded — it reflects synthetic plugin registration, not a real Logic Pro connection."
+      }
+    ],
+    "publicLinks": []
   },
   {
     "id": "temper",
     "name": "Temper",
-    "stage": "In development",
+    "shortLabel": "Temper",
+    "category": "Health & training",
+    "role": null,
+    "status": "In development",
+    "purpose": "Connect the day's recovery, food and training to a plan you can actually follow.",
     "description": "A training week that fits real constraints before it becomes an active plan.",
-    "engineeringSummary": "Local drafts and commit-time validation keep an impossible schedule visible instead of silently starting it.",
-    "demoFormat": "Captured simulator walkthrough",
-    "demoHref": "/demos/temper/",
-    "proofLimit": "The screens are separate fixture scenarios, not an interactive planning backend. Current work and physical-phone acceptance remain incomplete.",
-    "evidenceReviewedDate": "2026-09-08"
+    "capturedAt": "2026-09-08",
+    "sourceLabel": "Native build, isolated demo data",
+    "demoScope": "Two current, verified captures: a real Coach conversation and proposal card, and a 58-second recorded tour across Today, Train, Progress, and Coach with populated synthetic data.",
+    "engineeringNotes": "Local drafts and commit-time validation keep an impossible schedule visible instead of silently starting it. A pending Coach proposal is shown as a proposal, not an already-applied change.",
+    "working": [
+      "A real Coach thread that proposes a plan adjustment for review, not an automatic change",
+      "Today, Train, Progress, and Coach tabs populated with synthetic data in the recorded tour"
+    ],
+    "remaining": [
+      "No HealthKit or WHOOP sync — readiness and training numbers are synthetic fixtures",
+      "The Food tab and a full five-state still set are being re-captured; only the states below are currently confirmed clean",
+      "Physical-device acceptance is incomplete"
+    ],
+    "pending": true,
+    "pendingNote": "Two prior full still sets were re-shot and discarded after a SwiftData error state was captured by mistake. Only the Coach proposal still and the five-tab video below are confirmed correct as of this capture; a fuller still set is being re-captured and will replace this note.",
+    "defaultChapter": "walkthrough",
+    "chapters": [
+      {
+        "id": "walkthrough",
+        "title": "Walkthrough",
+        "caption": "A recorded tour across Today, Train, Progress, and Coach with populated synthetic data.",
+        "mediaType": "video",
+        "layout": "portrait",
+        "src": "/assets/media/demos/temper/five-tab-tour.mp4",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Recorded tour of the Temper native app across Today, Train, Progress, and Coach tabs",
+        "transcript": "The recording moves through the Today tab's recovery summary, the Train tab's training week, the Progress tab's trend view, and the Coach tab's conversation thread, all populated with synthetic fixture data. No HealthKit or WHOOP data is read."
+      },
+      {
+        "id": "coach",
+        "title": "Coach proposal",
+        "caption": "A Coach conversation ending in a plan-adjustment proposal card. The proposal is pending, not applied.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/temper/coach-proposal.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Temper Coach tab showing a conversation thread and a pending plan-adjustment proposal card"
+      }
+    ],
+    "publicLinks": []
+  },
+  {
+    "id": "mimo",
+    "name": "Mimo",
+    "shortLabel": "Mimo",
+    "category": "Shared moments",
+    "role": null,
+    "status": "In development",
+    "purpose": "Turn everyday photos into little keepsakes you can make your own.",
+    "description": "Made of Us — a personal scrapbook for photos, marks, and small kept moments.",
+    "capturedAt": "2026-09-08",
+    "sourceLabel": "Preview build 3, Simulator",
+    "demoScope": "A current Made of Us preview: importing a fictional sample photo, marking it, saving it, and reaching the Home Screen widgets. Captured in Simulator.",
+    "engineeringNotes": "Editable marks persist with the moment they belong to, and saved content can reach both native widget sizes.",
+    "working": [
+      "System photo import into the real moment editor",
+      "A mark that saves and persists with its moment",
+      "Small and medium WidgetKit views on the Home Screen"
+    ],
+    "remaining": [
+      "Full physical-device interaction is unverified beyond an owner-confirmed install and launch",
+      "User-added Home Screen widgets on a real device are unverified",
+      "Real partner synchronization between two people is not delivered"
+    ],
+    "defaultChapter": "home",
+    "chapters": [
+      {
+        "id": "home",
+        "title": "Your moments",
+        "caption": "A saved sample moment on the Made of Us home screen. The cafe photo is fictional sample content, not a real photo.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/mimo/home-final.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Mimo Made of Us home screen showing a saved fictional sample moment"
+      },
+      {
+        "id": "import",
+        "title": "Make it yours",
+        "caption": "The system PhotosPicker importing a fictional sample photo into the real moment editor.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/mimo/photo-import.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Mimo photo import screen using the system PhotosPicker with a fictional sample cafe photo"
+      },
+      {
+        "id": "mark",
+        "title": "A mark that stays",
+        "caption": "A saved, editable mark on a synthetic test image, kept with its moment rather than overwriting it.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/mimo/marked-moment.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Mimo editor showing a saved mark on a synthetic test moment"
+      },
+      {
+        "id": "widgets",
+        "title": "On your Home Screen",
+        "caption": "Small and medium WidgetKit views on the Simulator Home Screen, showing a fictional sample moment.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/mimo/widgets.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "iOS Simulator Home Screen showing small and medium Mimo widgets with a fictional sample moment"
+      }
+    ],
+    "publicLinks": []
+  },
+  {
+    "id": "intertitle",
+    "name": "Intertitle",
+    "shortLabel": "Intertitle",
+    "category": "Film & taste",
+    "role": null,
+    "status": "In development",
+    "purpose": "Find a film for tonight, explore your taste, and keep the conversation going.",
+    "description": "A film companion grounded in personal taste — separate from the public App Store release.",
+    "capturedAt": null,
+    "sourceLabel": null,
+    "demoScope": null,
+    "engineeringNotes": "Recommendation constraints and retry-safe conversation state make the choice easier to revise.",
+    "working": [],
+    "remaining": [],
+    "pending": true,
+    "pendingNote": "A fresh capture from the current build is queued. The previous Tonight and Reely-refinement images were internal-only development fixtures and have been removed from this public build rather than shown as current.",
+    "defaultChapter": null,
+    "chapters": [],
+    "publicLinks": [
+      { "label": "Intertitle on the App Store", "href": "https://intertitle.app/" }
+    ]
+  },
+  {
+    "id": "fcc",
+    "name": "Fantasy Football Control Center",
+    "shortLabel": "FCC",
+    "category": "Fantasy football",
+    "role": null,
+    "status": "Private tool",
+    "purpose": "Bring roster context, player research and weekly decisions into one place.",
+    "description": "Football information organized into traceable weekly decisions.",
+    "capturedAt": "2026-09-08",
+    "sourceLabel": "In-progress season build, browser captures",
+    "demoScope": "Seven current synthetic-fixture screenshots covering the weekly decision loop, from a season overview through a proposed trade to a lineup call. These are browser captures of a web tool, not a native application.",
+    "engineeringNotes": "Immutable snapshots and a separate permission boundary keep review distinct from action.",
+    "working": [
+      "A weekly decision view that ties roster, matchup, and recommendation together",
+      "A trade finder that surfaces a candidate, then a side-by-side review before any offer",
+      "A start/sit recommendation with its reasoning shown alongside it"
+    ],
+    "remaining": [
+      "No live league, roster, or draft writes occur; fixtures are synthetic",
+      "Projections are illustrative, not a proven forecasting edge",
+      "Large-text mobile layout still needs work"
+    ],
+    "defaultChapter": "today",
+    "chapters": [
+      {
+        "id": "today",
+        "title": "Your week",
+        "caption": "This week's matchup and the next decision to review, with a recommended lineup change surfaced up front.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/fcc/today-desktop.webp",
+        "width": 1440,
+        "height": 1297,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "FCC Today view showing this week's matchup and a recommended lineup change"
+      },
+      {
+        "id": "league",
+        "title": "League context",
+        "caption": "A team-by-team comparison for the week's matchup, for context before a decision.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/fcc/league-detail-mobile.webp",
+        "width": 390,
+        "height": 844,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "FCC League detail view comparing two teams for the week"
+      },
+      {
+        "id": "player",
+        "title": "Player research",
+        "caption": "Player detail with the source of each projection explained alongside it.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/fcc/player-detail-390.webp",
+        "width": 390,
+        "height": 844,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "FCC player detail view with projection source explanation"
+      },
+      {
+        "id": "waivers",
+        "title": "Waiver trends",
+        "caption": "Waiver-wire trends surfaced for the week, ahead of a roster move.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/fcc/waivers-trends-390.webp",
+        "width": 390,
+        "height": 985,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "FCC waivers and market trends view"
+      },
+      {
+        "id": "trade-finder",
+        "title": "Find a trade",
+        "caption": "The trade finder surfacing a candidate trade for review. No offer has been sent yet.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/fcc/trade-finder-desktop.webp",
+        "width": 1440,
+        "height": 1217,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "FCC trade finder showing a candidate trade before review"
+      },
+      {
+        "id": "trade-result",
+        "title": "Review both sides",
+        "caption": "Each team's starters and depth compared before a proposal is made — search finds a candidate, review compares the impact.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/fcc/trade-result-mobile.webp",
+        "width": 390,
+        "height": 844,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "FCC trade result view comparing both teams' starters and depth"
+      },
+      {
+        "id": "start-sit",
+        "title": "Set a lineup",
+        "caption": "A start/sit recommendation for the week, with its reasoning shown alongside the call.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/fcc/start-sit-result-mobile.webp",
+        "width": 390,
+        "height": 844,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "FCC start/sit recommendation with reasoning"
+      }
+    ],
+    "publicLinks": []
   },
   {
     "id": "season-room",
     "name": "Season Room",
-    "stage": "Local prototype",
-    "description": "A personal season notebook for original receipts, review decisions, and records.",
-    "engineeringSummary": "OCR proposes a transcription; review, revision checks, and idempotent writes protect the record.",
-    "demoFormat": "Captured synthetic walkthrough",
-    "demoHref": "/demos/season-room/",
-    "proofLimit": "This is fictional test data and recorded views only; the second image is not presented as the result of the first. There is no live feed, automatic settlement, or proven betting edge.",
-    "evidenceReviewedDate": "2026-09-08"
-  },
-  {
-    "id": "maestro",
-    "name": "Maestro",
-    "stage": "Private beta",
-    "description": "A music-production workspace that turns session signals into inspectable coaching evidence.",
-    "engineeringSummary": "Missing or stale audio evidence stays visible instead of becoming a confident guess.",
-    "demoFormat": "Synthetic telemetry walkthrough",
-    "demoHref": "/demos/maestro/",
-    "proofLimit": "The measurements are synthetic. This recording does not show AU/VST extraction, FFT from PCM, a DAW bridge, or a coaching API. The green “Logic Pro connected” badge comes from synthetic registration; Logic Pro is not running.",
-    "evidenceReviewedDate": "2026-09-08"
+    "shortLabel": "Season Room",
+    "category": "Betting notebook",
+    "role": null,
+    "status": "Local prototype",
+    "purpose": "Keep the ticket, the review and the season record together.",
+    "description": "A personal betting and season notebook for original receipts, review decisions, and records.",
+    "capturedAt": "2026-09-08",
+    "sourceLabel": "Local prototype, synthetic fixtures",
+    "demoScope": "Fictional test receipts and recorded views. The season-record view is a separate example, not presented as the automatic result of the receipt review.",
+    "engineeringNotes": "OCR proposes a transcription; review, revision checks, and idempotent writes protect the record.",
+    "working": [
+      "OCR-proposed transcription held for review before it is written",
+      "A season record kept alongside individual receipt reviews"
+    ],
+    "remaining": [
+      "No live odds feed or automatic settlement",
+      "No proven betting edge — this is a record-keeping tool, not a prediction system"
+    ],
+    "defaultChapter": "review",
+    "chapters": [
+      {
+        "id": "review",
+        "title": "Receipt review",
+        "caption": "An original test receipt with its OCR-proposed transcription held for review before it's saved.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/season-room/review.webp",
+        "width": 1536,
+        "height": 1024,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Season Room receipt review screen with an original test receipt and its proposed transcription"
+      },
+      {
+        "id": "season",
+        "title": "Season record",
+        "caption": "The season record view, kept separately from any single receipt review.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/season-room/season.webp",
+        "width": 1536,
+        "height": 1024,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Season Room season record view with fictional recorded entries"
+      }
+    ],
+    "publicLinks": []
   },
   {
     "id": "pazz",
     "name": "PAZZ Marketplace",
-    "stage": "In development",
+    "shortLabel": "PAZZ",
+    "category": "Vehicle leasing",
+    "role": "Technical Lead",
+    "status": "In development",
+    "purpose": "Follow a vehicle from discovery into a lease application.",
     "description": "A Mexican vehicle-leasing marketplace that brings discovery, qualification, and partner handoffs into one path.",
-    "engineeringSummary": "Shared domain rules and recoverable document handoffs keep operating decisions consistent.",
-    "demoFormat": "Sanitized engineering case study",
-    "demoHref": "/work/pazz/",
-    "proofLimit": "This case study covers my ongoing work on the new PAZZ platform. The legacy company website is not my work and is not a demo of that platform.",
-    "evidenceReviewedDate": "2026-09-08"
+    "capturedAt": null,
+    "sourceLabel": null,
+    "demoScope": null,
+    "engineeringNotes": "Shared domain rules and recoverable document handoffs keep operating decisions consistent.",
+    "working": [],
+    "remaining": [],
+    "pending": true,
+    "pendingNote": "A meaningful populated capture of the current platform is being reviewed. An earlier attempt (empty catalog placeholders, a blank quote field, a redirected flow) was rejected and is not shown here; the legacy pazz.mx site is not this platform and is not used as a demo of it.",
+    "defaultChapter": null,
+    "chapters": [],
+    "publicLinks": [
+      { "label": "Read the engineering case study", "href": "/work/pazz/" }
+    ]
   }
 ]

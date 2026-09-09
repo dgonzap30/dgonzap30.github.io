@@ -3,133 +3,85 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Intertitle walkthrough — Diego Gonzalez Zapiain</title>
-    <meta
-      name="description"
-      content="A captured development fixture for Intertitle’s Tonight experience."
-    />
-    <link
-      rel="canonical"
-      href="https://dgonzap30.github.io/demos/intertitle/"
-    />
-    <meta property="og:title" content="Intertitle walkthrough" />
-    <meta
-      property="og:description"
-      content="Captured development fixture for a taste-based film conversation."
-    />
-    <meta
-      property="og:url"
-      content="https://dgonzap30.github.io/demos/intertitle/"
-    />
-    <meta
-      property="og:image"
-      content="https://dgonzap30.github.io/assets/media/demos/intertitle/tonight.webp"
-    />
+    <title>Intertitle — Diego Gonzalez Zapiain</title>
+    <meta name="description" content="Find a film for tonight, explore your taste, and keep the conversation going — a fresh capture is on the way." />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="https://dgonzap30.github.io/demos/intertitle/" />
+    <meta property="og:title" content="Intertitle — Find a film for tonight, explore your taste, and keep the conversation going." />
+    <meta property="og:description" content="Find a film for tonight, explore your taste, and keep the conversation going — a fresh capture is on the way." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dgonzap30.github.io/demos/intertitle/" />
+    <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/assets/css/fonts.css" />
     <link rel="stylesheet" href="/assets/css/tokens.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/explorer.css" />
     <link rel="stylesheet" href="/assets/css/demos.css" />
     <script src="/assets/js/site.js" defer></script>
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "CreativeWork",
-        "name": "Intertitle development fixture"
-      }
+      {"@context":"https://schema.org","@type":"CreativeWork","name":"Intertitle","url":"https://dgonzap30.github.io/demos/intertitle/"}
     </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <nav class="site-nav shell" aria-label="Primary">
-        <a class="brand" href="/"
-          ><img
-            src="/assets/brand/dgz-trace.svg"
-            width="48"
-            height="48"
-            alt=""
-          /><span>Diego Gonzalez Zapiain</span></a
-        >
-        <ul class="nav-links demo-nav">
-          <li><a href="/projects/">Projects</a></li>
-          <li>
-            <a
-              href="https://intertitle.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Public sample</a
-            >
-          </li>
+        <a class="brand" href="/"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="" /><span>Diego Gonzalez Zapiain</span></a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
+        <ul class="nav-links demo-nav" id="primary-nav">
+          <li><a href="/projects/">All products</a></li>
+          <li><a href="/#contact">Contact</a></li>
         </ul>
       </nav>
     </header>
     <main id="main-content" class="demo-page">
       <header class="demo-hero shell">
-        <p class="eyebrow">Intertitle · Public product</p>
-        <h1>One film, room to tune the choice.</h1>
-        <p class="lede">
-          Film discovery and conversation grounded in personal taste.
-        </p>
-        <p class="demo-meta">
-          Development fixture · Prior development capture, reviewed September 8,
-          2026
-        </p>
+        <p class="eyebrow">Film & taste</p>
+        <h1>A film companion, mid-capture.</h1>
+        <p class="lede">Find a film for tonight, explore your taste, and keep the conversation going — a fresh capture is on the way.</p>
       </header>
-      <section class="walkthrough shell" data-walkthrough>
-        <div class="walkthrough-head">
-          <h2>Captured walkthrough</h2>
-          <p>Development fixture · Two visible states</p>
-        </div>
-        <div class="walkthrough-controls">
-          <button type="button" data-walkthrough-prev>Previous</button
-          ><button type="button" data-walkthrough-next>Next</button>
-        </div>
-        <figure class="walkthrough-step">
-          <img
-            src="/assets/media/demos/intertitle/tonight.webp"
-            width="1206"
-            height="2622"
-            alt="Intertitle Tonight fixture proposing a film with a refine section"
-          />
-          <figcaption>
-            <strong>1. Start with a considered pick.</strong> The fixture keeps
-            a recommendation and its reasons together, then offers a clear route
-            to revise the choice.
-          </figcaption>
-        </figure>
-        <figure class="walkthrough-step">
-          <img
-            src="/assets/media/demos/intertitle/refine.webp"
-            width="1206"
-            height="2622"
-            alt="Intertitle fixture showing controls to refine a film choice"
-          />
-          <figcaption>
-            <strong>2. Tune the conversation.</strong> Visible constraints let a
-            person narrow the choice without discarding the surrounding context.
-          </figcaption>
-        </figure>
-      </section>
-      <section class="demo-copy shell">
+      <section class="demo-explorer shell" aria-label="Intertitle explorer">
+        <div class="explorer">
+          <!-- explorer:picker:start -->
+<nav class="explorer-picker-nav" aria-label="Products"><ul class="explorer-picker"><li><a href="/demos/maestro/"><strong>Maestro</strong><span class="picker-category">Music production</span></a></li><li><a href="/demos/temper/" data-pending="true"><strong>Temper</strong><span class="picker-category">Health &amp; training</span></a></li><li><a href="/demos/mimo/"><strong>Mimo</strong><span class="picker-category">Shared moments</span></a></li><li><a href="/demos/intertitle/" aria-current="page" data-pending="true"><strong>Intertitle</strong><span class="picker-category">Film &amp; taste</span></a></li><li><a href="/demos/fcc/"><strong>FCC</strong><span class="picker-category">Fantasy football</span></a></li><li><a href="/demos/season-room/"><strong>Season Room</strong><span class="picker-category">Betting notebook</span></a></li><li><a href="/work/pazz/" data-pending="true"><strong>PAZZ</strong><span class="picker-category">Vehicle leasing</span></a></li></ul></nav>
+<!-- explorer:picker:end -->
+          <!-- explorer:stage:start -->
+<div class="explorer-stage" data-explorer-stage data-default-chapter="">
+      <header class="stage-header">
         <div>
-          <h2>What is shown</h2>
-          <p>
-            These captured native fixture states show the next Tonight
-            experience and its visible refinement path. The public web sample is
-            available at intertitle.app.
-          </p>
+          <h2 class="stage-name">Intertitle</h2>
+          <p class="stage-purpose">Find a film for tonight, explore your taste, and keep the conversation going.</p>
         </div>
-        <div>
-          <h2>What is not shown</h2>
-          <p>
-            Selected films are fixture data and artwork is intentionally
-            omitted. This capture does not prove the current authenticated
-            service, live backend, or App Store build.
-          </p>
+        <span class="stage-status">In development</span>
+      </header>
+      <div class="stage-pending">
+        <p><strong>Capture pending.</strong> A fresh capture from the current build is queued. The previous Tonight and Reely-refinement images were internal-only development fixtures and have been removed from this public build rather than shown as current.</p>
+        <div class="stage-actions"><a class="text-link" href="https://intertitle.app/" target="_blank" rel="noopener noreferrer">Intertitle on the App Store <span aria-hidden="true">→</span></a></div>
+      </div>
+    </div>
+<!-- explorer:stage:end -->
         </div>
+        <a class="text-link demo-back-link" href="/projects/">See every current product <span aria-hidden="true">→</span></a>
       </section>
     </main>
+    <footer class="site-footer" id="contact-footer">
+      <div class="footer-inner shell">
+        <div class="footer-cta">
+          <div>
+            <h2 class="footer-title">Let's build something worth using.</h2>
+            <p>A product to shape, a system to untangle, or a team to build with.</p>
+          </div>
+          <div class="actions">
+            <a class="action action-primary" href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">Connect on LinkedIn</a>
+          </div>
+        </div>
+        <p class="footer-meta">© 2026 Diego Gonzalez Zapiain</p>
+      </div>
+    </footer>
   </body>
 </html>

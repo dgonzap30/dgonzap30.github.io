@@ -4,32 +4,6 @@ function motionAllowed() {
   return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-function setTraceStage(root, stage) {
-  root.dataset.activeStage = stage || 'all';
-  root.querySelectorAll('[data-trace-node]').forEach((node) => {
-    const active = !stage || node.dataset.traceNode === stage;
-    node.classList.toggle('is-active', Boolean(stage) && active);
-    node.classList.toggle('is-muted', Boolean(stage) && !active);
-  });
-}
-
-function enhanceTrace(root) {
-  const controls = [...root.querySelectorAll('[data-trace-stage]')];
-  const activate = (control) => setTraceStage(root, control.dataset.traceStage);
-
-  controls.forEach((control) => {
-    control.addEventListener('pointerenter', () => activate(control));
-    control.addEventListener('focusin', () => activate(control));
-    control.addEventListener('click', () => activate(control));
-    control.addEventListener('pointerleave', () => {
-      if (!control.matches(':focus-within')) setTraceStage(root, null);
-    });
-    control.addEventListener('focusout', (event) => {
-      if (!control.contains(event.relatedTarget)) setTraceStage(root, null);
-    });
-  });
-}
-
 function enhanceReveals() {
   const items = [...document.querySelectorAll('[data-reveal]')];
   if (!motionAllowed() || !('IntersectionObserver' in window)) {
@@ -66,34 +40,172 @@ function enhanceSectionNav() {
   sections.forEach((section) => observer.observe(section));
 }
 
-function enhanceWalkthroughs() {
-  document.querySelectorAll('[data-walkthrough]').forEach((root) => {
-    const steps = [...root.querySelectorAll('.walkthrough-step')];
-    const previous = root.querySelector('[data-walkthrough-prev]');
-    const next = root.querySelector('[data-walkthrough-next]');
-    if (steps.length < 2 || !previous || !next) return;
-    const status = document.createElement('span');
-    status.className = 'walkthrough-status';
-    status.setAttribute('aria-live', 'polite');
-    root.querySelector('.walkthrough-controls')?.append(status);
-    let active = 0;
-    const render = () => {
-      steps.forEach((step, index) => { step.hidden = index !== active; });
-      previous.disabled = active === 0;
-      next.disabled = active === steps.length - 1;
-      status.textContent = `Captured step ${active + 1} of ${steps.length}`;
+function enhanceNavToggle() {
+  document.querySelectorAll('.site-nav').forEach((nav) => {
+    const toggle = nav.querySelector('.nav-toggle');
+    const links = nav.querySelector('.nav-links');
+    if (!toggle || !links) return;
+
+    const close = () => {
+      links.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
     };
-    previous.addEventListener('click', () => { active = Math.max(0, active - 1); render(); });
-    next.addEventListener('click', () => { active = Math.min(steps.length - 1, active + 1); render(); });
-    render();
+    const open = () => {
+      links.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+    };
+
+    toggle.addEventListener('click', () => {
+      if (links.classList.contains('is-open')) close();
+      else open();
+    });
+    links.addEventListener('click', (event) => {
+      if (event.target.closest('a')) close();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && links.classList.contains('is-open')) {
+        close();
+        toggle.focus();
+      }
+    });
+    document.addEventListener('click', (event) => {
+      if (!nav.contains(event.target)) close();
+    });
+    window.matchMedia('(min-width: 48rem)').addEventListener('change', close);
+  });
+}
+
+function pauseChapterMedia(chapter) {
+  if (!chapter) return;
+  const video = chapter.querySelector('video');
+  if (video && !video.paused) video.pause();
+}
+
+function activateChapter(stage, chapterId, { focus = false, updateHash = false } = {}) {
+  const chapters = [...stage.querySelectorAll('[data-chapter]')];
+  const target = chapters.find((chapter) => chapter.dataset.chapter === chapterId) || chapters[0];
+  if (!target) return;
+
+  chapters.forEach((chapter) => {
+    const isActive = chapter === target;
+    if (!isActive) pauseChapterMedia(chapter);
+    chapter.hidden = !isActive;
+  });
+
+  const tabs = [...stage.querySelectorAll('[data-chapter-tab]')];
+  tabs.forEach((tab) => {
+    const isActive = tab.dataset.chapterTab === target.dataset.chapter;
+    tab.setAttribute('aria-selected', String(isActive));
+    tab.tabIndex = isActive ? 0 : -1;
+  });
+
+  stage.dataset.activeChapter = target.dataset.chapter;
+
+  if (updateHash) {
+    const url = new URL(window.location.href);
+    url.hash = `chapter-${target.dataset.chapter}`;
+    window.history.pushState({ chapter: target.dataset.chapter }, '', url);
+  }
+
+  if (focus) target.focus({ preventScroll: true });
+}
+
+function chapterFromHash(stage) {
+  const hash = window.location.hash.replace('#chapter-', '');
+  const chapters = [...stage.querySelectorAll('[data-chapter]')];
+  return chapters.find((chapter) => chapter.dataset.chapter === hash)?.dataset.chapter ?? null;
+}
+
+function enhanceExplorerStage(stage) {
+  const tabList = stage.querySelector('[data-chapter-tabs]');
+  const chapters = [...stage.querySelectorAll('[data-chapter]')];
+  if (!tabList || chapters.length < 2) return;
+
+  const tabs = [...tabList.querySelectorAll('a[href^="#chapter-"]')];
+  tabs.forEach((link) => {
+    const chapterId = link.getAttribute('href').replace('#chapter-', '');
+    link.dataset.chapterTab = chapterId;
+    link.setAttribute('role', 'tab');
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      activateChapter(stage, chapterId, { updateHash: true });
+    });
+    link.addEventListener('keydown', (event) => {
+      const currentIndex = tabs.indexOf(link);
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        tabs[(currentIndex + 1) % tabs.length].focus();
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        tabs[(currentIndex - 1 + tabs.length) % tabs.length].focus();
+      }
+    });
+  });
+  tabList.setAttribute('role', 'tablist');
+
+  window.addEventListener('popstate', () => {
+    activateChapter(stage, chapterFromHash(stage) ?? stage.dataset.defaultChapter);
+  });
+
+  activateChapter(stage, chapterFromHash(stage) ?? stage.dataset.defaultChapter);
+}
+
+function enhanceStageDialog(stage) {
+  const dialog = stage.querySelector('dialog[data-stage-dialog]');
+  const openButton = stage.querySelector('[data-open-full-size]');
+  if (!dialog || !openButton || typeof dialog.showModal !== 'function') return;
+
+  const dialogBody = dialog.querySelector('[data-dialog-body]');
+  let lastTrigger = null;
+
+  openButton.addEventListener('click', () => {
+    const active = stage.querySelector('[data-chapter]:not([hidden])');
+    if (!active || !dialogBody) return;
+    dialogBody.innerHTML = '';
+    const clone = active.querySelector('img, video')?.cloneNode(true);
+    if (clone) {
+      clone.removeAttribute('width');
+      clone.removeAttribute('height');
+      if (clone.tagName === 'VIDEO') {
+        clone.controls = true;
+        clone.autoplay = false;
+      }
+      dialogBody.append(clone);
+    }
+    lastTrigger = openButton;
+    dialog.showModal();
+  });
+
+  dialog.addEventListener('close', () => {
+    const video = dialogBody?.querySelector('video');
+    if (video) video.pause();
+    lastTrigger?.focus();
+  });
+
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+}
+
+function enhanceExplorer() {
+  document.querySelectorAll('[data-explorer-stage]').forEach((stage) => {
+    enhanceExplorerStage(stage);
+    enhanceStageDialog(stage);
+  });
+}
+
+function enhanceDisclosures() {
+  document.querySelectorAll('[data-disclosure]').forEach((details) => {
+    details.classList.add('is-enhanced');
   });
 }
 
 function initialize() {
-  document.querySelectorAll('[data-trace-root]').forEach(enhanceTrace);
   enhanceReveals();
   enhanceSectionNav();
-  enhanceWalkthroughs();
+  enhanceNavToggle();
+  enhanceExplorer();
+  enhanceDisclosures();
 }
 
 if (document.readyState === 'loading') {

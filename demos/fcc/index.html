@@ -3,124 +3,145 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>
-      Fantasy Football Control Center walkthrough — Diego Gonzalez Zapiain
-    </title>
-    <meta
-      name="description"
-      content="Captured walkthrough of a synthetic, read-only fantasy football decision tool."
-    />
+    <title>Fantasy Football Control Center — Diego Gonzalez Zapiain</title>
+    <meta name="description" content="Football information organized into traceable weekly decisions, from roster context to a proposed trade." />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href="https://dgonzap30.github.io/demos/fcc/" />
-    <meta
-      property="og:title"
-      content="Fantasy Football Control Center walkthrough"
-    />
-    <meta
-      property="og:description"
-      content="Captured synthetic walkthrough of a read-only fantasy tool."
-    />
+    <meta property="og:title" content="Fantasy Football Control Center — Bring roster context, player research and weekly decisions into one place." />
+    <meta property="og:description" content="Football information organized into traceable weekly decisions, from roster context to a proposed trade." />
+    <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dgonzap30.github.io/demos/fcc/" />
-    <meta
-      property="og:image"
-      content="https://dgonzap30.github.io/assets/media/demos/fcc/command.webp"
-    />
+    <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/assets/css/fonts.css" />
     <link rel="stylesheet" href="/assets/css/tokens.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/explorer.css" />
     <link rel="stylesheet" href="/assets/css/demos.css" />
     <script src="/assets/js/site.js" defer></script>
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "CreativeWork",
-        "name": "Fantasy Football Control Center captured walkthrough"
-      }
+      {"@context":"https://schema.org","@type":"CreativeWork","name":"Fantasy Football Control Center","url":"https://dgonzap30.github.io/demos/fcc/"}
     </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <nav class="site-nav shell" aria-label="Primary">
-        <a class="brand" href="/"
-          ><img
-            src="/assets/brand/dgz-trace.svg"
-            width="48"
-            height="48"
-            alt=""
-          /><span>Diego Gonzalez Zapiain</span></a
-        >
-        <ul class="nav-links demo-nav">
-          <li><a href="/projects/">Projects</a></li>
+        <a class="brand" href="/"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="" /><span>Diego Gonzalez Zapiain</span></a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
+        <ul class="nav-links demo-nav" id="primary-nav">
+          <li><a href="/projects/">All products</a></li>
+          <li><a href="/#contact">Contact</a></li>
         </ul>
       </nav>
     </header>
     <main id="main-content" class="demo-page">
       <header class="demo-hero shell">
-        <p class="eyebrow">Fantasy Football Control Center · Private tool</p>
-        <h1>Weekly decisions with a trail.</h1>
-        <p class="lede">
-          A football information system that keeps source freshness, review, and
-          action authority distinct.
-        </p>
-        <p class="demo-meta">
-          Captured synthetic walkthrough · Reviewed September 8, 2026
-        </p>
+        <p class="eyebrow">Fantasy football</p>
+        <h1>Weekly decisions, with the reasoning attached.</h1>
+        <p class="lede">Football information organized into traceable weekly decisions, from roster context to a proposed trade.</p>
       </header>
-      <section class="walkthrough shell" data-walkthrough>
-        <div class="walkthrough-head">
-          <h2>Captured walkthrough</h2>
-          <p>Synthetic fixture · Shadow mode</p>
-        </div>
-        <div class="walkthrough-controls">
-          <button type="button" data-walkthrough-prev>Previous</button
-          ><button type="button" data-walkthrough-next>Next</button>
-        </div>
-        <figure class="walkthrough-step">
-          <img
-            src="/assets/media/demos/fcc/command.webp"
-            width="1440"
-            height="1000"
-            alt="Fantasy Football Control Center command view showing source freshness and recommended lineup"
-          />
-          <figcaption>
-            <strong>1. Review a weekly command.</strong> Snapshot freshness, the
-            review surface, and a shadow no-write state remain visible together.
-          </figcaption>
-        </figure>
-        <figure class="walkthrough-step">
-          <img
-            src="/assets/media/demos/fcc/waivers.webp"
-            width="1440"
-            height="1000"
-            alt="Fantasy Football Control Center waiver review showing approval-required choices"
-          />
-          <figcaption>
-            <strong>2. Keep actions behind approval.</strong> Candidate waiver
-            calls are visible as recommendations that require a person to
-            approve them.
-          </figcaption>
-        </figure>
-      </section>
-      <section class="demo-copy shell">
+      <section class="demo-explorer shell" aria-label="Fantasy Football Control Center explorer">
+        <div class="explorer">
+          <!-- explorer:picker:start -->
+<nav class="explorer-picker-nav" aria-label="Products"><ul class="explorer-picker"><li><a href="/demos/maestro/"><strong>Maestro</strong><span class="picker-category">Music production</span></a></li><li><a href="/demos/temper/" data-pending="true"><strong>Temper</strong><span class="picker-category">Health &amp; training</span></a></li><li><a href="/demos/mimo/"><strong>Mimo</strong><span class="picker-category">Shared moments</span></a></li><li><a href="/demos/intertitle/" data-pending="true"><strong>Intertitle</strong><span class="picker-category">Film &amp; taste</span></a></li><li><a href="/demos/fcc/" aria-current="page"><strong>FCC</strong><span class="picker-category">Fantasy football</span></a></li><li><a href="/demos/season-room/"><strong>Season Room</strong><span class="picker-category">Betting notebook</span></a></li><li><a href="/work/pazz/" data-pending="true"><strong>PAZZ</strong><span class="picker-category">Vehicle leasing</span></a></li></ul></nav>
+<!-- explorer:picker:end -->
+          <!-- explorer:stage:start -->
+<div class="explorer-stage" data-explorer-stage data-default-chapter="today">
+      <header class="stage-header">
         <div>
-          <h2>What is shown</h2>
-          <p>
-            A synthetic end-to-end capture of the read-only decision surface.
-            The underlying tool uses immutable source snapshots and reproducible
-            replay so a weekly review has a traceable basis.
-          </p>
+          <h2 class="stage-name">Fantasy Football Control Center</h2>
+          <p class="stage-purpose">Bring roster context, player research and weekly decisions into one place.</p>
         </div>
-        <div>
-          <h2>What is not shown</h2>
-          <p>
-            The capture uses fictional fixtures; forecast numbers are
-            illustrative and no live league, roster, or draft writes occur. It
-            does not claim a production action or a forecasting edge. Large-text mobile layout still needs work.
-          </p>
+        <span class="stage-status">Private tool</span>
+      </header>
+      <div class="stage-viewer">
+        <div class="stage-chapter" id="chapter-today" data-chapter="today" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/fcc/today-desktop.webp" width="1440" height="1297" alt="FCC Today view showing this week's matchup and a recommended lineup change" loading="lazy" />
+          <p class="chapter-caption"><strong>Your week.</strong> This week's matchup and the next decision to review, with a recommended lineup change surfaced up front.</p>
+          
+        </div><div class="stage-chapter" id="chapter-league" data-chapter="league" data-layout="portrait" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/fcc/league-detail-mobile.webp" width="390" height="844" alt="FCC League detail view comparing two teams for the week" loading="lazy" />
+          <p class="chapter-caption"><strong>League context.</strong> A team-by-team comparison for the week's matchup, for context before a decision.</p>
+          
+        </div><div class="stage-chapter" id="chapter-player" data-chapter="player" data-layout="portrait" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/fcc/player-detail-390.webp" width="390" height="844" alt="FCC player detail view with projection source explanation" loading="lazy" />
+          <p class="chapter-caption"><strong>Player research.</strong> Player detail with the source of each projection explained alongside it.</p>
+          
+        </div><div class="stage-chapter" id="chapter-waivers" data-chapter="waivers" data-layout="portrait" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/fcc/waivers-trends-390.webp" width="390" height="985" alt="FCC waivers and market trends view" loading="lazy" />
+          <p class="chapter-caption"><strong>Waiver trends.</strong> Waiver-wire trends surfaced for the week, ahead of a roster move.</p>
+          
+        </div><div class="stage-chapter" id="chapter-trade-finder" data-chapter="trade-finder" data-layout="desktop" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/fcc/trade-finder-desktop.webp" width="1440" height="1217" alt="FCC trade finder showing a candidate trade before review" loading="lazy" />
+          <p class="chapter-caption"><strong>Find a trade.</strong> The trade finder surfacing a candidate trade for review. No offer has been sent yet.</p>
+          
+        </div><div class="stage-chapter" id="chapter-trade-result" data-chapter="trade-result" data-layout="portrait" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/fcc/trade-result-mobile.webp" width="390" height="844" alt="FCC trade result view comparing both teams' starters and depth" loading="lazy" />
+          <p class="chapter-caption"><strong>Review both sides.</strong> Each team's starters and depth compared before a proposal is made — search finds a candidate, review compares the impact.</p>
+          
+        </div><div class="stage-chapter" id="chapter-start-sit" data-chapter="start-sit" data-layout="portrait" tabindex="-1">
+          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
+          <img src="/assets/media/demos/fcc/start-sit-result-mobile.webp" width="390" height="844" alt="FCC start/sit recommendation with reasoning" loading="lazy" />
+          <p class="chapter-caption"><strong>Set a lineup.</strong> A start/sit recommendation for the week, with its reasoning shown alongside the call.</p>
+          
         </div>
+      </div>
+      <div class="chapter-tabs" data-chapter-tabs aria-label="Chapters"><a href="#chapter-today" aria-selected="true">Your week</a><a href="#chapter-league" aria-selected="false">League context</a><a href="#chapter-player" aria-selected="false">Player research</a><a href="#chapter-waivers" aria-selected="false">Waiver trends</a><a href="#chapter-trade-finder" aria-selected="false">Find a trade</a><a href="#chapter-trade-result" aria-selected="false">Review both sides</a><a href="#chapter-start-sit" aria-selected="false">Set a lineup</a></div>
+      <div class="stage-caption-row">
+        <p class="stage-scope">Seven current synthetic-fixture screenshots covering the weekly decision loop, from a season overview through a proposed trade to a lineup call. These are browser captures of a web tool, not a native application.</p>
+        <div class="stage-actions">
+          <button type="button" class="stage-open-full" data-open-full-size>Open full size</button>
+        </div>
+      </div>
+      
+      <details class="stage-disclosure" data-disclosure>
+        <summary>Engineering detail: what's working, what's still in progress</summary>
+        <p>Immutable snapshots and a separate permission boundary keep review distinct from action.</p>
+        <div class="stage-disclosure-grid">
+          <div>
+            <h4>What's working</h4>
+            <ul><li>A weekly decision view that ties roster, matchup, and recommendation together</li><li>A trade finder that surfaces a candidate, then a side-by-side review before any offer</li><li>A start/sit recommendation with its reasoning shown alongside it</li></ul>
+          </div>
+          <div>
+            <h4>Still in progress</h4>
+            <ul><li>No live league, roster, or draft writes occur; fixtures are synthetic</li><li>Projections are illustrative, not a proven forecasting edge</li><li>Large-text mobile layout still needs work</li></ul>
+          </div>
+        </div>
+      </details>
+      <dialog data-stage-dialog aria-label="Fantasy Football Control Center full-size view">
+        <button type="button" class="dialog-close" data-dialog-close aria-label="Close full-size view" formmethod="dialog">Close</button>
+        <div data-dialog-body></div>
+      </dialog>
+    </div>
+<!-- explorer:stage:end -->
+        </div>
+        <a class="text-link demo-back-link" href="/projects/">See every current product <span aria-hidden="true">→</span></a>
       </section>
     </main>
+    <footer class="site-footer" id="contact-footer">
+      <div class="footer-inner shell">
+        <div class="footer-cta">
+          <div>
+            <h2 class="footer-title">Let's build something worth using.</h2>
+            <p>A product to shape, a system to untangle, or a team to build with.</p>
+          </div>
+          <div class="actions">
+            <a class="action action-primary" href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">Connect on LinkedIn</a>
+          </div>
+        </div>
+        <p class="footer-meta">© 2026 Diego Gonzalez Zapiain</p>
+      </div>
+    </footer>
   </body>
 </html>
