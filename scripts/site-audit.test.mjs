@@ -440,4 +440,19 @@ test("selected engineering registry has public destinations and proof limits", a
     "maestro",
     "pazz",
   ]);
+  const previews = {
+    mimo: "/assets/media/demos/mimo/poster.webp",
+    intertitle: "/assets/media/demos/intertitle/tonight.webp",
+    fcc: "/assets/media/demos/fcc/command.webp",
+    temper: "/assets/media/demos/temper/plan.webp",
+    "season-room": "/assets/media/demos/season-room/review.webp",
+    maestro: "/assets/media/demos/maestro/poster.webp",
+    pazz: "/assets/media/work/pazz-public.webp",
+  };
+  for (const [id, source] of Object.entries(previews)) {
+    const card = directory.match(
+      new RegExp(`<article\\s+id="${id}"[\\s\\S]*?<\\/article>`),
+    )?.[0] ?? "";
+    assert.match(card, new RegExp(`<img[^>]+src="${source}"`));
+  }
 });
