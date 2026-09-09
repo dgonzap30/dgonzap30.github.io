@@ -68,12 +68,12 @@
   {
     "id": "pazz",
     "name": "PAZZ Marketplace",
-    "stage": "Private commercial platform",
+    "stage": "In development",
     "description": "A Mexican vehicle-leasing marketplace that brings discovery, qualification, and partner handoffs into one path.",
     "engineeringSummary": "Shared domain rules and recoverable document handoffs keep operating decisions consistent.",
     "demoFormat": "Sanitized engineering case study",
     "demoHref": "/work/pazz/",
-    "proofLimit": "The private commercial platform is not shown.",
+    "proofLimit": "This case study covers my ongoing work on the new PAZZ platform. The legacy company website is not my work and is not a demo of that platform.",
     "evidenceReviewedDate": "2026-09-08"
   }
 ]

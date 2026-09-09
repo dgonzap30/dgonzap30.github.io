@@ -354,7 +354,7 @@ test("selected engineering registry has public destinations and proof limits", a
       "In development",
       "Local prototype",
       "Private beta",
-      "Private commercial platform",
+      "In development",
     ],
   );
   for (const project of registry) {
@@ -482,7 +482,7 @@ test("selected engineering registry has public destinations and proof limits", a
     temper: "/assets/media/demos/temper/plan.webp",
     "season-room": "/assets/media/demos/season-room/review.webp",
     maestro: "/assets/media/demos/maestro/poster.webp",
-    pazz: "/assets/media/work/pazz-public.webp",
+    pazz: "/assets/graphics/pazz-handoff.svg",
   };
   for (const [id, source] of Object.entries(previews)) {
     const card =
