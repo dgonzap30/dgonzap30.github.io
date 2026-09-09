@@ -587,11 +587,14 @@ const CAPTURE_MANIFESTS = {
 };
 
 // Chapters whose capture manifest exists but records no sha256 for that
-// specific asset (manifest field is null) — there is no hash to chain
-// custody against, so this is a second, narrower, explicitly-visible
-// exemption rather than a silently-accepted gap. See the receipt: this
-// is the one asset whose provenance could not be established by hash.
-const NO_MANIFEST_HASH_CHAPTERS = new Set(["temper/walkthrough"]);
+// specific asset — there is no hash to chain custody against, so this
+// would be a second, narrower, explicitly-visible exemption rather than
+// a silently-accepted gap. Currently empty: temper/walkthrough's manifest
+// entry used to be null (sha256 missing) and lived here, but the parent
+// independently computed and recorded that digest on the capture side
+// (current-captures/temper/manifest.json's hash_provenance field), so it
+// now has real chain of custody like every other chapter below.
+const NO_MANIFEST_HASH_CHAPTERS = new Set([]);
 
 test("every published chapter with a capture manifest has verified chain of custody", async () => {
   const registry = JSON.parse(
@@ -645,7 +648,7 @@ test("every published chapter with a capture manifest has verified chain of cust
       0,
     );
   assert.equal(checked, expectedChecked);
-  assert.equal(checked, 33, "expected chain-of-custody count has drifted — update deliberately if a project's chapter count changed");
+  assert.equal(checked, 34, "expected chain-of-custody count has drifted — update deliberately if a project's chapter count changed");
 });
 
 test("every product route renders the explorer stage for its own chapters", async () => {

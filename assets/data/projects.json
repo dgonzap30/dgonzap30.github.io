@@ -231,7 +231,8 @@
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
         "alt": "Recorded tour of the Temper native app across Today, Food, Train, Progress, and Coach tabs",
-        "transcript": "The recording moves through Today's recovery summary, Food's daily log, Train's training week, Progress's trend view, and Coach's plan brief and pending proposal, all populated with synthetic fixture data. No HealthKit or WHOOP data is read."
+        "transcript": "The recording moves through Today's recovery summary, Food's daily log, Train's training week, Progress's trend view, and Coach's plan brief and pending proposal, all populated with synthetic fixture data. No HealthKit or WHOOP data is read.",
+        "sourceSha256": "96a3aa01527baf6e60dac588689922f3689d30348a92b6a88a6c217fc979480b"
       }
     ],
     "publicLinks": []
