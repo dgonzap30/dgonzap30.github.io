@@ -548,6 +548,106 @@ test("forbidden internal-only Intertitle fixtures are not published", async () =
   }
 });
 
+// The evidence root for this publication review. These capture manifests
+// are the parent's private evidence store for THIS review (not committed
+// inside the site repo, and not expected to exist for an arbitrary clone
+// of this repo) — this test is intentionally scoped to the working copy
+// being reviewed right now, not a portable CI invariant. The site repo
+// may be checked out directly under the evidence tree's "work/" directory,
+// or nested deeper inside a worktree under it, so walk upward from
+// repoRoot to find the sibling "current-captures" directory rather than
+// hardcoding a fixed relative depth.
+async function findEvidenceRoot(startDir) {
+  let dir = startDir;
+  for (let i = 0; i < 10; i++) {
+    const candidate = join(dir, "current-captures");
+    if (await exists(candidate)) return candidate;
+    const parent = resolve(dir, "..");
+    if (parent === dir) break;
+    dir = parent;
+  }
+  throw new Error(
+    `Could not locate a "current-captures" evidence directory above ${startDir}`,
+  );
+}
+const EVIDENCE_ROOT = await findEvidenceRoot(repoRoot);
+
+// Projects whose media comes from work/approved-demo-media/, which has no
+// capture manifest to chain custody against. Exempted explicitly (rather
+// than silently skipped) per the parent's instruction: the exemption must
+// be visible, not implicit.
+const NO_MANIFEST_PROJECTS = new Set(["maestro", "season-room"]);
+
+const CAPTURE_MANIFESTS = {
+  intertitle: join(EVIDENCE_ROOT, "intertitle-current/manifest.json"),
+  pazz: join(EVIDENCE_ROOT, "pazz/current/manifest.json"),
+  temper: join(EVIDENCE_ROOT, "temper/manifest.json"),
+  fcc: join(EVIDENCE_ROOT, "fcc/manifest.json"),
+  mimo: join(EVIDENCE_ROOT, "mimo/manifest.json"),
+};
+
+// Chapters whose capture manifest exists but records no sha256 for that
+// specific asset (manifest field is null) — there is no hash to chain
+// custody against, so this is a second, narrower, explicitly-visible
+// exemption rather than a silently-accepted gap. See the receipt: this
+// is the one asset whose provenance could not be established by hash.
+const NO_MANIFEST_HASH_CHAPTERS = new Set(["temper/walkthrough"]);
+
+test("every published chapter with a capture manifest has verified chain of custody", async () => {
+  const registry = JSON.parse(
+    await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
+  );
+
+  const manifestShaByProject = {};
+  for (const [id, manifestPath] of Object.entries(CAPTURE_MANIFESTS)) {
+    const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
+    manifestShaByProject[id] = new Set(
+      manifest.assets.map((asset) => asset.sha256).filter(Boolean),
+    );
+  }
+
+  let checked = 0;
+  for (const project of registry) {
+    if (NO_MANIFEST_PROJECTS.has(project.id)) continue;
+    const manifestShas = manifestShaByProject[project.id];
+    assert(
+      manifestShas,
+      `${project.id} has no capture manifest wired into CAPTURE_MANIFESTS and is not in NO_MANIFEST_PROJECTS — every project must be one or the other`,
+    );
+
+    for (const chapter of project.chapters) {
+      if (NO_MANIFEST_HASH_CHAPTERS.has(`${project.id}/${chapter.id}`)) continue;
+      assert(
+        chapter.sourceSha256,
+        `${project.id}/${chapter.id} declares no sourceSha256 — chain of custody to the accepted capture is broken`,
+      );
+      assert(
+        manifestShas.has(chapter.sourceSha256),
+        `${project.id}/${chapter.id} sourceSha256 (${chapter.sourceSha256}) is not present in ${project.id}'s capture manifest — this asset's provenance cannot be verified`,
+      );
+      checked++;
+    }
+  }
+
+  // A stale file republished under a new filename has no matching entry in
+  // the manifest's hash set and fails the loop above; this final count is
+  // a sanity check that the loop actually ran across every chapter it
+  // should have (i.e. the exemption sets above haven't silently grown to
+  // swallow real chapters).
+  const expectedChecked = registry
+    .filter((project) => !NO_MANIFEST_PROJECTS.has(project.id))
+    .reduce(
+      (total, project) =>
+        total +
+        project.chapters.filter(
+          (chapter) => !NO_MANIFEST_HASH_CHAPTERS.has(`${project.id}/${chapter.id}`),
+        ).length,
+      0,
+    );
+  assert.equal(checked, expectedChecked);
+  assert.equal(checked, 33, "expected chain-of-custody count has drifted — update deliberately if a project's chapter count changed");
+});
+
 test("every product route renders the explorer stage for its own chapters", async () => {
   const registry = JSON.parse(
     await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),

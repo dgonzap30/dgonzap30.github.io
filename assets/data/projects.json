@@ -118,7 +118,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper Today tab showing a synthetic readiness score, check-in chips, logged meals and a coach brief"
+        "alt": "Temper Today tab showing a synthetic readiness score, check-in chips, logged meals and a coach brief",
+        "sourceSha256": "b408c4897cc1e3b033721e23441c5123359697047d8c3e5031890ff5387dd291"
       },
       {
         "id": "food-log",
@@ -131,7 +132,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper Food tab showing a populated daily log with macro bars and three logged meals"
+        "alt": "Temper Food tab showing a populated daily log with macro bars and three logged meals",
+        "sourceSha256": "43ae3c1e1c865f8b39e4244ec19efcddb60473f73bb4ab3582444959be16955d"
       },
       {
         "id": "active-meal-plan",
@@ -144,7 +146,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper active meal plan showing accepted day-by-day macro targets"
+        "alt": "Temper active meal plan showing accepted day-by-day macro targets",
+        "sourceSha256": "df46d815d9ade25d9e1aa833f041b1b72f2359347155ab760f216240b512de12"
       },
       {
         "id": "training-week",
@@ -157,7 +160,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper Train tab showing a seven-day training week and one day's exercise list"
+        "alt": "Temper Train tab showing a seven-day training week and one day's exercise list",
+        "sourceSha256": "080992031327cb9c4f53ef7a531026c6b1fc0a6ea2d81fe4ff5193c3271c0c46"
       },
       {
         "id": "progress-trend",
@@ -170,7 +174,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper Progress tab showing a weekly digest and a synthetic weight trend chart"
+        "alt": "Temper Progress tab showing a weekly digest and a synthetic weight trend chart",
+        "sourceSha256": "fdf6be013ff68f86f042e6948e5c0388e0da1f7a75647efe539bddd984856a22"
       },
       {
         "id": "coach-conversation",
@@ -183,7 +188,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper Coach tab showing a plan summary, a pending recalibration proposal, and a dated brief"
+        "alt": "Temper Coach tab showing a plan summary, a pending recalibration proposal, and a dated brief",
+        "sourceSha256": "7a972b083f3a6c6f5f0b8160e1a769e3c9b4c334fd2fb6e0446f74b18eac9726"
       },
       {
         "id": "active-plan-review",
@@ -196,7 +202,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper active plan review showing goal, cadence, and rule settings"
+        "alt": "Temper active plan review showing goal, cadence, and rule settings",
+        "sourceSha256": "374ffa4212ead3ee5cf5a26e8b648f9c95cc6765f353f298b0a76ef9d7f750fc"
       },
       {
         "id": "plan-history",
@@ -209,7 +216,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper plan history showing per-setting attribution between Coach and the user"
+        "alt": "Temper plan history showing per-setting attribution between Coach and the user",
+        "sourceSha256": "5c9708d43ffad03f45bb6395c7a293d93d64d0013581c0fefb78c0f92041cdf8"
       },
       {
         "id": "walkthrough",
@@ -264,7 +272,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Mimo Made of Us home screen showing a saved fictional sample moment"
+        "alt": "Mimo Made of Us home screen showing a saved fictional sample moment",
+        "sourceSha256": "81c5155ef3c54a8ba6b6a405dd45991d16c15a5d43aee25d7f7f3220d74269d4"
       },
       {
         "id": "import",
@@ -277,7 +286,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Mimo photo import screen using the system PhotosPicker with a fictional sample cafe photo"
+        "alt": "Mimo photo import screen using the system PhotosPicker with a fictional sample cafe photo",
+        "sourceSha256": "50b7b2e49f51d92f434af976fd408df695e836924f60666bee102bd3b6c1ddd8"
       },
       {
         "id": "mark",
@@ -290,7 +300,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Mimo editor showing a saved mark on a synthetic test moment"
+        "alt": "Mimo editor showing a saved mark on a synthetic test moment",
+        "sourceSha256": "a02b5a55e60901a9539949d610d7fb6d6fb5d80062af9b8f9631e40d27882e6b"
       },
       {
         "id": "widgets",
@@ -303,7 +314,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "iOS Simulator Home Screen showing small and medium Mimo widgets with a fictional sample moment"
+        "alt": "iOS Simulator Home Screen showing small and medium Mimo widgets with a fictional sample moment",
+        "sourceSha256": "3d517d91c1d8da3125e1b05aff2906e6834697158fd40cd2e60eee4b80e9044a"
       }
     ],
     "publicLinks": []
@@ -345,7 +357,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Tonight tab showing Paris, Texas as tonight's pick with the Refine tonight sheet open"
+        "alt": "Intertitle Tonight tab showing Paris, Texas as tonight's pick with the Refine tonight sheet open",
+        "sourceSha256": "288cbe43def2124f0aebf4293063127fec461368b729d49aeb00acc95a348c39"
       },
       {
         "id": "discover",
@@ -358,7 +371,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Discover tab showing a populated grid of fixture films"
+        "alt": "Intertitle Discover tab showing a populated grid of fixture films",
+        "sourceSha256": "f1ee1e420355652f4eb2f96a2139ba6198ac8d9253b4154c66e99f9be30cab85"
       },
       {
         "id": "film-detail",
@@ -371,7 +385,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle film detail screen for Paris, Texas showing a fixture match percentile and why-this-one explanation"
+        "alt": "Intertitle film detail screen for Paris, Texas showing a fixture match percentile and why-this-one explanation",
+        "sourceSha256": "6b4533f242e12d5575df654af262d25ccf2b9b125f2bdc7b0a7169ff29a566e1"
       },
       {
         "id": "reely-refine",
@@ -384,7 +399,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Reely thread anchored on Paris, Texas with a prior conversational turn"
+        "alt": "Intertitle Reely thread anchored on Paris, Texas with a prior conversational turn",
+        "sourceSha256": "36f578c3e9afcb70e97358f5e0566f372826d26fadf7b91442711db1e0a0b7d4"
       },
       {
         "id": "diary",
@@ -397,7 +413,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Diary tab showing six fixture log entries with ratings"
+        "alt": "Intertitle Diary tab showing six fixture log entries with ratings",
+        "sourceSha256": "4bd7fe96e23fa736cc1a0c600cfb45b57baf62d5202212df92a2aefdd4447d9d"
       },
       {
         "id": "people",
@@ -410,7 +427,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle People tab showing a fixture film circle and follow rows"
+        "alt": "Intertitle People tab showing a fixture film circle and follow rows",
+        "sourceSha256": "202dea4d7c290e6503e658858eab0fb011a49408f86de27196dcd2f9fb6bbd32"
       },
       {
         "id": "friends-activity",
@@ -423,7 +441,8 @@
         "height": 2622,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Friends tab showing a fixture activity feed"
+        "alt": "Intertitle Friends tab showing a fixture activity feed",
+        "sourceSha256": "104380b545594683c81cc1857b8020af4b70a2a7b6fe2c14963836d34b4acf64"
       }
     ],
     "publicLinks": []
@@ -464,7 +483,8 @@
         "height": 1297,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "FCC Today view showing this week's matchup and a recommended lineup change"
+        "alt": "FCC Today view showing this week's matchup and a recommended lineup change",
+        "sourceSha256": "dd68060991f4f519c0f2bed4a5674ba68f49bae763bd66aa9d3741603c3e9ca4"
       },
       {
         "id": "league",
@@ -477,7 +497,8 @@
         "height": 844,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "FCC League detail view comparing two teams for the week"
+        "alt": "FCC League detail view comparing two teams for the week",
+        "sourceSha256": "cdc489508f7fa3184ea991f068ef7a99b1c690da75314c3ba1bac97064313510"
       },
       {
         "id": "player",
@@ -490,7 +511,8 @@
         "height": 844,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "FCC player detail view with projection source explanation"
+        "alt": "FCC player detail view with projection source explanation",
+        "sourceSha256": "b6a167bc568ef04eae27307a4d6da8e11cb32e637f3ec6b551d392534ca4d9b1"
       },
       {
         "id": "waivers",
@@ -503,7 +525,8 @@
         "height": 985,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "FCC waivers and market trends view"
+        "alt": "FCC waivers and market trends view",
+        "sourceSha256": "05d3af9206feac51a1504b765224319e69cab6a92dbd631b071fa5bf8ba7eb34"
       },
       {
         "id": "trade-finder",
@@ -516,7 +539,8 @@
         "height": 1217,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "FCC trade finder showing a candidate trade before review"
+        "alt": "FCC trade finder showing a candidate trade before review",
+        "sourceSha256": "d75a90f72fb5e5d4451a0150cf9659ece664af3389decec4a6840b0dbe7c19d5"
       },
       {
         "id": "trade-result",
@@ -529,7 +553,8 @@
         "height": 844,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "FCC trade result view comparing both teams' starters and depth"
+        "alt": "FCC trade result view comparing both teams' starters and depth",
+        "sourceSha256": "107b4dff7d158b9c17abdd582de8f7c41a4b00dade9b2346f707df90813845d3"
       },
       {
         "id": "start-sit",
@@ -542,7 +567,8 @@
         "height": 844,
         "capturedAt": "2026-09-08",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "FCC start/sit recommendation with reasoning"
+        "alt": "FCC start/sit recommendation with reasoning",
+        "sourceSha256": "7c8ef503bb10eaef81fe0841b9bd7d2c454773e5393d82d664b9a8b6605e491a"
       }
     ],
     "publicLinks": []
@@ -636,7 +662,8 @@
         "height": 1800,
         "capturedAt": "2026-09-09",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ quote composer with an Audi A5 Coupé TFSI Quattro spec and a four-step progress bar"
+        "alt": "PAZZ quote composer with an Audi A5 Coupé TFSI Quattro spec and a four-step progress bar",
+        "sourceSha256": "bb412d1d00afcc02df61b6e81d2cf42e074389996e21f6d7044447adb5c9dd65"
       },
       {
         "id": "fiscal-regime",
@@ -649,7 +676,8 @@
         "height": 1800,
         "capturedAt": "2026-09-09",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ fiscal-regime question with four branches and a lender/SOFOM disclaimer"
+        "alt": "PAZZ fiscal-regime question with four branches and a lender/SOFOM disclaimer",
+        "sourceSha256": "3c8c886d2f599b5803caf55ef4e16851c06f850c34e18baa4f009213142d0c6a"
       },
       {
         "id": "estimate",
@@ -662,7 +690,8 @@
         "height": 1800,
         "capturedAt": "2026-09-09",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ real-cost estimate showing rent, estimated ISR deduction, and creditable IVA at 48 months"
+        "alt": "PAZZ real-cost estimate showing rent, estimated ISR deduction, and creditable IVA at 48 months",
+        "sourceSha256": "d413dc9a94e7a0e30e972cb373032249c4dbec87e691d1c554a49f331ceeba58"
       },
       {
         "id": "quote-result",
@@ -675,7 +704,8 @@
         "height": 1800,
         "capturedAt": "2026-09-09",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ quote result comparing 48, 36, and 24-month terms with initial payment and purchase option"
+        "alt": "PAZZ quote result comparing 48, 36, and 24-month terms with initial payment and purchase option",
+        "sourceSha256": "2e3b21d855eb7253d9d6995c142b69c1a55383e82207f8a5004586a11f65bbd6"
       },
       {
         "id": "claudio-opening",
@@ -688,7 +718,8 @@
         "height": 1800,
         "capturedAt": "2026-09-09",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ Claudio entry screen disclosing it as a virtual adviser"
+        "alt": "PAZZ Claudio entry screen disclosing it as a virtual adviser",
+        "sourceSha256": "c7ec1d892ec24f18923fde203511a377773d89184031f997e9713a6bf8e98534"
       },
       {
         "id": "guided-search",
@@ -701,7 +732,8 @@
         "height": 1800,
         "capturedAt": "2026-09-09",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ guided search with a confirmed budget carried into a running search summary"
+        "alt": "PAZZ guided search with a confirmed budget carried into a running search summary",
+        "sourceSha256": "db018cfdf7a4394d1f7acaef8eb74213c1ef925b7e9fb81a83174a21831e9523"
       },
       {
         "id": "partner-application",
@@ -714,11 +746,15 @@
         "height": 1800,
         "capturedAt": "2026-09-09",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ partner application intake with synthetic details and a revealed Razón social field"
+        "alt": "PAZZ partner application intake with synthetic details and a revealed Razón social field",
+        "sourceSha256": "5973c18023ac2a726bbe05f8373199b90f3cd1d7a8a223020d09e2a8df10e8c2"
       }
     ],
     "publicLinks": [
-      { "label": "Read the engineering case study", "href": "/work/pazz/" }
+      {
+        "label": "Read the engineering case study",
+        "href": "/work/pazz/"
+      }
     ]
   }
 ]
