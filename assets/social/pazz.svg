@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
   <title id="title">PAZZ Marketplace case study social card</title>
   <desc id="desc">A technical-lead case-study title above a shared-authority handoff map.</desc>
-  <rect width="1200" height="630" fill="#f2ede3"/>
-  <path d="M64 64h1072v502H64z" fill="none" stroke="#c6bdaf"/>
-  <rect x="80" y="88" width="10" height="10" fill="#bd4633"/>
-  <text x="108" y="99" fill="#606872" font-family="Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="2">PAZZ MARKETPLACE · TECHNICAL LEAD</text>
-  <g fill="#242b36" font-family="Georgia, serif" font-size="76">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <path d="M64 64h1072v502H64z" fill="none" stroke="#e2e8f0"/>
+  <rect x="80" y="88" width="10" height="10" fill="#3b4cff"/>
+  <text x="108" y="99" fill="#64748b" font-family="Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="2">PAZZ MARKETPLACE · TECHNICAL LEAD</text>
+  <g fill="#16202b" font-family="Georgia, serif" font-size="76">
     <text x="80" y="205">One operable</text>
     <text x="80" y="285">automotive-leasing</text>
     <text x="80" y="365">marketplace.</text>
   </g>
-  <text x="80" y="420" fill="#606872" font-family="Arial, sans-serif" font-size="19">Shared rules · Recoverable handoffs · Release evidence</text>
-  <path d="M80 488h1000" stroke="#315a7d" stroke-width="4"/>
-  <g fill="#315a7d"><circle cx="116" cy="488" r="7"/><circle cx="342" cy="488" r="7"/><circle cx="570" cy="488" r="7"/><circle cx="798" cy="488" r="7"/><circle cx="1044" cy="488" r="7"/></g>
-  <g fill="#242b36" font-family="Arial, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="1"><text x="116" y="526">DISCOVER</text><text x="342" y="526">QUOTE</text><text x="570" y="526">PREQUALIFY</text><text x="798" y="526">ROUTE</text><text x="1044" y="526">OPERATE</text></g>
-  <path d="M1044 496v50H176" fill="none" stroke="#bd4633" stroke-width="3"/>
-  <path d="m188 538-12 8 12 8" fill="none" stroke="#bd4633" stroke-width="3"/>
-  <text x="80" y="590" fill="#242b36" font-family="Arial, sans-serif" font-size="18" font-weight="700">Diego Gonzalez Zapiain / Systems Atlas</text>
+  <text x="80" y="420" fill="#64748b" font-family="Arial, sans-serif" font-size="19">Shared rules · Recoverable handoffs · Release evidence</text>
+  <path d="M80 488h1000" stroke="#3b4cff" stroke-width="4"/>
+  <g fill="#3b4cff"><circle cx="116" cy="488" r="7"/><circle cx="342" cy="488" r="7"/><circle cx="570" cy="488" r="7"/><circle cx="798" cy="488" r="7"/><circle cx="1044" cy="488" r="7"/></g>
+  <g fill="#16202b" font-family="Arial, sans-serif" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="1"><text x="116" y="526">DISCOVER</text><text x="342" y="526">QUOTE</text><text x="570" y="526">PREQUALIFY</text><text x="798" y="526">ROUTE</text><text x="1044" y="526">OPERATE</text></g>
+  <path d="M1044 496v50H176" fill="none" stroke="#16202b" stroke-width="3"/>
+  <path d="m188 538-12 8 12 8" fill="none" stroke="#16202b" stroke-width="3"/>
+  <text x="80" y="590" fill="#16202b" font-family="Arial, sans-serif" font-size="18" font-weight="700">Diego Gonzalez Zapiain / Systems Atlas</text>
 </svg>

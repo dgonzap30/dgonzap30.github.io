@@ -327,10 +327,56 @@ test("case studies preserve role and evidence boundaries", async () => {
   assert.match(lojik, /evidence boundary/);
   assert.match(lojik, /company-building and systems-design case study/);
 
-  for (const html of [pazz, lojik]) {
-    assert.doesNotMatch(html, /\b\d+(?:\.\d+)?%\b/);
-    assert.doesNotMatch(html, /\$\s?\d/);
-  }
+  // The PAZZ case-study prose itself (everything outside the embedded
+  // product explorer) must still make no dollar or percentage claims —
+  // only the captured, explicitly-labeled product evidence inside the
+  // explorer stage may show real illustrative amounts.
+  const pazzProse = pazz.replace(
+    /<section class="portfolio-explorer[\s\S]*?<\/section>/,
+    "",
+  );
+  assert(
+    pazzProse.length < pazz.length,
+    "expected the portfolio-explorer section to be present and strippable",
+  );
+  assert.doesNotMatch(pazzProse, /\b\d+(?:\.\d+)?%\b/);
+  assert.doesNotMatch(pazzProse, /\$\s?\d/);
+  assert.doesNotMatch(lojik, /\b\d+(?:\.\d+)?%\b/);
+  assert.doesNotMatch(lojik, /\$\s?\d/);
+
+  // Dollar amounts inside the PAZZ explorer must stay labeled illustrative,
+  // never presented as a lessor offer.
+  assert.match(pazz, /illustrative estimate, not a lessor offer/);
+});
+
+test("PAZZ explorer stays honest about Claudio, the partner flag, and the catalog", async () => {
+  const pazz = (
+    await readFile(join(repoRoot, "work/pazz/index.html"), "utf8")
+  ).toLowerCase();
+
+  assert.doesNotMatch(pazz, /ai-powered/);
+  assert.doesNotMatch(pazz, /claudio decides/);
+  assert(
+    pazz.includes("does not decide applications"),
+    "Claudio must be disclosed as not deciding applications",
+  );
+  assert(
+    pazz.includes("deterministic scripted mock") ||
+      pazz.includes("no live model call"),
+    "Claudio's non-live model status must be disclosed",
+  );
+  assert(
+    pazz.includes("off by default") || pazz.includes("flag-gated"),
+    "the partner application must be disclosed as flag-gated, not live",
+  );
+  const registry = JSON.parse(
+    await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
+  );
+  const pazzChapters = registry.find((project) => project.id === "pazz").chapters;
+  assert(
+    pazzChapters.every((chapter) => !/catalog/i.test(chapter.src)),
+    "no PAZZ chapter may render the catalog placeholder grid",
+  );
 });
 
 test("media and social cards meet publication dimensions and budgets", async () => {
