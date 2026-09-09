@@ -426,6 +426,45 @@ test("Temper explorer never ships the internal-only 06b coach-thread frame", asy
   );
 });
 
+test("Intertitle explorer stays honest about fixture data and dev-preview status", async () => {
+  const intertitleHtml = (
+    await readFile(join(repoRoot, "demos/intertitle/index.html"), "utf8")
+  ).toLowerCase();
+  const intertitleText = intertitleHtml
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ");
+
+  assert.doesNotMatch(intertitleText, /ai-powered/);
+  // Claims of liveness/real inference are only allowed inside an explicit
+  // denial ("no live model call", "not real taste inference", "not a live
+  // recommendation") — never asserted as fact.
+  for (const term of [/live model/, /real taste inference/, /live recommend\w*/]) {
+    for (const match of intertitleText.matchAll(
+      new RegExp(`(.{0,40}${term.source}.{0,5})`, "g"),
+    )) {
+      assert.match(
+        match[1],
+        /\bno\b|\bnot\b/,
+        `unexpected "${term.source}" usage without a denial: "${match[1]}"`,
+      );
+    }
+  }
+  assert(
+    intertitleText.includes("fixture"),
+    "Intertitle must disclose fixture data",
+  );
+  assert(
+    intertitleText.includes("not the public app store release") ||
+      intertitleText.includes("development preview"),
+    "Intertitle must disclose it is a development preview, not the App Store release",
+  );
+  assert.doesNotMatch(
+    intertitleHtml,
+    /class="stage-pending"/,
+    "Intertitle should no longer render the pending-capture stage",
+  );
+});
+
 test("media and social cards meet publication dimensions and budgets", async () => {
   const headshotPath = join(repoRoot, "assets/media/diego-headshot.webp");
   const headshot = await readFile(headshotPath);
@@ -496,11 +535,17 @@ test("product registry has seven projects with a stable, honest editorial order"
 });
 
 test("forbidden internal-only Intertitle fixtures are not published", async () => {
-  assert.equal(
-    await exists(join(repoRoot, "assets/media/demos/intertitle")),
-    false,
-    "assets/media/demos/intertitle must not exist in public output",
-  );
+  // The OLD internal-only fixtures (tonight.webp, refine.webp) must never
+  // exist under any filename — including the new capture's numbered
+  // filenames, which are deliberately different so this guard can't be
+  // satisfied by the wrong files landing under the old names.
+  for (const forbidden of ["tonight.webp", "refine.webp"]) {
+    assert.equal(
+      await exists(join(repoRoot, "assets/media/demos/intertitle", forbidden)),
+      false,
+      `assets/media/demos/intertitle/${forbidden} is the old forbidden internal-only fixture and must not be published`,
+    );
+  }
 });
 
 test("every product route renders the explorer stage for its own chapters", async () => {

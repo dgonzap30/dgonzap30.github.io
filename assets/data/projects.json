@@ -317,19 +317,116 @@
     "status": "In development",
     "purpose": "Find a film for tonight, explore your taste, and keep the conversation going.",
     "description": "A film companion grounded in personal taste — separate from the public App Store release.",
-    "capturedAt": null,
-    "sourceLabel": null,
-    "demoScope": null,
+    "capturedAt": "2026-09-08",
+    "sourceLabel": "Native iOS build, isolated Simulator, fixture data",
+    "demoScope": "Seven current stills from a source-owned presentation fixture, captured in an isolated development build. Every film, person, rating, match percentile and taste explanation is fixture data — this demonstrates presentation, not a live recommender or real taste inference. A development preview, not the public App Store release.",
     "engineeringNotes": "Recommendation constraints and retry-safe conversation state make the choice easier to revise.",
-    "working": [],
-    "remaining": [],
-    "pending": true,
-    "pendingNote": "A fresh capture from the current build is queued. The previous Tonight and Reely-refinement images were internal-only development fixtures and have been removed from this public build rather than shown as current.",
-    "defaultChapter": null,
-    "chapters": [],
-    "publicLinks": [
-      { "label": "Intertitle on the App Store", "href": "https://intertitle.app/" }
-    ]
+    "working": [
+      "A film-detail view that pairs a fixture match percentile with a stated reason",
+      "A film-anchored Reely thread that carries prior context into a refinement",
+      "Diary, People and Friends surfaces populated with fixture data"
+    ],
+    "remaining": [
+      "No live recommendation model — every match percentile and \"why this one\" explanation comes from the fixture, not real taste inference",
+      "Reely makes no live model call in this build; external services are hard-disabled under the fixture",
+      "The people and friends shown are fixture profiles, not a real community",
+      "A development preview, not the public App Store release"
+    ],
+    "defaultChapter": "film-detail",
+    "chapters": [
+      {
+        "id": "tonight",
+        "title": "Tonight's pick",
+        "caption": "Tonight's pick, Paris, Texas (1984, 145 min), with the Refine tonight sheet open on \"What are you in the mood for?\"",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/01-tonight.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle Tonight tab showing Paris, Texas as tonight's pick with the Refine tonight sheet open"
+      },
+      {
+        "id": "discover",
+        "title": "Discover",
+        "caption": "A populated discovery grid — Portrait of a Lady on Fire, Parasite, Eternal Sunshine, Moonlight — from the source-owned fixture.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/02-discover.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle Discover tab showing a populated grid of fixture films"
+      },
+      {
+        "id": "film-detail",
+        "title": "Why this one",
+        "caption": "Paris, Texas's detail screen: a fixture match percentile, a \"why this one\" taste explanation, social proof, synopsis, and the Talk with Reely action — presentation only, not a live recommendation.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/06-film-detail.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle film detail screen for Paris, Texas showing a fixture match percentile and why-this-one explanation"
+      },
+      {
+        "id": "reely-refine",
+        "title": "Refine with Reely",
+        "caption": "A film-anchored thread on Paris, Texas with a prior turn. Reely runs on a fixture client in this build; no live model call is made.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/05-reely-refine.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle Reely thread anchored on Paris, Texas with a prior conversational turn"
+      },
+      {
+        "id": "diary",
+        "title": "Your diary",
+        "caption": "Six fixture log entries with ratings and posters.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/03-diary.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle Diary tab showing six fixture log entries with ratings"
+      },
+      {
+        "id": "people",
+        "title": "Your film circle",
+        "caption": "A fixture film circle and recently-watching rows. The people shown are fixture profiles, not real users.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/04-people.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle People tab showing a fixture film circle and follow rows"
+      },
+      {
+        "id": "friends-activity",
+        "title": "What friends are watching",
+        "caption": "A fixture friends-activity feed — no real community or friend activity.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/07-friends-activity.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle Friends tab showing a fixture activity feed"
+      }
+    ],
+    "publicLinks": []
   },
   {
     "id": "fcc",
