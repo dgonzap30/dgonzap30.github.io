@@ -392,6 +392,20 @@ test("selected engineering registry has public destinations and proof limits", a
   assert.match(maestroDemo, /<video\b[^>]*\bcontrols\b[^>]*\bplaysinline\b/s);
   assert.match(maestroDemo, /Synthetic telemetry · real local application/);
   assert.match(maestroDemo, /Logic\s+Pro is not running/);
+  const demoCss = await readFile(
+    join(repoRoot, "assets/css/demos.css"),
+    "utf8",
+  );
+  const siteScript = await readFile(
+    join(repoRoot, "assets/js/site.js"),
+    "utf8",
+  );
+  assert.match(demoCss, /\.walkthrough-controls\s*{\s*display:\s*none;/s);
+  assert.match(demoCss, /\.js \.walkthrough-controls\s*{\s*display:\s*flex;/s);
+  assert.match(
+    siteScript,
+    /Captured step \$\{active \+ 1\} of \$\{steps\.length\}/,
+  );
   const directory = await readFile(
     join(repoRoot, "projects/index.html"),
     "utf8",
@@ -399,6 +413,12 @@ test("selected engineering registry has public destinations and proof limits", a
   const renderedIds = [
     ...directory.matchAll(/<article id="([^"]+)" class="curated-card/g),
   ].map((match) => match[1]);
+  const normalizeText = (value) =>
+    value
+      .replace(/&amp;/g, "&")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
 
   assert.equal(
     new Set(registry.map((project) => project.id)).size,
@@ -414,10 +434,7 @@ test("selected engineering registry has public destinations and proof limits", a
       directory.match(
         new RegExp(`<article\\s+id="${project.id}"[\\s\\S]*?<\\/article>`),
       )?.[0] ?? "";
-    const normalizedCard = card
-      .replace(/&amp;/g, "&")
-      .replace(/<[^>]+>/g, " ")
-      .replace(/\s+/g, " ");
+    const normalizedCard = normalizeText(card);
     assert(
       normalizedCard.includes(project.name),
       `${project.id} is missing its registry name`,
@@ -427,8 +444,26 @@ test("selected engineering registry has public destinations and proof limits", a
       `${project.id} is missing its registry stage`,
     );
     assert(
+      normalizedCard.includes(project.description),
+      `${project.id} is missing its registry purpose`,
+    );
+    assert(
+      normalizedCard.includes(project.engineeringSummary),
+      `${project.id} is missing its registry engineering summary`,
+    );
+    assert(
       card.includes(`href="${project.demoHref}"`),
       `${project.id} is missing its public demo destination`,
+    );
+    const routeText = normalizeText(
+      await readFile(
+        join(repoRoot, project.demoHref.slice(1), "index.html"),
+        "utf8",
+      ),
+    );
+    assert(
+      routeText.includes(project.proofLimit),
+      `${project.id} is missing its registry proof limit`,
     );
   }
   assert.deepEqual(renderedIds, [
@@ -450,9 +485,10 @@ test("selected engineering registry has public destinations and proof limits", a
     pazz: "/assets/media/work/pazz-public.webp",
   };
   for (const [id, source] of Object.entries(previews)) {
-    const card = directory.match(
-      new RegExp(`<article\\s+id="${id}"[\\s\\S]*?<\\/article>`),
-    )?.[0] ?? "";
+    const card =
+      directory.match(
+        new RegExp(`<article\\s+id="${id}"[\\s\\S]*?<\\/article>`),
+      )?.[0] ?? "";
     assert.match(card, new RegExp(`<img[^>]+src="${source}"`));
   }
 });
