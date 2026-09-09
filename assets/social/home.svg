@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Selected products and personal tools by Diego Gonzalez Zapiain</title>
-  <desc id="desc">A warm-paper editorial social card for Diego Gonzalez Zapiain's selected work.</desc>
+  <title id="title">Thoughtful products. Serious engineering. — Diego Gonzalez Zapiain</title>
+  <desc id="desc">A warm-paper editorial social card for Diego Gonzalez Zapiain's engineering portfolio.</desc>
   <rect width="1200" height="630" fill="#f2ede3"/>
   <path d="M64 64h1072v502H64z" fill="none" stroke="#c6bdaf"/>
   <rect x="80" y="88" width="10" height="10" fill="#bd4633"/>
   <text x="108" y="98" fill="#606872" font-family="Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="2">DGZ / PRODUCT ENGINEERING</text>
   <g font-family="Georgia, serif" font-size="80">
-    <text x="80" y="222" fill="#242b36">Selected products</text>
-    <text x="80" y="314" fill="#bd4633">&amp; personal tools.</text>
+    <text x="80" y="222" fill="#242b36">Thoughtful products.</text>
+    <text x="80" y="314" fill="#bd4633">Serious engineering.</text>
   </g>
   <path d="M80 396h1040" stroke="#c6bdaf"/>
   <text x="80" y="444" fill="#606872" font-family="Arial, sans-serif" font-size="19">Technical Lead at PAZZ Marketplace · Co-Founder &amp; Technical Lead at LOJIK Labs</text>

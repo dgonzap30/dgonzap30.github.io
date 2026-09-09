@@ -66,10 +66,34 @@ function enhanceSectionNav() {
   sections.forEach((section) => observer.observe(section));
 }
 
+function enhanceWalkthroughs() {
+  document.querySelectorAll('[data-walkthrough]').forEach((root) => {
+    const steps = [...root.querySelectorAll('.walkthrough-step')];
+    const previous = root.querySelector('[data-walkthrough-prev]');
+    const next = root.querySelector('[data-walkthrough-next]');
+    if (steps.length < 2 || !previous || !next) return;
+    const status = document.createElement('span');
+    status.className = 'walkthrough-status';
+    status.setAttribute('aria-live', 'polite');
+    root.querySelector('.walkthrough-controls')?.append(status);
+    let active = 0;
+    const render = () => {
+      steps.forEach((step, index) => { step.hidden = index !== active; });
+      previous.disabled = active === 0;
+      next.disabled = active === steps.length - 1;
+      status.textContent = `Captured step ${active + 1} of ${steps.length}`;
+    };
+    previous.addEventListener('click', () => { active = Math.max(0, active - 1); render(); });
+    next.addEventListener('click', () => { active = Math.min(steps.length - 1, active + 1); render(); });
+    render();
+  });
+}
+
 function initialize() {
   document.querySelectorAll('[data-trace-root]').forEach(enhanceTrace);
   enhanceReveals();
   enhanceSectionNav();
+  enhanceWalkthroughs();
 }
 
 if (document.readyState === 'loading') {

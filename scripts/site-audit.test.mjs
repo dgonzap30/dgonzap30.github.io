@@ -21,6 +21,12 @@ const REQUIRED_PAGES = [
   "work/pazz/index.html",
   "work/lojik/index.html",
   "projects/index.html",
+  "demos/mimo/index.html",
+  "demos/intertitle/index.html",
+  "demos/fcc/index.html",
+  "demos/temper/index.html",
+  "demos/season-room/index.html",
+  "demos/maestro/index.html",
 ];
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -40,9 +46,15 @@ function webpDimensions(buffer) {
     const size = buffer.readUInt32LE(offset + 4);
     const data = offset + 8;
     if (type === "VP8X") {
-      const width = 1 + buffer[data + 4] + (buffer[data + 5] << 8) +
+      const width =
+        1 +
+        buffer[data + 4] +
+        (buffer[data + 5] << 8) +
         (buffer[data + 6] << 16);
-      const height = 1 + buffer[data + 7] + (buffer[data + 8] << 8) +
+      const height =
+        1 +
+        buffer[data + 7] +
+        (buffer[data + 8] << 8) +
         (buffer[data + 9] << 16);
       return [width, height];
     }
@@ -62,7 +74,7 @@ function webpDimensions(buffer) {
 }
 
 function oklchToLinearRgb([lightness, chroma, hue]) {
-  const radians = hue * Math.PI / 180;
+  const radians = (hue * Math.PI) / 180;
   const a = chroma * Math.cos(radians);
   const b = chroma * Math.sin(radians);
   const l = (lightness + 0.3963377774 * a + 0.2158037573 * b) ** 3;
@@ -80,8 +92,10 @@ function contrastRatio(first, second) {
     0.2126 * color[0] + 0.7152 * color[1] + 0.0722 * color[2];
   const firstLuminance = luminance(oklchToLinearRgb(first));
   const secondLuminance = luminance(oklchToLinearRgb(second));
-  return (Math.max(firstLuminance, secondLuminance) + 0.05) /
-    (Math.min(firstLuminance, secondLuminance) + 0.05);
+  return (
+    (Math.max(firstLuminance, secondLuminance) + 0.05) /
+    (Math.min(firstLuminance, secondLuminance) + 0.05)
+  );
 }
 
 function oklchToken(css, name) {
@@ -216,15 +230,13 @@ test("graphics are accessible, bounded SVG documents", async () => {
 test("javascript is a small progressive enhancement", async () => {
   const script = await readFile(join(repoRoot, "assets/js/site.js"), "utf8");
   assert(Buffer.byteLength(script) < 12 * 1024, "site.js exceeds 12 KB");
-  for (
-    const functionName of [
-      "motionAllowed",
-      "setTraceStage",
-      "enhanceTrace",
-      "enhanceReveals",
-      "enhanceSectionNav",
-    ]
-  ) {
+  for (const functionName of [
+    "motionAllowed",
+    "setTraceStage",
+    "enhanceTrace",
+    "enhanceReveals",
+    "enhanceSectionNav",
+  ]) {
     assert.match(script, new RegExp(`function ${functionName}\\(`));
   }
   assert.doesNotMatch(script, /\bsetInterval\s*\(/);
@@ -287,11 +299,12 @@ test("fonts are self-hosted, licensed, and bounded", async () => {
 });
 
 test("case studies preserve role and evidence boundaries", async () => {
-  const pazz = (await readFile(join(repoRoot, "work/pazz/index.html"), "utf8"))
-    .toLowerCase();
-  const lojik =
-    (await readFile(join(repoRoot, "work/lojik/index.html"), "utf8"))
-      .toLowerCase();
+  const pazz = (
+    await readFile(join(repoRoot, "work/pazz/index.html"), "utf8")
+  ).toLowerCase();
+  const lojik = (
+    await readFile(join(repoRoot, "work/lojik/index.html"), "utf8")
+  ).toLowerCase();
 
   assert.match(pazz, /technical lead/);
   assert.doesNotMatch(pazz, /co-founder/);
@@ -327,17 +340,85 @@ test("media and social cards meet publication dimensions and budgets", async () 
   }
 });
 
-test("project registry and rendered directory stay in sync", async () => {
+test("selected engineering registry has public destinations and proof limits", async () => {
   const registry = JSON.parse(
     await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
+  );
+  assert.equal(registry.length, 7);
+  assert.deepEqual(
+    registry.map((project) => project.stage),
+    [
+      "In development",
+      "Public product",
+      "Private tool",
+      "In development",
+      "Local prototype",
+      "Private beta",
+      "Private commercial platform",
+    ],
+  );
+  for (const project of registry) {
+    assert.match(project.demoHref, /^\/(?:demos|work)\//);
+    assert(project.demoFormat.length > 0);
+    assert(project.proofLimit.length > 0);
+    assert.equal(project.evidenceReviewedDate, "2026-09-08");
+  }
+  for (const asset of [
+    "assets/media/demos/mimo/rehearsal.mp4",
+    "assets/media/demos/intertitle/tonight.webp",
+    "assets/media/demos/fcc/command.webp",
+    "assets/media/demos/temper/plan.webp",
+    "assets/media/demos/season-room/review.webp",
+    "assets/media/demos/maestro/demo.mp4",
+    "assets/media/demos/maestro/poster.webp",
+    "assets/media/demos/maestro/spectrum.webp",
+  ]) {
+    assert((await stat(join(repoRoot, asset))).size > 0, `${asset} is missing`);
+  }
+  for (const project of registry) {
+    const route = join(repoRoot, project.demoHref.slice(1), "index.html");
+    await access(route);
+  }
+  const mimoDemo = await readFile(
+    join(repoRoot, "demos/mimo/index.html"),
+    "utf8",
+  );
+  assert.match(mimoDemo, /<video\b[^>]*\bcontrols\b[^>]*\bplaysinline\b/s);
+  assert.match(mimoDemo, /Descriptive transcript/);
+  const maestroDemo = await readFile(
+    join(repoRoot, "demos/maestro/index.html"),
+    "utf8",
+  );
+  assert.match(maestroDemo, /<video\b[^>]*\bcontrols\b[^>]*\bplaysinline\b/s);
+  assert.match(maestroDemo, /Synthetic telemetry · real local application/);
+  assert.match(maestroDemo, /Logic\s+Pro is not running/);
+  const demoCss = await readFile(
+    join(repoRoot, "assets/css/demos.css"),
+    "utf8",
+  );
+  const siteScript = await readFile(
+    join(repoRoot, "assets/js/site.js"),
+    "utf8",
+  );
+  assert.match(demoCss, /\.walkthrough-controls\s*{\s*display:\s*none;/s);
+  assert.match(demoCss, /\.js \.walkthrough-controls\s*{\s*display:\s*flex;/s);
+  assert.match(
+    siteScript,
+    /Captured step \$\{active \+ 1\} of \$\{steps\.length\}/,
   );
   const directory = await readFile(
     join(repoRoot, "projects/index.html"),
     "utf8",
   );
   const renderedIds = [
-    ...directory.matchAll(/<article id="([^"]+)" class="(?:curated-card|curated-code-proof)/g),
+    ...directory.matchAll(/<article id="([^"]+)" class="curated-card/g),
   ].map((match) => match[1]);
+  const normalizeText = (value) =>
+    value
+      .replace(/&amp;/g, "&")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
 
   assert.equal(
     new Set(registry.map((project) => project.id)).size,
@@ -349,26 +430,65 @@ test("project registry and rendered directory stay in sync", async () => {
     new Set(registry.map((project) => project.id)),
   );
   for (const project of registry) {
-    const card = directory.match(
-      new RegExp(`<article\\s+id="${project.id}"[\\s\\S]*?<\\/article>`),
-    )?.[0] ?? "";
-    const normalizedCard = card.replace(/&amp;/g, "&").replace(/&rsquo;/g, "’").replace(/<[^>]+>/g, " ")
-      .replace(/\s+/g, " ");
+    const card =
+      directory.match(
+        new RegExp(`<article\\s+id="${project.id}"[\\s\\S]*?<\\/article>`),
+      )?.[0] ?? "";
+    const normalizedCard = normalizeText(card);
     assert(
       normalizedCard.includes(project.name),
       `${project.id} is missing its registry name`,
     );
     assert(
-      normalizedCard.includes(project.description),
-      `${project.id} is missing its registry description`,
-    );
-    assert(
       normalizedCard.includes(project.stage),
       `${project.id} is missing its registry stage`,
     );
+    assert(
+      normalizedCard.includes(project.description),
+      `${project.id} is missing its registry purpose`,
+    );
+    assert(
+      normalizedCard.includes(project.engineeringSummary),
+      `${project.id} is missing its registry engineering summary`,
+    );
+    assert(
+      card.includes(`href="${project.demoHref}"`),
+      `${project.id} is missing its public demo destination`,
+    );
+    const routeText = normalizeText(
+      await readFile(
+        join(repoRoot, project.demoHref.slice(1), "index.html"),
+        "utf8",
+      ),
+    );
+    assert(
+      routeText.includes(project.proofLimit),
+      `${project.id} is missing its registry proof limit`,
+    );
   }
-  assert.deepEqual(
-    renderedIds,
-    ["neopazz", "lojik", "intertitle", "uno-tally", "reading-list", "brainkit"],
-  );
+  assert.deepEqual(renderedIds, [
+    "mimo",
+    "intertitle",
+    "fcc",
+    "temper",
+    "season-room",
+    "maestro",
+    "pazz",
+  ]);
+  const previews = {
+    mimo: "/assets/media/demos/mimo/poster.webp",
+    intertitle: "/assets/media/demos/intertitle/tonight.webp",
+    fcc: "/assets/media/demos/fcc/command.webp",
+    temper: "/assets/media/demos/temper/plan.webp",
+    "season-room": "/assets/media/demos/season-room/review.webp",
+    maestro: "/assets/media/demos/maestro/poster.webp",
+    pazz: "/assets/media/work/pazz-public.webp",
+  };
+  for (const [id, source] of Object.entries(previews)) {
+    const card =
+      directory.match(
+        new RegExp(`<article\\s+id="${id}"[\\s\\S]*?<\\/article>`),
+      )?.[0] ?? "";
+    assert.match(card, new RegExp(`<img[^>]+src="${source}"`));
+  }
 });

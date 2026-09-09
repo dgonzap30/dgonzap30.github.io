@@ -1,96 +1,79 @@
 [
   {
-    "id": "neopazz",
-    "name": "PAZZ Marketplace",
-    "category": "Products & systems",
-    "stage": "Product",
-    "description": "A Mexican vehicle-leasing marketplace that brings discovery, qualification, and partner handoffs into a clearer path.",
-    "links": [
-      {
-        "label": "Engineering decisions",
-        "url": "/work/pazz/"
-      },
-      {
-        "label": "Case-study source",
-        "url": "https://github.com/dgonzap30/pazz-case-study"
-      }
-    ]
-  },
-  {
-    "id": "lojik",
-    "name": "LOJIK Labs",
-    "category": "Products & systems",
-    "stage": "Product",
-    "description": "A workflow-first systems studio that turns recurring business work into dependable software.",
-    "links": [
-      {
-        "label": "Engineering decisions",
-        "url": "/work/lojik/"
-      },
-      {
-        "label": "Case-study source",
-        "url": "https://github.com/dgonzap30/lojik-systems-case-study"
-      }
-    ]
+    "id": "mimo",
+    "name": "Mimo",
+    "stage": "In development",
+    "description": "A shared room for couples, built around small rituals and playful interaction.",
+    "engineeringSummary": "An explicit interaction state keeps two sides, readiness, pause, and reset coherent.",
+    "demoFormat": "Actual local rehearsal",
+    "demoHref": "/demos/mimo/",
+    "proofLimit": "One person controls both sides in this recording. It does not demonstrate remote pairing, two-phone synchronization, physical-device behavior, or encrypted state.",
+    "evidenceReviewedDate": "2026-09-08"
   },
   {
     "id": "intertitle",
     "name": "Intertitle",
-    "category": "Side projects & play",
-    "stage": "Product",
-    "description": "Film recommendations and journaling shaped around a person’s taste, with room to revisit the films that stay with you.",
-    "links": [
-      {
-        "label": "Visit Intertitle",
-        "url": "https://intertitle.app"
-      }
-    ]
+    "stage": "Public product",
+    "description": "Film discovery and conversation grounded in personal taste.",
+    "engineeringSummary": "Recommendation constraints and retry-safe conversation state make the choice easier to revise.",
+    "demoFormat": "Prior development fixture",
+    "demoHref": "/demos/intertitle/",
+    "proofLimit": "Selected films are fixture data and artwork is intentionally omitted. This capture does not prove the current authenticated service, live backend, or App Store build.",
+    "evidenceReviewedDate": "2026-09-08"
   },
   {
-    "id": "uno-tally",
-    "name": "UNO Tally",
-    "category": "Side projects & play",
-    "stage": "Personal tool",
-    "description": "A local UNO scorekeeper for keeping a game moving, tracking rounds, and settling the tally together.",
-    "links": [
-      {
-        "label": "Try UNO Tally",
-        "url": "https://uno-tally.vercel.app"
-      },
-      {
-        "label": "View source",
-        "url": "https://github.com/dgonzap30/uno-tally"
-      }
-    ]
+    "id": "fcc",
+    "name": "Fantasy Football Control Center",
+    "stage": "Private tool",
+    "description": "Football information organized into traceable weekly decisions.",
+    "engineeringSummary": "Immutable snapshots and a separate permission boundary keep review distinct from action.",
+    "demoFormat": "Captured synthetic walkthrough",
+    "demoHref": "/demos/fcc/",
+    "proofLimit": "The capture uses fictional fixtures; forecast numbers are illustrative and no live league, roster, or draft writes occur. It does not claim a production action or a forecasting edge. Large-text mobile layout still needs work.",
+    "evidenceReviewedDate": "2026-09-08"
   },
   {
-    "id": "reading-list",
-    "name": "Reading List",
-    "category": "Side projects & play",
-    "stage": "Personal tool",
-    "description": "A structured reading curriculum with session planning, progress tracking, and space for insights.",
-    "links": [
-      {
-        "label": "Open Reading List",
-        "url": "https://reading-list-orpin.vercel.app"
-      },
-      {
-        "label": "View source",
-        "url": "https://github.com/dgonzap30/reading-list"
-      }
-    ]
+    "id": "temper",
+    "name": "Temper",
+    "stage": "In development",
+    "description": "A training week that fits real constraints before it becomes an active plan.",
+    "engineeringSummary": "Local drafts and commit-time validation keep an impossible schedule visible instead of silently starting it.",
+    "demoFormat": "Captured simulator walkthrough",
+    "demoHref": "/demos/temper/",
+    "proofLimit": "The screens are separate fixture scenarios, not an interactive planning backend. Current work and physical-phone acceptance remain incomplete.",
+    "evidenceReviewedDate": "2026-09-08"
   },
   {
-    "id": "brainkit",
-    "name": "BrainKit",
-    "category": "Products & systems",
-    "stage": "Public code",
-    "description": "A versioned Swift package with supported APIs for focused personal-app integrations.",
-    "links": [
-      {
-        "label": "Explore the code",
-        "url": "https://github.com/dgonzap30/brainkit"
-      }
-    ]
+    "id": "season-room",
+    "name": "Season Room",
+    "stage": "Local prototype",
+    "description": "A personal season notebook for original receipts, review decisions, and records.",
+    "engineeringSummary": "OCR proposes a transcription; review, revision checks, and idempotent writes protect the record.",
+    "demoFormat": "Captured synthetic walkthrough",
+    "demoHref": "/demos/season-room/",
+    "proofLimit": "This is fictional test data and recorded views only; the second image is not presented as the result of the first. There is no live feed, automatic settlement, or proven betting edge.",
+    "evidenceReviewedDate": "2026-09-08"
+  },
+  {
+    "id": "maestro",
+    "name": "Maestro",
+    "stage": "Private beta",
+    "description": "A music-production workspace that turns session signals into inspectable coaching evidence.",
+    "engineeringSummary": "Missing or stale audio evidence stays visible instead of becoming a confident guess.",
+    "demoFormat": "Synthetic telemetry walkthrough",
+    "demoHref": "/demos/maestro/",
+    "proofLimit": "The measurements are synthetic. This recording does not show AU/VST extraction, FFT from PCM, a DAW bridge, or a coaching API. The green “Logic Pro connected” badge comes from synthetic registration; Logic Pro is not running.",
+    "evidenceReviewedDate": "2026-09-08"
+  },
+  {
+    "id": "pazz",
+    "name": "PAZZ Marketplace",
+    "stage": "Private commercial platform",
+    "description": "A Mexican vehicle-leasing marketplace that brings discovery, qualification, and partner handoffs into one path.",
+    "engineeringSummary": "Shared domain rules and recoverable document handoffs keep operating decisions consistent.",
+    "demoFormat": "Sanitized engineering case study",
+    "demoHref": "/work/pazz/",
+    "proofLimit": "The private commercial platform is not shown.",
+    "evidenceReviewedDate": "2026-09-08"
   }
 ]
