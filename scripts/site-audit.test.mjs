@@ -766,13 +766,26 @@ test("wayIn contract: every product declares an honest, resolvable way in", asyn
     }
   }
 
-  // Exactly one product can be acted on from the public internet today.
+  // Two products can be acted on directly; four collect an address now that
+  // the contact proxy exists. FCC is deliberately not offered at all.
   const live = registry.filter((product) => product.wayIn.enabled);
   assert.deepEqual(
     live.map((product) => product.id).sort(),
-    ["intertitle", "pazz"],
-    "only Intertitle (App Store) and PAZZ (case study) have a working way in",
+    ["intertitle", "maestro", "mimo", "pazz", "season-room", "temper"],
+    "Intertitle and PAZZ link out; Maestro, Mimo, Season Room and Temper collect by form",
   );
+  for (const product of live) {
+    if (product.wayIn.kind === "notify" || product.wayIn.kind === "waitlist") {
+      assert.equal(
+        product.wayIn.href,
+        "https://wearelojik.com/api/contact",
+        `${product.id} collects an address, so it must post to the proxy`,
+      );
+      // The offer is live, but the reason it is a form and not a download
+      // still has to be stated.
+      assert(product.wayIn.note, `${product.id} must still say what it is offering`);
+    }
+  }
   const intertitle = registry.find((product) => product.id === "intertitle");
   assert.equal(intertitle.status, "On the App Store");
   assert.match(intertitle.wayIn.href, /^https:\/\/apps\.apple\.com\//);
@@ -901,6 +914,12 @@ test("workflow series: seven practices, each citing the artifact it came from", 
   );
 });
 
+// The site is static, so a collected address cannot reach the lead store
+// directly — it posts to the proxy on the LOJIK app, which holds the key.
+const CONTACT_PROXY = "https://wearelojik.com/api/contact";
+const THANKS_URL = "https://dgonzap30.github.io/thanks/";
+const FORM_KINDS = new Set(["notify", "waitlist"]);
+
 test("every product route renders its wayIn, and a disabled one offers no dead control", async () => {
   const registry = JSON.parse(
     await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
@@ -912,13 +931,35 @@ test("every product route renders its wayIn, and a disabled one offers no dead c
     const wayIn = project.wayIn;
 
     const match = html.match(
-      /<div class="stage-actions" data-way-in="([^"]+)"([^>]*)>([\s\S]*?)<\/div>/,
+      /<(div|form) class="stage-actions" data-way-in="([^"]+)"([^>]*)>([\s\S]*?)<\/\1>/,
     );
     assert(match, `${routePath} does not render a wayIn block`);
-    assert.equal(match[1], wayIn.kind, `${routePath} renders the wrong wayIn kind`);
-    const inner = match[3];
+    assert.equal(match[2], wayIn.kind, `${routePath} renders the wrong wayIn kind`);
+    const [, element, , attributes, inner] = match;
 
-    if (wayIn.enabled) {
+    if (wayIn.enabled && FORM_KINDS.has(wayIn.kind)) {
+      // A collected address has to reach the lead store, so the form posts to
+      // the proxy and names where the visitor lands. Both are load-bearing:
+      // without the redirect a no-JS submit strands them on an API response.
+      assert.equal(element, "form", `${routePath} must collect ${wayIn.kind} by form`);
+      assert.match(attributes, /method="post"/);
+      assert(
+        attributes.includes(`action="${CONTACT_PROXY}"`),
+        `${routePath} form does not post to the contact proxy`,
+      );
+      assert.equal(wayIn.href, CONTACT_PROXY, `${routePath} wayIn.href must be the proxy`);
+      assert(
+        inner.includes(`name="redirect" value="${THANKS_URL}"`),
+        `${routePath} form does not carry an absolute redirect to the thanks page`,
+      );
+      // The schema rejects a message under ten characters, so a no-JS submit
+      // with only name and email would fail validation without this.
+      assert.match(inner, /name="message" value="[^"]{10,}"/);
+      assert.match(inner, /name="website"/, `${routePath} form has no honeypot`);
+      assert.match(inner, /name="name"[^>]*required/);
+      assert.match(inner, /name="email"[^>]*required/);
+      assert(!/<script/.test(inner), `${routePath} form must work without JavaScript`);
+    } else if (wayIn.enabled) {
       assert(
         inner.includes(`href="${wayIn.href}"`),
         `${routePath} does not render its wayIn href`,
@@ -942,5 +983,13 @@ test("every product route renders its wayIn, and a disabled one offers no dead c
   }
 
   const enabled = registry.filter((project) => project.wayIn.enabled);
-  assert.equal(enabled.length, 2, "exactly two products are actionable today");
+  assert.deepEqual(
+    enabled.map((project) => project.id).sort(),
+    ["intertitle", "maestro", "mimo", "pazz", "season-room", "temper"],
+    "six products are actionable: two by link, four by form",
+  );
+  // FCC is deliberately not offered, so it stays a plain statement.
+  const fcc = registry.find((project) => project.id === "fcc");
+  assert.equal(fcc.wayIn.kind, "none");
+  assert.equal(fcc.wayIn.enabled, false);
 });

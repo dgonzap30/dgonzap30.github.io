@@ -83,7 +83,8 @@
     "wayIn": {
       "kind": "notify",
       "label": "Ask about the private beta",
-      "enabled": false,
+      "href": "https://wearelojik.com/api/contact",
+      "enabled": true,
       "note": "Private beta; access is granted directly, there is no public build."
     }
   },
@@ -245,7 +246,8 @@
     "wayIn": {
       "kind": "notify",
       "label": "Tell me when the TestFlight opens",
-      "enabled": false,
+      "href": "https://wearelojik.com/api/contact",
+      "enabled": true,
       "note": "Public TestFlight is the next step; no public link exists yet."
     }
   },
@@ -335,7 +337,8 @@
     "wayIn": {
       "kind": "notify",
       "label": "Tell me when Mimo opens up",
-      "enabled": false,
+      "href": "https://wearelojik.com/api/contact",
+      "enabled": true,
       "note": "In development; no public build exists yet."
     }
   },
@@ -657,7 +660,8 @@
     "wayIn": {
       "kind": "waitlist",
       "label": "Join the Season Room waitlist",
-      "enabled": false,
+      "href": "https://wearelojik.com/api/contact",
+      "enabled": true,
       "note": "Local prototype; the waitlist opens with the season pass."
     }
   },

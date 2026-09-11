@@ -8,6 +8,7 @@ const REQUIRED_PAGES = [
   'work/pazz/index.html',
   'work/lojik/index.html',
   'projects/index.html',
+  'thanks/index.html',
   'workflow/index.html',
   'workflow/operating-manual/index.html',
   'workflow/worktrees/index.html',

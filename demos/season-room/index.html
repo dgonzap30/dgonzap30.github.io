@@ -60,9 +60,21 @@
         </div>
         <span class="stage-status">Local prototype</span>
       </header>
-      <div class="stage-actions" data-way-in="waitlist" data-enabled="false">
+      <form class="stage-actions" data-way-in="waitlist" method="post" action="https://wearelojik.com/api/contact">
         <p class="stage-scope"><strong>Join the Season Room waitlist</strong> — Local prototype; the waitlist opens with the season pass.</p>
-      </div>
+        <input type="hidden" name="intent" value="hi">
+        <input type="hidden" name="redirect" value="https://dgonzap30.github.io/thanks/">
+        <input type="hidden" name="message" value="Please add me to the Season Room waitlist for the season pass.">
+        <p hidden>
+          <label for="season-room-website">Leave this field empty</label>
+          <input id="season-room-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </p>
+        <label for="season-room-name">Name</label>
+        <input id="season-room-name" name="name" type="text" required maxlength="120" autocomplete="name">
+        <label for="season-room-email">Email</label>
+        <input id="season-room-email" name="email" type="email" required maxlength="200" autocomplete="email">
+        <button class="stage-open-full" type="submit">Join the Season Room waitlist</button>
+      </form>
       <div class="stage-viewer">
         <div class="stage-chapter" id="chapter-review" data-chapter="review" data-layout="desktop" tabindex="-1">
           <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>

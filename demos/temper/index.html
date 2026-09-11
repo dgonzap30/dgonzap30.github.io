@@ -60,9 +60,21 @@
         </div>
         <span class="stage-status">In development</span>
       </header>
-      <div class="stage-actions" data-way-in="notify" data-enabled="false">
+      <form class="stage-actions" data-way-in="notify" method="post" action="https://wearelojik.com/api/contact">
         <p class="stage-scope"><strong>Tell me when the TestFlight opens</strong> — Public TestFlight is the next step; no public link exists yet.</p>
-      </div>
+        <input type="hidden" name="intent" value="hi">
+        <input type="hidden" name="redirect" value="https://dgonzap30.github.io/thanks/">
+        <input type="hidden" name="message" value="Please let me know when the Temper TestFlight opens.">
+        <p hidden>
+          <label for="temper-website">Leave this field empty</label>
+          <input id="temper-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </p>
+        <label for="temper-name">Name</label>
+        <input id="temper-name" name="name" type="text" required maxlength="120" autocomplete="name">
+        <label for="temper-email">Email</label>
+        <input id="temper-email" name="email" type="email" required maxlength="200" autocomplete="email">
+        <button class="stage-open-full" type="submit">Tell me when the TestFlight opens</button>
+      </form>
       <div class="stage-viewer">
         <div class="stage-chapter" id="chapter-today-decision" data-chapter="today-decision" data-layout="portrait" tabindex="-1">
           <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>

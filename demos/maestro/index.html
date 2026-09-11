@@ -60,9 +60,21 @@
         </div>
         <span class="stage-status">Private beta</span>
       </header>
-      <div class="stage-actions" data-way-in="notify" data-enabled="false">
+      <form class="stage-actions" data-way-in="notify" method="post" action="https://wearelojik.com/api/contact">
         <p class="stage-scope"><strong>Ask about the private beta</strong> — Private beta; access is granted directly, there is no public build.</p>
-      </div>
+        <input type="hidden" name="intent" value="hi">
+        <input type="hidden" name="redirect" value="https://dgonzap30.github.io/thanks/">
+        <input type="hidden" name="message" value="Please tell me more about the Maestro private beta.">
+        <p hidden>
+          <label for="maestro-website">Leave this field empty</label>
+          <input id="maestro-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </p>
+        <label for="maestro-name">Name</label>
+        <input id="maestro-name" name="name" type="text" required maxlength="120" autocomplete="name">
+        <label for="maestro-email">Email</label>
+        <input id="maestro-email" name="email" type="email" required maxlength="200" autocomplete="email">
+        <button class="stage-open-full" type="submit">Ask about the private beta</button>
+      </form>
       <div class="stage-viewer">
         <div class="stage-chapter" id="chapter-session" data-chapter="session" data-layout="desktop" tabindex="-1">
           <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
