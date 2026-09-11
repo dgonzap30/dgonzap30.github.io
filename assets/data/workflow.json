@@ -1,0 +1,90 @@
+[
+  {
+    "slug": "worktrees",
+    "title": "Worktrees",
+    "headline": "One checkout per branch, in one predictable place.",
+    "description": "Why every branch gets its own working tree, where they are allowed to live, and the two-line helper that enforces it.",
+    "lede": "Agents and people edit the same repositories at the same time. A single checkout makes that a queue; a worktree per branch makes it parallel, and a fixed location makes it findable.",
+    "artifact": "~/.claude/rules/project-inventory.md",
+    "shape": "A rule file and a git alias",
+    "dateModified": "2026-09-11",
+    "sections": [
+      {
+        "id": "problem",
+        "heading": "A shared checkout serialises everything.",
+        "body": [
+          "With one working tree, two pieces of work in the same repository cannot proceed at once. Switching branches disturbs whatever else is mid-edit, and uncommitted work becomes a reason not to start the next thing.",
+          "That cost is invisible with one person and one task. It becomes the dominant cost the moment several sessions are working across the same repositories."
+        ],
+        "note": {
+          "label": "Failure mode",
+          "text": "The tell is a stash used as a scheduling primitive."
+        }
+      },
+      {
+        "id": "rule",
+        "heading": "Worktrees live in exactly two places.",
+        "body": [
+          "The rule is written down rather than remembered, in <code>~/.claude/rules/project-inventory.md</code>, and it is short enough to quote in full:"
+        ],
+        "points": [
+          "Manual worktrees go in <code>~/dev/.worktrees/&lt;repo&gt;/&lt;branch-slug&gt;/</code> and nowhere else.",
+          "Harness-created worktrees go in <code>&lt;repo&gt;/.claude/worktrees/</code>.",
+          "Never <code>~/dev/&lt;repo&gt;-&lt;branch&gt;</code>, and never a new <code>*-worktrees/</code> directory."
+        ],
+        "note": {
+          "label": "Why a fixed path",
+          "text": "A predictable location is what makes an automated inventory possible at all."
+        }
+      },
+      {
+        "id": "helper",
+        "heading": "The rule is a git alias, not a habit.",
+        "body": [
+          "<code>git wt &lt;branch&gt;</code>, run from inside a repository, derives the repository name from the toplevel, slugifies the branch by replacing slashes with hyphens, creates the parent directory, and adds the worktree at the sanctioned path. It prints where it put it.",
+          "Nothing about the rule depends on anyone recalling it under pressure, which is the only way a layout convention survives contact with a busy week."
+        ],
+        "note": {
+          "label": "Verify",
+          "text": "<code>git config --get alias.wt</code>"
+        }
+      },
+      {
+        "id": "scale",
+        "heading": "At ninety-nine worktrees the layout is the feature.",
+        "body": [
+          "There are currently 99 worktrees under <code>~/dev/.worktrees/</code>, across repositories including an editor, a session catalog, a film app, a dotfiles kit and a media pipeline.",
+          "None of them are lost, because there is exactly one place they can be. Finding every branch in flight is a directory listing, not an investigation."
+        ],
+        "note": {
+          "label": "Count",
+          "text": "<code>find ~/dev/.worktrees -maxdepth 2 -mindepth 2 -type d | wc -l</code> → 99 on 2026-09-11."
+        }
+      },
+      {
+        "id": "consolidation",
+        "heading": "Consolidation is part of the rule.",
+        "body": [
+          "Three competing worktree roots existed before this rule and were folded into one on 2026-08-28. The move is recorded in <code>~/dev/MOVES.md</code> rather than discovered later by a broken symlink.",
+          "A layout rule written after the sprawl is worth less than the migration that removes the sprawl. Both are required."
+        ],
+        "note": {
+          "label": "Recovery",
+          "text": "Every relocation is logged, newest first, so a stale path in an old config resolves in one lookup."
+        }
+      },
+      {
+        "id": "cleanup",
+        "heading": "Cheap to make, therefore cheap to discard.",
+        "body": [
+          "A worktree that costs one command to create is one you delete without ceremony when the branch merges. The discipline that matters is not creating fewer of them; it is never leaving one in a place the inventory cannot see.",
+          "Unregistered directories are surfaced daily rather than found by accident, which keeps the count honest in both directions."
+        ],
+        "note": {
+          "label": "Boundary",
+          "text": "This page describes a personal layout policy. Nothing here is a claim about anyone else's repositories."
+        }
+      }
+    ]
+  }
+]
