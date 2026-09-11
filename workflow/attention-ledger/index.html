@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The attention ledger — Diego Gonzalez Zapiain</title>
+  <meta name="description" content="One file defines every metric, three reporters read it, and the hardest work was removing the automation from its own numbers.">
+  <meta name="theme-color" content="#171c23">
+  <link rel="canonical" href="https://dgonzap30.github.io/workflow/attention-ledger/">
+  <meta property="og:title" content="The attention ledger">
+  <meta property="og:description" content="One file defines every metric, three reporters read it, and the hardest work was removing the automation from its own numbers.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dgonzap30.github.io/workflow/attention-ledger/">
+  <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The attention ledger">
+  <meta name="twitter:description" content="One file defines every metric, three reporters read it, and the hardest work was removing the automation from its own numbers.">
+  <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+  <script src="/assets/js/site.js" defer></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Where the time actually went, measured honestly enough to hurt.",
+      "url": "https://dgonzap30.github.io/workflow/attention-ledger/",
+      "dateModified": "2026-09-11",
+      "author": {
+        "@type": "Person",
+        "name": "Diego Gonzalez Zapiain"
+      },
+      "about": "The attention ledger"
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav shell" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="Diego Gonzalez Zapiain, home">
+        <img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="">
+        <span>Diego Gonzalez Zapiain</span>
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="/workflow/">Workflow</a></li>
+        <li><a href="/projects/">All products</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a class="nav-external" href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <header class="case-hero shell">
+      <div class="case-hero-main">
+        <p class="kicker">Workflow</p>
+        <h1>Where the time actually went, measured honestly enough to hurt.</h1>
+        <p class="lede">A portfolio of projects generates a comforting amount of activity. Counting it naively produces a number that feels like progress, and the main thing that number measures is how much of the work was done by a robot on a timer.</p>
+      </div>
+      <aside class="case-hero-aside" aria-label="Practice metadata">
+        <p class="evidence-tag">Derived from a working artifact</p>
+        <ul class="case-meta">
+          <li><span>Artifact</span><strong>~/dev/METRICS.md</strong></li>
+          <li><span>Shape</span><strong>A definitions file with a machine-readable block, plus three reporters</strong></li>
+          <li><span>Last verified</span><strong>2026-09-11</strong></li>
+        </ul>
+      </aside>
+    </header>
+
+    <section class="case-section shell" id="definitions">
+      <p class="case-section-index">01</p>
+      <div class="case-section-main">
+        <h2>Definitions live in one file, before any reporter.</h2>
+        <p>Windows, signals and filters are declared once, in a fenced block a program can read: what counts as active, how far back to look, which authors to exclude, where the project mapping lives.</p>
+        <p>Every reporter reads that file. Each falls back to its own prior default when a definition is missing and prints a warning naming the key, so an undefined metric is visible rather than silently assumed.</p>
+        <ul class="decision-list">
+          <li>Active window: 21 days.</li>
+          <li>Bot commits excluded by default.</li>
+          <li>A missing definition produces a warning per key, never a silent default.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Ordering</strong>A metric is defined before it is reported, not after someone dislikes the number.</aside>
+    </section>
+
+    <section class="case-section shell" id="botfilter">
+      <p class="case-section-index">02</p>
+      <div class="case-section-main">
+        <h2>Most of the activity was a daemon.</h2>
+        <p>A nightly job committed to one repository on a schedule. Counted naively it read as the most active project by a wide margin — a thirty-day window of 582 commits, of which 574 were the daemon's own.</p>
+        <p>Filtering by author identity fixed that case. It did not fix the general one, and the general one is more interesting.</p>
+      </div>
+      <aside class="case-note"><strong>Scale of the error</strong>582 commits in thirty days; 8 of them were human.</aside>
+    </section>
+
+    <section class="case-section shell" id="rejected">
+      <p class="case-section-index">03</p>
+      <div class="case-section-main">
+        <h2>The obvious fix was wrong, and was rejected.</h2>
+        <p>A second project's commits were all authored under a human name, but most carried an assistant co-author trailer. Filtering on that trailer produced the right answer for that project and a badly wrong one elsewhere: a repository with a full day of real work and a passing test suite dropped to zero, because its single commit was co-authored too.</p>
+        <p>Assistance is not automation. A trailer cannot tell an unattended job apart from a person working with a tool, and treating them the same produces a lie in the opposite direction. The filter was implemented, measured, and left switched off rather than shipped.</p>
+      </div>
+      <aside class="case-note"><strong>Principle</strong>A filter that produces a flattering number in one place and a false zero in another is not a filter.</aside>
+    </section>
+
+    <section class="case-section shell" id="source">
+      <p class="case-section-index">04</p>
+      <div class="case-section-main">
+        <h2>The fix was to emit the signal at the source.</h2>
+        <p>Rather than infer intent from a message after the fact, the automation now declares itself: a commit hook stamps a marker only when a job runs unattended. Interactive work carries no marker, so nothing has to be guessed from a trailer.</p>
+        <p>Pattern matching after the fact was replaced by a declaration at the moment of the commit — the only point where the answer is actually known.</p>
+      </div>
+      <aside class="case-note"><strong>Resolved</strong>2026-09-02, recorded in METRICS.md with the reasoning that rejected the earlier approach.</aside>
+    </section>
+
+    <section class="case-section shell" id="purpose">
+      <p class="case-section-index">05</p>
+      <div class="case-section-main">
+        <h2>The ledger exists to make a choice, not a chart.</h2>
+        <p>The output is not a dashboard. It answers which ventures received attention this period, which received almost none, and where work is happening that no plan accounts for — and it is only useful if it can deliver bad news.</p>
+        <p>A measurement system that cannot report that a favourite project got no attention this month is decoration.</p>
+      </div>
+      <aside class="case-note"><strong>Boundary</strong>Commit and session signals measure activity, not value. Nothing here claims a project is worth its hours.</aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <p class="kicker">Continue the atlas</p>
+      <h2 class="footer-title">Accountability is a systems property.</h2>
+      <div class="contact-paths">
+        <a class="contact-path" href="/workflow/"><span>Every practice in this series</span><strong>The workflow index</strong></a>
+        <a class="contact-path" href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer"><span>Recurring business workflow · Systems delivery</span><strong>Start a LOJIK review</strong></a>
+      </div>
+      <div class="footer-meta"><span>Diego Gonzalez Zapiain</span><span>LOJIK Labs · Co-Founder &amp; Technical Lead</span></div>
+    </div>
+  </footer>
+</body>
+</html>

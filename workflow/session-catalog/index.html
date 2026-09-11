@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The session catalog — Diego Gonzalez Zapiain</title>
+  <meta name="description" content="A local Swift daemon that indexes agent transcripts into a read-only catalog and serves six search tools back to the agents that wrote them.">
+  <meta name="theme-color" content="#171c23">
+  <link rel="canonical" href="https://dgonzap30.github.io/workflow/session-catalog/">
+  <meta property="og:title" content="The session catalog">
+  <meta property="og:description" content="A local Swift daemon that indexes agent transcripts into a read-only catalog and serves six search tools back to the agents that wrote them.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dgonzap30.github.io/workflow/session-catalog/">
+  <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The session catalog">
+  <meta name="twitter:description" content="A local Swift daemon that indexes agent transcripts into a read-only catalog and serves six search tools back to the agents that wrote them.">
+  <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+  <script src="/assets/js/site.js" defer></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Yesterday's sessions, searchable, without touching the originals.",
+      "url": "https://dgonzap30.github.io/workflow/session-catalog/",
+      "dateModified": "2026-09-11",
+      "author": {
+        "@type": "Person",
+        "name": "Diego Gonzalez Zapiain"
+      },
+      "about": "The session catalog"
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav shell" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="Diego Gonzalez Zapiain, home">
+        <img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="">
+        <span>Diego Gonzalez Zapiain</span>
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="/workflow/">Workflow</a></li>
+        <li><a href="/projects/">All products</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a class="nav-external" href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <header class="case-hero shell">
+      <div class="case-hero-main">
+        <p class="kicker">Workflow</p>
+        <h1>Yesterday's sessions, searchable, without touching the originals.</h1>
+        <p class="lede">Agent sessions produce the most detailed record of how work actually happened, and then that record becomes unreadable — thousands of transcripts, no index, no way to ask what was decided and why.</p>
+      </div>
+      <aside class="case-hero-aside" aria-label="Practice metadata">
+        <p class="evidence-tag">Derived from a working artifact</p>
+        <ul class="case-meta">
+          <li><span>Artifact</span><strong>~/dev/lodestar/tools/session-catalog</strong></li>
+          <li><span>Shape</span><strong>A Swift package: four executables over SQLite</strong></li>
+          <li><span>Last verified</span><strong>2026-09-11</strong></li>
+        </ul>
+      </aside>
+    </header>
+
+    <section class="case-section shell" id="problem">
+      <p class="case-section-index">01</p>
+      <div class="case-section-main">
+        <h2>The record exists and cannot be read.</h2>
+        <p>Two agent runtimes write transcripts continuously as newline-delimited JSON. Every decision, command and correction is in there. None of it is searchable, so in practice the same ground gets re-explored a week later by a session with no memory of the first attempt.</p>
+        <p>The gap is not storage. It is that nothing turns an append-only log into something you can ask a question of.</p>
+      </div>
+      <aside class="case-note"><strong>Failure mode</strong>Re-deriving a conclusion that a transcript already settled.</aside>
+    </section>
+
+    <section class="case-section shell" id="shape">
+      <p class="case-section-index">02</p>
+      <div class="case-section-main">
+        <h2>Four executables, one derived database.</h2>
+        <p>The package builds a command-line tool, a background daemon, a server exposing the catalog to agents, and a hook that injects relevant prior sessions when a new one starts. They share one derived SQLite database.</p>
+        <p>Nothing is clever. The work is entirely in the boundary: reading a format you do not own, on a schedule, without ever becoming a second source of truth for it.</p>
+        <ul class="decision-list">
+          <li>The runtimes stay the systems of record; the catalog opens their files read-only.</li>
+          <li>All derived state lives in the catalog's own database, outside both runtimes' directories.</li>
+          <li>Original transcripts are never renamed, rewritten or deleted.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Verify</strong><code>grep executableTarget Package.swift</code></aside>
+    </section>
+
+    <section class="case-section shell" id="tools">
+      <p class="case-section-index">03</p>
+      <div class="case-section-main">
+        <h2>Six read-only tools, offered to both runtimes.</h2>
+        <p>The catalog gives agents the same six operations: full-text search, fetch one session, find related sessions, get context for the current directory, report coverage, and report its own health.</p>
+        <p>Every one of them reads. There is no write path from an agent into the catalog, which means a confused session cannot corrupt the record of what earlier sessions did.</p>
+        <ul class="decision-list">
+          <li>Context injection is bounded by a token budget, so a helpful index cannot crowd out the actual task.</li>
+          <li>A health tool exists so a silently broken catalog reports as broken rather than as empty.</li>
+          <li>Returned records are treated as data, never as instructions.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Control model</strong>Read-only by construction, not by convention.</aside>
+    </section>
+
+    <section class="case-section shell" id="sanitizer">
+      <p class="case-section-index">04</p>
+      <div class="case-section-main">
+        <h2>Everything is scrubbed before it is stored.</h2>
+        <p>Transcripts contain whatever passed through a terminal, which sooner or later includes a credential. So text is sanitized before insertion: authorization headers, private keys, credentialed database URLs and high-confidence provider token formats are redacted on the way in.</p>
+        <p>The sanitizer has its own test file holding deliberately fake keys of each shape, whose entire job is to fail if redaction stops working.</p>
+        <ul class="decision-list">
+          <li>Redaction happens before the database write, not at display time.</li>
+          <li>The test fixtures are synthetic by design — a secret scanner run against this repository flags them, which is the test doing its job.</li>
+          <li>A scanner that flags a redaction test is correct. Reading the value to check is not.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Boundary</strong>A local index of local transcripts. Nothing leaves the machine.</aside>
+    </section>
+
+    <section class="case-section shell" id="honesty">
+      <p class="case-section-index">05</p>
+      <div class="case-section-main">
+        <h2>Derived metadata is not the transcript.</h2>
+        <p>The catalog is deliberately described as derived: bounded metadata, useful for discovery, never authoritative. When it disagrees with a runtime's own state, the runtime wins.</p>
+        <p>Saying so in the tool's own description matters more than it sounds. An index that quietly presents itself as the source of truth is how a stale summary becomes a decision.</p>
+      </div>
+      <aside class="case-note"><strong>Precedence</strong>Native provider state is authoritative; the catalog is for finding things.</aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <p class="kicker">Continue the atlas</p>
+      <h2 class="footer-title">Accountability is a systems property.</h2>
+      <div class="contact-paths">
+        <a class="contact-path" href="/workflow/"><span>Every practice in this series</span><strong>The workflow index</strong></a>
+        <a class="contact-path" href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer"><span>Recurring business workflow · Systems delivery</span><strong>Start a LOJIK review</strong></a>
+      </div>
+      <div class="footer-meta"><span>Diego Gonzalez Zapiain</span><span>LOJIK Labs · Co-Founder &amp; Technical Lead</span></div>
+    </div>
+  </footer>
+</body>
+</html>

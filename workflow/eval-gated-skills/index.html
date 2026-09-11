@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Eval-gated skills — Diego Gonzalez Zapiain</title>
+  <meta name="description" content="A loop that edits an agent skill, measures the change against a held-out eval set, and refuses to promote it without a statistical margin and an independent verdict.">
+  <meta name="theme-color" content="#171c23">
+  <link rel="canonical" href="https://dgonzap30.github.io/workflow/eval-gated-skills/">
+  <meta property="og:title" content="Eval-gated skills">
+  <meta property="og:description" content="A loop that edits an agent skill, measures the change against a held-out eval set, and refuses to promote it without a statistical margin and an independent verdict.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dgonzap30.github.io/workflow/eval-gated-skills/">
+  <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Eval-gated skills">
+  <meta name="twitter:description" content="A loop that edits an agent skill, measures the change against a held-out eval set, and refuses to promote it without a statistical margin and an independent verdict.">
+  <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+  <script src="/assets/js/site.js" defer></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "A prompt change ships only if a held-out set says it helped.",
+      "url": "https://dgonzap30.github.io/workflow/eval-gated-skills/",
+      "dateModified": "2026-09-11",
+      "author": {
+        "@type": "Person",
+        "name": "Diego Gonzalez Zapiain"
+      },
+      "about": "Eval-gated skills"
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav shell" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="Diego Gonzalez Zapiain, home">
+        <img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="">
+        <span>Diego Gonzalez Zapiain</span>
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="/workflow/">Workflow</a></li>
+        <li><a href="/projects/">All products</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a class="nav-external" href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <header class="case-hero shell">
+      <div class="case-hero-main">
+        <p class="kicker">Workflow</p>
+        <h1>A prompt change ships only if a held-out set says it helped.</h1>
+        <p class="lede">Agent instructions are edited by feel. Someone reads a bad output, rewrites a paragraph, and the change ships because it sounds better. Nobody measures whether it helped, and nobody notices when it hurt.</p>
+      </div>
+      <aside class="case-hero-aside" aria-label="Practice metadata">
+        <p class="evidence-tag">Derived from a working artifact</p>
+        <ul class="case-meta">
+          <li><span>Artifact</span><strong>~/dev/_tools/skillopt</strong></li>
+          <li><span>Shape</span><strong>A cycle workflow with a fail-closed precheck</strong></li>
+          <li><span>Last verified</span><strong>2026-09-11</strong></li>
+        </ul>
+      </aside>
+    </header>
+
+    <section class="case-section shell" id="problem">
+      <p class="case-section-index">01</p>
+      <div class="case-section-main">
+        <h2>Prompt edits are unmeasured by default.</h2>
+        <p>A skill is a document that changes how an agent behaves. Editing one is a behavioural change to production, with none of the machinery a code change would get: no test, no baseline, no way to tell improvement from a change of mood.</p>
+        <p>Worse, the evidence that motivated the edit is usually a single bad output — the smallest sample size there is.</p>
+      </div>
+      <aside class="case-note"><strong>Failure mode</strong>Rewriting an instruction because of one example, and never learning it made things worse.</aside>
+    </section>
+
+    <section class="case-section shell" id="loop">
+      <p class="case-section-index">02</p>
+      <div class="case-section-main">
+        <h2>Current document against one candidate edit.</h2>
+        <p>Each cycle runs the live document and a one-edit candidate against a held-out eval set, measures the difference in pass rate, and gates promotion on the difference exceeding a multiple of the standard deviation — plus a minimum-runs check that fails closed.</p>
+        <p>One edit at a time is the part that makes it interpretable. A rewrite that changes six things tells you nothing about which of the six mattered.</p>
+        <ul class="decision-list">
+          <li>The eval set is held out, so the loop cannot optimise against its own feedback.</li>
+          <li>A margin smaller than the noise is not an improvement, and is not promoted.</li>
+          <li>Too few runs means no verdict, rather than a verdict on thin evidence.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Gate</strong>Statistical margin, not a judgement that the new wording reads better.</aside>
+    </section>
+
+    <section class="case-section shell" id="killswitch">
+      <p class="case-section-index">03</p>
+      <div class="case-section-main">
+        <h2>The precheck fails closed.</h2>
+        <p>Before any cycle runs, a precheck decides whether it may. Exit zero proceeds; a global off switch exits ten; a paused individual skill exits eleven. Any uncertainty at all — missing file, unreadable configuration, unknown name — exits non-zero.</p>
+        <p>That inversion is the whole safety property. A self-modifying loop that treats an unreadable configuration as permission to continue is a loop that runs exactly when you have lost the ability to control it.</p>
+      </div>
+      <aside class="case-note"><strong>Verify</strong><code>bin/skillopt-precheck.sh</code> — exit 0 proceed, 10 globally off, 11 skill paused.</aside>
+    </section>
+
+    <section class="case-section shell" id="unarmed">
+      <p class="case-section-index">04</p>
+      <div class="case-section-main">
+        <h2>It has never been allowed to apply a change.</h2>
+        <p>The loop runs in dry-run only. It writes a preview of the diff it would make and commits nothing. Arming it is a separate, deliberate, human step, and when armed a promotion will require both the metric gate and an independent reviewer's verdict.</p>
+        <p>This is the honest status and it is the interesting part. A self-optimising loop is easy to build and hard to trust, and the gap between those two is where it has stayed.</p>
+        <ul class="decision-list">
+          <li>Dry runs write a preview diff; nothing is committed.</li>
+          <li>Arming is a human action gated on a written checklist.</li>
+          <li>Even armed, the metric gate alone would not be sufficient.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Status</strong>Built, validated in dry-run, deliberately unarmed.</aside>
+    </section>
+
+    <section class="case-section shell" id="scope">
+      <p class="case-section-index">05</p>
+      <div class="case-section-main">
+        <h2>What it is not allowed to touch.</h2>
+        <p>The scope boundary is written into the tool: improvements inside a verifiable-reward boundary only. It may fix a flaw in how a skill is implemented. It may not touch global policy, architectural decisions, product direction, or what a skill is for.</p>
+        <p>Those are decisions with no eval set. Handing them to a loop that optimises a number is how you get a number that improves while the thing it measures gets worse.</p>
+      </div>
+      <aside class="case-note"><strong>Boundary</strong>Optimise within a defined target. Never let the loop choose the target.</aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <p class="kicker">Continue the atlas</p>
+      <h2 class="footer-title">Accountability is a systems property.</h2>
+      <div class="contact-paths">
+        <a class="contact-path" href="/workflow/"><span>Every practice in this series</span><strong>The workflow index</strong></a>
+        <a class="contact-path" href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer"><span>Recurring business workflow · Systems delivery</span><strong>Start a LOJIK review</strong></a>
+      </div>
+      <div class="footer-meta"><span>Diego Gonzalez Zapiain</span><span>LOJIK Labs · Co-Founder &amp; Technical Lead</span></div>
+    </div>
+  </footer>
+</body>
+</html>

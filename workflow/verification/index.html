@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Verification — Diego Gonzalez Zapiain</title>
+  <meta name="description" content="An adversarial review layer that attacks findings on four fixed lenses and fails closed when it cannot reach a verdict.">
+  <meta name="theme-color" content="#171c23">
+  <link rel="canonical" href="https://dgonzap30.github.io/workflow/verification/">
+  <meta property="og:title" content="Verification">
+  <meta property="og:description" content="An adversarial review layer that attacks findings on four fixed lenses and fails closed when it cannot reach a verdict.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dgonzap30.github.io/workflow/verification/">
+  <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Verification">
+  <meta name="twitter:description" content="An adversarial review layer that attacks findings on four fixed lenses and fails closed when it cannot reach a verdict.">
+  <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+  <script src="/assets/js/site.js" defer></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Nobody reviews their own work.",
+      "url": "https://dgonzap30.github.io/workflow/verification/",
+      "dateModified": "2026-09-11",
+      "author": {
+        "@type": "Person",
+        "name": "Diego Gonzalez Zapiain"
+      },
+      "about": "Verification"
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav shell" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="Diego Gonzalez Zapiain, home">
+        <img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="">
+        <span>Diego Gonzalez Zapiain</span>
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="/workflow/">Workflow</a></li>
+        <li><a href="/projects/">All products</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a class="nav-external" href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <header class="case-hero shell">
+      <div class="case-hero-main">
+        <p class="kicker">Workflow</p>
+        <h1>Nobody reviews their own work.</h1>
+        <p class="lede">An agent asked whether its work is correct will tell you that it is. Not dishonestly — it is the same context, reasoning the same way, reaching the same conclusion. Independent review has to actually be independent.</p>
+      </div>
+      <aside class="case-hero-aside" aria-label="Practice metadata">
+        <p class="evidence-tag">Derived from a working artifact</p>
+        <ul class="case-meta">
+          <li><span>Artifact</span><strong>~/.claude/agents/verify-depth.md and ~/.claude/workflows/fan-out-verify.js</strong></li>
+          <li><span>Shape</span><strong>An adversarial reviewer plus a refutation panel</strong></li>
+          <li><span>Last verified</span><strong>2026-09-11</strong></li>
+        </ul>
+      </aside>
+    </header>
+
+    <section class="case-section shell" id="problem">
+      <p class="case-section-index">01</p>
+      <div class="case-section-main">
+        <h2>Self-review confirms, it does not check.</h2>
+        <p>The failure is structural, not moral. The context that produced a conclusion is the worst possible context for testing it: every assumption that generated the error is still loaded, still feels obvious, and is never the thing questioned.</p>
+        <p>So correctness-critical work gets a reviewer with a fresh context and an explicit instruction to find the flaw rather than to bless the result.</p>
+      </div>
+      <aside class="case-note"><strong>Scope</strong>Reserved for work where being wrong is expensive: authorization, money, concurrency, data integrity, partial failure.</aside>
+    </section>
+
+    <section class="case-section shell" id="lenses">
+      <p class="case-section-index">02</p>
+      <div class="case-section-main">
+        <h2>Four fixed ways to attack a finding.</h2>
+        <p>A claimed defect is refuted on four named lenses rather than by general skepticism, because general skepticism converges on agreement.</p>
+        <ul class="decision-list">
+          <li><strong>Citation</strong> — attack the evidence itself. Does the cited line say what the finding claims?</li>
+          <li><strong>Reproduction</strong> — construct the inputs that actually trigger it. If none exist, it is not a defect.</li>
+          <li><strong>Guarded</strong> — check whether something upstream already prevents it.</li>
+          <li><strong>Stakes</strong> — establish whether the consequence is real.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Why fixed lenses</strong>Named angles of attack produce disagreement. "Look it over" produces agreement.</aside>
+    </section>
+
+    <section class="case-section shell" id="failclosed">
+      <p class="case-section-index">03</p>
+      <div class="case-section-main">
+        <h2>An unfinished review is not a pass.</h2>
+        <p>A finding needs a quorum of completed votes before it counts as verified at all. If too few votes return, the result is recorded as unresolved rather than quietly dropped.</p>
+        <p>When the adjudicating reviewer fails outright, that is recorded too, and the finding is marked as panel-only. The one outcome the design refuses is an unfinished check that reads as a clean bill of health.</p>
+        <ul class="decision-list">
+          <li>Below quorum, the verdict is abstain, not pass.</li>
+          <li>A crashed adjudicator is logged as a failure, never as a confirmation.</li>
+          <li>Review has a hard cost ceiling, with budget reserved for high-severity findings so cheap dimensions cannot starve expensive ones.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Principle</strong>Silence is not evidence. An unfinished check reports as unfinished.</aside>
+    </section>
+
+    <section class="case-section shell" id="tiers">
+      <p class="case-section-index">04</p>
+      <div class="case-section-main">
+        <h2>Review is priced to the stakes.</h2>
+        <p>Cheap reviewers do the wide pass; the expensive adjudicator is reserved for work where correctness is consequential, and skipped for configuration and documentation unless a finding is severe.</p>
+        <p>Reviewing everything at maximum depth costs enough that it stops happening. Tiering is what keeps the expensive pass available for the cases that need it.</p>
+      </div>
+      <aside class="case-note"><strong>Boundary</strong>Passing review means nobody found the flaw. It is not proof there is none.</aside>
+    </section>
+
+    <section class="case-section shell" id="practice">
+      <p class="case-section-index">05</p>
+      <div class="case-section-main">
+        <h2>The rule that makes it work.</h2>
+        <p>The mechanism is worth less than the habit: the author does not sign off. In practice that means the session that wrote the code orders the review and does not get a vote in it.</p>
+        <p>Every number on this site follows the same rule. Where a count is claimed, the command that produces it is printed next to it, so the claim is checkable by someone who does not trust the claimer.</p>
+      </div>
+      <aside class="case-note"><strong>Applied here</strong>Each page in this series names the artifact it was derived from.</aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <p class="kicker">Continue the atlas</p>
+      <h2 class="footer-title">Accountability is a systems property.</h2>
+      <div class="contact-paths">
+        <a class="contact-path" href="/workflow/"><span>Every practice in this series</span><strong>The workflow index</strong></a>
+        <a class="contact-path" href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer"><span>Recurring business workflow · Systems delivery</span><strong>Start a LOJIK review</strong></a>
+      </div>
+      <div class="footer-meta"><span>Diego Gonzalez Zapiain</span><span>LOJIK Labs · Co-Founder &amp; Technical Lead</span></div>
+    </div>
+  </footer>
+</body>
+</html>

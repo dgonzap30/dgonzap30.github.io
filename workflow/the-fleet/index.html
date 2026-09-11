@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The fleet — Diego Gonzalez Zapiain</title>
+  <meta name="description" content="How a 132-line shell script keeps parallel agent sessions findable instead of scattered across terminal tabs.">
+  <meta name="theme-color" content="#171c23">
+  <link rel="canonical" href="https://dgonzap30.github.io/workflow/the-fleet/">
+  <meta property="og:title" content="The fleet">
+  <meta property="og:description" content="How a 132-line shell script keeps parallel agent sessions findable instead of scattered across terminal tabs.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dgonzap30.github.io/workflow/the-fleet/">
+  <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The fleet">
+  <meta name="twitter:description" content="How a 132-line shell script keeps parallel agent sessions findable instead of scattered across terminal tabs.">
+  <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+  <script src="/assets/js/site.js" defer></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Many sessions, one named place each.",
+      "url": "https://dgonzap30.github.io/workflow/the-fleet/",
+      "dateModified": "2026-09-11",
+      "author": {
+        "@type": "Person",
+        "name": "Diego Gonzalez Zapiain"
+      },
+      "about": "The fleet"
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav shell" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="Diego Gonzalez Zapiain, home">
+        <img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="">
+        <span>Diego Gonzalez Zapiain</span>
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="/workflow/">Workflow</a></li>
+        <li><a href="/projects/">All products</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a class="nav-external" href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <header class="case-hero shell">
+      <div class="case-hero-main">
+        <p class="kicker">Workflow</p>
+        <h1>Many sessions, one named place each.</h1>
+        <p class="lede">Running several agent sessions at once is easy. Finding the one you want twenty minutes later is the actual problem, and it is a naming problem before it is a tooling problem.</p>
+      </div>
+      <aside class="case-hero-aside" aria-label="Practice metadata">
+        <p class="evidence-tag">Derived from a working artifact</p>
+        <ul class="case-meta">
+          <li><span>Artifact</span><strong>~/.local/bin/work</strong></li>
+          <li><span>Shape</span><strong>A 132-line bash launcher over a terminal multiplexer</strong></li>
+          <li><span>Last verified</span><strong>2026-09-11</strong></li>
+        </ul>
+      </aside>
+    </header>
+
+    <section class="case-section shell" id="sprawl">
+      <p class="case-section-index">01</p>
+      <div class="case-section-main">
+        <h2>Tabs are not a session model.</h2>
+        <p>Parallel work in a terminal tends to sprawl: one window per thought, no names, no way back. The state you want is in a pane you closed, or in one of nine that look identical.</p>
+        <p>The fix is not fewer sessions. It is that a session has a name, the name is the project, and there is exactly one of it.</p>
+      </div>
+      <aside class="case-note"><strong>Failure mode</strong>Nine identical shells and no way to tell which one holds the work.</aside>
+    </section>
+
+    <section class="case-section shell" id="launcher">
+      <p class="case-section-index">02</p>
+      <div class="case-section-main">
+        <h2>One command, attach or create.</h2>
+        <p><code>work</code> opens a fuzzy picker; <code>work &lt;slug&gt;</code> goes straight to a project; <code>work ls</code> prints the board. If a session for that project is live it attaches, and if it is not, it creates one. There is no third outcome, so the command is safe to run by reflex.</p>
+        <p>It is 132 lines of bash, written against the shell that ships with the operating system, because a launcher that needs its own install is a launcher that breaks the day you need it.</p>
+        <ul class="decision-list">
+          <li>A registry of 22 projects maps a short slug to a path.</li>
+          <li>Resolution is explicit: registry first, then a literal directory, then recent directories.</li>
+          <li>Session names are coerced to the character set the multiplexer accepts, so a branch name can never produce an unreachable session.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Verify</strong><code>wc -l ~/.local/bin/work</code> → 132</aside>
+    </section>
+
+    <section class="case-section shell" id="anchoring">
+      <p class="case-section-index">03</p>
+      <div class="case-section-main">
+        <h2>Where a tool runs decides where its files land.</h2>
+        <p>The reason a launcher is worth 132 lines is that most agent tooling writes beside the working directory: transcripts, browser dumps, caches, scratch state. Start in the wrong place and that output lands in your home directory, unattached to any project.</p>
+        <p>Anchoring every session to its project directory means the debris is already filed by the time you look for it.</p>
+      </div>
+      <aside class="case-note"><strong>Why it matters</strong>Directory discipline is cheaper than a cleanup job that has to guess ownership.</aside>
+    </section>
+
+    <section class="case-section shell" id="limits">
+      <p class="case-section-index">04</p>
+      <div class="case-section-main">
+        <h2>The ceiling is the machine, not the model.</h2>
+        <p>Parallel sessions are bounded by memory and disk long before they are bounded by anything intelligent. Wide fan-out on a laptop produces swap thrashing that is indistinguishable, from inside a session, from a bug in the code you are writing.</p>
+        <p>The practice that follows is unglamorous: check the host before blaming the program. Load average and swap usage first, code second.</p>
+        <ul class="decision-list">
+          <li>A session that has gone quiet is often a machine that has gone to swap.</li>
+          <li>Disk exhaustion presents as unrelated tool failures across every session at once.</li>
+          <li>The honest capacity number is the one measured on the machine in front of you.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Verify</strong><code>uptime</code> and <code>sysctl vm.swapusage</code> before reaching for a debugger.</aside>
+    </section>
+
+    <section class="case-section shell" id="boundary">
+      <p class="case-section-index">05</p>
+      <div class="case-section-main">
+        <h2>What this does not solve.</h2>
+        <p>A launcher makes sessions findable. It does not decide what they should be doing, it does not review their work, and it does not stop two of them editing the same file.</p>
+        <p>Those are separate problems, solved by a worktree per branch and by review that the author does not perform on themselves.</p>
+      </div>
+      <aside class="case-note"><strong>Boundary</strong>Naming is coordination's floor, not its ceiling.</aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <p class="kicker">Continue the atlas</p>
+      <h2 class="footer-title">Accountability is a systems property.</h2>
+      <div class="contact-paths">
+        <a class="contact-path" href="/workflow/"><span>Every practice in this series</span><strong>The workflow index</strong></a>
+        <a class="contact-path" href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer"><span>Recurring business workflow · Systems delivery</span><strong>Start a LOJIK review</strong></a>
+      </div>
+      <div class="footer-meta"><span>Diego Gonzalez Zapiain</span><span>LOJIK Labs · Co-Founder &amp; Technical Lead</span></div>
+    </div>
+  </footer>
+</body>
+</html>

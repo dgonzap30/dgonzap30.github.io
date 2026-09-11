@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The operating manual — Diego Gonzalez Zapiain</title>
+  <meta name="description" content="How a layered set of CLAUDE.md and AGENTS.md files gives every agent the rules for the directory it is standing in.">
+  <meta name="theme-color" content="#171c23">
+  <link rel="canonical" href="https://dgonzap30.github.io/workflow/operating-manual/">
+  <meta property="og:title" content="The operating manual">
+  <meta property="og:description" content="How a layered set of CLAUDE.md and AGENTS.md files gives every agent the rules for the directory it is standing in.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dgonzap30.github.io/workflow/operating-manual/">
+  <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The operating manual">
+  <meta name="twitter:description" content="How a layered set of CLAUDE.md and AGENTS.md files gives every agent the rules for the directory it is standing in.">
+  <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+  <script src="/assets/js/site.js" defer></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "The instructions live next to the code they govern.",
+      "url": "https://dgonzap30.github.io/workflow/operating-manual/",
+      "dateModified": "2026-09-11",
+      "author": {
+        "@type": "Person",
+        "name": "Diego Gonzalez Zapiain"
+      },
+      "about": "The operating manual"
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav shell" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="Diego Gonzalez Zapiain, home">
+        <img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="">
+        <span>Diego Gonzalez Zapiain</span>
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="/workflow/">Workflow</a></li>
+        <li><a href="/projects/">All products</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a class="nav-external" href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <header class="case-hero shell">
+      <div class="case-hero-main">
+        <p class="kicker">Workflow</p>
+        <h1>The instructions live next to the code they govern.</h1>
+        <p class="lede">An agent that has to be briefed by hand every session is a tool. An agent that reads the rules for wherever it happens to be working is a colleague. The difference is a file, placed where the work is.</p>
+      </div>
+      <aside class="case-hero-aside" aria-label="Practice metadata">
+        <p class="evidence-tag">Derived from a working artifact</p>
+        <ul class="case-meta">
+          <li><span>Artifact</span><strong>~/.claude/CLAUDE.md and per-project CLAUDE.md / AGENTS.md</strong></li>
+          <li><span>Shape</span><strong>Layered policy files, read at session start</strong></li>
+          <li><span>Last verified</span><strong>2026-09-11</strong></li>
+        </ul>
+      </aside>
+    </header>
+
+    <section class="case-section shell" id="layering">
+      <p class="case-section-index">01</p>
+      <div class="case-section-main">
+        <h2>Three layers, nearest wins.</h2>
+        <p>A global file carries what is true everywhere: authority, how to choose the size of a workflow, what counts as evidence, when to stop and ask. A workspace file describes the shape of the disk. A project file describes the stack, the entry points and the state files of one repository.</p>
+        <p>The rule that binds them is one sentence: read the nearest manual before changing a project. Precedence runs from the message you are given, down through global policy, to the project file that sits closest to the code.</p>
+        <ul class="decision-list">
+          <li>35 project directories carry their own manual today.</li>
+          <li>Two runtimes read the same layering, under two filenames, so the policy does not fork when the tool changes.</li>
+          <li>A rule about a repository lives in that repository, not in someone's memory of it.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Verify</strong><code>find ~/dev -maxdepth 3 \( -name CLAUDE.md -o -name AGENTS.md \) | wc -l</code></aside>
+    </section>
+
+    <section class="case-section shell" id="state">
+      <p class="case-section-index">02</p>
+      <div class="case-section-main">
+        <h2>Live code beats old notes.</h2>
+        <p>The most load-bearing line in the global manual is about precedence between sources of truth: live code and configuration establish what is true; stale status documents do not set priorities.</p>
+        <p>Without that line an agent reads a six-week-old plan describing work that shipped, and helpfully re-does it. With it, the plan is context and the repository is the authority.</p>
+      </div>
+      <aside class="case-note"><strong>Failure mode</strong>A confident agent acting on a document nobody has updated since the work landed.</aside>
+    </section>
+
+    <section class="case-section shell" id="authority">
+      <p class="case-section-index">03</p>
+      <div class="case-section-main">
+        <h2>The manual says what may be done without asking.</h2>
+        <p>Most of the value is not in style rules; it is in a written boundary around consequence. Routine reversible decisions are made from context and never escalated. Money, deploys, anything public, anything destructive stops and asks, every time, no matter how obvious it looks from inside the task.</p>
+        <p>That boundary is what makes autonomy safe to grant. An agent that cannot tell a rename from a production migration has to be supervised on both.</p>
+        <ul class="decision-list">
+          <li>Reversible and in scope: proceed, report afterwards.</li>
+          <li>Irreversible, outward-facing or consequential: prepare the reviewable result, then stop.</li>
+          <li>Risk is classified by consequence, never by how many lines the change touches.</li>
+        </ul>
+      </div>
+      <aside class="case-note"><strong>Control model</strong>Automation prepares the work. A named person keeps authority over effects that leave the machine.</aside>
+    </section>
+
+    <section class="case-section shell" id="proportion">
+      <p class="case-section-index">04</p>
+      <div class="case-section-main">
+        <h2>Match the machinery to the job.</h2>
+        <p>The manual also governs its own overhead. Clear, bounded work proceeds directly with the verification that fits it. Heavier structure — durable plans, independent review, parallel workers — is reserved for work whose failure is expensive.</p>
+        <p>Written down, this stops the most common waste in agent work: ceremony applied to a task that needed one edit.</p>
+      </div>
+      <aside class="case-note"><strong>Boundary</strong>Keyword matches and available tooling are not, by themselves, reasons to load a heavier process.</aside>
+    </section>
+
+    <section class="case-section shell" id="cost">
+      <p class="case-section-index">05</p>
+      <div class="case-section-main">
+        <h2>What it costs to keep true.</h2>
+        <p>A manual that drifts is worse than none, because it is trusted. These files are edited when a rule is learned the hard way, and the entries that survive are the ones written immediately after something went wrong.</p>
+        <p>The honest failure mode is length. Each added paragraph competes for attention with every other, and a manual nobody finishes is a manual nobody follows.</p>
+      </div>
+      <aside class="case-note"><strong>Boundary</strong>This describes one person's setup. It is a working example, not a standard.</aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <p class="kicker">Continue the atlas</p>
+      <h2 class="footer-title">Accountability is a systems property.</h2>
+      <div class="contact-paths">
+        <a class="contact-path" href="/workflow/"><span>Every practice in this series</span><strong>The workflow index</strong></a>
+        <a class="contact-path" href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer"><span>Recurring business workflow · Systems delivery</span><strong>Start a LOJIK review</strong></a>
+      </div>
+      <div class="footer-meta"><span>Diego Gonzalez Zapiain</span><span>LOJIK Labs · Co-Founder &amp; Technical Lead</span></div>
+    </div>
+  </footer>
+</body>
+</html>

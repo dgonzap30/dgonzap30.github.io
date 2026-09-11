@@ -857,3 +857,46 @@ test("wayIn audit rejects placeholder ids, bad hosts and unexplained dead contro
   assert.match(joined, /disabled wayIn must explain itself/);
   assert.match(joined, /does not resolve/);
 });
+
+test("workflow series: seven practices, each citing the artifact it came from", async () => {
+  const spec = JSON.parse(
+    await readFile(join(repoRoot, "assets/data/workflow.json"), "utf8"),
+  );
+  assert.equal(spec.length, 7, "the series is seven practices");
+
+  const index = await readFile(join(repoRoot, "workflow/index.html"), "utf8");
+  for (const page of spec) {
+    assert(page.artifact, `${page.slug} does not name its artifact`);
+    assert(page.sections.length >= 4, `${page.slug} is too thin to be useful`);
+
+    const html = await readFile(
+      join(repoRoot, "workflow", page.slug, "index.html"),
+      "utf8",
+    );
+    // The page must show its source on the page, not just in the spec.
+    assert(
+      html.includes(page.artifact.replace(/&/g, "&amp;")),
+      `${page.slug} does not cite its artifact in the rendered page`,
+    );
+    assert.equal(
+      (html.match(/<h1/g) ?? []).length,
+      1,
+      `${page.slug} must have exactly one h1`,
+    );
+    assert(
+      index.includes(`/workflow/${page.slug}/`),
+      `${page.slug} is missing from the workflow index`,
+    );
+  }
+
+  // Every claimed count on these pages is paired with the command that produces it.
+  const verifiable = spec.filter((page) =>
+    page.sections.some((section) =>
+      /Verify/i.test(section.note?.label ?? ""),
+    ),
+  );
+  assert(
+    verifiable.length >= 4,
+    "most practices should print a verification command",
+  );
+});

@@ -1,5 +1,87 @@
 [
   {
+    "slug": "operating-manual",
+    "title": "The operating manual",
+    "headline": "The instructions live next to the code they govern.",
+    "description": "How a layered set of CLAUDE.md and AGENTS.md files gives every agent the rules for the directory it is standing in.",
+    "lede": "An agent that has to be briefed by hand every session is a tool. An agent that reads the rules for wherever it happens to be working is a colleague. The difference is a file, placed where the work is.",
+    "artifact": "~/.claude/CLAUDE.md and per-project CLAUDE.md / AGENTS.md",
+    "shape": "Layered policy files, read at session start",
+    "dateModified": "2026-09-11",
+    "sections": [
+      {
+        "id": "layering",
+        "heading": "Three layers, nearest wins.",
+        "body": [
+          "A global file carries what is true everywhere: authority, how to choose the size of a workflow, what counts as evidence, when to stop and ask. A workspace file describes the shape of the disk. A project file describes the stack, the entry points and the state files of one repository.",
+          "The rule that binds them is one sentence: read the nearest manual before changing a project. Precedence runs from the message you are given, down through global policy, to the project file that sits closest to the code."
+        ],
+        "points": [
+          "35 project directories carry their own manual today.",
+          "Two runtimes read the same layering, under two filenames, so the policy does not fork when the tool changes.",
+          "A rule about a repository lives in that repository, not in someone's memory of it."
+        ],
+        "note": {
+          "label": "Verify",
+          "text": "<code>find ~/dev -maxdepth 3 \\( -name CLAUDE.md -o -name AGENTS.md \\) | wc -l</code>"
+        }
+      },
+      {
+        "id": "state",
+        "heading": "Live code beats old notes.",
+        "body": [
+          "The most load-bearing line in the global manual is about precedence between sources of truth: live code and configuration establish what is true; stale status documents do not set priorities.",
+          "Without that line an agent reads a six-week-old plan describing work that shipped, and helpfully re-does it. With it, the plan is context and the repository is the authority."
+        ],
+        "note": {
+          "label": "Failure mode",
+          "text": "A confident agent acting on a document nobody has updated since the work landed."
+        }
+      },
+      {
+        "id": "authority",
+        "heading": "The manual says what may be done without asking.",
+        "body": [
+          "Most of the value is not in style rules; it is in a written boundary around consequence. Routine reversible decisions are made from context and never escalated. Money, deploys, anything public, anything destructive stops and asks, every time, no matter how obvious it looks from inside the task.",
+          "That boundary is what makes autonomy safe to grant. An agent that cannot tell a rename from a production migration has to be supervised on both."
+        ],
+        "points": [
+          "Reversible and in scope: proceed, report afterwards.",
+          "Irreversible, outward-facing or consequential: prepare the reviewable result, then stop.",
+          "Risk is classified by consequence, never by how many lines the change touches."
+        ],
+        "note": {
+          "label": "Control model",
+          "text": "Automation prepares the work. A named person keeps authority over effects that leave the machine."
+        }
+      },
+      {
+        "id": "proportion",
+        "heading": "Match the machinery to the job.",
+        "body": [
+          "The manual also governs its own overhead. Clear, bounded work proceeds directly with the verification that fits it. Heavier structure — durable plans, independent review, parallel workers — is reserved for work whose failure is expensive.",
+          "Written down, this stops the most common waste in agent work: ceremony applied to a task that needed one edit."
+        ],
+        "note": {
+          "label": "Boundary",
+          "text": "Keyword matches and available tooling are not, by themselves, reasons to load a heavier process."
+        }
+      },
+      {
+        "id": "cost",
+        "heading": "What it costs to keep true.",
+        "body": [
+          "A manual that drifts is worse than none, because it is trusted. These files are edited when a rule is learned the hard way, and the entries that survive are the ones written immediately after something went wrong.",
+          "The honest failure mode is length. Each added paragraph competes for attention with every other, and a manual nobody finishes is a manual nobody follows."
+        ],
+        "note": {
+          "label": "Boundary",
+          "text": "This describes one person's setup. It is a working example, not a standard."
+        }
+      }
+    ]
+  },
+  {
     "slug": "worktrees",
     "title": "Worktrees",
     "headline": "One checkout per branch, in one predictable place.",
@@ -83,6 +165,416 @@
         "note": {
           "label": "Boundary",
           "text": "This page describes a personal layout policy. Nothing here is a claim about anyone else's repositories."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "the-fleet",
+    "title": "The fleet",
+    "headline": "Many sessions, one named place each.",
+    "description": "How a 132-line shell script keeps parallel agent sessions findable instead of scattered across terminal tabs.",
+    "lede": "Running several agent sessions at once is easy. Finding the one you want twenty minutes later is the actual problem, and it is a naming problem before it is a tooling problem.",
+    "artifact": "~/.local/bin/work",
+    "shape": "A 132-line bash launcher over a terminal multiplexer",
+    "dateModified": "2026-09-11",
+    "sections": [
+      {
+        "id": "sprawl",
+        "heading": "Tabs are not a session model.",
+        "body": [
+          "Parallel work in a terminal tends to sprawl: one window per thought, no names, no way back. The state you want is in a pane you closed, or in one of nine that look identical.",
+          "The fix is not fewer sessions. It is that a session has a name, the name is the project, and there is exactly one of it."
+        ],
+        "note": {
+          "label": "Failure mode",
+          "text": "Nine identical shells and no way to tell which one holds the work."
+        }
+      },
+      {
+        "id": "launcher",
+        "heading": "One command, attach or create.",
+        "body": [
+          "<code>work</code> opens a fuzzy picker; <code>work &lt;slug&gt;</code> goes straight to a project; <code>work ls</code> prints the board. If a session for that project is live it attaches, and if it is not, it creates one. There is no third outcome, so the command is safe to run by reflex.",
+          "It is 132 lines of bash, written against the shell that ships with the operating system, because a launcher that needs its own install is a launcher that breaks the day you need it."
+        ],
+        "points": [
+          "A registry of 22 projects maps a short slug to a path.",
+          "Resolution is explicit: registry first, then a literal directory, then recent directories.",
+          "Session names are coerced to the character set the multiplexer accepts, so a branch name can never produce an unreachable session."
+        ],
+        "note": {
+          "label": "Verify",
+          "text": "<code>wc -l ~/.local/bin/work</code> → 132"
+        }
+      },
+      {
+        "id": "anchoring",
+        "heading": "Where a tool runs decides where its files land.",
+        "body": [
+          "The reason a launcher is worth 132 lines is that most agent tooling writes beside the working directory: transcripts, browser dumps, caches, scratch state. Start in the wrong place and that output lands in your home directory, unattached to any project.",
+          "Anchoring every session to its project directory means the debris is already filed by the time you look for it."
+        ],
+        "note": {
+          "label": "Why it matters",
+          "text": "Directory discipline is cheaper than a cleanup job that has to guess ownership."
+        }
+      },
+      {
+        "id": "limits",
+        "heading": "The ceiling is the machine, not the model.",
+        "body": [
+          "Parallel sessions are bounded by memory and disk long before they are bounded by anything intelligent. Wide fan-out on a laptop produces swap thrashing that is indistinguishable, from inside a session, from a bug in the code you are writing.",
+          "The practice that follows is unglamorous: check the host before blaming the program. Load average and swap usage first, code second."
+        ],
+        "points": [
+          "A session that has gone quiet is often a machine that has gone to swap.",
+          "Disk exhaustion presents as unrelated tool failures across every session at once.",
+          "The honest capacity number is the one measured on the machine in front of you."
+        ],
+        "note": {
+          "label": "Verify",
+          "text": "<code>uptime</code> and <code>sysctl vm.swapusage</code> before reaching for a debugger."
+        }
+      },
+      {
+        "id": "boundary",
+        "heading": "What this does not solve.",
+        "body": [
+          "A launcher makes sessions findable. It does not decide what they should be doing, it does not review their work, and it does not stop two of them editing the same file.",
+          "Those are separate problems, solved by a worktree per branch and by review that the author does not perform on themselves."
+        ],
+        "note": {
+          "label": "Boundary",
+          "text": "Naming is coordination's floor, not its ceiling."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "session-catalog",
+    "title": "The session catalog",
+    "headline": "Yesterday's sessions, searchable, without touching the originals.",
+    "description": "A local Swift daemon that indexes agent transcripts into a read-only catalog and serves six search tools back to the agents that wrote them.",
+    "lede": "Agent sessions produce the most detailed record of how work actually happened, and then that record becomes unreadable — thousands of transcripts, no index, no way to ask what was decided and why.",
+    "artifact": "~/dev/lodestar/tools/session-catalog",
+    "shape": "A Swift package: four executables over SQLite",
+    "dateModified": "2026-09-11",
+    "sections": [
+      {
+        "id": "problem",
+        "heading": "The record exists and cannot be read.",
+        "body": [
+          "Two agent runtimes write transcripts continuously as newline-delimited JSON. Every decision, command and correction is in there. None of it is searchable, so in practice the same ground gets re-explored a week later by a session with no memory of the first attempt.",
+          "The gap is not storage. It is that nothing turns an append-only log into something you can ask a question of."
+        ],
+        "note": {
+          "label": "Failure mode",
+          "text": "Re-deriving a conclusion that a transcript already settled."
+        }
+      },
+      {
+        "id": "shape",
+        "heading": "Four executables, one derived database.",
+        "body": [
+          "The package builds a command-line tool, a background daemon, a server exposing the catalog to agents, and a hook that injects relevant prior sessions when a new one starts. They share one derived SQLite database.",
+          "Nothing is clever. The work is entirely in the boundary: reading a format you do not own, on a schedule, without ever becoming a second source of truth for it."
+        ],
+        "points": [
+          "The runtimes stay the systems of record; the catalog opens their files read-only.",
+          "All derived state lives in the catalog's own database, outside both runtimes' directories.",
+          "Original transcripts are never renamed, rewritten or deleted."
+        ],
+        "note": {
+          "label": "Verify",
+          "text": "<code>grep executableTarget Package.swift</code>"
+        }
+      },
+      {
+        "id": "tools",
+        "heading": "Six read-only tools, offered to both runtimes.",
+        "body": [
+          "The catalog gives agents the same six operations: full-text search, fetch one session, find related sessions, get context for the current directory, report coverage, and report its own health.",
+          "Every one of them reads. There is no write path from an agent into the catalog, which means a confused session cannot corrupt the record of what earlier sessions did."
+        ],
+        "points": [
+          "Context injection is bounded by a token budget, so a helpful index cannot crowd out the actual task.",
+          "A health tool exists so a silently broken catalog reports as broken rather than as empty.",
+          "Returned records are treated as data, never as instructions."
+        ],
+        "note": {
+          "label": "Control model",
+          "text": "Read-only by construction, not by convention."
+        }
+      },
+      {
+        "id": "sanitizer",
+        "heading": "Everything is scrubbed before it is stored.",
+        "body": [
+          "Transcripts contain whatever passed through a terminal, which sooner or later includes a credential. So text is sanitized before insertion: authorization headers, private keys, credentialed database URLs and high-confidence provider token formats are redacted on the way in.",
+          "The sanitizer has its own test file holding deliberately fake keys of each shape, whose entire job is to fail if redaction stops working."
+        ],
+        "points": [
+          "Redaction happens before the database write, not at display time.",
+          "The test fixtures are synthetic by design — a secret scanner run against this repository flags them, which is the test doing its job.",
+          "A scanner that flags a redaction test is correct. Reading the value to check is not."
+        ],
+        "note": {
+          "label": "Boundary",
+          "text": "A local index of local transcripts. Nothing leaves the machine."
+        }
+      },
+      {
+        "id": "honesty",
+        "heading": "Derived metadata is not the transcript.",
+        "body": [
+          "The catalog is deliberately described as derived: bounded metadata, useful for discovery, never authoritative. When it disagrees with a runtime's own state, the runtime wins.",
+          "Saying so in the tool's own description matters more than it sounds. An index that quietly presents itself as the source of truth is how a stale summary becomes a decision."
+        ],
+        "note": {
+          "label": "Precedence",
+          "text": "Native provider state is authoritative; the catalog is for finding things."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "verification",
+    "title": "Verification",
+    "headline": "Nobody reviews their own work.",
+    "description": "An adversarial review layer that attacks findings on four fixed lenses and fails closed when it cannot reach a verdict.",
+    "lede": "An agent asked whether its work is correct will tell you that it is. Not dishonestly — it is the same context, reasoning the same way, reaching the same conclusion. Independent review has to actually be independent.",
+    "artifact": "~/.claude/agents/verify-depth.md and ~/.claude/workflows/fan-out-verify.js",
+    "shape": "An adversarial reviewer plus a refutation panel",
+    "dateModified": "2026-09-11",
+    "sections": [
+      {
+        "id": "problem",
+        "heading": "Self-review confirms, it does not check.",
+        "body": [
+          "The failure is structural, not moral. The context that produced a conclusion is the worst possible context for testing it: every assumption that generated the error is still loaded, still feels obvious, and is never the thing questioned.",
+          "So correctness-critical work gets a reviewer with a fresh context and an explicit instruction to find the flaw rather than to bless the result."
+        ],
+        "note": {
+          "label": "Scope",
+          "text": "Reserved for work where being wrong is expensive: authorization, money, concurrency, data integrity, partial failure."
+        }
+      },
+      {
+        "id": "lenses",
+        "heading": "Four fixed ways to attack a finding.",
+        "body": [
+          "A claimed defect is refuted on four named lenses rather than by general skepticism, because general skepticism converges on agreement."
+        ],
+        "points": [
+          "<strong>Citation</strong> — attack the evidence itself. Does the cited line say what the finding claims?",
+          "<strong>Reproduction</strong> — construct the inputs that actually trigger it. If none exist, it is not a defect.",
+          "<strong>Guarded</strong> — check whether something upstream already prevents it.",
+          "<strong>Stakes</strong> — establish whether the consequence is real."
+        ],
+        "note": {
+          "label": "Why fixed lenses",
+          "text": "Named angles of attack produce disagreement. \"Look it over\" produces agreement."
+        }
+      },
+      {
+        "id": "failclosed",
+        "heading": "An unfinished review is not a pass.",
+        "body": [
+          "A finding needs a quorum of completed votes before it counts as verified at all. If too few votes return, the result is recorded as unresolved rather than quietly dropped.",
+          "When the adjudicating reviewer fails outright, that is recorded too, and the finding is marked as panel-only. The one outcome the design refuses is an unfinished check that reads as a clean bill of health."
+        ],
+        "points": [
+          "Below quorum, the verdict is abstain, not pass.",
+          "A crashed adjudicator is logged as a failure, never as a confirmation.",
+          "Review has a hard cost ceiling, with budget reserved for high-severity findings so cheap dimensions cannot starve expensive ones."
+        ],
+        "note": {
+          "label": "Principle",
+          "text": "Silence is not evidence. An unfinished check reports as unfinished."
+        }
+      },
+      {
+        "id": "tiers",
+        "heading": "Review is priced to the stakes.",
+        "body": [
+          "Cheap reviewers do the wide pass; the expensive adjudicator is reserved for work where correctness is consequential, and skipped for configuration and documentation unless a finding is severe.",
+          "Reviewing everything at maximum depth costs enough that it stops happening. Tiering is what keeps the expensive pass available for the cases that need it."
+        ],
+        "note": {
+          "label": "Boundary",
+          "text": "Passing review means nobody found the flaw. It is not proof there is none."
+        }
+      },
+      {
+        "id": "practice",
+        "heading": "The rule that makes it work.",
+        "body": [
+          "The mechanism is worth less than the habit: the author does not sign off. In practice that means the session that wrote the code orders the review and does not get a vote in it.",
+          "Every number on this site follows the same rule. Where a count is claimed, the command that produces it is printed next to it, so the claim is checkable by someone who does not trust the claimer."
+        ],
+        "note": {
+          "label": "Applied here",
+          "text": "Each page in this series names the artifact it was derived from."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "eval-gated-skills",
+    "title": "Eval-gated skills",
+    "headline": "A prompt change ships only if a held-out set says it helped.",
+    "description": "A loop that edits an agent skill, measures the change against a held-out eval set, and refuses to promote it without a statistical margin and an independent verdict.",
+    "lede": "Agent instructions are edited by feel. Someone reads a bad output, rewrites a paragraph, and the change ships because it sounds better. Nobody measures whether it helped, and nobody notices when it hurt.",
+    "artifact": "~/dev/_tools/skillopt",
+    "shape": "A cycle workflow with a fail-closed precheck",
+    "dateModified": "2026-09-11",
+    "sections": [
+      {
+        "id": "problem",
+        "heading": "Prompt edits are unmeasured by default.",
+        "body": [
+          "A skill is a document that changes how an agent behaves. Editing one is a behavioural change to production, with none of the machinery a code change would get: no test, no baseline, no way to tell improvement from a change of mood.",
+          "Worse, the evidence that motivated the edit is usually a single bad output — the smallest sample size there is."
+        ],
+        "note": {
+          "label": "Failure mode",
+          "text": "Rewriting an instruction because of one example, and never learning it made things worse."
+        }
+      },
+      {
+        "id": "loop",
+        "heading": "Current document against one candidate edit.",
+        "body": [
+          "Each cycle runs the live document and a one-edit candidate against a held-out eval set, measures the difference in pass rate, and gates promotion on the difference exceeding a multiple of the standard deviation — plus a minimum-runs check that fails closed.",
+          "One edit at a time is the part that makes it interpretable. A rewrite that changes six things tells you nothing about which of the six mattered."
+        ],
+        "points": [
+          "The eval set is held out, so the loop cannot optimise against its own feedback.",
+          "A margin smaller than the noise is not an improvement, and is not promoted.",
+          "Too few runs means no verdict, rather than a verdict on thin evidence."
+        ],
+        "note": {
+          "label": "Gate",
+          "text": "Statistical margin, not a judgement that the new wording reads better."
+        }
+      },
+      {
+        "id": "killswitch",
+        "heading": "The precheck fails closed.",
+        "body": [
+          "Before any cycle runs, a precheck decides whether it may. Exit zero proceeds; a global off switch exits ten; a paused individual skill exits eleven. Any uncertainty at all — missing file, unreadable configuration, unknown name — exits non-zero.",
+          "That inversion is the whole safety property. A self-modifying loop that treats an unreadable configuration as permission to continue is a loop that runs exactly when you have lost the ability to control it."
+        ],
+        "note": {
+          "label": "Verify",
+          "text": "<code>bin/skillopt-precheck.sh</code> — exit 0 proceed, 10 globally off, 11 skill paused."
+        }
+      },
+      {
+        "id": "unarmed",
+        "heading": "It has never been allowed to apply a change.",
+        "body": [
+          "The loop runs in dry-run only. It writes a preview of the diff it would make and commits nothing. Arming it is a separate, deliberate, human step, and when armed a promotion will require both the metric gate and an independent reviewer's verdict.",
+          "This is the honest status and it is the interesting part. A self-optimising loop is easy to build and hard to trust, and the gap between those two is where it has stayed."
+        ],
+        "points": [
+          "Dry runs write a preview diff; nothing is committed.",
+          "Arming is a human action gated on a written checklist.",
+          "Even armed, the metric gate alone would not be sufficient."
+        ],
+        "note": {
+          "label": "Status",
+          "text": "Built, validated in dry-run, deliberately unarmed."
+        }
+      },
+      {
+        "id": "scope",
+        "heading": "What it is not allowed to touch.",
+        "body": [
+          "The scope boundary is written into the tool: improvements inside a verifiable-reward boundary only. It may fix a flaw in how a skill is implemented. It may not touch global policy, architectural decisions, product direction, or what a skill is for.",
+          "Those are decisions with no eval set. Handing them to a loop that optimises a number is how you get a number that improves while the thing it measures gets worse."
+        ],
+        "note": {
+          "label": "Boundary",
+          "text": "Optimise within a defined target. Never let the loop choose the target."
+        }
+      }
+    ]
+  },
+  {
+    "slug": "attention-ledger",
+    "title": "The attention ledger",
+    "headline": "Where the time actually went, measured honestly enough to hurt.",
+    "description": "One file defines every metric, three reporters read it, and the hardest work was removing the automation from its own numbers.",
+    "lede": "A portfolio of projects generates a comforting amount of activity. Counting it naively produces a number that feels like progress, and the main thing that number measures is how much of the work was done by a robot on a timer.",
+    "artifact": "~/dev/METRICS.md",
+    "shape": "A definitions file with a machine-readable block, plus three reporters",
+    "dateModified": "2026-09-11",
+    "sections": [
+      {
+        "id": "definitions",
+        "heading": "Definitions live in one file, before any reporter.",
+        "body": [
+          "Windows, signals and filters are declared once, in a fenced block a program can read: what counts as active, how far back to look, which authors to exclude, where the project mapping lives.",
+          "Every reporter reads that file. Each falls back to its own prior default when a definition is missing and prints a warning naming the key, so an undefined metric is visible rather than silently assumed."
+        ],
+        "points": [
+          "Active window: 21 days.",
+          "Bot commits excluded by default.",
+          "A missing definition produces a warning per key, never a silent default."
+        ],
+        "note": {
+          "label": "Ordering",
+          "text": "A metric is defined before it is reported, not after someone dislikes the number."
+        }
+      },
+      {
+        "id": "botfilter",
+        "heading": "Most of the activity was a daemon.",
+        "body": [
+          "A nightly job committed to one repository on a schedule. Counted naively it read as the most active project by a wide margin — a thirty-day window of 582 commits, of which 574 were the daemon's own.",
+          "Filtering by author identity fixed that case. It did not fix the general one, and the general one is more interesting."
+        ],
+        "note": {
+          "label": "Scale of the error",
+          "text": "582 commits in thirty days; 8 of them were human."
+        }
+      },
+      {
+        "id": "rejected",
+        "heading": "The obvious fix was wrong, and was rejected.",
+        "body": [
+          "A second project's commits were all authored under a human name, but most carried an assistant co-author trailer. Filtering on that trailer produced the right answer for that project and a badly wrong one elsewhere: a repository with a full day of real work and a passing test suite dropped to zero, because its single commit was co-authored too.",
+          "Assistance is not automation. A trailer cannot tell an unattended job apart from a person working with a tool, and treating them the same produces a lie in the opposite direction. The filter was implemented, measured, and left switched off rather than shipped."
+        ],
+        "note": {
+          "label": "Principle",
+          "text": "A filter that produces a flattering number in one place and a false zero in another is not a filter."
+        }
+      },
+      {
+        "id": "source",
+        "heading": "The fix was to emit the signal at the source.",
+        "body": [
+          "Rather than infer intent from a message after the fact, the automation now declares itself: a commit hook stamps a marker only when a job runs unattended. Interactive work carries no marker, so nothing has to be guessed from a trailer.",
+          "Pattern matching after the fact was replaced by a declaration at the moment of the commit — the only point where the answer is actually known."
+        ],
+        "note": {
+          "label": "Resolved",
+          "text": "2026-09-02, recorded in METRICS.md with the reasoning that rejected the earlier approach."
+        }
+      },
+      {
+        "id": "purpose",
+        "heading": "The ledger exists to make a choice, not a chart.",
+        "body": [
+          "The output is not a dashboard. It answers which ventures received attention this period, which received almost none, and where work is happening that no plan accounts for — and it is only useful if it can deliver bad news.",
+          "A measurement system that cannot report that a favourite project got no attention this month is decoration."
+        ],
+        "note": {
+          "label": "Boundary",
+          "text": "Commit and session signals measure activity, not value. Nothing here claims a project is worth its hours."
         }
       }
     ]

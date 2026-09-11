@@ -73,19 +73,73 @@
       <aside class="case-hero-aside" aria-label="Series metadata">
         <p class="evidence-tag">Every page names its own source</p>
         <ul class="case-meta">
-          <li><span>Practices</span><strong>1</strong></li>
+          <li><span>Practices</span><strong>7</strong></li>
           <li><span>Last verified</span><strong>2026-09-11</strong></li>
         </ul>
       </aside>
     </header>
 
-    <section class="case-section shell" id="worktrees">
+    <section class="case-section shell" id="operating-manual">
       <p class="case-section-index">01</p>
+      <div class="case-section-main">
+        <h2><a href="/workflow/operating-manual/">The operating manual</a></h2>
+        <p>An agent that has to be briefed by hand every session is a tool. An agent that reads the rules for wherever it happens to be working is a colleague. The difference is a file, placed where the work is.</p>
+      </div>
+      <aside class="case-note"><strong>Artifact</strong>~/.claude/CLAUDE.md and per-project CLAUDE.md / AGENTS.md</aside>
+    </section>
+
+    <section class="case-section shell" id="worktrees">
+      <p class="case-section-index">02</p>
       <div class="case-section-main">
         <h2><a href="/workflow/worktrees/">Worktrees</a></h2>
         <p>Agents and people edit the same repositories at the same time. A single checkout makes that a queue; a worktree per branch makes it parallel, and a fixed location makes it findable.</p>
       </div>
       <aside class="case-note"><strong>Artifact</strong>~/.claude/rules/project-inventory.md</aside>
+    </section>
+
+    <section class="case-section shell" id="the-fleet">
+      <p class="case-section-index">03</p>
+      <div class="case-section-main">
+        <h2><a href="/workflow/the-fleet/">The fleet</a></h2>
+        <p>Running several agent sessions at once is easy. Finding the one you want twenty minutes later is the actual problem, and it is a naming problem before it is a tooling problem.</p>
+      </div>
+      <aside class="case-note"><strong>Artifact</strong>~/.local/bin/work</aside>
+    </section>
+
+    <section class="case-section shell" id="session-catalog">
+      <p class="case-section-index">04</p>
+      <div class="case-section-main">
+        <h2><a href="/workflow/session-catalog/">The session catalog</a></h2>
+        <p>Agent sessions produce the most detailed record of how work actually happened, and then that record becomes unreadable — thousands of transcripts, no index, no way to ask what was decided and why.</p>
+      </div>
+      <aside class="case-note"><strong>Artifact</strong>~/dev/lodestar/tools/session-catalog</aside>
+    </section>
+
+    <section class="case-section shell" id="verification">
+      <p class="case-section-index">05</p>
+      <div class="case-section-main">
+        <h2><a href="/workflow/verification/">Verification</a></h2>
+        <p>An agent asked whether its work is correct will tell you that it is. Not dishonestly — it is the same context, reasoning the same way, reaching the same conclusion. Independent review has to actually be independent.</p>
+      </div>
+      <aside class="case-note"><strong>Artifact</strong>~/.claude/agents/verify-depth.md and ~/.claude/workflows/fan-out-verify.js</aside>
+    </section>
+
+    <section class="case-section shell" id="eval-gated-skills">
+      <p class="case-section-index">06</p>
+      <div class="case-section-main">
+        <h2><a href="/workflow/eval-gated-skills/">Eval-gated skills</a></h2>
+        <p>Agent instructions are edited by feel. Someone reads a bad output, rewrites a paragraph, and the change ships because it sounds better. Nobody measures whether it helped, and nobody notices when it hurt.</p>
+      </div>
+      <aside class="case-note"><strong>Artifact</strong>~/dev/_tools/skillopt</aside>
+    </section>
+
+    <section class="case-section shell" id="attention-ledger">
+      <p class="case-section-index">07</p>
+      <div class="case-section-main">
+        <h2><a href="/workflow/attention-ledger/">The attention ledger</a></h2>
+        <p>A portfolio of projects generates a comforting amount of activity. Counting it naively produces a number that feels like progress, and the main thing that number measures is how much of the work was done by a robot on a timer.</p>
+      </div>
+      <aside class="case-note"><strong>Artifact</strong>~/dev/METRICS.md</aside>
     </section>
   </main>
 
