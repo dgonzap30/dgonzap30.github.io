@@ -234,6 +234,111 @@ async function auditRequiredAssets(root, errors) {
   }
 }
 
+const WAY_IN_KINDS = new Set([
+  'app-store',
+  'testflight',
+  'demo-video',
+  'hire-us',
+  'waitlist',
+  'notify',
+  'case-study',
+  'none',
+]);
+const STORE_KINDS = new Set(['app-store', 'testflight']);
+const STORE_HOSTS = { 'app-store': 'apps.apple.com', testflight: 'testflight.apple.com' };
+const EXTERNAL_HOST_ALLOWLIST = new Set([
+  'apps.apple.com',
+  'testflight.apple.com',
+  'github.com',
+  'wearelojik.com',
+]);
+// A product that is paused or withdrawn must never carry a store link. The Protocol and
+// Movee were removed from sale on 2026-09-10; a live store URL for either would be a claim
+// the App Store no longer honours.
+const WITHDRAWN_STATUS = /\b(paused|removed|withdrawn|not for sale|unlisted|discontinued)\b/i;
+
+export async function auditProductWayIn(root, errors) {
+  const registryPath = 'assets/data/projects.json';
+  let registry;
+  try {
+    registry = JSON.parse(await readFile(join(root, registryPath), 'utf8'));
+  } catch (error) {
+    errors.push(`${registryPath}: unreadable product registry: ${error.message}`);
+    return;
+  }
+
+  for (const product of registry) {
+    const label = `${registryPath}: ${product.id}`;
+    const wayIn = product.wayIn;
+    if (!wayIn || typeof wayIn !== 'object') {
+      errors.push(`${label}: missing wayIn contract`);
+      continue;
+    }
+    if (!WAY_IN_KINDS.has(wayIn.kind)) {
+      errors.push(`${label}: unknown wayIn kind: ${wayIn.kind}`);
+      continue;
+    }
+    if (typeof wayIn.enabled !== 'boolean') {
+      errors.push(`${label}: wayIn.enabled must be a boolean`);
+      continue;
+    }
+
+    if (wayIn.kind === 'none') {
+      if (wayIn.enabled) errors.push(`${label}: wayIn kind none cannot be enabled`);
+      if (wayIn.href) errors.push(`${label}: wayIn kind none must not carry an href`);
+      if (!wayIn.note) errors.push(`${label}: wayIn kind none must explain itself in note`);
+      continue;
+    }
+
+    if (!wayIn.label) errors.push(`${label}: wayIn is missing a label`);
+
+    // A disabled way in still renders, so it must say why it is not actionable yet.
+    if (!wayIn.enabled && !wayIn.note) {
+      errors.push(`${label}: disabled wayIn must explain itself in note`);
+    }
+    if (wayIn.enabled && !wayIn.href) {
+      errors.push(`${label}: enabled wayIn must carry an href`);
+    }
+
+    if (STORE_KINDS.has(wayIn.kind)) {
+      if (WITHDRAWN_STATUS.test(product.status ?? '')) {
+        errors.push(`${label}: withdrawn product must not carry a ${wayIn.kind} link`);
+      }
+      if (!wayIn.href) {
+        errors.push(`${label}: ${wayIn.kind} wayIn requires a store href`);
+      } else if (/\/id0+(?:[?#/]|$)/.test(wayIn.href)) {
+        errors.push(`${label}: placeholder store id in wayIn href`);
+      }
+    }
+
+    if (!wayIn.href) continue;
+
+    if (wayIn.href.startsWith('/')) {
+      const target = await exists(join(root, wayIn.href.replace(/\/$/, '/index.html').slice(1)));
+      if (!target) errors.push(`${label}: wayIn href does not resolve: ${wayIn.href}`);
+      continue;
+    }
+
+    let url;
+    try {
+      url = new URL(wayIn.href);
+    } catch {
+      errors.push(`${label}: wayIn href is not a valid URL: ${wayIn.href}`);
+      continue;
+    }
+    if (url.protocol !== 'https:') {
+      errors.push(`${label}: wayIn href must use https: ${wayIn.href}`);
+    }
+    if (!EXTERNAL_HOST_ALLOWLIST.has(url.hostname)) {
+      errors.push(`${label}: wayIn href host not allowlisted: ${url.hostname}`);
+    }
+    const expectedHost = STORE_HOSTS[wayIn.kind];
+    if (expectedHost && url.hostname !== expectedHost) {
+      errors.push(`${label}: ${wayIn.kind} wayIn must point at ${expectedHost}`);
+    }
+  }
+}
+
 export async function auditSite(rootDir, options = {}) {
   const root = resolve(rootDir);
   const errors = [];
@@ -258,6 +363,7 @@ export async function auditSite(rootDir, options = {}) {
     auditBudget(relativePath, Buffer.byteLength(html), HTML_BUDGET, errors);
   }
 
+  await auditProductWayIn(root, errors);
   if (options.requireAssets !== false) await auditRequiredAssets(root, errors);
   return { errors, pages };
 }

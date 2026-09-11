@@ -79,7 +79,13 @@
         "transcript": "A title card establishes the recording scope. The local Maestro UI shows three generic tracks registering, the mixer view with a visible masking finding, and the spectrum view. The \"Logic Pro connected\" badge stays visible as recorded — it reflects synthetic plugin registration, not a real Logic Pro connection."
       }
     ],
-    "publicLinks": []
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "notify",
+      "label": "Ask about the private beta",
+      "enabled": false,
+      "note": "Private beta; access is granted directly, there is no public build."
+    }
   },
   {
     "id": "temper",
@@ -235,7 +241,13 @@
         "sourceSha256": "96a3aa01527baf6e60dac588689922f3689d30348a92b6a88a6c217fc979480b"
       }
     ],
-    "publicLinks": []
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "notify",
+      "label": "Tell me when the TestFlight opens",
+      "enabled": false,
+      "note": "Public TestFlight is the next step; no public link exists yet."
+    }
   },
   {
     "id": "mimo",
@@ -319,7 +331,13 @@
         "sourceSha256": "3d517d91c1d8da3125e1b05aff2906e6834697158fd40cd2e60eee4b80e9044a"
       }
     ],
-    "publicLinks": []
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "notify",
+      "label": "Tell me when Mimo opens up",
+      "enabled": false,
+      "note": "In development; no public build exists yet."
+    }
   },
   {
     "id": "intertitle",
@@ -327,7 +345,7 @@
     "shortLabel": "Intertitle",
     "category": "Film & taste",
     "role": null,
-    "status": "In development",
+    "status": "On the App Store",
     "purpose": "Find a film for tonight, explore your taste, and keep the conversation going.",
     "description": "A film companion grounded in personal taste — separate from the public App Store release.",
     "capturedAt": "2026-09-08",
@@ -446,7 +464,13 @@
         "sourceSha256": "104380b545594683c81cc1857b8020af4b70a2a7b6fe2c14963836d34b4acf64"
       }
     ],
-    "publicLinks": []
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "app-store",
+      "label": "Get Intertitle on the App Store",
+      "href": "https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124",
+      "enabled": true
+    }
   },
   {
     "id": "fcc",
@@ -572,7 +596,12 @@
         "sourceSha256": "7c8ef503bb10eaef81fe0841b9bd7d2c454773e5393d82d664b9a8b6605e491a"
       }
     ],
-    "publicLinks": []
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "none",
+      "enabled": false,
+      "note": "A private league tool. It is shown as engineering evidence, not offered."
+    }
   },
   {
     "id": "season-room",
@@ -624,7 +653,13 @@
         "alt": "Season Room season record view with fictional recorded entries"
       }
     ],
-    "publicLinks": []
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "waitlist",
+      "label": "Join the Season Room waitlist",
+      "enabled": false,
+      "note": "Local prototype; the waitlist opens with the season pass."
+    }
   },
   {
     "id": "pazz",
@@ -756,6 +791,12 @@
         "label": "Read the engineering case study",
         "href": "/work/pazz/"
       }
-    ]
+    ],
+    "wayIn": {
+      "kind": "case-study",
+      "label": "Read the engineering case study",
+      "href": "/work/pazz/",
+      "enabled": true
+    }
   }
 ]

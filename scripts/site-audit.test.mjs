@@ -13,7 +13,7 @@ import { dirname, join, resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { auditSite } from "./site-audit.mjs";
+import { auditProductWayIn, auditSite } from "./site-audit.mjs";
 
 async function exists(path) {
   try {
@@ -733,4 +733,127 @@ test("home and projects hub embed the same explorer component and full picker", 
       );
     }
   }
+});
+
+test("wayIn contract: every product declares an honest, resolvable way in", async () => {
+  const registry = JSON.parse(
+    await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
+  );
+  const kinds = new Set([
+    "app-store",
+    "testflight",
+    "demo-video",
+    "hire-us",
+    "waitlist",
+    "notify",
+    "case-study",
+    "none",
+  ]);
+  for (const product of registry) {
+    const wayIn = product.wayIn;
+    assert(wayIn, `${product.id} is missing a wayIn contract`);
+    assert(kinds.has(wayIn.kind), `${product.id} has an unknown wayIn kind`);
+    assert.equal(
+      typeof wayIn.enabled,
+      "boolean",
+      `${product.id} wayIn.enabled must be a boolean`,
+    );
+    if (wayIn.enabled) {
+      assert(wayIn.href, `${product.id} is enabled but has no href`);
+      assert(wayIn.label, `${product.id} is enabled but has no label`);
+    } else {
+      assert(wayIn.note, `${product.id} is disabled but does not say why`);
+    }
+  }
+
+  // Exactly one product can be acted on from the public internet today.
+  const live = registry.filter((product) => product.wayIn.enabled);
+  assert.deepEqual(
+    live.map((product) => product.id).sort(),
+    ["intertitle", "pazz"],
+    "only Intertitle (App Store) and PAZZ (case study) have a working way in",
+  );
+  const intertitle = registry.find((product) => product.id === "intertitle");
+  assert.equal(intertitle.status, "On the App Store");
+  assert.match(intertitle.wayIn.href, /^https:\/\/apps\.apple\.com\//);
+});
+
+test("wayIn audit rejects a store link on a withdrawn product", async () => {
+  const root = await mkdtemp(join(tmpdir(), "wayin-withdrawn-"));
+  await mkdir(join(root, "assets/data"), { recursive: true });
+  await writeFile(
+    join(root, "assets/data/projects.json"),
+    JSON.stringify([
+      {
+        id: "the-protocol",
+        status: "Paused, removed from sale",
+        wayIn: {
+          kind: "app-store",
+          label: "Download",
+          href: "https://apps.apple.com/cl/app/theprotocol-one/id6760389462",
+          enabled: true,
+        },
+      },
+    ]),
+  );
+  const errors = [];
+  await auditProductWayIn(root, errors);
+  await rm(root, { recursive: true, force: true });
+  assert(
+    errors.some((error) => error.includes("withdrawn product must not carry")),
+    `expected a withdrawn-product error, got: ${JSON.stringify(errors)}`,
+  );
+});
+
+test("wayIn audit rejects placeholder ids, bad hosts and unexplained dead controls", async () => {
+  const root = await mkdtemp(join(tmpdir(), "wayin-bad-"));
+  await mkdir(join(root, "assets/data"), { recursive: true });
+  await writeFile(
+    join(root, "assets/data/projects.json"),
+    JSON.stringify([
+      {
+        id: "placeholder",
+        status: "In development",
+        wayIn: {
+          kind: "app-store",
+          label: "Download",
+          href: "https://apps.apple.com/app/intertitle/id0000000000",
+          enabled: true,
+        },
+      },
+      {
+        id: "offsite",
+        status: "In development",
+        wayIn: {
+          kind: "demo-video",
+          label: "Watch",
+          href: "https://example.com/video",
+          enabled: true,
+        },
+      },
+      {
+        id: "silent",
+        status: "In development",
+        wayIn: { kind: "waitlist", label: "Join", enabled: false },
+      },
+      {
+        id: "broken-local",
+        status: "In development",
+        wayIn: {
+          kind: "case-study",
+          label: "Read",
+          href: "/work/nope/",
+          enabled: true,
+        },
+      },
+    ]),
+  );
+  const errors = [];
+  await auditProductWayIn(root, errors);
+  await rm(root, { recursive: true, force: true });
+  const joined = errors.join("\n");
+  assert.match(joined, /placeholder store id/);
+  assert.match(joined, /host not allowlisted/);
+  assert.match(joined, /disabled wayIn must explain itself/);
+  assert.match(joined, /does not resolve/);
 });

@@ -1,0 +1,4 @@
+# Internal working state — never published with the site.
+/tasks/
+/.claude/
+/node_modules/
