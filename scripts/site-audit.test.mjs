@@ -900,3 +900,47 @@ test("workflow series: seven practices, each citing the artifact it came from", 
     "most practices should print a verification command",
   );
 });
+
+test("every product route renders its wayIn, and a disabled one offers no dead control", async () => {
+  const registry = JSON.parse(
+    await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
+  );
+
+  for (const project of registry) {
+    const routePath = routeForProject(project);
+    const html = await readFile(join(repoRoot, routePath), "utf8");
+    const wayIn = project.wayIn;
+
+    const match = html.match(
+      /<div class="stage-actions" data-way-in="([^"]+)"([^>]*)>([\s\S]*?)<\/div>/,
+    );
+    assert(match, `${routePath} does not render a wayIn block`);
+    assert.equal(match[1], wayIn.kind, `${routePath} renders the wrong wayIn kind`);
+    const inner = match[3];
+
+    if (wayIn.enabled) {
+      assert(
+        inner.includes(`href="${wayIn.href}"`),
+        `${routePath} does not render its wayIn href`,
+      );
+      assert(inner.includes(wayIn.label), `${routePath} is missing its wayIn label`);
+      if (wayIn.href.startsWith("http")) {
+        assert.match(inner, /rel="noopener noreferrer"/);
+      }
+    } else {
+      // The reason must be visible, and nothing clickable may promise an
+      // action that does not exist yet.
+      assert(
+        !/<a\b/.test(inner),
+        `${routePath} renders a link for a way in that is not available`,
+      );
+      assert(
+        inner.includes(wayIn.note),
+        `${routePath} does not say why its way in is unavailable`,
+      );
+    }
+  }
+
+  const enabled = registry.filter((project) => project.wayIn.enabled);
+  assert.equal(enabled.length, 2, "exactly two products are actionable today");
+});
