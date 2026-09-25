@@ -22,6 +22,7 @@ const REQUIRED_PAGES = [
   'demos/temper/index.html',
   'demos/maestro/index.html',
   'now/index.html',
+  'writing/index.html',
 ];
 
 const REQUIRED_ASSETS = [
@@ -35,6 +36,10 @@ const REQUIRED_ASSETS = [
   'assets/css/explorer.css',
   'assets/css/projects.css',
   'assets/data/projects.json',
+  'assets/data/writing.json',
+  'feed.xml',
+  'robots.txt',
+  'sitemap.xml',
   'assets/js/site.js',
   'assets/fonts/instrument-sans-latin.woff2',
   'assets/fonts/newsreader-roman-latin.woff2',
@@ -347,12 +352,23 @@ export async function auditProductWayIn(root, errors) {
   }
 }
 
+// Every post listed in assets/data/writing.json is a page the audit must cover.
+async function writingPages(root) {
+  let posts;
+  try {
+    posts = JSON.parse(await readFile(join(root, 'assets/data/writing.json'), 'utf8'));
+  } catch {
+    return [];
+  }
+  return posts.map((post) => `writing/${post.slug}/index.html`);
+}
+
 export async function auditSite(rootDir, options = {}) {
   const root = resolve(rootDir);
   const errors = [];
   const pages = [];
 
-  for (const relativePath of REQUIRED_PAGES) {
+  for (const relativePath of [...REQUIRED_PAGES, ...(await writingPages(root))]) {
     const absolutePath = join(root, relativePath);
     let html;
     try {

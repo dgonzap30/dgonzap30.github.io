@@ -172,6 +172,34 @@ test("reports banned positioning language", async (context) => {
   );
 });
 
+test("audits every post listed in writing.json", async (context) => {
+  const root = await fixture("<h1>A</h1>");
+  context.after(() => rm(root, { recursive: true, force: true }));
+  await mkdir(join(root, "assets/data"), { recursive: true });
+  await writeFile(
+    join(root, "assets/data/writing.json"),
+    JSON.stringify([{ slug: "listed-but-missing" }, { slug: "listed-student" }]),
+  );
+  await mkdir(join(root, "writing/listed-student"), { recursive: true });
+  await writeFile(
+    join(root, "writing/listed-student/index.html"),
+    `<!doctype html><html lang="en"><head><title>Example</title>${validHead}</head><body><h1>Student notes</h1></body></html>`,
+  );
+
+  const result = await auditSite(root, { requireAssets: false });
+
+  assert(
+    result.errors.includes(
+      "writing/listed-but-missing/index.html: missing required page",
+    ),
+  );
+  assert(
+    result.errors.includes(
+      "writing/listed-student/index.html: banned phrase: student",
+    ),
+  );
+});
+
 test("brand assets are clean, bounded, and path-based", async () => {
   const svgPaths = [
     "assets/brand/dgz-trace.svg",

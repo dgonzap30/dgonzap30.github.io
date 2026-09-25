@@ -16,6 +16,7 @@ Systems Atlas is a dependency-free, progressively enhanced field guide to curren
 | `/demos/intertitle/`, `/demos/temper/`                                       | Captured product or fixture walkthroughs; all steps remain visible without JavaScript    |
 | `/demos/maestro/`                                                            | Real local Maestro application recording with synthetic telemetry, plus a spectrum still |
 | `/now/`                                                                      | What's shipping this month, dated                                                        |
+| `/writing/`, `/writing/<slug>/`                                              | Long posts, the canonical versions; also as `/feed.xml`                                  |
 | `/404.html`                                                                  | Branded recovery state for unresolved routes                                             |
 
 ## Architecture
@@ -34,6 +35,10 @@ assets/
 ├── media/      Optimized public portrait
 └── social/     Editable SVG sources and 1200 × 630 social cards
 scripts/
+├── site-chrome.mjs      Shared head, nav and footer for generated pages
+├── build-workflow-pages.mjs  /workflow/ from assets/data/workflow.json
+├── build-writing.mjs    /writing/ and /feed.xml from assets/data/writing.json
+├── build-sitemap.mjs    /sitemap.xml from every index.html route
 ├── site-audit.mjs       Publication audit
 └── site-audit.test.mjs  Contract tests for pages, assets, and media
 work/
