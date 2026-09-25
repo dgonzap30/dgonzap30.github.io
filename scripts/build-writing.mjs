@@ -1,25 +1,21 @@
-// Generates /writing/, one page per post, and /feed.xml from assets/data/writing.json.
+// Generates /writing/, one page per post, /feed.xml, and the writing rows on
+// the home page, from assets/data/writing.json (plus the workflow series from
+// assets/data/workflow.json).
 //
 // Posts here are the canonical versions; LinkedIn and X link back to them.
-// Same approach as the workflow pages: shared chrome, generated HTML committed.
 // Run `node scripts/build-sitemap.mjs` afterwards so the sitemap lists new posts.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { ORIGIN, chrome, escape, renderSection } from './site-chrome.mjs';
+import { FEED_TITLE, NAME, ORIGIN, PERSON_ID, WEBSITE_ID, backLink, chrome, escape, renderSection } from './site-chrome.mjs';
+import { injectBlock } from './render-work.mjs';
 
 const BLOG_ID = `${ORIGIN}/writing/#blog`;
-const FEED_TITLE = 'Diego González Zapiain — Writing';
 const FEED_DESCRIPTION =
   'Long posts on building software with a fleet of AI agents, the products that come out of it, and taste.';
-const AUTHOR = {
-  '@type': 'Person',
-  '@id': 'https://wearelojik.com/about#diego',
-  name: 'Diego González Zapiain',
-  url: `${ORIGIN}/`,
-};
-const FEED_LINK = `  <link rel="alternate" type="application/rss+xml" title="${FEED_TITLE}" href="/feed.xml">\n`;
+const AUTHOR = { '@type': 'Person', '@id': PERSON_ID, name: NAME, url: `${ORIGIN}/` };
+const SERIES_LINE = 'Seven practices for running a fleet of AI coding agents, each taken from something that runs.';
 
 const longDate = (iso) =>
   new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', {
@@ -29,6 +25,16 @@ const longDate = (iso) =>
     timeZone: 'UTC',
   });
 
+const time = (iso) => `<time datetime="${iso}">${escape(longDate(iso))}</time>`;
+
+function postRow(post) {
+  return `        <li class="row"><a class="row-link" href="/writing/${post.slug}/"><span class="row-title">${escape(post.headline)}</span><span class="row-meta meta">${time(post.datePublished)}</span><span class="row-line">${escape(post.description)}</span></a></li>`;
+}
+
+function seriesRow(count) {
+  return `        <li class="row"><a class="row-link" href="/workflow/"><span class="row-title">The workflow</span><span class="row-meta meta">Series · ${count} parts</span><span class="row-line">${SERIES_LINE}</span></a></li>`;
+}
+
 function renderPost(post) {
   const canonical = `${ORIGIN}/writing/${post.slug}/`;
   const { head, footer } = chrome({
@@ -36,7 +42,6 @@ function renderPost(post) {
     description: post.description,
     canonical,
     current: '/writing/',
-    extraHead: FEED_LINK,
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
@@ -51,43 +56,34 @@ function renderPost(post) {
       inLanguage: 'en',
       image: `${ORIGIN}/assets/social/home.png`,
       author: AUTHOR,
-      publisher: { '@id': AUTHOR['@id'] },
+      publisher: { '@id': PERSON_ID },
       isPartOf: { '@id': BLOG_ID },
     },
   });
-  const updated =
-    post.dateModified !== post.datePublished
-      ? `\n          <li><span>Updated</span><strong>${escape(longDate(post.dateModified))}</strong></li>`
-      : '';
-  const hero = `    <header class="case-hero shell">
-      <div class="case-hero-main">
-        <p class="kicker">Writing</p>
-        <h1>${escape(post.headline)}</h1>
-        <p class="lede">${post.lede}</p>
-      </div>
-      <aside class="case-hero-aside" aria-label="Post metadata">
-        <p class="evidence-tag">Published ${escape(longDate(post.datePublished))}</p>
-        <ul class="case-meta">
-          <li><span>Author</span><strong><a href="/">Diego González Zapiain</a></strong></li>${updated}
-        </ul>
-      </aside>
-    </header>`;
-  const sections = post.sections.map(renderSection).join('\n\n');
+  const updated = post.dateModified !== post.datePublished ? ` · Updated ${time(post.dateModified)}` : '';
   return `${head}
-${hero}
+    <header class="page-head shell">
+${backLink('/writing/', 'Writing')}
+      <h1>${escape(post.headline)}</h1>
+      <p class="lede">${post.lede}</p>
+      <p class="page-meta meta">${time(post.datePublished)}${updated}</p>
+    </header>
 
-${sections}
+    <div class="shell">
+      <article class="prose">
+${post.sections.map(renderSection).join('\n\n')}
+      </article>
+    </div>
 ${footer}`;
 }
 
-function renderIndex(posts) {
+function renderIndex(posts, series) {
   const canonical = `${ORIGIN}/writing/`;
   const { head, footer } = chrome({
     title: 'Writing',
-    description: `${FEED_DESCRIPTION} By Diego González Zapiain.`,
+    description: `${FEED_DESCRIPTION} By ${NAME}.`,
     canonical,
     current: '/writing/',
-    extraHead: FEED_LINK,
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'Blog',
@@ -96,6 +92,7 @@ function renderIndex(posts) {
       description: FEED_DESCRIPTION,
       url: canonical,
       inLanguage: 'en',
+      isPartOf: { '@id': WEBSITE_ID },
       author: AUTHOR,
       blogPost: posts.map((post) => ({
         '@type': 'BlogPosting',
@@ -106,45 +103,31 @@ function renderIndex(posts) {
       })),
     },
   });
-  const rows = posts.length
-    ? posts
-        .map(
-          (post, index) => `    <section class="case-section shell" id="${post.slug}">
-      <p class="case-section-index">${String(posts.length - index).padStart(2, '0')}</p>
-      <div class="case-section-main">
-        <h2><a href="/writing/${post.slug}/">${escape(post.headline)}</a></h2>
-        <p>${escape(post.description)}</p>
-      </div>
-      <aside class="case-note"><strong>Published</strong>${escape(longDate(post.datePublished))}</aside>
-    </section>`,
-        )
-        .join('\n\n')
-    : `    <section class="case-section shell" id="first-post">
-      <p class="case-section-index">00</p>
-      <div class="case-section-main">
-        <h2>The first post is in progress</h2>
-        <p>Until then, <a href="/now/">Now</a> has what I'm building this month.</p>
-      </div>
-    </section>`;
-  const latest = posts[0] ? escape(longDate(posts[0].datePublished)) : '—';
-  const hero = `    <header class="case-hero shell">
-      <div class="case-hero-main">
-        <p class="kicker">Writing</p>
-        <h1>Long posts, dated.</h1>
-        <p class="lede">${escape(FEED_DESCRIPTION)} Each post here is the canonical version; LinkedIn and X link back to it.</p>
-      </div>
-      <aside class="case-hero-aside" aria-label="Writing metadata">
-        <p class="evidence-tag">Also as <a href="/feed.xml">RSS</a></p>
-        <ul class="case-meta">
-          <li><span>Posts</span><strong>${posts.length}</strong></li>
-          <li><span>Latest</span><strong>${latest}</strong></li>
-        </ul>
-      </aside>
-    </header>`;
+  const list = posts.length
+    ? `      <ul class="rows rows--compact" role="list">
+${posts.map(postRow).join('\n')}
+      </ul>`
+    : `      <p class="lede">The first post is in progress. Until then, <a href="/now/">Now</a> has what I'm building this month.</p>`;
   return `${head}
-${hero}
+    <header class="page-head shell">
+      <h1>Writing</h1>
+      <p class="lede">${escape(FEED_DESCRIPTION)}</p>
+      <p class="page-meta meta">Also as <a href="/feed.xml">RSS</a></p>
+    </header>
 
-${rows}
+    <div class="shell">
+      <section aria-labelledby="posts-title">
+        <div class="section-head"><h2 class="section-title" id="posts-title">Posts</h2></div>
+${list}
+      </section>
+
+      <section class="section" aria-labelledby="series-title">
+        <div class="section-head"><h2 class="section-title" id="series-title">Series</h2></div>
+      <ul class="rows rows--compact" role="list">
+${seriesRow(series.length)}
+      </ul>
+      </section>
+    </div>
 ${footer}`;
 }
 
@@ -182,6 +165,7 @@ const root = resolve(here, '..');
 const posts = JSON.parse(await readFile(join(root, 'assets/data/writing.json'), 'utf8')).sort((a, b) =>
   b.datePublished.localeCompare(a.datePublished),
 );
+const series = JSON.parse(await readFile(join(root, 'assets/data/workflow.json'), 'utf8'));
 
 const written = [];
 for (const post of posts) {
@@ -191,10 +175,18 @@ for (const post of posts) {
   written.push(`writing/${post.slug}/index.html`);
 }
 await mkdir(join(root, 'writing'), { recursive: true });
-await writeFile(join(root, 'writing', 'index.html'), renderIndex(posts));
+await writeFile(join(root, 'writing', 'index.html'), renderIndex(posts, series));
 written.push('writing/index.html');
 await writeFile(join(root, 'feed.xml'), renderFeed(posts));
 written.push('feed.xml');
+
+// Home shows the three newest posts and the workflow series.
+const homePath = join(root, 'index.html');
+const homeRows = `      <ul class="rows rows--compact" role="list">
+${[...posts.slice(0, 3).map(postRow), seriesRow(series.length)].join('\n')}
+      </ul>`;
+await writeFile(homePath, injectBlock(await readFile(homePath, 'utf8'), 'writing', 'home', homeRows, 'index.html'));
+written.push('index.html (writing rows)');
 
 console.log(`Generated ${written.length} writing files:`);
 for (const path of written) console.log(`  ${path}`);

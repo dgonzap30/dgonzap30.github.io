@@ -1,5 +1,293 @@
 [
   {
+    "id": "intertitle",
+    "name": "Intertitle",
+    "shortLabel": "Intertitle",
+    "category": "Film & taste",
+    "role": null,
+    "status": "On the App Store",
+    "purpose": "Find a film for tonight, explore your taste, and keep the conversation going.",
+    "description": "A film companion grounded in personal taste — separate from the public App Store release.",
+    "capturedAt": "2026-09-08",
+    "sourceLabel": "Native iOS build, isolated Simulator, fixture data",
+    "demoScope": "Seven current stills from a source-owned presentation fixture, captured in an isolated development build. Every film, person, rating, match percentile and taste explanation is fixture data — this demonstrates presentation, not a live recommender or real taste inference. A development preview, not the public App Store release.",
+    "engineeringNotes": "Recommendation constraints and retry-safe conversation state make the choice easier to revise.",
+    "working": [
+      "A film-detail view that pairs a fixture match percentile with a stated reason",
+      "A film-anchored Reely thread that carries prior context into a refinement",
+      "Diary, People and Friends surfaces populated with fixture data"
+    ],
+    "remaining": [
+      "No live recommendation model — every match percentile and \"why this one\" explanation comes from the fixture, not real taste inference",
+      "Reely makes no live model call in this build; external services are hard-disabled under the fixture",
+      "The people and friends shown are fixture profiles, not a real community",
+      "A development preview, not the public App Store release"
+    ],
+    "defaultChapter": "film-detail",
+    "chapters": [
+      {
+        "id": "tonight",
+        "title": "Tonight's pick",
+        "caption": "Tonight's pick, Paris, Texas (1984, 145 min), with the Refine tonight sheet open on \"What are you in the mood for?\"",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/01-tonight.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle Tonight tab showing Paris, Texas as tonight's pick with the Refine tonight sheet open",
+        "sourceSha256": "288cbe43def2124f0aebf4293063127fec461368b729d49aeb00acc95a348c39"
+      },
+      {
+        "id": "discover",
+        "title": "Discover",
+        "caption": "A populated discovery grid — Portrait of a Lady on Fire, Parasite, Eternal Sunshine, Moonlight — from the source-owned fixture.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/02-discover.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle Discover tab showing a populated grid of fixture films",
+        "sourceSha256": "f1ee1e420355652f4eb2f96a2139ba6198ac8d9253b4154c66e99f9be30cab85"
+      },
+      {
+        "id": "film-detail",
+        "title": "Why this one",
+        "caption": "Paris, Texas's detail screen: a fixture match percentile, a \"why this one\" taste explanation, social proof, synopsis, and the Talk with Reely action — presentation only, not a live recommendation.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/06-film-detail.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle film detail screen for Paris, Texas showing a fixture match percentile and why-this-one explanation",
+        "sourceSha256": "6b4533f242e12d5575df654af262d25ccf2b9b125f2bdc7b0a7169ff29a566e1"
+      },
+      {
+        "id": "reely-refine",
+        "title": "Refine with Reely",
+        "caption": "A film-anchored thread on Paris, Texas with a prior turn. Reely runs on a fixture client in this build; no live model call is made.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/05-reely-refine.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle Reely thread anchored on Paris, Texas with a prior conversational turn",
+        "sourceSha256": "36f578c3e9afcb70e97358f5e0566f372826d26fadf7b91442711db1e0a0b7d4"
+      },
+      {
+        "id": "diary",
+        "title": "Your diary",
+        "caption": "Six fixture log entries with ratings and posters.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/03-diary.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle Diary tab showing six fixture log entries with ratings",
+        "sourceSha256": "4bd7fe96e23fa736cc1a0c600cfb45b57baf62d5202212df92a2aefdd4447d9d"
+      },
+      {
+        "id": "people",
+        "title": "Your film circle",
+        "caption": "A fixture film circle and recently-watching rows. The people shown are fixture profiles, not real users.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/04-people.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle People tab showing a fixture film circle and follow rows",
+        "sourceSha256": "202dea4d7c290e6503e658858eab0fb011a49408f86de27196dcd2f9fb6bbd32"
+      },
+      {
+        "id": "friends-activity",
+        "title": "What friends are watching",
+        "caption": "A fixture friends-activity feed — no real community or friend activity.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/intertitle/07-friends-activity.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-09-08",
+        "syntheticLabel": "Fixture demo data",
+        "alt": "Intertitle Friends tab showing a fixture activity feed",
+        "sourceSha256": "104380b545594683c81cc1857b8020af4b70a2a7b6fe2c14963836d34b4acf64"
+      }
+    ],
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "app-store",
+      "label": "Get Intertitle on the App Store",
+      "href": "https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124",
+      "enabled": true
+    },
+    "page": {
+      "title": "Intertitle, a film app for iPhone",
+      "description": "Screens from Intertitle, the free iPhone app by Diego González Zapiain that learns your film taste, picks something for tonight and explains why. Captured from a development preview with fixture data."
+    },
+    "app": {
+      "@type": "MobileApplication",
+      "@id": "https://intertitle.app/#app",
+      "url": "https://intertitle.app/",
+      "operatingSystem": "iOS 17 or later",
+      "applicationCategory": "EntertainmentApplication",
+      "sameAs": "https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  },
+  {
+    "id": "pazz",
+    "name": "PAZZ Marketplace",
+    "shortLabel": "PAZZ",
+    "category": "Vehicle leasing",
+    "role": "Technical Lead",
+    "status": "In development",
+    "purpose": "Follow a vehicle from discovery into a lease application.",
+    "description": "A Mexican vehicle-leasing marketplace that brings discovery, qualification, and partner handoffs into one path.",
+    "capturedAt": "2026-09-09",
+    "sourceLabel": "Isolated local dev build, browser captures",
+    "demoScope": "Seven current captures from an isolated local dev ring: the quoting flow from vehicle spec to a real-cost estimate and term comparison, Claudio's guided search, and a flag-gated partner-application intake. All amounts, applicant and contact details are synthetic, and every estimate is illustrative, not a lessor offer.",
+    "engineeringNotes": "Shared domain rules and recoverable document handoffs keep operating decisions consistent.",
+    "working": [
+      "A quoting flow that turns a vehicle spec into a real-cost estimate — rent, estimated ISR deduction, creditable IVA — compared across terms",
+      "Claudio, a guided-search adviser that carries a confirmed budget into vehicle questions",
+      "A partner-application intake, gated behind a feature flag rather than live"
+    ],
+    "remaining": [
+      "Every amount is a local illustrative estimate, not a lessor offer — the product itself labels it \"Estimación, no oferta\"",
+      "Claudio runs on a deterministic scripted mock (USE_REAL_AGENT_MODEL off); no live model call and no autonomous decision",
+      "The partner application sits behind USE_PARTNER_PORTAL_V2, off by default while the partner program stays intentionally dark",
+      "The vehicle catalog itself isn't shown here: its cards currently render an \"Imagen en validación\" placeholder because licensed vehicle media doesn't exist yet"
+    ],
+    "defaultChapter": "quote-composer",
+    "chapters": [
+      {
+        "id": "quote-composer",
+        "title": "Specify the vehicle",
+        "caption": "A vehicle spec for an Audi A5 Coupé TFSI Quattro (2025), listed at $1,200,000 MXN and quoted against $500,000, with a four-step progress bar and a running vehicle summary.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/pazz/01-quote-composer.webp",
+        "width": 2880,
+        "height": 1800,
+        "capturedAt": "2026-09-09",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "PAZZ quote composer with an Audi A5 Coupé TFSI Quattro spec and a four-step progress bar",
+        "sourceSha256": "bb412d1d00afcc02df61b6e81d2cf42e074389996e21f6d7044447adb5c9dd65"
+      },
+      {
+        "id": "fiscal-regime",
+        "title": "The fiscal question",
+        "caption": "A four-way fiscal-profile branch — empresa, por mi cuenta, asalariado, no seguro — with leasing explained against credit, and the disclosure that Pazz is not a lender or a SOFOM.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/pazz/03-fiscal-regime.webp",
+        "width": 2880,
+        "height": 1800,
+        "capturedAt": "2026-09-09",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "PAZZ fiscal-regime question with four branches and a lender/SOFOM disclaimer",
+        "sourceSha256": "3c8c886d2f599b5803caf55ef4e16851c06f850c34e18baa4f009213142d0c6a"
+      },
+      {
+        "id": "estimate",
+        "title": "Real cost, not just rent",
+        "caption": "Rent $14,263, an estimated ISR deduction of −$1,800 and creditable IVA of +$960, for a real cost of $12,463 at 48 months — an illustrative estimate, not a lessor offer.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/pazz/04-estimate.webp",
+        "width": 2880,
+        "height": 1800,
+        "capturedAt": "2026-09-09",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "PAZZ real-cost estimate showing rent, estimated ISR deduction, and creditable IVA at 48 months",
+        "sourceSha256": "d413dc9a94e7a0e30e972cb373032249c4dbec87e691d1c554a49f331ceeba58"
+      },
+      {
+        "id": "quote-result",
+        "title": "The quote",
+        "caption": "A 48/36/24-month term comparison, with an initial payment of $44,030 and a $217,500 purchase option.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/pazz/06-quote-result.webp",
+        "width": 2880,
+        "height": 1800,
+        "capturedAt": "2026-09-09",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "PAZZ quote result comparing 48, 36, and 24-month terms with initial payment and purchase option",
+        "sourceSha256": "2e3b21d855eb7253d9d6995c142b69c1a55383e82207f8a5004586a11f65bbd6"
+      },
+      {
+        "id": "claudio-opening",
+        "title": "Ask Claudio",
+        "caption": "Claudio's entry screen, disclosed in-product as a virtual adviser that does not decide applications.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/pazz/07-claudio-opening.webp",
+        "width": 2880,
+        "height": 1800,
+        "capturedAt": "2026-09-09",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "PAZZ Claudio entry screen disclosing it as a virtual adviser",
+        "sourceSha256": "c7ec1d892ec24f18923fde203511a377773d89184031f997e9713a6bf8e98534"
+      },
+      {
+        "id": "guided-search",
+        "title": "Budget becomes a search",
+        "caption": "A confirmed $15,000 MXN/month budget carried into a running \"Tu búsqueda\" summary, with Claudio's reply and the next branch.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/pazz/09-guided-search.webp",
+        "width": 2880,
+        "height": 1800,
+        "capturedAt": "2026-09-09",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "PAZZ guided search with a confirmed budget carried into a running search summary",
+        "sourceSha256": "db018cfdf7a4394d1f7acaef8eb74213c1ef925b7e9fb81a83174a21831e9523"
+      },
+      {
+        "id": "partner-application",
+        "title": "Partner intake",
+        "caption": "A partner application filled with synthetic applicant details; checking Persona Moral reveals the conditional Razón social field. This surface is flag-gated and off by default.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/pazz/10-partner-application.webp",
+        "width": 2880,
+        "height": 1800,
+        "capturedAt": "2026-09-09",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "PAZZ partner application intake with synthetic details and a revealed Razón social field",
+        "sourceSha256": "5973c18023ac2a726bbe05f8373199b90f3cd1d7a8a223020d09e2a8df10e8c2"
+      }
+    ],
+    "publicLinks": [
+      {
+        "label": "Read the engineering case study",
+        "href": "/work/pazz/"
+      }
+    ],
+    "wayIn": {
+      "kind": "case-study",
+      "label": "Read the engineering case study",
+      "href": "/work/pazz/",
+      "enabled": true
+    }
+  },
+  {
     "id": "maestro",
     "name": "Maestro",
     "shortLabel": "Maestro",
@@ -85,7 +373,17 @@
       "label": "Ask about the private beta",
       "href": "https://wearelojik.com/api/contact",
       "enabled": true,
-      "note": "Private beta; access is granted directly, there is no public build."
+      "note": "Private beta; access is granted directly, there is no public build.",
+      "message": "Please tell me more about the Maestro private beta."
+    },
+    "page": {
+      "title": "Maestro, a copilot for music sessions",
+      "description": "Maestro reads a live music session and keeps what it hears inspectable for the producer. A private beta by Diego González Zapiain, shown with synthetic session data."
+    },
+    "app": {
+      "@type": "SoftwareApplication",
+      "operatingSystem": "macOS",
+      "applicationCategory": "MultimediaApplication"
     }
   },
   {
@@ -248,7 +546,17 @@
       "label": "Tell me when the TestFlight opens",
       "href": "https://wearelojik.com/api/contact",
       "enabled": true,
-      "note": "Public TestFlight is the next step; no public link exists yet."
+      "note": "Public TestFlight is the next step; no public link exists yet.",
+      "message": "Please let me know when the Temper TestFlight opens."
+    },
+    "page": {
+      "title": "Temper, training and food planning for iPhone",
+      "description": "Temper connects the day's recovery, food and training to a week you can actually follow. In development by Diego González Zapiain; every number shown is synthetic fixture data."
+    },
+    "app": {
+      "@type": "MobileApplication",
+      "operatingSystem": "iOS",
+      "applicationCategory": "HealthApplication"
     }
   },
   {
@@ -339,278 +647,17 @@
       "label": "Tell me when Mimo opens up",
       "href": "https://wearelojik.com/api/contact",
       "enabled": true,
-      "note": "In development; no public build exists yet."
-    }
-  },
-  {
-    "id": "intertitle",
-    "name": "Intertitle",
-    "shortLabel": "Intertitle",
-    "category": "Film & taste",
-    "role": null,
-    "status": "On the App Store",
-    "purpose": "Find a film for tonight, explore your taste, and keep the conversation going.",
-    "description": "A film companion grounded in personal taste — separate from the public App Store release.",
-    "capturedAt": "2026-09-08",
-    "sourceLabel": "Native iOS build, isolated Simulator, fixture data",
-    "demoScope": "Seven current stills from a source-owned presentation fixture, captured in an isolated development build. Every film, person, rating, match percentile and taste explanation is fixture data — this demonstrates presentation, not a live recommender or real taste inference. A development preview, not the public App Store release.",
-    "engineeringNotes": "Recommendation constraints and retry-safe conversation state make the choice easier to revise.",
-    "working": [
-      "A film-detail view that pairs a fixture match percentile with a stated reason",
-      "A film-anchored Reely thread that carries prior context into a refinement",
-      "Diary, People and Friends surfaces populated with fixture data"
-    ],
-    "remaining": [
-      "No live recommendation model — every match percentile and \"why this one\" explanation comes from the fixture, not real taste inference",
-      "Reely makes no live model call in this build; external services are hard-disabled under the fixture",
-      "The people and friends shown are fixture profiles, not a real community",
-      "A development preview, not the public App Store release"
-    ],
-    "defaultChapter": "film-detail",
-    "chapters": [
-      {
-        "id": "tonight",
-        "title": "Tonight's pick",
-        "caption": "Tonight's pick, Paris, Texas (1984, 145 min), with the Refine tonight sheet open on \"What are you in the mood for?\"",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/01-tonight.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Tonight tab showing Paris, Texas as tonight's pick with the Refine tonight sheet open",
-        "sourceSha256": "288cbe43def2124f0aebf4293063127fec461368b729d49aeb00acc95a348c39"
-      },
-      {
-        "id": "discover",
-        "title": "Discover",
-        "caption": "A populated discovery grid — Portrait of a Lady on Fire, Parasite, Eternal Sunshine, Moonlight — from the source-owned fixture.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/02-discover.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Discover tab showing a populated grid of fixture films",
-        "sourceSha256": "f1ee1e420355652f4eb2f96a2139ba6198ac8d9253b4154c66e99f9be30cab85"
-      },
-      {
-        "id": "film-detail",
-        "title": "Why this one",
-        "caption": "Paris, Texas's detail screen: a fixture match percentile, a \"why this one\" taste explanation, social proof, synopsis, and the Talk with Reely action — presentation only, not a live recommendation.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/06-film-detail.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle film detail screen for Paris, Texas showing a fixture match percentile and why-this-one explanation",
-        "sourceSha256": "6b4533f242e12d5575df654af262d25ccf2b9b125f2bdc7b0a7169ff29a566e1"
-      },
-      {
-        "id": "reely-refine",
-        "title": "Refine with Reely",
-        "caption": "A film-anchored thread on Paris, Texas with a prior turn. Reely runs on a fixture client in this build; no live model call is made.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/05-reely-refine.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Reely thread anchored on Paris, Texas with a prior conversational turn",
-        "sourceSha256": "36f578c3e9afcb70e97358f5e0566f372826d26fadf7b91442711db1e0a0b7d4"
-      },
-      {
-        "id": "diary",
-        "title": "Your diary",
-        "caption": "Six fixture log entries with ratings and posters.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/03-diary.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Diary tab showing six fixture log entries with ratings",
-        "sourceSha256": "4bd7fe96e23fa736cc1a0c600cfb45b57baf62d5202212df92a2aefdd4447d9d"
-      },
-      {
-        "id": "people",
-        "title": "Your film circle",
-        "caption": "A fixture film circle and recently-watching rows. The people shown are fixture profiles, not real users.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/04-people.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle People tab showing a fixture film circle and follow rows",
-        "sourceSha256": "202dea4d7c290e6503e658858eab0fb011a49408f86de27196dcd2f9fb6bbd32"
-      },
-      {
-        "id": "friends-activity",
-        "title": "What friends are watching",
-        "caption": "A fixture friends-activity feed — no real community or friend activity.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/07-friends-activity.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Friends tab showing a fixture activity feed",
-        "sourceSha256": "104380b545594683c81cc1857b8020af4b70a2a7b6fe2c14963836d34b4acf64"
-      }
-    ],
-    "publicLinks": [],
-    "wayIn": {
-      "kind": "app-store",
-      "label": "Get Intertitle on the App Store",
-      "href": "https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124",
-      "enabled": true
-    }
-  },
-  {
-    "id": "pazz",
-    "name": "PAZZ Marketplace",
-    "shortLabel": "PAZZ",
-    "category": "Vehicle leasing",
-    "role": "Technical Lead",
-    "status": "In development",
-    "purpose": "Follow a vehicle from discovery into a lease application.",
-    "description": "A Mexican vehicle-leasing marketplace that brings discovery, qualification, and partner handoffs into one path.",
-    "capturedAt": "2026-09-09",
-    "sourceLabel": "Isolated local dev build, browser captures",
-    "demoScope": "Seven current captures from an isolated local dev ring: the quoting flow from vehicle spec to a real-cost estimate and term comparison, Claudio's guided search, and a flag-gated partner-application intake. All amounts, applicant and contact details are synthetic, and every estimate is illustrative, not a lessor offer.",
-    "engineeringNotes": "Shared domain rules and recoverable document handoffs keep operating decisions consistent.",
-    "working": [
-      "A quoting flow that turns a vehicle spec into a real-cost estimate — rent, estimated ISR deduction, creditable IVA — compared across terms",
-      "Claudio, a guided-search adviser that carries a confirmed budget into vehicle questions",
-      "A partner-application intake, gated behind a feature flag rather than live"
-    ],
-    "remaining": [
-      "Every amount is a local illustrative estimate, not a lessor offer — the product itself labels it \"Estimación, no oferta\"",
-      "Claudio runs on a deterministic scripted mock (USE_REAL_AGENT_MODEL off); no live model call and no autonomous decision",
-      "The partner application sits behind USE_PARTNER_PORTAL_V2, off by default while the partner program stays intentionally dark",
-      "The vehicle catalog itself isn't shown here: its cards currently render an \"Imagen en validación\" placeholder because licensed vehicle media doesn't exist yet"
-    ],
-    "defaultChapter": "quote-composer",
-    "chapters": [
-      {
-        "id": "quote-composer",
-        "title": "Specify the vehicle",
-        "caption": "A vehicle spec for an Audi A5 Coupé TFSI Quattro (2025), listed at $1,200,000 MXN and quoted against $500,000, with a four-step progress bar and a running vehicle summary.",
-        "mediaType": "image",
-        "layout": "desktop",
-        "src": "/assets/media/demos/pazz/01-quote-composer.webp",
-        "width": 2880,
-        "height": 1800,
-        "capturedAt": "2026-09-09",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ quote composer with an Audi A5 Coupé TFSI Quattro spec and a four-step progress bar",
-        "sourceSha256": "bb412d1d00afcc02df61b6e81d2cf42e074389996e21f6d7044447adb5c9dd65"
-      },
-      {
-        "id": "fiscal-regime",
-        "title": "The fiscal question",
-        "caption": "A four-way fiscal-profile branch — empresa, por mi cuenta, asalariado, no seguro — with leasing explained against credit, and the disclosure that Pazz is not a lender or a SOFOM.",
-        "mediaType": "image",
-        "layout": "desktop",
-        "src": "/assets/media/demos/pazz/03-fiscal-regime.webp",
-        "width": 2880,
-        "height": 1800,
-        "capturedAt": "2026-09-09",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ fiscal-regime question with four branches and a lender/SOFOM disclaimer",
-        "sourceSha256": "3c8c886d2f599b5803caf55ef4e16851c06f850c34e18baa4f009213142d0c6a"
-      },
-      {
-        "id": "estimate",
-        "title": "Real cost, not just rent",
-        "caption": "Rent $14,263, an estimated ISR deduction of −$1,800 and creditable IVA of +$960, for a real cost of $12,463 at 48 months — an illustrative estimate, not a lessor offer.",
-        "mediaType": "image",
-        "layout": "desktop",
-        "src": "/assets/media/demos/pazz/04-estimate.webp",
-        "width": 2880,
-        "height": 1800,
-        "capturedAt": "2026-09-09",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ real-cost estimate showing rent, estimated ISR deduction, and creditable IVA at 48 months",
-        "sourceSha256": "d413dc9a94e7a0e30e972cb373032249c4dbec87e691d1c554a49f331ceeba58"
-      },
-      {
-        "id": "quote-result",
-        "title": "The quote",
-        "caption": "A 48/36/24-month term comparison, with an initial payment of $44,030 and a $217,500 purchase option.",
-        "mediaType": "image",
-        "layout": "desktop",
-        "src": "/assets/media/demos/pazz/06-quote-result.webp",
-        "width": 2880,
-        "height": 1800,
-        "capturedAt": "2026-09-09",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ quote result comparing 48, 36, and 24-month terms with initial payment and purchase option",
-        "sourceSha256": "2e3b21d855eb7253d9d6995c142b69c1a55383e82207f8a5004586a11f65bbd6"
-      },
-      {
-        "id": "claudio-opening",
-        "title": "Ask Claudio",
-        "caption": "Claudio's entry screen, disclosed in-product as a virtual adviser that does not decide applications.",
-        "mediaType": "image",
-        "layout": "desktop",
-        "src": "/assets/media/demos/pazz/07-claudio-opening.webp",
-        "width": 2880,
-        "height": 1800,
-        "capturedAt": "2026-09-09",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ Claudio entry screen disclosing it as a virtual adviser",
-        "sourceSha256": "c7ec1d892ec24f18923fde203511a377773d89184031f997e9713a6bf8e98534"
-      },
-      {
-        "id": "guided-search",
-        "title": "Budget becomes a search",
-        "caption": "A confirmed $15,000 MXN/month budget carried into a running \"Tu búsqueda\" summary, with Claudio's reply and the next branch.",
-        "mediaType": "image",
-        "layout": "desktop",
-        "src": "/assets/media/demos/pazz/09-guided-search.webp",
-        "width": 2880,
-        "height": 1800,
-        "capturedAt": "2026-09-09",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ guided search with a confirmed budget carried into a running search summary",
-        "sourceSha256": "db018cfdf7a4394d1f7acaef8eb74213c1ef925b7e9fb81a83174a21831e9523"
-      },
-      {
-        "id": "partner-application",
-        "title": "Partner intake",
-        "caption": "A partner application filled with synthetic applicant details; checking Persona Moral reveals the conditional Razón social field. This surface is flag-gated and off by default.",
-        "mediaType": "image",
-        "layout": "desktop",
-        "src": "/assets/media/demos/pazz/10-partner-application.webp",
-        "width": 2880,
-        "height": 1800,
-        "capturedAt": "2026-09-09",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "PAZZ partner application intake with synthetic details and a revealed Razón social field",
-        "sourceSha256": "5973c18023ac2a726bbe05f8373199b90f3cd1d7a8a223020d09e2a8df10e8c2"
-      }
-    ],
-    "publicLinks": [
-      {
-        "label": "Read the engineering case study",
-        "href": "/work/pazz/"
-      }
-    ],
-    "wayIn": {
-      "kind": "case-study",
-      "label": "Read the engineering case study",
-      "href": "/work/pazz/",
-      "enabled": true
+      "note": "In development; no public build exists yet.",
+      "message": "Please let me know when Mimo opens up to try."
+    },
+    "page": {
+      "title": "Mimo, photo keepsakes for iPhone",
+      "description": "Mimo turns everyday photos into small keepsakes you can mark, save and put on your Home Screen. In development by Diego González Zapiain."
+    },
+    "app": {
+      "@type": "MobileApplication",
+      "operatingSystem": "iOS",
+      "applicationCategory": "LifestyleApplication"
     }
   }
 ]

@@ -247,10 +247,8 @@ test("brand raster fallbacks have exact dimensions", async () => {
 
 test("graphics are accessible, bounded SVG documents", async () => {
   const graphicPaths = [
-    "assets/graphics/system-trace.svg",
     "assets/graphics/pazz-handoff.svg",
     "assets/graphics/lojik-evidence.svg",
-    "assets/graphics/operating-range.svg",
   ];
 
   for (const relativePath of graphicPaths) {
@@ -265,39 +263,33 @@ test("graphics are accessible, bounded SVG documents", async () => {
 test("javascript is a small progressive enhancement", async () => {
   const script = await readFile(join(repoRoot, "assets/js/site.js"), "utf8");
   assert(Buffer.byteLength(script) < 12 * 1024, "site.js exceeds 12 KB");
-  for (const functionName of [
-    "motionAllowed",
-    "enhanceReveals",
-    "enhanceSectionNav",
-    "enhanceNavToggle",
-    "activateChapter",
-    "enhanceExplorerStage",
-    "enhanceStageDialog",
-    "enhanceExplorer",
-  ]) {
+  for (const functionName of ["motionAllowed", "enhanceGallery"]) {
     assert.match(script, new RegExp(`function ${functionName}\\(`));
   }
   assert.doesNotMatch(script, /\bsetInterval\s*\(/);
   assert.doesNotMatch(script, /\brequestAnimationFrame\s*\(/);
 });
 
-test("dark-surface palette maintains WCAG AA contrast", async () => {
+test("palette keeps secondary text and the accent at WCAG AA on every surface", async () => {
   const tokens = await readFile(
     join(repoRoot, "assets/css/tokens.css"),
     "utf8",
   );
-  const components = await readFile(
-    join(repoRoot, "assets/css/components.css"),
-    "utf8",
-  );
-  const carbon = oklchToken(tokens, "carbon");
-
-  assert(contrastRatio(oklchToken(tokens, "night-soft"), carbon) >= 4.5);
-  assert(contrastRatio(oklchToken(tokens, "vermilion-light"), carbon) >= 4.5);
-  assert.match(
-    components,
-    /\.site-footer \.kicker\s*{[^}]*color:\s*var\(--night-soft\)/s,
-  );
+  const pairs = [
+    ["ink-2", "paper"],
+    ["ink-2", "wash"],
+    ["accent", "paper"],
+    ["ink-2", "plate-pazz"],
+    ["ink-2", "plate-lojik"],
+    ["ink-2", "plate-maestro"],
+    ["ink-2", "plate-temper"],
+    ["ink-2", "plate-mimo"],
+    ["on-dark-2", "plate-intertitle"],
+  ];
+  for (const [text, surface] of pairs) {
+    const ratio = contrastRatio(oklchToken(tokens, text), oklchToken(tokens, surface));
+    assert(ratio >= 4.5, `${text} on ${surface} is ${ratio.toFixed(2)}:1, below 4.5`);
+  }
 });
 
 test("fonts are self-hosted, licensed, and bounded", async () => {
@@ -521,7 +513,7 @@ test("product registry has five projects with a stable, honest editorial order",
   assert.equal(registry.length, 5);
   assert.deepEqual(
     registry.map((project) => project.id),
-    ["maestro", "temper", "mimo", "intertitle", "pazz"],
+    ["intertitle", "pazz", "maestro", "temper", "mimo"],
   );
   assert.equal(
     new Set(registry.map((project) => project.id)).size,
@@ -583,6 +575,9 @@ test("forbidden internal-only Intertitle fixtures are not published", async () =
 // or nested deeper inside a worktree under it, so walk upward from
 // repoRoot to find the sibling "current-captures" directory rather than
 // hardcoding a fixed relative depth.
+//
+// Outside that evidence tree (a separate worktree, a fresh clone) the
+// chain-of-custody test is skipped with a visible reason, never passed.
 async function findEvidenceRoot(startDir) {
   let dir = startDir;
   for (let i = 0; i < 10; i++) {
@@ -592,11 +587,12 @@ async function findEvidenceRoot(startDir) {
     if (parent === dir) break;
     dir = parent;
   }
-  throw new Error(
-    `Could not locate a "current-captures" evidence directory above ${startDir}`,
-  );
+  return null;
 }
 const EVIDENCE_ROOT = await findEvidenceRoot(repoRoot);
+const EVIDENCE_SKIP =
+  !EVIDENCE_ROOT &&
+  `no "current-captures" evidence directory above ${repoRoot}; chain of custody not checked`;
 
 // Projects whose media comes from work/approved-demo-media/, which has no
 // capture manifest to chain custody against. Exempted explicitly (rather
@@ -604,12 +600,14 @@ const EVIDENCE_ROOT = await findEvidenceRoot(repoRoot);
 // be visible, not implicit.
 const NO_MANIFEST_PROJECTS = new Set(["maestro"]);
 
-const CAPTURE_MANIFESTS = {
-  intertitle: join(EVIDENCE_ROOT, "intertitle-current/manifest.json"),
-  pazz: join(EVIDENCE_ROOT, "pazz/current/manifest.json"),
-  temper: join(EVIDENCE_ROOT, "temper/manifest.json"),
-  mimo: join(EVIDENCE_ROOT, "mimo/manifest.json"),
-};
+const CAPTURE_MANIFESTS = EVIDENCE_ROOT
+  ? {
+      intertitle: join(EVIDENCE_ROOT, "intertitle-current/manifest.json"),
+      pazz: join(EVIDENCE_ROOT, "pazz/current/manifest.json"),
+      temper: join(EVIDENCE_ROOT, "temper/manifest.json"),
+      mimo: join(EVIDENCE_ROOT, "mimo/manifest.json"),
+    }
+  : {};
 
 // Chapters whose capture manifest exists but records no sha256 for that
 // specific asset — there is no hash to chain custody against, so this
@@ -621,7 +619,7 @@ const CAPTURE_MANIFESTS = {
 // now has real chain of custody like every other chapter below.
 const NO_MANIFEST_HASH_CHAPTERS = new Set([]);
 
-test("every published chapter with a capture manifest has verified chain of custody", async () => {
+test("every published chapter with a capture manifest has verified chain of custody", { skip: EVIDENCE_SKIP }, async () => {
   const registry = JSON.parse(
     await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
   );
@@ -698,6 +696,7 @@ test("every product route renders the explorer stage for its own chapters", asyn
     assert(text.includes(project.name), `${routePath} is missing the product name`);
     assert(text.includes(project.purpose), `${routePath} is missing its purpose`);
     assert(text.includes(project.status), `${routePath} is missing its status`);
+    assert.match(html, /data-explorer-stage/, `${routePath} has no gallery stage`);
 
     if (project.pending && !project.chapters.length) {
       assert(
@@ -742,14 +741,12 @@ test("every product route renders the explorer stage for its own chapters", asyn
   }
 });
 
-test("home and projects hub embed the same explorer component and full picker", async () => {
+test("home and the work index link to every product route", async () => {
   const registry = JSON.parse(
     await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
   );
   for (const routePath of ["index.html", "projects/index.html"]) {
     const html = await readFile(join(repoRoot, routePath), "utf8");
-    assert.match(html, /class="explorer-picker"/);
-    assert.match(html, /data-explorer-stage/);
     for (const project of registry) {
       const href = project.id === "pazz" ? "/work/pazz/" : `/demos/${project.id}/`;
       assert(
@@ -954,6 +951,9 @@ test("every product route renders its wayIn, and a disabled one offers no dead c
     const routePath = routeForProject(project);
     const html = await readFile(join(repoRoot, routePath), "utf8");
     const wayIn = project.wayIn;
+    // PAZZ's way in is its own case study; a link from the page to itself
+    // would be a dead control, so that page carries no wayIn block.
+    if (wayIn.href === `/${routePath.replace(/index\.html$/, "")}`) continue;
 
     const match = html.match(
       /<(div|form) class="stage-actions" data-way-in="([^"]+)"([^>]*)>([\s\S]*?)<\/\1>/,

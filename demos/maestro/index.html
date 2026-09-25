@@ -1,154 +1,169 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Maestro — Diego Gonzalez Zapiain</title>
-    <meta name="description" content="A music-production workspace that turns session signals into material a producer can inspect." />
-    <meta name="theme-color" content="#ffffff" />
-    <link rel="canonical" href="https://dgonzap30.github.io/demos/maestro/" />
-    <meta property="og:title" content="Maestro — A closer look at what's happening inside a music session." />
-    <meta property="og:description" content="A music-production workspace that turns session signals into material a producer can inspect." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dgonzap30.github.io/demos/maestro/" />
-    <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/assets/css/fonts.css" />
-    <link rel="stylesheet" href="/assets/css/tokens.css" />
-    <link rel="stylesheet" href="/assets/css/base.css" />
-    <link rel="stylesheet" href="/assets/css/components.css" />
-    <link rel="stylesheet" href="/assets/css/explorer.css" />
-    <link rel="stylesheet" href="/assets/css/demos.css" />
-    <script src="/assets/js/site.js" defer></script>
-    <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"CreativeWork","name":"Maestro","url":"https://dgonzap30.github.io/demos/maestro/"}
-    </script>
-  </head>
-  <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
-    <header class="site-header">
-      <nav class="site-nav shell" aria-label="Primary">
-        <a class="brand" href="/"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="" /><span>Diego Gonzalez Zapiain</span></a>
-        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
-        <ul class="nav-links demo-nav" id="primary-nav">
-          <li><a href="/now/">Now</a></li>
-          <li><a href="/writing/">Writing</a></li>
-          <li><a href="/workflow/">Workflow</a></li>
-        <li><a href="/projects/">All products</a></li>
-          <li><a href="/#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main id="main-content" class="demo-page">
-      <header class="demo-hero shell">
-        <p class="eyebrow">Music production</p>
-        <h1>Session evidence, kept inspectable.</h1>
-        <p class="lede">A music-production workspace that turns session signals into material a producer can inspect.</p>
-      </header>
-      <section class="demo-explorer shell" aria-label="Maestro explorer">
-        <div class="explorer">
-          <!-- explorer:picker:start -->
-<nav class="explorer-picker-nav" aria-label="Products"><ul class="explorer-picker"><li><a href="/demos/maestro/" aria-current="page"><strong>Maestro</strong><span class="picker-category">Music production</span></a></li><li><a href="/demos/temper/"><strong>Temper</strong><span class="picker-category">Health &amp; training</span></a></li><li><a href="/demos/mimo/"><strong>Mimo</strong><span class="picker-category">Shared moments</span></a></li><li><a href="/demos/intertitle/"><strong>Intertitle</strong><span class="picker-category">Film &amp; taste</span></a></li><li><a href="/work/pazz/"><strong>PAZZ</strong><span class="picker-category">Vehicle leasing</span></a></li></ul></nav>
-<!-- explorer:picker:end -->
-          <!-- explorer:stage:start -->
-<div class="explorer-stage" data-explorer-stage data-default-chapter="mixer">
-      <header class="stage-header">
-        <div>
-          <h2 class="stage-name">Maestro</h2>
-          <p class="stage-purpose">A closer look at what's happening inside a music session.</p>
-        </div>
-        <span class="stage-status">Private beta</span>
-      </header>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Maestro, a copilot for music sessions — Diego González Zapiain</title>
+  <meta name="description" content="Maestro reads a live music session and keeps what it hears inspectable for the producer. A private beta by Diego González Zapiain, shown with synthetic session data.">
+  <link rel="canonical" href="https://dgonzap30.github.io/demos/maestro/">
+  <meta name="author" content="Diego González Zapiain">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:site_name" content="Diego González Zapiain">
+  <meta property="og:title" content="Maestro, a copilot for music sessions — Diego González Zapiain">
+  <meta property="og:description" content="Maestro reads a live music session and keeps what it hears inspectable for the producer. A private beta by Diego González Zapiain, shown with synthetic session data.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dgonzap30.github.io/demos/maestro/">
+  <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Diego González Zapiain: founder-engineer in Mexico City">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Maestro, a copilot for music sessions — Diego González Zapiain">
+  <meta name="twitter:description" content="Maestro reads a live music session and keeps what it hears inspectable for the producer. A private beta by Diego González Zapiain, shown with synthetic session data.">
+  <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
+<!-- chrome:assets:start -->
+  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <link rel="alternate" type="application/rss+xml" title="Diego González Zapiain — Writing" href="/feed.xml">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/explorer.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+  <script src="/assets/js/site.js" defer></script>
+<!-- chrome:assets:end -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://dgonzap30.github.io/demos/maestro/#page",
+      "url": "https://dgonzap30.github.io/demos/maestro/",
+      "name": "Maestro, a copilot for music sessions",
+      "description": "Maestro reads a live music session and keeps what it hears inspectable for the producer. A private beta by Diego González Zapiain, shown with synthetic session data.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://dgonzap30.github.io/#website"
+      },
+      "author": {
+        "@id": "https://wearelojik.com/about#diego"
+      },
+      "primaryImageOfPage": "https://dgonzap30.github.io/assets/media/demos/maestro/session.webp",
+      "about": {
+        "@type": "SoftwareApplication",
+        "operatingSystem": "macOS",
+        "applicationCategory": "MultimediaApplication",
+        "name": "Maestro",
+        "description": "A closer look at what's happening inside a music session.",
+        "creator": {
+          "@id": "https://wearelojik.com/about#diego"
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+<!-- chrome:header:start -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header shell">
+    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt=""><span class="brand-name">Diego González Zapiain</span></a>
+    <nav aria-label="Primary">
+      <ul class="nav-links" role="list">
+        <li><a href="/projects/" aria-current="page">Work</a></li>
+        <li><a href="/writing/">Writing</a></li>
+        <li><a href="/now/">Now</a></li>
+      </ul>
+    </nav>
+  </header>
+<!-- chrome:header:end -->
+
+  <main id="main-content">
+    <header class="page-head shell">
+    <p class="page-back meta"><a href="/projects/">Work</a> /</p>
+      <h1>Maestro</h1>
+      <p class="lede">A closer look at what's happening inside a music session.</p>
+      <p class="page-meta meta">Music production · Private beta</p>
       <form class="stage-actions" data-way-in="notify" method="post" action="https://wearelojik.com/api/contact">
-        <p class="stage-scope"><strong>Ask about the private beta</strong> — Private beta; access is granted directly, there is no public build.</p>
-        <input type="hidden" name="intent" value="hi">
-        <input type="hidden" name="redirect" value="https://dgonzap30.github.io/thanks/">
-        <input type="hidden" name="message" value="Please tell me more about the Maestro private beta.">
-        <p hidden>
-          <label for="maestro-website">Leave this field empty</label>
-          <input id="maestro-website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </p>
-        <label for="maestro-name">Name</label>
-        <input id="maestro-name" name="name" type="text" required maxlength="120" autocomplete="name">
-        <label for="maestro-email">Email</label>
-        <input id="maestro-email" name="email" type="email" required maxlength="200" autocomplete="email">
-        <button class="stage-open-full" type="submit">Ask about the private beta</button>
-      </form>
+      <p class="way-note">Private beta; access is granted directly, there is no public build.</p>
+      <input type="hidden" name="intent" value="hi">
+      <input type="hidden" name="redirect" value="https://dgonzap30.github.io/thanks/">
+      <input type="hidden" name="message" value="Please tell me more about the Maestro private beta.">
+      <p hidden><label for="maestro-website">Leave this field empty</label><input id="maestro-website" name="website" type="text" tabindex="-1" autocomplete="off"></p>
+      <div class="notify-fields">
+        <label class="visually-hidden" for="maestro-name">Name</label><input id="maestro-name" name="name" type="text" required maxlength="120" autocomplete="name" placeholder="Name">
+        <label class="visually-hidden" for="maestro-email">Email</label><input id="maestro-email" name="email" type="email" required maxlength="200" autocomplete="email" placeholder="Email">
+        <button class="button" type="submit">Ask about the private beta</button>
+      </div>
+    </form>
+    </header>
 
-      <div class="stage-viewer">
-        <div class="stage-chapter" id="chapter-session" data-chapter="session" data-layout="desktop" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
-          <img src="/assets/media/demos/maestro/session.webp" width="2696" height="1776" alt="Maestro session view showing three synthetic tracks registering with a live masking finding" loading="lazy" />
-          <p class="chapter-caption"><strong>Session.</strong> Live session state as tracks register, before anything is named or saved.</p>
-
-        </div><div class="stage-chapter" id="chapter-mixer" data-chapter="mixer" data-layout="desktop" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
-          <img src="/assets/media/demos/maestro/poster.webp" width="2784" height="1864" alt="Maestro mixer showing synthetic track meters and a masking issue between Synthetic Bass and Synthetic Pulse" loading="lazy" />
-          <p class="chapter-caption"><strong>Mixer.</strong> 3 of 3 tracks live, with a masking issue between two synthetic tracks called out for review.</p>
-
-        </div><div class="stage-chapter" id="chapter-spectrum" data-chapter="spectrum" data-layout="desktop" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
-          <img src="/assets/media/demos/maestro/spectrum.webp" width="2784" height="1864" alt="Maestro spectrum panel showing a synthetic integrated post-fader signal chart" loading="lazy" />
-          <p class="chapter-caption"><strong>Spectrum.</strong> Integrated post-fader spectrum, captured at 124 BPM, four bars back.</p>
-
-        </div><div class="stage-chapter" id="chapter-walkthrough" data-chapter="walkthrough" data-layout="desktop" tabindex="-1">
-          <p class="chapter-kicker">Recorded walkthrough · native controls · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-08</p>
-          <video class="chapter-media" controls playsinline preload="metadata" poster="/assets/media/demos/maestro/poster.webp" width="1392" height="932" aria-label="Recorded walkthrough of the real local Maestro application with synthetic telemetry">
-            <source src="/assets/media/demos/maestro/demo.mp4" type="video/mp4" />
-            Your browser does not support the video element.
-          </video>
-          <p class="chapter-caption"><strong>Walkthrough.</strong> 26.5 seconds of the real local application: session registration, the mixer with its masking finding, then spectrum.</p>
-          <div class="chapter-transcript"><strong>Descriptive transcript.</strong> A title card establishes the recording scope. The local Maestro UI shows three generic tracks registering, the mixer view with a visible masking finding, and the spectrum view. The &quot;Logic Pro connected&quot; badge stays visible as recorded — it reflects synthetic plugin registration, not a real Logic Pro connection.</div>
+    <section class="product-gallery shell" aria-label="Maestro screens">
+      <div class="stage plate--maestro" data-explorer-stage data-layout="desktop">
+        <div class="stage-track" role="region" aria-label="Maestro screens" tabindex="0">
+          <figure class="stage-chapter" id="chapter-session" data-chapter="session">
+            <a class="stage-media" href="/assets/media/demos/maestro/session.webp"><img src="/assets/media/demos/maestro/session.webp" width="2696" height="1776" alt="Maestro session view showing three synthetic tracks registering with a live masking finding" fetchpriority="high" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Session.</strong> Live session state as tracks register, before anything is named or saved.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-mixer" data-chapter="mixer">
+            <a class="stage-media" href="/assets/media/demos/maestro/poster.webp"><img src="/assets/media/demos/maestro/poster.webp" width="2784" height="1864" alt="Maestro mixer showing synthetic track meters and a masking issue between Synthetic Bass and Synthetic Pulse" fetchpriority="high" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Mixer.</strong> 3 of 3 tracks live, with a masking issue between two synthetic tracks called out for review.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-spectrum" data-chapter="spectrum">
+            <a class="stage-media" href="/assets/media/demos/maestro/spectrum.webp"><img src="/assets/media/demos/maestro/spectrum.webp" width="2784" height="1864" alt="Maestro spectrum panel showing a synthetic integrated post-fader signal chart" loading="lazy" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Spectrum.</strong> Integrated post-fader spectrum, captured at 124 BPM, four bars back.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-walkthrough" data-chapter="walkthrough">
+            <video controls playsinline preload="none" poster="/assets/media/demos/maestro/poster.webp" width="1392" height="932" aria-label="Recorded walkthrough of the real local Maestro application with synthetic telemetry">
+              <source src="/assets/media/demos/maestro/demo.mp4" type="video/mp4">
+            </video>
+            <figcaption class="chapter-caption"><strong>Walkthrough.</strong> 26.5 seconds of the real local application: session registration, the mixer with its masking finding, then spectrum.</figcaption>
+            <details class="chapter-transcript"><summary>Transcript</summary><p>A title card establishes the recording scope. The local Maestro UI shows three generic tracks registering, the mixer view with a visible masking finding, and the spectrum view. The &quot;Logic Pro connected&quot; badge stays visible as recorded — it reflects synthetic plugin registration, not a real Logic Pro connection.</p></details>
+          </figure>
+        </div>
+        <div class="stage-controls" hidden>
+          <span class="stage-count meta" aria-live="polite"></span>
+          <button type="button" data-stage-prev aria-label="Previous screen">←</button>
+          <button type="button" data-stage-next aria-label="Next screen">→</button>
         </div>
       </div>
-      <div class="chapter-tabs" data-chapter-tabs aria-label="Chapters"><a href="#chapter-session" aria-selected="false">Session</a><a href="#chapter-mixer" aria-selected="true">Mixer</a><a href="#chapter-spectrum" aria-selected="false">Spectrum</a><a href="#chapter-walkthrough" aria-selected="false">Walkthrough</a></div>
-      <div class="stage-caption-row">
-        <p class="stage-scope">Synthetic session data traveling through the real local WebSocket server, session aggregation, and the real React/Tauri interface. No real audio, DAW, or coaching API is used.</p>
-        <div class="stage-actions">
-          <button type="button" class="stage-open-full" data-open-full-size>Open full size</button>
-        </div>
-      </div>
-
-      <details class="stage-disclosure" data-disclosure>
-        <summary>Engineering detail: what's working, what's still in progress</summary>
+      <p class="stage-scope meta">Synthetic session data traveling through the real local WebSocket server, session aggregation, and the real React/Tauri interface. No real audio, DAW, or coaching API is used. Synthetic demo data, captured 2026-09-08.</p>
+      <details class="stage-disclosure">
+        <summary>What's working, and what's still in progress</summary>
         <p>Missing or stale audio evidence stays visible in the UI instead of being papered over with a confident guess.</p>
         <div class="stage-disclosure-grid">
-          <div>
-            <h4>What's working</h4>
-            <ul><li>Synthetic session registration and track ingest through the real local server</li><li>Masking analysis surfaced per track, with the finding kept visible in the UI</li><li>Mixer and spectrum views rendered by the real local application</li></ul>
-          </div>
-          <div>
-            <h4>Still in progress</h4>
-            <ul><li>No AU/VST or FFT extraction from real PCM audio</li><li>No Logic Pro or other DAW bridge — the bridge process is a safety stub</li><li>No coaching API; the assistant panel is not wired to a model</li></ul>
-          </div>
+          <div><h2>What's working</h2><ul><li>Synthetic session registration and track ingest through the real local server</li><li>Masking analysis surfaced per track, with the finding kept visible in the UI</li><li>Mixer and spectrum views rendered by the real local application</li></ul></div>
+          <div><h2>Still in progress</h2><ul><li>No AU/VST or FFT extraction from real PCM audio</li><li>No Logic Pro or other DAW bridge — the bridge process is a safety stub</li><li>No coaching API; the assistant panel is not wired to a model</li></ul></div>
         </div>
       </details>
-      <dialog data-stage-dialog aria-label="Maestro full-size view">
-        <button type="button" class="dialog-close" data-dialog-close aria-label="Close full-size view" formmethod="dialog">Close</button>
-        <div data-dialog-body></div>
-      </dialog>
+    </section>
+
+    <nav class="more-work shell" aria-labelledby="more-work-title">
+      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work</a></div>
+      <ul class="explorer-picker" role="list" aria-label="More work">
+        <li><a href="/demos/intertitle/"><span class="picker-thumb picker-thumb--phones plate--intertitle"><img src="/assets/media/home/intertitle-tonight.webp" width="440" height="957" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Intertitle</span><span class="picker-line">Film app for iPhone · On the App Store</span></span></a></li>
+        <li><a href="/work/lojik/"><span class="picker-thumb picker-thumb--screen plate--lojik"><img src="/assets/media/home/lojik-site.webp" width="1200" height="630" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Lojik Labs</span><span class="picker-line">Workflow software for businesses</span></span></a></li>
+        <li><a href="/work/pazz/"><span class="picker-thumb picker-thumb--screen plate--pazz"><img src="/assets/media/home/pazz-quote.webp" width="1200" height="840" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">PAZZ</span><span class="picker-line">Vehicle leasing · Technical Lead</span></span></a></li>
+        <li><a href="/demos/temper/"><span class="picker-thumb picker-thumb--phones plate--temper"><img src="/assets/media/home/temper-today.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Temper</span><span class="picker-line">Health &amp; training · In development</span></span></a></li>
+        <li><a href="/demos/mimo/"><span class="picker-thumb picker-thumb--phones plate--mimo"><img src="/assets/media/home/mimo-home.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Mimo</span><span class="picker-line">Shared moments · In development</span></span></a></li>
+      </ul>
+    </nav>
+  </main>
+
+<!-- chrome:footer:start -->
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <p class="footer-name"><strong>Diego González Zapiain</strong> · Founder-engineer, Mexico City</p>
+      <ul class="footer-links" role="list">
+        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer">Lojik Labs</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+      </ul>
     </div>
-<!-- explorer:stage:end -->
-        </div>
-        <a class="text-link demo-back-link" href="/projects/">See every current product <span aria-hidden="true">→</span></a>
-      </section>
-    </main>
-    <footer class="site-footer" id="contact-footer">
-      <div class="footer-inner shell">
-        <div class="footer-cta">
-          <div>
-            <h2 class="footer-title">Let's build something worth using.</h2>
-            <p>A product to shape, a system to untangle, or a team to build with.</p>
-          </div>
-          <div class="actions">
-            <a class="action action-primary" href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">Connect on LinkedIn</a>
-          </div>
-        </div>
-        <p class="footer-meta">© 2026 Diego Gonzalez Zapiain</p>
-      </div>
-    </footer>
-  </body>
+  </footer>
+<!-- chrome:footer:end -->
+</body>
 </html>

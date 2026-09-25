@@ -2,8 +2,9 @@
 //
 // Run after adding or removing a page (build-writing.mjs and
 // build-workflow-pages.mjs don't call it). Output is sorted and has no
-// timestamps, so an unchanged site rebuilds byte-identical.
-import { readdir, writeFile } from 'node:fs/promises';
+// timestamps, so an unchanged site rebuilds byte-identical. Pages that ask
+// not to be indexed (the form thank-you page) are left out.
+import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -17,6 +18,8 @@ async function routes(root, dir = root) {
     if (entry.isDirectory()) {
       if (!SKIP.has(entry.name)) found.push(...(await routes(root, join(dir, entry.name))));
     } else if (entry.name === 'index.html') {
+      const html = await readFile(join(dir, entry.name), 'utf8');
+      if (/<meta name="robots" content="[^"]*noindex/.test(html)) continue;
       const path = relative(root, dir).split(sep).join('/');
       found.push(path ? `/${path}/` : '/');
     }

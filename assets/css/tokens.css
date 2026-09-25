@@ -1,77 +1,41 @@
+/* One palette, one type scale. White paper and neutral ink; the only colour
+   the site brings itself is the vermilion dot from the DGZ mark. Everything
+   else colourful on the page is the work: each product sits on its own plate. */
 :root {
   color-scheme: light;
 
-  --paper: #ffffff;
   --paper: oklch(100% 0 0);
-  --paper-deep: #f5f7fb;
-  --paper-deep: oklch(97.6% 0.006 264.5);
-  --paper-bright: #ffffff;
-  --paper-bright: oklch(100% 0 0);
-  --carbon: #171c23;
-  --carbon: oklch(22.5% 0.025 255);
-  --ink: #16202b;
-  --ink: oklch(23.9% 0.026 251.3);
-  --ink-soft: #64748b;
-  --ink-soft: oklch(55.4% 0.041 257.4);
-  --rule: #e2e8f0;
-  --rule: oklch(92.9% 0.013 255.5);
-  --rule-strong: #cbd5e1;
-  --rule-strong: oklch(86.9% 0.02 252.9);
-  --blueprint: #3b4cff;
-  --blueprint: oklch(53.3% 0.26 269.9);
-  --vermilion: #3b4cff;
-  --vermilion: oklch(53.3% 0.26 269.9);
-  --vermilion-light: #9aa0ff;
-  --vermilion-light: oklch(74% 0.137 279.7);
-  --moss: #1a7f5a;
-  --moss: oklch(48% 0.11 155);
-  --night-text: #f5f7fb;
-  --night-text: oklch(97.6% 0.006 264.5);
-  --night-soft: #9aa0ff;
-  --night-soft: oklch(74% 0.137 279.7);
-  --night-rule: #2a3441;
-  --night-rule: oklch(30% 0.027 253);
+  --ink: oklch(19.1% 0 0);
+  --ink-2: oklch(47.5% 0 0);
+  --rule: oklch(92.7% 0.003 106.5);
+  --rule-strong: oklch(82% 0.003 106.5);
+  --wash: oklch(96.7% 0.003 106.4);
+  --accent: oklch(53.7% 0.16 30.8);
 
-  --font-sans: "Instrument Sans", "Helvetica Neue", sans-serif;
-  --font-serif: "Newsreader", Georgia, serif;
+  /* Product plates. Intertitle's is dark, after the silent-film title cards
+     it is named for; the rest are quiet tints of each product's own UI. */
+  --plate-intertitle: oklch(18.3% 0.009 43);
+  --plate-pazz: oklch(94.8% 0.015 67.6);
+  --plate-lojik: oklch(93.4% 0.009 150.7);
+  --plate-maestro: oklch(93.6% 0.008 286.2);
+  --plate-temper: oklch(93.7% 0.008 241.7);
+  --plate-mimo: oklch(94.3% 0.015 77.1);
+  --on-dark: oklch(95.4% 0.011 76.6);
+  --on-dark-2: oklch(70.2% 0.019 67.5);
 
-  --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.84rem);
-  --step-0: clamp(0.98rem, 0.94rem + 0.18vw, 1.08rem);
-  --step-1: clamp(1.12rem, 1.02rem + 0.42vw, 1.38rem);
-  --step-2: clamp(1.42rem, 1.2rem + 0.94vw, 2rem);
-  --step-3: clamp(2rem, 1.52rem + 1.9vw, 3.25rem);
-  --step-4: clamp(2.8rem, 1.85rem + 3.8vw, 5.35rem);
-  --step-5: clamp(4rem, 2.15rem + 7.4vw, 8.75rem);
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Newsreader", "Iowan Old Style", Georgia, serif;
 
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
-  --space-40: 10rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: clamp(1.125rem, 1.06rem + 0.3vw, 1.3rem);
+  --display-sm: clamp(1.45rem, 1.3rem + 0.7vw, 1.85rem);
+  --display-md: clamp(2.3rem, 1.6rem + 2.8vw, 3.9rem);
+  --display-lg: clamp(2.05rem, 1.1rem + 3.7vw, 4.25rem);
 
-  --shell: 84rem;
-  --measure: 46rem;
-  --gutter: clamp(1.25rem, 4.3vw, 4.75rem);
-  --header-height: 4.75rem;
-  --rule-width: 1px;
-  --focus-width: 0.2rem;
-  --z-header: 20;
-  --z-skip: 40;
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
-}
-
-@media (max-width: 48rem) {
-  :root {
-    --header-height: 4.25rem;
-  }
+  --shell: 76rem;
+  --measure: 38rem;
+  --gutter: clamp(1rem, 0.4rem + 2.6vw, 2.5rem);
+  --section: clamp(4.5rem, 3rem + 6vw, 9rem);
+  --radius: 12px;
 }

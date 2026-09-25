@@ -1,102 +1,118 @@
 // Generates the workflow pages from assets/data/workflow.json.
 //
-// The site ships hand-written HTML on purpose. These seven pages share one
-// skeleton and differ only in content, so they are generated to keep the
-// chrome identical rather than hand-copied seven times and left to drift.
-// The generated HTML is committed; nothing is built at request time.
+// The seven pages share one skeleton and differ only in content, so they are
+// generated rather than hand-copied seven times and left to drift. The
+// generated HTML is committed; nothing is built at request time.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { ORIGIN, chrome as siteChrome, escape, renderSection } from './site-chrome.mjs';
+import { NAME, ORIGIN, PERSON_ID, WEBSITE_ID, backLink, chrome, escape, renderSection } from './site-chrome.mjs';
 
-function chrome(page) {
+const SERIES_ID = `${ORIGIN}/workflow/#series`;
+const AUTHOR = { '@type': 'Person', '@id': PERSON_ID, name: NAME, url: `${ORIGIN}/` };
+const INDEX = {
+  title: 'The workflow',
+  description:
+    'Seven practices for running a fleet of AI coding agents, each derived from a working artifact rather than written as advice.',
+  headline: 'Seven practices, each derived from something that runs.',
+};
+
+function renderPage(page, next) {
   const canonical = `${ORIGIN}/workflow/${page.slug}/`;
-  return siteChrome({
+  const { head, footer } = chrome({
     title: page.title,
     description: page.description,
     canonical,
+    current: '/writing/',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'TechArticle',
+      '@id': `${canonical}#article`,
       headline: page.headline,
+      description: page.description,
       url: canonical,
       dateModified: page.dateModified,
-      author: { '@type': 'Person', name: 'Diego Gonzalez Zapiain' },
+      inLanguage: 'en',
+      author: AUTHOR,
       about: page.title,
+      isPartOf: { '@id': SERIES_ID },
     },
   });
-}
-
-function renderPage(page) {
-  const { head, footer } = chrome(page);
-  const hero = `    <header class="case-hero shell">
-      <div class="case-hero-main">
-        <p class="kicker">Workflow</p>
-        <h1>${escape(page.headline)}</h1>
-        <p class="lede">${page.lede}</p>
-      </div>
-      <aside class="case-hero-aside" aria-label="Practice metadata">
-        <p class="evidence-tag">Derived from a working artifact</p>
-        <ul class="case-meta">
-          <li><span>Artifact</span><strong>${escape(page.artifact)}</strong></li>
-          <li><span>Shape</span><strong>${escape(page.shape)}</strong></li>
-          <li><span>Last verified</span><strong>${escape(page.dateModified)}</strong></li>
-        </ul>
-      </aside>
-    </header>`;
-  const sections = page.sections.map(renderSection).join('\n\n');
+  const nextLink = next
+    ? `
+    <nav class="section shell" aria-labelledby="next-title">
+      <div class="section-head"><h2 class="section-title" id="next-title">Next in the series</h2><a class="section-link" href="/workflow/">All seven</a></div>
+      <ul class="rows rows--compact" role="list">
+        <li class="row"><a class="row-link" href="/workflow/${next.slug}/"><span class="row-title">${escape(next.title)}</span><span class="row-meta meta">→</span><span class="row-line">${escape(next.description)}</span></a></li>
+      </ul>
+    </nav>`
+    : '';
   return `${head}
-${hero}
+    <header class="page-head shell">
+${backLink('/workflow/', 'The workflow')}
+      <h1>${escape(page.headline)}</h1>
+      <p class="lede">${page.lede}</p>
+      <p class="page-meta meta">From <code>${escape(page.artifact)}</code> · ${escape(page.shape)} · Verified ${escape(page.dateModified)}</p>
+    </header>
 
-${sections}
+    <div class="shell">
+      <article class="prose">
+${page.sections.map(renderSection).join('\n\n')}
+      </article>
+    </div>
+${nextLink}
 ${footer}`;
 }
 
 function renderIndex(pages) {
-  const page = {
-    slug: '',
-    title: 'The workflow',
-    description:
-      'Seven practices for running an agent fleet, each derived from a working artifact rather than written as advice.',
-    headline: 'Seven practices, each derived from something that runs.',
-    dateModified: pages[0]?.dateModified ?? '2026-09-11',
-  };
-  const { head, footer } = chrome(page);
+  const canonical = `${ORIGIN}/workflow/`;
+  const dateModified = pages.map((page) => page.dateModified).sort().at(-1);
+  const { head, footer } = chrome({
+    title: INDEX.title,
+    description: INDEX.description,
+    canonical,
+    current: '/writing/',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': SERIES_ID,
+      name: INDEX.title,
+      headline: INDEX.headline,
+      description: INDEX.description,
+      url: canonical,
+      dateModified,
+      inLanguage: 'en',
+      author: AUTHOR,
+      isPartOf: { '@id': WEBSITE_ID },
+      hasPart: pages.map((page) => ({
+        '@type': 'TechArticle',
+        '@id': `${ORIGIN}/workflow/${page.slug}/#article`,
+        headline: page.headline,
+        url: `${ORIGIN}/workflow/${page.slug}/`,
+      })),
+    },
+  });
   const rows = pages
     .map(
-      (entry, index) => `    <section class="case-section shell" id="${entry.slug}">
-      <p class="case-section-index">${String(index + 1).padStart(2, '0')}</p>
-      <div class="case-section-main">
-        <h2><a href="/workflow/${entry.slug}/">${escape(entry.title)}</a></h2>
-        <p>${entry.lede}</p>
-      </div>
-      <aside class="case-note"><strong>Artifact</strong>${escape(entry.artifact)}</aside>
-    </section>`,
+      (page) =>
+        `        <li class="row"><a class="row-link" href="/workflow/${page.slug}/"><span class="row-title">${escape(page.title)}</span><span class="row-line">${escape(page.description)}</span><span class="row-meta meta"><code>${escape(page.artifact)}</code></span></a></li>`,
     )
-    .join('\n\n');
-  const hero = `    <header class="case-hero shell">
-      <div class="case-hero-main">
-        <p class="kicker">Workflow</p>
-        <h1>${escape(page.headline)}</h1>
-        <p class="lede">${escape(page.description)}</p>
-      </div>
-      <aside class="case-hero-aside" aria-label="Series metadata">
-        <p class="evidence-tag">Every page names its own source</p>
-        <ul class="case-meta">
-          <li><span>Practices</span><strong>${pages.length}</strong></li>
-          <li><span>Last verified</span><strong>${escape(page.dateModified)}</strong></li>
-        </ul>
-      </aside>
-    </header>`;
+    .join('\n');
   return `${head}
-${hero}
+    <header class="page-head shell">
+${backLink('/writing/', 'Writing')}
+      <h1>${escape(INDEX.headline)}</h1>
+      <p class="lede">${escape(INDEX.description)} Every page names the file it comes from and, where it counts something, the command that recounts it.</p>
+      <p class="page-meta meta">${pages.length} practices · Last verified ${escape(dateModified)}</p>
+    </header>
 
+    <div class="shell">
+      <ol class="rows rows--series" role="list">
 ${rows}
-${footer}`.replace(
-    `<link rel="canonical" href="${ORIGIN}/workflow//">`,
-    `<link rel="canonical" href="${ORIGIN}/workflow/">`,
-  );
+      </ol>
+    </div>
+${footer}`;
 }
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -104,15 +120,15 @@ const root = resolve(here, '..');
 const spec = JSON.parse(await readFile(join(root, 'assets/data/workflow.json'), 'utf8'));
 
 const written = [];
-for (const page of spec) {
+for (const [index, page] of spec.entries()) {
   const target = join(root, 'workflow', page.slug, 'index.html');
   await mkdir(dirname(target), { recursive: true });
-  await writeFile(target, renderPage(page));
+  await writeFile(target, renderPage(page, spec[index + 1]));
   written.push(`workflow/${page.slug}/index.html`);
 }
 const indexTarget = join(root, 'workflow', 'index.html');
 await mkdir(dirname(indexTarget), { recursive: true });
-await writeFile(indexTarget, renderIndex(spec).replaceAll(`${ORIGIN}/workflow//`, `${ORIGIN}/workflow/`));
+await writeFile(indexTarget, renderIndex(spec));
 written.push('workflow/index.html');
 
 console.log(`Generated ${written.length} workflow pages:`);

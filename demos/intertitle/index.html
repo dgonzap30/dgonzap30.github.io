@@ -1,154 +1,175 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Intertitle — Diego Gonzalez Zapiain</title>
-    <meta name="description" content="A current development-preview capture of Intertitle's fixture-driven film companion — not the public App Store release." />
-    <meta name="theme-color" content="#ffffff" />
-    <link rel="canonical" href="https://dgonzap30.github.io/demos/intertitle/" />
-    <meta property="og:title" content="Intertitle — Find a film for tonight, explore your taste, and keep the conversation going." />
-    <meta property="og:description" content="A current development-preview capture of Intertitle's fixture-driven film companion — not the public App Store release." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dgonzap30.github.io/demos/intertitle/" />
-    <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/assets/css/fonts.css" />
-    <link rel="stylesheet" href="/assets/css/tokens.css" />
-    <link rel="stylesheet" href="/assets/css/base.css" />
-    <link rel="stylesheet" href="/assets/css/components.css" />
-    <link rel="stylesheet" href="/assets/css/explorer.css" />
-    <link rel="stylesheet" href="/assets/css/demos.css" />
-    <script src="/assets/js/site.js" defer></script>
-    <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"CreativeWork","name":"Intertitle","url":"https://dgonzap30.github.io/demos/intertitle/"}
-    </script>
-  </head>
-  <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
-    <header class="site-header">
-      <nav class="site-nav shell" aria-label="Primary">
-        <a class="brand" href="/"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="" /><span>Diego Gonzalez Zapiain</span></a>
-        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
-        <ul class="nav-links demo-nav" id="primary-nav">
-          <li><a href="/now/">Now</a></li>
-          <li><a href="/writing/">Writing</a></li>
-          <li><a href="/workflow/">Workflow</a></li>
-        <li><a href="/projects/">All products</a></li>
-          <li><a href="/#contact">Contact</a></li>
-        </ul>
-      </nav>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Intertitle, a film app for iPhone — Diego González Zapiain</title>
+  <meta name="description" content="Screens from Intertitle, the free iPhone app by Diego González Zapiain that learns your film taste, picks something for tonight and explains why. Captured from a development preview with fixture data.">
+  <link rel="canonical" href="https://dgonzap30.github.io/demos/intertitle/">
+  <meta name="author" content="Diego González Zapiain">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:site_name" content="Diego González Zapiain">
+  <meta property="og:title" content="Intertitle, a film app for iPhone — Diego González Zapiain">
+  <meta property="og:description" content="Screens from Intertitle, the free iPhone app by Diego González Zapiain that learns your film taste, picks something for tonight and explains why. Captured from a development preview with fixture data.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dgonzap30.github.io/demos/intertitle/">
+  <meta property="og:image" content="https://dgonzap30.github.io/assets/social/home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Diego González Zapiain: founder-engineer in Mexico City">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Intertitle, a film app for iPhone — Diego González Zapiain">
+  <meta name="twitter:description" content="Screens from Intertitle, the free iPhone app by Diego González Zapiain that learns your film taste, picks something for tonight and explains why. Captured from a development preview with fixture data.">
+  <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
+<!-- chrome:assets:start -->
+  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <link rel="alternate" type="application/rss+xml" title="Diego González Zapiain — Writing" href="/feed.xml">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/tokens.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/explorer.css">
+  <link rel="stylesheet" href="/assets/css/pages.css">
+  <script src="/assets/js/site.js" defer></script>
+<!-- chrome:assets:end -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://dgonzap30.github.io/demos/intertitle/#page",
+      "url": "https://dgonzap30.github.io/demos/intertitle/",
+      "name": "Intertitle, a film app for iPhone",
+      "description": "Screens from Intertitle, the free iPhone app by Diego González Zapiain that learns your film taste, picks something for tonight and explains why. Captured from a development preview with fixture data.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://dgonzap30.github.io/#website"
+      },
+      "author": {
+        "@id": "https://wearelojik.com/about#diego"
+      },
+      "primaryImageOfPage": "https://dgonzap30.github.io/assets/media/demos/intertitle/01-tonight.webp",
+      "about": {
+        "@type": "MobileApplication",
+        "@id": "https://intertitle.app/#app",
+        "url": "https://intertitle.app/",
+        "operatingSystem": "iOS 17 or later",
+        "applicationCategory": "EntertainmentApplication",
+        "sameAs": "https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "name": "Intertitle",
+        "description": "Find a film for tonight, explore your taste, and keep the conversation going.",
+        "creator": {
+          "@id": "https://wearelojik.com/about#diego"
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+<!-- chrome:header:start -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header shell">
+    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt=""><span class="brand-name">Diego González Zapiain</span></a>
+    <nav aria-label="Primary">
+      <ul class="nav-links" role="list">
+        <li><a href="/projects/" aria-current="page">Work</a></li>
+        <li><a href="/writing/">Writing</a></li>
+        <li><a href="/now/">Now</a></li>
+      </ul>
+    </nav>
+  </header>
+<!-- chrome:header:end -->
+
+  <main id="main-content">
+    <header class="page-head shell">
+    <p class="page-back meta"><a href="/projects/">Work</a> /</p>
+      <h1>Intertitle</h1>
+      <p class="lede">Find a film for tonight, explore your taste, and keep the conversation going.</p>
+      <p class="page-meta meta">Film &amp; taste · On the App Store</p>
+      <div class="stage-actions" data-way-in="app-store"><a class="button" href="https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124" target="_blank" rel="noopener noreferrer">Get Intertitle on the App Store <span aria-hidden="true">↗</span></a></div>
     </header>
-    <main id="main-content" class="demo-page">
-      <header class="demo-hero shell">
-        <p class="eyebrow">Film & taste</p>
-        <h1>A film companion, grounded in taste.</h1>
-        <p class="lede">Find a film for tonight, explore your taste, and keep the conversation going. A current development preview — not the public App Store release.</p>
-      </header>
-      <section class="demo-explorer shell" aria-label="Intertitle explorer">
-        <div class="explorer">
-          <!-- explorer:picker:start -->
-<nav class="explorer-picker-nav" aria-label="Products"><ul class="explorer-picker"><li><a href="/demos/maestro/"><strong>Maestro</strong><span class="picker-category">Music production</span></a></li><li><a href="/demos/temper/"><strong>Temper</strong><span class="picker-category">Health &amp; training</span></a></li><li><a href="/demos/mimo/"><strong>Mimo</strong><span class="picker-category">Shared moments</span></a></li><li><a href="/demos/intertitle/" aria-current="page"><strong>Intertitle</strong><span class="picker-category">Film &amp; taste</span></a></li><li><a href="/work/pazz/"><strong>PAZZ</strong><span class="picker-category">Vehicle leasing</span></a></li></ul></nav>
-<!-- explorer:picker:end -->
-          <!-- explorer:stage:start -->
-<div class="explorer-stage" data-explorer-stage data-default-chapter="film-detail">
-      <header class="stage-header">
-        <div>
-          <h2 class="stage-name">Intertitle</h2>
-          <p class="stage-purpose">Find a film for tonight, explore your taste, and keep the conversation going.</p>
+
+    <section class="product-gallery shell" aria-label="Intertitle screens">
+      <div class="stage plate--intertitle" data-explorer-stage data-layout="portrait">
+        <div class="stage-track" role="region" aria-label="Intertitle screens" tabindex="0">
+          <figure class="stage-chapter" id="chapter-tonight" data-chapter="tonight">
+            <a class="stage-media" href="/assets/media/demos/intertitle/01-tonight.webp"><img src="/assets/media/demos/intertitle/01-tonight.webp" width="1206" height="2622" alt="Intertitle Tonight tab showing Paris, Texas as tonight's pick with the Refine tonight sheet open" fetchpriority="high" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Tonight's pick.</strong> Tonight's pick, Paris, Texas (1984, 145 min), with the Refine tonight sheet open on &quot;What are you in the mood for?&quot;</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-discover" data-chapter="discover">
+            <a class="stage-media" href="/assets/media/demos/intertitle/02-discover.webp"><img src="/assets/media/demos/intertitle/02-discover.webp" width="1206" height="2622" alt="Intertitle Discover tab showing a populated grid of fixture films" fetchpriority="high" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Discover.</strong> A populated discovery grid — Portrait of a Lady on Fire, Parasite, Eternal Sunshine, Moonlight — from the source-owned fixture.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-film-detail" data-chapter="film-detail">
+            <a class="stage-media" href="/assets/media/demos/intertitle/06-film-detail.webp"><img src="/assets/media/demos/intertitle/06-film-detail.webp" width="1206" height="2622" alt="Intertitle film detail screen for Paris, Texas showing a fixture match percentile and why-this-one explanation" loading="lazy" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Why this one.</strong> Paris, Texas's detail screen: a fixture match percentile, a &quot;why this one&quot; taste explanation, social proof, synopsis, and the Talk with Reely action — presentation only, not a live recommendation.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-reely-refine" data-chapter="reely-refine">
+            <a class="stage-media" href="/assets/media/demos/intertitle/05-reely-refine.webp"><img src="/assets/media/demos/intertitle/05-reely-refine.webp" width="1206" height="2622" alt="Intertitle Reely thread anchored on Paris, Texas with a prior conversational turn" loading="lazy" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Refine with Reely.</strong> A film-anchored thread on Paris, Texas with a prior turn. Reely runs on a fixture client in this build; no live model call is made.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-diary" data-chapter="diary">
+            <a class="stage-media" href="/assets/media/demos/intertitle/03-diary.webp"><img src="/assets/media/demos/intertitle/03-diary.webp" width="1206" height="2622" alt="Intertitle Diary tab showing six fixture log entries with ratings" loading="lazy" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Your diary.</strong> Six fixture log entries with ratings and posters.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-people" data-chapter="people">
+            <a class="stage-media" href="/assets/media/demos/intertitle/04-people.webp"><img src="/assets/media/demos/intertitle/04-people.webp" width="1206" height="2622" alt="Intertitle People tab showing a fixture film circle and follow rows" loading="lazy" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Your film circle.</strong> A fixture film circle and recently-watching rows. The people shown are fixture profiles, not real users.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-friends-activity" data-chapter="friends-activity">
+            <a class="stage-media" href="/assets/media/demos/intertitle/07-friends-activity.webp"><img src="/assets/media/demos/intertitle/07-friends-activity.webp" width="1206" height="2622" alt="Intertitle Friends tab showing a fixture activity feed" loading="lazy" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>What friends are watching.</strong> A fixture friends-activity feed — no real community or friend activity.</figcaption>
+          </figure>
         </div>
-        <span class="stage-status">On the App Store</span>
-      </header>
-      <div class="stage-actions" data-way-in="app-store">
-        <a class="stage-open-full" href="https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124" target="_blank" rel="noopener noreferrer">Get Intertitle on the App Store <span aria-hidden="true">↗</span></a>
-      </div>
-
-      <div class="stage-viewer">
-        <div class="stage-chapter" id="chapter-tonight" data-chapter="tonight" data-layout="portrait" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Fixture demo data</span> · Captured 2026-09-08</p>
-          <img src="/assets/media/demos/intertitle/01-tonight.webp" width="1206" height="2622" alt="Intertitle Tonight tab showing Paris, Texas as tonight's pick with the Refine tonight sheet open" loading="lazy" />
-          <p class="chapter-caption"><strong>Tonight's pick.</strong> Tonight's pick, Paris, Texas (1984, 145 min), with the Refine tonight sheet open on &quot;What are you in the mood for?&quot;</p>
-
-        </div><div class="stage-chapter" id="chapter-discover" data-chapter="discover" data-layout="portrait" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Fixture demo data</span> · Captured 2026-09-08</p>
-          <img src="/assets/media/demos/intertitle/02-discover.webp" width="1206" height="2622" alt="Intertitle Discover tab showing a populated grid of fixture films" loading="lazy" />
-          <p class="chapter-caption"><strong>Discover.</strong> A populated discovery grid — Portrait of a Lady on Fire, Parasite, Eternal Sunshine, Moonlight — from the source-owned fixture.</p>
-
-        </div><div class="stage-chapter" id="chapter-film-detail" data-chapter="film-detail" data-layout="portrait" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Fixture demo data</span> · Captured 2026-09-08</p>
-          <img src="/assets/media/demos/intertitle/06-film-detail.webp" width="1206" height="2622" alt="Intertitle film detail screen for Paris, Texas showing a fixture match percentile and why-this-one explanation" loading="lazy" />
-          <p class="chapter-caption"><strong>Why this one.</strong> Paris, Texas's detail screen: a fixture match percentile, a &quot;why this one&quot; taste explanation, social proof, synopsis, and the Talk with Reely action — presentation only, not a live recommendation.</p>
-
-        </div><div class="stage-chapter" id="chapter-reely-refine" data-chapter="reely-refine" data-layout="portrait" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Fixture demo data</span> · Captured 2026-09-08</p>
-          <img src="/assets/media/demos/intertitle/05-reely-refine.webp" width="1206" height="2622" alt="Intertitle Reely thread anchored on Paris, Texas with a prior conversational turn" loading="lazy" />
-          <p class="chapter-caption"><strong>Refine with Reely.</strong> A film-anchored thread on Paris, Texas with a prior turn. Reely runs on a fixture client in this build; no live model call is made.</p>
-
-        </div><div class="stage-chapter" id="chapter-diary" data-chapter="diary" data-layout="portrait" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Fixture demo data</span> · Captured 2026-09-08</p>
-          <img src="/assets/media/demos/intertitle/03-diary.webp" width="1206" height="2622" alt="Intertitle Diary tab showing six fixture log entries with ratings" loading="lazy" />
-          <p class="chapter-caption"><strong>Your diary.</strong> Six fixture log entries with ratings and posters.</p>
-
-        </div><div class="stage-chapter" id="chapter-people" data-chapter="people" data-layout="portrait" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Fixture demo data</span> · Captured 2026-09-08</p>
-          <img src="/assets/media/demos/intertitle/04-people.webp" width="1206" height="2622" alt="Intertitle People tab showing a fixture film circle and follow rows" loading="lazy" />
-          <p class="chapter-caption"><strong>Your film circle.</strong> A fixture film circle and recently-watching rows. The people shown are fixture profiles, not real users.</p>
-
-        </div><div class="stage-chapter" id="chapter-friends-activity" data-chapter="friends-activity" data-layout="portrait" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Fixture demo data</span> · Captured 2026-09-08</p>
-          <img src="/assets/media/demos/intertitle/07-friends-activity.webp" width="1206" height="2622" alt="Intertitle Friends tab showing a fixture activity feed" loading="lazy" />
-          <p class="chapter-caption"><strong>What friends are watching.</strong> A fixture friends-activity feed — no real community or friend activity.</p>
-
+        <div class="stage-controls" hidden>
+          <span class="stage-count meta" aria-live="polite"></span>
+          <button type="button" data-stage-prev aria-label="Previous screen">←</button>
+          <button type="button" data-stage-next aria-label="Next screen">→</button>
         </div>
       </div>
-      <div class="chapter-tabs" data-chapter-tabs aria-label="Chapters"><a href="#chapter-tonight" aria-selected="false">Tonight's pick</a><a href="#chapter-discover" aria-selected="false">Discover</a><a href="#chapter-film-detail" aria-selected="true">Why this one</a><a href="#chapter-reely-refine" aria-selected="false">Refine with Reely</a><a href="#chapter-diary" aria-selected="false">Your diary</a><a href="#chapter-people" aria-selected="false">Your film circle</a><a href="#chapter-friends-activity" aria-selected="false">What friends are watching</a></div>
-      <div class="stage-caption-row">
-        <p class="stage-scope">Seven current stills from a source-owned presentation fixture, captured in an isolated development build. Every film, person, rating, match percentile and taste explanation is fixture data — this demonstrates presentation, not a live recommender or real taste inference. A development preview, not the public App Store release.</p>
-        <div class="stage-actions">
-          <button type="button" class="stage-open-full" data-open-full-size>Open full size</button>
-        </div>
-      </div>
-
-      <details class="stage-disclosure" data-disclosure>
-        <summary>Engineering detail: what's working, what's still in progress</summary>
+      <p class="stage-scope meta">Seven current stills from a source-owned presentation fixture, captured in an isolated development build. Every film, person, rating, match percentile and taste explanation is fixture data — this demonstrates presentation, not a live recommender or real taste inference. A development preview, not the public App Store release. Fixture demo data, captured 2026-09-08.</p>
+      <details class="stage-disclosure">
+        <summary>What's working, and what's still in progress</summary>
         <p>Recommendation constraints and retry-safe conversation state make the choice easier to revise.</p>
         <div class="stage-disclosure-grid">
-          <div>
-            <h4>What's working</h4>
-            <ul><li>A film-detail view that pairs a fixture match percentile with a stated reason</li><li>A film-anchored Reely thread that carries prior context into a refinement</li><li>Diary, People and Friends surfaces populated with fixture data</li></ul>
-          </div>
-          <div>
-            <h4>Still in progress</h4>
-            <ul><li>No live recommendation model — every match percentile and &quot;why this one&quot; explanation comes from the fixture, not real taste inference</li><li>Reely makes no live model call in this build; external services are hard-disabled under the fixture</li><li>The people and friends shown are fixture profiles, not a real community</li><li>A development preview, not the public App Store release</li></ul>
-          </div>
+          <div><h2>What's working</h2><ul><li>A film-detail view that pairs a fixture match percentile with a stated reason</li><li>A film-anchored Reely thread that carries prior context into a refinement</li><li>Diary, People and Friends surfaces populated with fixture data</li></ul></div>
+          <div><h2>Still in progress</h2><ul><li>No live recommendation model — every match percentile and &quot;why this one&quot; explanation comes from the fixture, not real taste inference</li><li>Reely makes no live model call in this build; external services are hard-disabled under the fixture</li><li>The people and friends shown are fixture profiles, not a real community</li><li>A development preview, not the public App Store release</li></ul></div>
         </div>
       </details>
-      <dialog data-stage-dialog aria-label="Intertitle full-size view">
-        <button type="button" class="dialog-close" data-dialog-close aria-label="Close full-size view" formmethod="dialog">Close</button>
-        <div data-dialog-body></div>
-      </dialog>
+    </section>
+
+    <nav class="more-work shell" aria-labelledby="more-work-title">
+      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work</a></div>
+      <ul class="explorer-picker" role="list" aria-label="More work">
+        <li><a href="/work/lojik/"><span class="picker-thumb picker-thumb--screen plate--lojik"><img src="/assets/media/home/lojik-site.webp" width="1200" height="630" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Lojik Labs</span><span class="picker-line">Workflow software for businesses</span></span></a></li>
+        <li><a href="/work/pazz/"><span class="picker-thumb picker-thumb--screen plate--pazz"><img src="/assets/media/home/pazz-quote.webp" width="1200" height="840" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">PAZZ</span><span class="picker-line">Vehicle leasing · Technical Lead</span></span></a></li>
+        <li><a href="/demos/maestro/"><span class="picker-thumb picker-thumb--screen plate--maestro"><img src="/assets/media/home/maestro-mixer.webp" width="1000" height="637" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Maestro</span><span class="picker-line">Music production · Private beta</span></span></a></li>
+        <li><a href="/demos/temper/"><span class="picker-thumb picker-thumb--phones plate--temper"><img src="/assets/media/home/temper-today.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Temper</span><span class="picker-line">Health &amp; training · In development</span></span></a></li>
+        <li><a href="/demos/mimo/"><span class="picker-thumb picker-thumb--phones plate--mimo"><img src="/assets/media/home/mimo-home.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Mimo</span><span class="picker-line">Shared moments · In development</span></span></a></li>
+      </ul>
+    </nav>
+  </main>
+
+<!-- chrome:footer:start -->
+  <footer class="site-footer">
+    <div class="footer-inner shell">
+      <p class="footer-name"><strong>Diego González Zapiain</strong> · Founder-engineer, Mexico City</p>
+      <ul class="footer-links" role="list">
+        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer">Lojik Labs</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+      </ul>
     </div>
-<!-- explorer:stage:end -->
-        </div>
-        <a class="text-link demo-back-link" href="/projects/">See every current product <span aria-hidden="true">→</span></a>
-      </section>
-    </main>
-    <footer class="site-footer" id="contact-footer">
-      <div class="footer-inner shell">
-        <div class="footer-cta">
-          <div>
-            <h2 class="footer-title">Let's build something worth using.</h2>
-            <p>A product to shape, a system to untangle, or a team to build with.</p>
-          </div>
-          <div class="actions">
-            <a class="action action-primary" href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">Connect on LinkedIn</a>
-          </div>
-        </div>
-        <p class="footer-meta">© 2026 Diego Gonzalez Zapiain</p>
-      </div>
-    </footer>
-  </body>
+  </footer>
+<!-- chrome:footer:end -->
+</body>
 </html>
