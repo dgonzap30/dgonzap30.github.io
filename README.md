@@ -13,8 +13,9 @@ Systems Atlas is a dependency-free, progressively enhanced field guide to curren
 | `/work/lojik/`                                                               | LOJIK company-building and accountable-delivery case study                               |
 | `/projects/`                                                                 | A concise selection of public products, personal tools, and code                         |
 | `/demos/mimo/`                                                               | Local Mimo interaction rehearsal with a descriptive transcript                           |
-| `/demos/intertitle/`, `/demos/fcc/`, `/demos/temper/`, `/demos/season-room/` | Captured product or fixture walkthroughs; all steps remain visible without JavaScript    |
+| `/demos/intertitle/`, `/demos/temper/`                                       | Captured product or fixture walkthroughs; all steps remain visible without JavaScript    |
 | `/demos/maestro/`                                                            | Real local Maestro application recording with synthetic telemetry, plus a spectrum still |
+| `/now/`                                                                      | What's shipping this month, dated                                                        |
 | `/404.html`                                                                  | Branded recovery state for unresolved routes                                             |
 
 ## Architecture

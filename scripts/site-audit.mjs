@@ -19,10 +19,9 @@ const REQUIRED_PAGES = [
   'workflow/attention-ledger/index.html',
   'demos/mimo/index.html',
   'demos/intertitle/index.html',
-  'demos/fcc/index.html',
   'demos/temper/index.html',
-  'demos/season-room/index.html',
   'demos/maestro/index.html',
+  'now/index.html',
 ];
 
 const REQUIRED_ASSETS = [

@@ -32,9 +32,7 @@ const REQUIRED_PAGES = [
   "projects/index.html",
   "demos/mimo/index.html",
   "demos/intertitle/index.html",
-  "demos/fcc/index.html",
   "demos/temper/index.html",
-  "demos/season-room/index.html",
   "demos/maestro/index.html",
 ];
 
@@ -488,14 +486,14 @@ function routeForProject(project) {
   return project.id === "pazz" ? "work/pazz/index.html" : `demos/${project.id}/index.html`;
 }
 
-test("product registry has seven projects with a stable, honest editorial order", async () => {
+test("product registry has five projects with a stable, honest editorial order", async () => {
   const registry = JSON.parse(
     await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
   );
-  assert.equal(registry.length, 7);
+  assert.equal(registry.length, 5);
   assert.deepEqual(
     registry.map((project) => project.id),
-    ["maestro", "temper", "mimo", "intertitle", "fcc", "season-room", "pazz"],
+    ["maestro", "temper", "mimo", "intertitle", "pazz"],
   );
   assert.equal(
     new Set(registry.map((project) => project.id)).size,
@@ -576,13 +574,12 @@ const EVIDENCE_ROOT = await findEvidenceRoot(repoRoot);
 // capture manifest to chain custody against. Exempted explicitly (rather
 // than silently skipped) per the parent's instruction: the exemption must
 // be visible, not implicit.
-const NO_MANIFEST_PROJECTS = new Set(["maestro", "season-room"]);
+const NO_MANIFEST_PROJECTS = new Set(["maestro"]);
 
 const CAPTURE_MANIFESTS = {
   intertitle: join(EVIDENCE_ROOT, "intertitle-current/manifest.json"),
   pazz: join(EVIDENCE_ROOT, "pazz/current/manifest.json"),
   temper: join(EVIDENCE_ROOT, "temper/manifest.json"),
-  fcc: join(EVIDENCE_ROOT, "fcc/manifest.json"),
   mimo: join(EVIDENCE_ROOT, "mimo/manifest.json"),
 };
 
@@ -648,7 +645,7 @@ test("every published chapter with a capture manifest has verified chain of cust
       0,
     );
   assert.equal(checked, expectedChecked);
-  assert.equal(checked, 34, "expected chain-of-custody count has drifted — update deliberately if a project's chapter count changed");
+  assert.equal(checked, 27, "expected chain-of-custody count has drifted — update deliberately if a project's chapter count changed");
 });
 
 test("every product route renders the explorer stage for its own chapters", async () => {
@@ -766,13 +763,13 @@ test("wayIn contract: every product declares an honest, resolvable way in", asyn
     }
   }
 
-  // Two products can be acted on directly; four collect an address now that
-  // the contact proxy exists. FCC is deliberately not offered at all.
+  // Two products link out directly; three collect an address through the
+  // contact proxy.
   const live = registry.filter((product) => product.wayIn.enabled);
   assert.deepEqual(
     live.map((product) => product.id).sort(),
-    ["intertitle", "maestro", "mimo", "pazz", "season-room", "temper"],
-    "Intertitle and PAZZ link out; Maestro, Mimo, Season Room and Temper collect by form",
+    ["intertitle", "maestro", "mimo", "pazz", "temper"],
+    "Intertitle and PAZZ link out; Maestro, Mimo and Temper collect by form",
   );
   for (const product of live) {
     if (product.wayIn.kind === "notify" || product.wayIn.kind === "waitlist") {
@@ -985,11 +982,7 @@ test("every product route renders its wayIn, and a disabled one offers no dead c
   const enabled = registry.filter((project) => project.wayIn.enabled);
   assert.deepEqual(
     enabled.map((project) => project.id).sort(),
-    ["intertitle", "maestro", "mimo", "pazz", "season-room", "temper"],
-    "six products are actionable: two by link, four by form",
+    ["intertitle", "maestro", "mimo", "pazz", "temper"],
+    "all five products are actionable: two by link, three by form",
   );
-  // FCC is deliberately not offered, so it stays a plain statement.
-  const fcc = registry.find((project) => project.id === "fcc");
-  assert.equal(fcc.wayIn.kind, "none");
-  assert.equal(fcc.wayIn.enabled, false);
 });
