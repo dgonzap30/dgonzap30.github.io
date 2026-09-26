@@ -3,26 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>PAZZ Marketplace Case Study — Diego Gonzalez Zapiain</title>
-  <meta name="description" content="A sanitized case study of Diego Gonzalez Zapiain's technical-lead work across the PAZZ Marketplace customer journey, shared rules, handoffs, applied AI, and release reliability.">
-  <meta name="theme-color" content="#f2ede3">
+  <title>PAZZ: leading a leasing-platform rebuild — Diego González Zapiain</title>
+  <meta name="description" content="Diego González Zapiain is Technical Lead at PAZZ, a vehicle-leasing marketplace in Mexico, rebuilding its platform as an agentic AI stack. His role, the decisions behind it, and screens from the development build.">
   <link rel="canonical" href="https://dgonzap30.github.io/work/pazz/">
-  <meta property="og:title" content="PAZZ Marketplace — One Operable Marketplace">
-  <meta property="og:description" content="Technical leadership across automotive leasing workflows, shared authority, recoverable handoffs, and release evidence.">
+  <meta name="author" content="Diego González Zapiain">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:site_name" content="Diego González Zapiain">
+  <meta property="og:title" content="PAZZ: leading a leasing-platform rebuild">
+  <meta property="og:description" content="Technical Lead at PAZZ, a vehicle-leasing marketplace in Mexico: role, decisions, and screens from the development build.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://dgonzap30.github.io/work/pazz/">
   <meta property="og:image" content="https://dgonzap30.github.io/assets/social/pazz.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PAZZ, Technical Lead: a lease quote from the development build">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PAZZ Marketplace — One Operable Marketplace">
-  <meta name="twitter:description" content="A sanitized technical-lead case study by Diego Gonzalez Zapiain.">
+  <meta name="twitter:title" content="PAZZ: leading a leasing-platform rebuild">
+  <meta name="twitter:description" content="Technical Lead at PAZZ, a vehicle-leasing marketplace in Mexico: role, decisions, and screens from the development build.">
   <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/pazz.png">
+<!-- chrome:assets:start -->
   <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <link rel="alternate" type="application/rss+xml" title="Diego González Zapiain — Writing" href="/feed.xml">
   <link rel="stylesheet" href="/assets/css/fonts.css">
   <link rel="stylesheet" href="/assets/css/tokens.css">
   <link rel="stylesheet" href="/assets/css/base.css">
@@ -30,241 +35,182 @@
   <link rel="stylesheet" href="/assets/css/explorer.css">
   <link rel="stylesheet" href="/assets/css/pages.css">
   <script src="/assets/js/site.js" defer></script>
+<!-- chrome:assets:end -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      "headline": "Rebuilding automotive leasing as one operable marketplace",
+      "@type": "Article",
+      "@id": "https://dgonzap30.github.io/work/pazz/#article",
+      "headline": "PAZZ: leading a leasing-platform rebuild",
+      "description": "Diego González Zapiain is Technical Lead at PAZZ, a vehicle-leasing marketplace in Mexico, rebuilding its platform as an agentic AI stack.",
       "url": "https://dgonzap30.github.io/work/pazz/",
-      "dateModified": "2026-08-14",
-      "author": {
-        "@type": "Person",
-        "name": "Diego Gonzalez Zapiain",
-        "url": "https://dgonzap30.github.io/",
-        "jobTitle": "Technical Lead"
-      },
+      "image": "https://dgonzap30.github.io/assets/social/pazz.png",
+      "inLanguage": "en",
+      "dateModified": "2026-09-25",
+      "isPartOf": { "@id": "https://dgonzap30.github.io/#website" },
+      "author": { "@id": "https://wearelojik.com/about#diego" },
       "about": {
         "@type": "Organization",
-        "name": "PAZZ Marketplace",
-        "url": "https://pazz.mx/"
+        "name": "PAZZ",
+        "url": "https://pazz.mx/",
+        "areaServed": "Mexico"
       }
     }
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-
-  <header class="site-header">
-    <nav class="site-nav shell" aria-label="Primary navigation">
-      <a class="brand" href="/" aria-label="Diego Gonzalez Zapiain, home">
-        <img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="">
-        <span>Diego Gonzalez Zapiain</span>
-      </a>
-      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav"><span class="nav-toggle-icon" aria-hidden="true"><span></span></span>Menu</button>
-      <ul class="nav-links" id="primary-nav">
+<!-- chrome:header:start -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header shell">
+    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt=""><span class="brand-name">Diego González Zapiain</span></a>
+    <nav aria-label="Primary">
+      <ul class="nav-links" role="list">
+        <li><a href="/projects/" aria-current="page">Work</a></li>
+        <li><a href="/writing/">Writing</a></li>
         <li><a href="/now/">Now</a></li>
-        <li><a href="/workflow/">Workflow</a></li>
-        <li><a href="/projects/">All products</a></li>
-        <li><a href="/#approach">Approach</a></li>
-        <li><a class="nav-external" href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
       </ul>
     </nav>
   </header>
+<!-- chrome:header:end -->
 
   <main id="main-content">
-    <header class="case-hero shell">
-      <div class="case-hero-copy">
-        <p class="kicker">PAZZ Marketplace · Technical Lead · Current work</p>
-        <h1>Rebuilding automotive leasing as one operable marketplace.</h1>
-        <p class="lede">Automotive leasing is not one form or one approval. My role is to make its customer, partner, provider, and operator handoffs behave as one coherent product—without hiding the business decisions or human judgment that still matter.</p>
-        <div class="actions">
-          <a class="action action-primary" href="#decisions">Explore the engineering</a>
-          <a class="action action-secondary" href="/#work">Back to selected work</a>
-        </div>
-      </div>
-      <aside class="case-hero-aside" aria-label="Case study metadata">
-        <span class="evidence-tag">Private commercial platform</span>
-        <ul class="case-meta">
-          <li><strong>Role</strong><span>Technical Lead</span></li>
-          <li><strong>Period</strong><span>May 2026–present</span></li>
-          <li><strong>Market</strong><span>Mexico</span></li>
-          <li><strong>Status</strong><span>Current, ongoing work</span></li>
-        </ul>
-      </aside>
+    <header class="page-head shell">
+      <p class="page-back meta"><a href="/projects/">Work</a> /</p>
+      <h1>PAZZ Marketplace</h1>
+      <p class="lede">A vehicle-leasing marketplace in Mexico. As Technical Lead, I'm rebuilding its platform as an agentic AI stack, so discovery, quoting, qualification and partner handoffs work as one path.</p>
+      <p class="page-meta meta">Technical Lead · May 2026–present · Mexico · Private commercial platform</p>
     </header>
 
-    <section class="portfolio-explorer shell" aria-label="PAZZ Marketplace explorer">
-      <div class="explorer">
-        <!-- explorer:picker:start -->
-<nav class="explorer-picker-nav" aria-label="Products"><ul class="explorer-picker"><li><a href="/demos/maestro/"><strong>Maestro</strong><span class="picker-category">Music production</span></a></li><li><a href="/demos/temper/"><strong>Temper</strong><span class="picker-category">Health &amp; training</span></a></li><li><a href="/demos/mimo/"><strong>Mimo</strong><span class="picker-category">Shared moments</span></a></li><li><a href="/demos/intertitle/"><strong>Intertitle</strong><span class="picker-category">Film &amp; taste</span></a></li><li><a href="/work/pazz/" aria-current="page"><strong>PAZZ</strong><span class="picker-category">Vehicle leasing</span></a></li></ul></nav>
-<!-- explorer:picker:end -->
-        <!-- explorer:stage:start -->
-<div class="explorer-stage" data-explorer-stage data-default-chapter="quote-composer">
-      <header class="stage-header">
-        <div>
-          <h2 class="stage-name">PAZZ Marketplace</h2>
-          <p class="stage-purpose">Follow a vehicle from discovery into a lease application.</p>
+    <section class="portfolio-explorer product-gallery shell" aria-labelledby="gallery-title">
+      <div class="gallery-head"><h2 id="gallery-title">Follow a vehicle from discovery into a lease application.</h2><p class="meta">In development</p></div>
+<!-- explorer:stage:start -->
+      <div class="stage plate--pazz" data-explorer-stage data-layout="desktop">
+        <div class="stage-track" role="region" aria-label="PAZZ Marketplace screens" tabindex="0">
+          <figure class="stage-chapter" id="chapter-quote-composer" data-chapter="quote-composer">
+            <a class="stage-media" href="/assets/media/demos/pazz/01-quote-composer.webp"><img src="/assets/media/demos/pazz/01-quote-composer.webp" width="2880" height="1800" alt="PAZZ quote composer with an Audi A5 Coupé TFSI Quattro spec and a four-step progress bar" fetchpriority="high" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Specify the vehicle.</strong> A vehicle spec for an Audi A5 Coupé TFSI Quattro (2025), listed at $1,200,000 MXN and quoted against $500,000, with a four-step progress bar and a running vehicle summary.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-fiscal-regime" data-chapter="fiscal-regime">
+            <a class="stage-media" href="/assets/media/demos/pazz/03-fiscal-regime.webp"><img src="/assets/media/demos/pazz/03-fiscal-regime.webp" width="2880" height="1800" alt="PAZZ fiscal-regime question with four branches and a lender/SOFOM disclaimer" fetchpriority="high" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>The fiscal question.</strong> A four-way fiscal-profile branch — empresa, por mi cuenta, asalariado, no seguro — with leasing explained against credit, and the disclosure that Pazz is not a lender or a SOFOM.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-estimate" data-chapter="estimate">
+            <a class="stage-media" href="/assets/media/demos/pazz/04-estimate.webp"><img src="/assets/media/demos/pazz/04-estimate.webp" width="2880" height="1800" alt="PAZZ real-cost estimate showing rent, estimated ISR deduction, and creditable IVA at 48 months" loading="lazy" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Real cost, not just rent.</strong> Rent $14,263, an estimated ISR deduction of −$1,800 and creditable IVA of +$960, for a real cost of $12,463 at 48 months — an illustrative estimate, not a lessor offer.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-quote-result" data-chapter="quote-result">
+            <a class="stage-media" href="/assets/media/demos/pazz/06-quote-result.webp"><img src="/assets/media/demos/pazz/06-quote-result.webp" width="2880" height="1800" alt="PAZZ quote result comparing 48, 36, and 24-month terms with initial payment and purchase option" loading="lazy" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>The quote.</strong> A 48/36/24-month term comparison, with an initial payment of $44,030 and a $217,500 purchase option.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-claudio-opening" data-chapter="claudio-opening">
+            <a class="stage-media" href="/assets/media/demos/pazz/07-claudio-opening.webp"><img src="/assets/media/demos/pazz/07-claudio-opening.webp" width="2880" height="1800" alt="PAZZ Claudio entry screen disclosing it as a virtual adviser" loading="lazy" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Ask Claudio.</strong> Claudio's entry screen, disclosed in-product as a virtual adviser that does not decide applications.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-guided-search" data-chapter="guided-search">
+            <a class="stage-media" href="/assets/media/demos/pazz/09-guided-search.webp"><img src="/assets/media/demos/pazz/09-guided-search.webp" width="2880" height="1800" alt="PAZZ guided search with a confirmed budget carried into a running search summary" loading="lazy" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Budget becomes a search.</strong> A confirmed $15,000 MXN/month budget carried into a running &quot;Tu búsqueda&quot; summary, with Claudio's reply and the next branch.</figcaption>
+          </figure>
+          <figure class="stage-chapter" id="chapter-partner-application" data-chapter="partner-application">
+            <a class="stage-media" href="/assets/media/demos/pazz/10-partner-application.webp"><img src="/assets/media/demos/pazz/10-partner-application.webp" width="2880" height="1800" alt="PAZZ partner application intake with synthetic details and a revealed Razón social field" loading="lazy" decoding="async"></a>
+            <figcaption class="chapter-caption"><strong>Partner intake.</strong> A partner application filled with synthetic applicant details; checking Persona Moral reveals the conditional Razón social field. This surface is flag-gated and off by default.</figcaption>
+          </figure>
         </div>
-        <span class="stage-status">In development</span>
-      </header>
-      <div class="stage-actions" data-way-in="case-study">
-        <a class="stage-open-full" href="/work/pazz/">Read the engineering case study</a>
-      </div>
-
-      <div class="stage-viewer">
-        <div class="stage-chapter" id="chapter-quote-composer" data-chapter="quote-composer" data-layout="desktop" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-09</p>
-          <img src="/assets/media/demos/pazz/01-quote-composer.webp" width="2880" height="1800" alt="PAZZ quote composer with an Audi A5 Coupé TFSI Quattro spec and a four-step progress bar" loading="lazy" />
-          <p class="chapter-caption"><strong>Specify the vehicle.</strong> A vehicle spec for an Audi A5 Coupé TFSI Quattro (2025), listed at $1,200,000 MXN and quoted against $500,000, with a four-step progress bar and a running vehicle summary.</p>
-
-        </div><div class="stage-chapter" id="chapter-fiscal-regime" data-chapter="fiscal-regime" data-layout="desktop" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-09</p>
-          <img src="/assets/media/demos/pazz/03-fiscal-regime.webp" width="2880" height="1800" alt="PAZZ fiscal-regime question with four branches and a lender/SOFOM disclaimer" loading="lazy" />
-          <p class="chapter-caption"><strong>The fiscal question.</strong> A four-way fiscal-profile branch — empresa, por mi cuenta, asalariado, no seguro — with leasing explained against credit, and the disclosure that Pazz is not a lender or a SOFOM.</p>
-
-        </div><div class="stage-chapter" id="chapter-estimate" data-chapter="estimate" data-layout="desktop" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-09</p>
-          <img src="/assets/media/demos/pazz/04-estimate.webp" width="2880" height="1800" alt="PAZZ real-cost estimate showing rent, estimated ISR deduction, and creditable IVA at 48 months" loading="lazy" />
-          <p class="chapter-caption"><strong>Real cost, not just rent.</strong> Rent $14,263, an estimated ISR deduction of −$1,800 and creditable IVA of +$960, for a real cost of $12,463 at 48 months — an illustrative estimate, not a lessor offer.</p>
-
-        </div><div class="stage-chapter" id="chapter-quote-result" data-chapter="quote-result" data-layout="desktop" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-09</p>
-          <img src="/assets/media/demos/pazz/06-quote-result.webp" width="2880" height="1800" alt="PAZZ quote result comparing 48, 36, and 24-month terms with initial payment and purchase option" loading="lazy" />
-          <p class="chapter-caption"><strong>The quote.</strong> A 48/36/24-month term comparison, with an initial payment of $44,030 and a $217,500 purchase option.</p>
-
-        </div><div class="stage-chapter" id="chapter-claudio-opening" data-chapter="claudio-opening" data-layout="desktop" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-09</p>
-          <img src="/assets/media/demos/pazz/07-claudio-opening.webp" width="2880" height="1800" alt="PAZZ Claudio entry screen disclosing it as a virtual adviser" loading="lazy" />
-          <p class="chapter-caption"><strong>Ask Claudio.</strong> Claudio's entry screen, disclosed in-product as a virtual adviser that does not decide applications.</p>
-
-        </div><div class="stage-chapter" id="chapter-guided-search" data-chapter="guided-search" data-layout="desktop" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-09</p>
-          <img src="/assets/media/demos/pazz/09-guided-search.webp" width="2880" height="1800" alt="PAZZ guided search with a confirmed budget carried into a running search summary" loading="lazy" />
-          <p class="chapter-caption"><strong>Budget becomes a search.</strong> A confirmed $15,000 MXN/month budget carried into a running &quot;Tu búsqueda&quot; summary, with Claudio's reply and the next branch.</p>
-
-        </div><div class="stage-chapter" id="chapter-partner-application" data-chapter="partner-application" data-layout="desktop" tabindex="-1">
-          <p class="chapter-kicker">Captured product tour · <span class="synthetic-label">Synthetic demo data</span> · Captured 2026-09-09</p>
-          <img src="/assets/media/demos/pazz/10-partner-application.webp" width="2880" height="1800" alt="PAZZ partner application intake with synthetic details and a revealed Razón social field" loading="lazy" />
-          <p class="chapter-caption"><strong>Partner intake.</strong> A partner application filled with synthetic applicant details; checking Persona Moral reveals the conditional Razón social field. This surface is flag-gated and off by default.</p>
-
+        <div class="stage-controls" hidden>
+          <span class="stage-count meta" aria-live="polite"></span>
+          <button type="button" data-stage-prev aria-label="Previous screen">←</button>
+          <button type="button" data-stage-next aria-label="Next screen">→</button>
         </div>
       </div>
-      <div class="chapter-tabs" data-chapter-tabs aria-label="Chapters"><a href="#chapter-quote-composer" aria-selected="true">Specify the vehicle</a><a href="#chapter-fiscal-regime" aria-selected="false">The fiscal question</a><a href="#chapter-estimate" aria-selected="false">Real cost, not just rent</a><a href="#chapter-quote-result" aria-selected="false">The quote</a><a href="#chapter-claudio-opening" aria-selected="false">Ask Claudio</a><a href="#chapter-guided-search" aria-selected="false">Budget becomes a search</a><a href="#chapter-partner-application" aria-selected="false">Partner intake</a></div>
-      <div class="stage-caption-row">
-        <p class="stage-scope">Seven current captures from an isolated local dev ring: the quoting flow from vehicle spec to a real-cost estimate and term comparison, Claudio's guided search, and a flag-gated partner-application intake. All amounts, applicant and contact details are synthetic, and every estimate is illustrative, not a lessor offer.</p>
-        <div class="stage-actions">
-          <button type="button" class="stage-open-full" data-open-full-size>Open full size</button>
-        </div>
-      </div>
-
-      <details class="stage-disclosure" data-disclosure>
-        <summary>Engineering detail: what's working, what's still in progress</summary>
+      <p class="stage-scope meta">Seven current captures from an isolated local dev ring: the quoting flow from vehicle spec to a real-cost estimate and term comparison, Claudio's guided search, and a flag-gated partner-application intake. All amounts, applicant and contact details are synthetic, and every estimate is illustrative, not a lessor offer. Synthetic demo data, captured 2026-09-09.</p>
+      <details class="stage-disclosure">
+        <summary>What's working, and what's still in progress</summary>
         <p>Shared domain rules and recoverable document handoffs keep operating decisions consistent.</p>
         <div class="stage-disclosure-grid">
-          <div>
-            <h4>What's working</h4>
-            <ul><li>A quoting flow that turns a vehicle spec into a real-cost estimate — rent, estimated ISR deduction, creditable IVA — compared across terms</li><li>Claudio, a guided-search adviser that carries a confirmed budget into vehicle questions</li><li>A partner-application intake, gated behind a feature flag rather than live</li></ul>
-          </div>
-          <div>
-            <h4>Still in progress</h4>
-            <ul><li>Every amount is a local illustrative estimate, not a lessor offer — the product itself labels it &quot;Estimación, no oferta&quot;</li><li>Claudio runs on a deterministic scripted mock (USE_REAL_AGENT_MODEL off); no live model call and no autonomous decision</li><li>The partner application sits behind USE_PARTNER_PORTAL_V2, off by default while the partner program stays intentionally dark</li><li>The vehicle catalog itself isn't shown here: its cards currently render an &quot;Imagen en validación&quot; placeholder because licensed vehicle media doesn't exist yet</li></ul>
-          </div>
+          <div><h3>What's working</h3><ul><li>A quoting flow that turns a vehicle spec into a real-cost estimate — rent, estimated ISR deduction, creditable IVA — compared across terms</li><li>Claudio, a guided-search adviser that carries a confirmed budget into vehicle questions</li><li>A partner-application intake, gated behind a feature flag rather than live</li></ul></div>
+          <div><h3>Still in progress</h3><ul><li>Every amount is a local illustrative estimate, not a lessor offer — the product itself labels it &quot;Estimación, no oferta&quot;</li><li>Claudio runs on a deterministic scripted mock (USE_REAL_AGENT_MODEL off); no live model call and no autonomous decision</li><li>The partner application sits behind USE_PARTNER_PORTAL_V2, off by default while the partner program stays intentionally dark</li><li>The vehicle catalog itself isn't shown here: its cards currently render an &quot;Imagen en validación&quot; placeholder because licensed vehicle media doesn't exist yet</li></ul></div>
         </div>
       </details>
-      <dialog data-stage-dialog aria-label="PAZZ Marketplace full-size view">
-        <button type="button" class="dialog-close" data-dialog-close aria-label="Close full-size view" formmethod="dialog">Close</button>
-        <div data-dialog-body></div>
-      </dialog>
-    </div>
 <!-- explorer:stage:end -->
-      </div>
     </section>
 
-    <section class="case-section shell" id="context">
-      <span class="case-section-index">01 / Problem</span>
-      <div class="case-section-main">
-        <h2>One customer goal, many operating systems.</h2>
-        <p>The customer sees a simple goal: find a vehicle and understand whether leasing it makes sense. Behind that goal are vehicle data, pricing and tax rules, eligibility, documents, partners, external systems, and human review.</p>
-        <p>Improving one screen in isolation would not solve the system. Catalog data must be usable. Quotes must apply the same rules everywhere. Prequalification must preserve context. Operators need to know what happened, what failed, and what to do next.</p>
-      </div>
-      <aside class="case-note"><strong>Status boundary</strong>In-development replacement platform. This page describes role and decisions, not private implementation.</aside>
-    </section>
+    <div class="shell">
+      <article class="prose case-body">
+        <section class="prose-section" id="problem">
+          <h2>One goal, many systems</h2>
+          <p>The customer's goal is simple: find a vehicle and understand whether leasing it makes sense. Behind it sit vehicle data, pricing and tax rules, eligibility, documents, partners, outside systems and human review.</p>
+          <p>Improving one screen would not fix that. Quotes have to apply the same rules everywhere, prequalification has to keep its context, and operators need to see what happened, what failed and what to do next.</p>
+        </section>
 
-    <section class="case-section shell" id="role">
-      <span class="case-section-index">02 / My contribution</span>
-      <div class="case-section-main">
-        <h2>Technical direction that remains hands-on.</h2>
-        <p>I set technical direction and remain active in implementation across product, engineering, operations, and external constraints.</p>
-        <ul class="decision-list">
-          <li>Product architecture and delivery sequencing</li>
-          <li>Customer-facing web and mobile experiences</li>
-          <li>Vehicle discovery, quoting, and prequalification</li>
-          <li>Conversational intake and bounded applied-AI workflows</li>
-          <li>Partner, operator, document, and contracting handoffs</li>
-          <li>Shared domain models, data, integrations, observability, and release gates</li>
-        </ul>
-      </div>
-      <aside class="case-note"><strong>Authorship boundary</strong>This is a leadership and contribution account. It does not imply exclusive authorship of a shared product.</aside>
-    </section>
+        <section class="prose-section" id="role">
+          <h2>What I do</h2>
+          <p>I set technical direction and stay hands-on in the implementation, across product, engineering, operations and outside constraints:</p>
+          <ul>
+            <li>Product architecture and delivery sequencing</li>
+            <li>Customer web and mobile experiences</li>
+            <li>Vehicle discovery, quoting and prequalification</li>
+            <li>Conversational intake and bounded applied-AI workflows</li>
+            <li>Partner, operator, document and contracting handoffs</li>
+            <li>Shared domain models, integrations, observability and release gates</li>
+          </ul>
+          <aside class="note"><strong>Authorship</strong> This describes my role and contribution to a shared product, not sole authorship.</aside>
+        </section>
 
-    <section class="case-diagram shell" aria-labelledby="boundary-title">
-      <figure class="diagram-frame">
-        <img src="/assets/graphics/pazz-handoff.svg" width="760" height="420" alt="Discovery, quoting, prequalification, routing, and operations share one rule authority and return failed handoffs to owned recovery.">
-        <figcaption class="diagram-caption"><span id="boundary-title">Sanitized system boundary</span><span>Shared authority · Recoverable handoffs</span></figcaption>
-      </figure>
-    </section>
+        <figure class="figure">
+          <img src="/assets/graphics/pazz-handoff.svg" width="760" height="420" alt="Discovery, quoting, prequalification, routing and operations share one rule authority, and failures return to an owned recovery lane." loading="lazy">
+          <figcaption class="meta">A sanitized handoff map: one rule authority, recoverable handoffs.</figcaption>
+        </figure>
 
-    <section class="case-section shell" id="decisions">
-      <span class="case-section-index">03 / Key decisions</span>
-      <div class="case-section-main">
-        <h2>Selected engineering decisions.</h2>
-        <p>The work treats the marketplace as one operating path rather than a collection of disconnected interfaces.</p>
-        <ul class="decision-list">
-          <li>Centralize quote and eligibility semantics instead of duplicating them across customer, partner, and operator surfaces.</li>
-          <li>Preserve context through multi-step journeys so re-entry does not restart the process or discard prior answers.</li>
-          <li>Model handoffs as owned states with explicit inputs, outputs, and recovery behavior.</li>
-          <li>Keep models inside bounded workflows rather than allowing them to become silent business authority.</li>
-          <li>Treat timeouts and partial failures as expected operating states, not exceptional afterthoughts.</li>
-          <li>Separate source, CI, runtime, and production evidence, then bind release claims to the artifact actually verified.</li>
-        </ul>
-      </div>
-      <aside class="case-note"><strong>Design principle</strong>A failed handoff should return to an understandable operating state, not disappear between systems.</aside>
-    </section>
+        <section class="prose-section" id="decisions">
+          <h2>Decisions</h2>
+          <ul>
+            <li>Keep quote and eligibility rules in one place instead of copying them across customer, partner and operator surfaces.</li>
+            <li>Carry context through multi-step journeys, so coming back doesn't restart the process or lose earlier answers.</li>
+            <li>Model each handoff as an owned state with explicit inputs, outputs and recovery.</li>
+            <li>Keep models inside bounded workflows, never as silent business authority.</li>
+            <li>Treat timeouts and partial failures as normal operating states, not afterthoughts.</li>
+            <li>Keep source, CI, runtime and production evidence separate, and tie every release claim to the artifact that was actually verified.</li>
+          </ul>
+        </section>
 
-    <section class="case-section shell" id="evidence">
-      <span class="case-section-index">04 / Evidence</span>
-      <div class="case-section-main">
-        <h2>Evidence boundary.</h2>
-        <p>This case study covers my ongoing work on the new PAZZ platform. The legacy company website is not my work and is not a demo of that platform.</p>
-        <p>This case study intentionally excludes customer data, supplier identities, private architecture, internal incidents, work still in flight, security details, and business metrics. It describes verified scope and selected decisions. It does not claim that every workflow is fully automated or qualified through the entire journey, and it does not attribute revenue, conversion, approval, or customer-satisfaction outcomes without an approved measurement record.</p>
-      </div>
-      <aside class="case-note"><strong>What it demonstrates</strong>Product judgment, domain modeling, systems integration, operational design, and disciplined release evidence.</aside>
-    </section>
+        <section class="prose-section" id="evidence">
+          <h2>Evidence boundary</h2>
+          <p>This covers my ongoing work on the new PAZZ platform, which is in development and not publicly deployed. The current company website is not my work and is not a demo of this platform.</p>
+          <p>It leaves out customer data, supplier identities, private architecture, incidents, security details and business metrics, and it claims no revenue, conversion or approval outcomes. The screens above come from an isolated development build with synthetic data.</p>
+        </section>
 
-    <section class="case-section shell" id="stack">
-      <span class="case-section-index">05 / Explore</span>
-      <div class="case-section-main">
-        <h2>Representative stack.</h2>
-        <p>TypeScript · Next.js · React Native / Expo · PostgreSQL / Supabase · GitHub Actions · Sentry · applied AI</p>
-        <div class="actions">
-          <a class="action action-primary" href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">Discuss technical leadership</a>
-          <a class="action action-secondary" href="/work/lojik/">Next: LOJIK case study</a>
-        </div>
-      </div>
-      <aside class="case-note"><strong>Current work</strong>New platform in development and qualification. No public deployment is implied.</aside>
-    </section>
+        <section class="prose-section" id="stack">
+          <h2>Stack</h2>
+          <p>TypeScript, Next.js, React Native with Expo, PostgreSQL on Supabase, GitHub Actions, Sentry, and applied AI inside bounded workflows.</p>
+        </section>
+      </article>
+    </div>
+
+<!-- explorer:picker:start -->
+    <nav class="more-work shell" aria-labelledby="more-work-title">
+      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work</a></div>
+      <ul class="explorer-picker" role="list" aria-label="More work">
+        <li><a href="/demos/intertitle/"><span class="picker-thumb picker-thumb--phones plate--intertitle"><img src="/assets/media/home/intertitle-tonight.webp" width="440" height="957" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Intertitle</span><span class="picker-line">Film app for iPhone · On the App Store</span></span></a></li>
+        <li><a href="/work/lojik/"><span class="picker-thumb picker-thumb--screen plate--lojik"><img src="/assets/media/home/lojik-site.webp" width="1200" height="630" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Lojik Labs</span><span class="picker-line">Workflow software for businesses</span></span></a></li>
+        <li><a href="/demos/maestro/"><span class="picker-thumb picker-thumb--screen plate--maestro"><img src="/assets/media/home/maestro-mixer.webp" width="1000" height="637" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Maestro</span><span class="picker-line">Music production · Private beta</span></span></a></li>
+        <li><a href="/demos/temper/"><span class="picker-thumb picker-thumb--phones plate--temper"><img src="/assets/media/home/temper-today.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Temper</span><span class="picker-line">Health &amp; training · In development</span></span></a></li>
+        <li><a href="/demos/mimo/"><span class="picker-thumb picker-thumb--phones plate--mimo"><img src="/assets/media/home/mimo-home.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Mimo</span><span class="picker-line">Shared moments · In development</span></span></a></li>
+      </ul>
+    </nav>
+<!-- explorer:picker:end -->
   </main>
 
+<!-- chrome:footer:start -->
   <footer class="site-footer">
     <div class="footer-inner shell">
-      <p class="kicker">Continue the atlas</p>
-      <h2 class="footer-title">Systems become dependable at their boundaries.</h2>
-      <div class="contact-paths">
-        <a class="contact-path" href="/work/lojik/"><span>Next case study</span><strong>LOJIK systems delivery</strong></a>
-        <a class="contact-path" href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer"><span>Technical leadership · Product engineering</span><strong>Connect on LinkedIn</strong></a>
-      </div>
-      <div class="footer-meta"><span>Diego Gonzalez Zapiain</span><span>PAZZ Marketplace · Technical Lead</span></div>
+      <p class="footer-name"><strong>Diego González Zapiain</strong> · Founder-engineer, Mexico City</p>
+      <ul class="footer-links" role="list">
+        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer">Lojik Labs</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+      </ul>
     </div>
   </footer>
+<!-- chrome:footer:end -->
 </body>
 </html>

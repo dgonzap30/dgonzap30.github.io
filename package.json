@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "node scripts/build-chrome.mjs && node scripts/build-work.mjs && node scripts/build-explorer.mjs && node scripts/build-writing.mjs && node scripts/build-workflow-pages.mjs && node scripts/build-sitemap.mjs",
     "test": "node --test scripts/site-audit.test.mjs",
     "check": "node scripts/site-audit.mjs .",
     "serve": "python3 -m http.server 4173"

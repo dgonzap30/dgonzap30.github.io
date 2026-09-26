@@ -1,0 +1,98 @@
+{
+  "products": [
+    {
+      "id": "intertitle",
+      "name": "Intertitle",
+      "href": "/demos/intertitle/",
+      "tile": "feature",
+      "plate": "intertitle",
+      "meta": "Maker",
+      "extra": {
+        "href": "https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124",
+        "label": "On the App Store"
+      },
+      "line": "A film app for iPhone that learns your taste, picks something for tonight and tells you why. Free, no ads, in English and Spanish.",
+      "pickerLine": "Film app for iPhone · On the App Store",
+      "media": { "kind": "phones", "images": ["intertitle-tonight", "intertitle-discover", "intertitle-film", "intertitle-friends"] },
+      "alt": "Four Intertitle screens: tonight's pick, Discover, a film page and friends' activity.",
+      "thumb": "intertitle-tonight"
+    },
+    {
+      "id": "lojik",
+      "name": "Lojik Labs",
+      "href": "/work/lojik/",
+      "tile": "half",
+      "plate": "lojik",
+      "meta": "Co-Founder & Technical Lead · 2026–",
+      "line": "The software company I started with my brother Mariano. We find where a recurring business workflow breaks and build the system that fixes it.",
+      "pickerLine": "Workflow software for businesses",
+      "media": { "kind": "screen", "images": ["lojik-site"] },
+      "alt": "The Lojik Labs website, asking what's slowing your business down.",
+      "thumb": "lojik-site"
+    },
+    {
+      "id": "pazz",
+      "name": "PAZZ",
+      "href": "/work/pazz/",
+      "tile": "half",
+      "plate": "pazz",
+      "meta": "Technical Lead · 2026–",
+      "line": "A vehicle-leasing marketplace in Mexico. I lead the rebuild of its platform as an agentic AI stack.",
+      "pickerLine": "Vehicle leasing · Technical Lead",
+      "media": { "kind": "screen", "images": ["pazz-quote"] },
+      "alt": "A PAZZ lease quote for an Audi A5 Coupé, with illustrative amounts.",
+      "thumb": "pazz-quote"
+    },
+    {
+      "id": "maestro",
+      "name": "Maestro",
+      "href": "/demos/maestro/",
+      "tile": "small",
+      "plate": "maestro",
+      "meta": "Private beta",
+      "line": "A copilot that reads a live music session.",
+      "pickerLine": "Music production · Private beta",
+      "media": { "kind": "screen", "images": ["maestro-mixer"] },
+      "alt": "Maestro's mixer view with three live tracks.",
+      "thumb": "maestro-mixer"
+    },
+    {
+      "id": "temper",
+      "name": "Temper",
+      "href": "/demos/temper/",
+      "tile": "small",
+      "plate": "temper",
+      "meta": "In development",
+      "line": "Recovery, food and training, planned into a week you can follow.",
+      "pickerLine": "Health & training · In development",
+      "media": { "kind": "phones", "images": ["temper-today", "temper-progress"] },
+      "alt": "Two Temper screens: today's read and the progress trend.",
+      "thumb": "temper-today"
+    },
+    {
+      "id": "mimo",
+      "name": "Mimo",
+      "href": "/demos/mimo/",
+      "tile": "small",
+      "plate": "mimo",
+      "meta": "In development",
+      "line": "Everyday photos, turned into small keepsakes.",
+      "pickerLine": "Shared moments · In development",
+      "media": { "kind": "phones", "images": ["mimo-home", "mimo-import"] },
+      "alt": "Two Mimo screens: a saved moment and a photo being imported.",
+      "thumb": "mimo-home"
+    }
+  ],
+  "openSource": [
+    {
+      "name": "claims-mcp",
+      "href": "https://github.com/dgonzap30/claims-mcp",
+      "line": "Claims memory for AI agents, as an MCP server and a CLI."
+    },
+    {
+      "name": "agent-workflows-kit",
+      "href": "https://github.com/dgonzap30/agent-workflows-kit",
+      "line": "A portable Claude Code and Codex setup."
+    }
+  ]
+}

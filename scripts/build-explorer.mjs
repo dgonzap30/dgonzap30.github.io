@@ -1,179 +1,155 @@
-import { readFile, writeFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+// Product pages from assets/data/projects.json.
+//
+// Each product's captured screens render as one scrollable gallery on the
+// product's own plate. The four /demos/<id>/ pages are generated whole; the
+// PAZZ case study is hand-written, so its gallery and "More work" row are
+// injected between <!-- explorer:NAME:start/end --> markers instead.
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+import { ORIGIN, PERSON_ID, WEBSITE_ID, backLink, chrome, escape as esc } from './site-chrome.mjs';
+import { injectBlock, loadWork, renderMoreWork, root } from './render-work.mjs';
 
-function esc(value) {
-  return String(value ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
+const THANKS_URL = `${ORIGIN}/thanks/`;
+const FORM_KINDS = new Set(['notify', 'waitlist']);
 
-function routeFor(project) {
-  return project.id === 'pazz' ? '/work/pazz/' : `/demos/${project.id}/`;
-}
+export const routeFor = (project) => (project.id === 'pazz' ? '/work/pazz/' : `/demos/${project.id}/`);
 
-export function renderPicker(projects, activeId) {
-  const items = projects
-    .map((project) => {
-      const current = project.id === activeId ? ' aria-current="page"' : '';
-      const pending = project.pending ? ' data-pending="true"' : '';
-      return `<li><a href="${routeFor(project)}"${current}${pending}><strong>${esc(project.shortLabel)}</strong><span class="picker-category">${esc(project.category)}</span></a></li>`;
-    })
-    .join('');
-  return `<nav class="explorer-picker-nav" aria-label="Products"><ul class="explorer-picker">${items}</ul></nav>`;
-}
-
-function renderChapterMedia(chapter) {
-  if (chapter.mediaType === 'video') {
-    const poster = chapter.poster ? ` poster="${esc(chapter.poster)}"` : '';
-    return `<video class="chapter-media" controls playsinline preload="metadata"${poster} width="${chapter.width}" height="${chapter.height}" aria-label="${esc(chapter.alt)}">
-            <source src="${esc(chapter.src)}" type="video/mp4" />
-            Your browser does not support the video element.
-          </video>`;
-  }
-  return `<img src="${esc(chapter.src)}" width="${chapter.width}" height="${chapter.height}" alt="${esc(chapter.alt)}" loading="lazy" />`;
-}
-
-function renderChapter(chapter) {
-  const kicker = chapter.mediaType === 'video' ? 'Recorded walkthrough · native controls' : 'Captured product tour';
+function renderChapter(chapter, index) {
+  const media =
+    chapter.mediaType === 'video'
+      ? `<video controls playsinline preload="${chapter.poster ? 'none' : 'metadata'}"${chapter.poster ? ` poster="${esc(chapter.poster)}"` : ''} width="${chapter.width}" height="${chapter.height}" aria-label="${esc(chapter.alt)}">
+              <source src="${esc(chapter.src)}" type="video/mp4">
+            </video>`
+      : `<a class="stage-media" href="${esc(chapter.src)}"><img src="${esc(chapter.src)}" width="${chapter.width}" height="${chapter.height}" alt="${esc(chapter.alt)}" ${index < 2 ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></a>`;
   const transcript = chapter.transcript
-    ? `<div class="chapter-transcript"><strong>Descriptive transcript.</strong> ${esc(chapter.transcript)}</div>`
+    ? `\n            <details class="chapter-transcript"><summary>Transcript</summary><p>${esc(chapter.transcript)}</p></details>`
     : '';
-  return `<div class="stage-chapter" id="chapter-${chapter.id}" data-chapter="${chapter.id}" data-layout="${chapter.layout}" tabindex="-1">
-          <p class="chapter-kicker">${kicker} · <span class="synthetic-label">${esc(chapter.syntheticLabel)}</span> · Captured ${esc(chapter.capturedAt)}</p>
-          ${renderChapterMedia(chapter)}
-          <p class="chapter-caption"><strong>${esc(chapter.title)}.</strong> ${esc(chapter.caption)}</p>
-          ${transcript}
-        </div>`;
+  return `          <figure class="stage-chapter" id="chapter-${chapter.id}" data-chapter="${chapter.id}">
+            ${media}
+            <figcaption class="chapter-caption"><strong>${esc(chapter.title)}.</strong> ${esc(chapter.caption)}</figcaption>${transcript}
+          </figure>`;
 }
 
-function renderTabs(chapters, defaultId) {
-  if (chapters.length < 2) return '';
-  const tabs = chapters
-    .map((chapter) => `<a href="#chapter-${chapter.id}" aria-selected="${chapter.id === defaultId}">${esc(chapter.title)}</a>`)
-    .join('');
-  return `<div class="chapter-tabs" data-chapter-tabs aria-label="Chapters">${tabs}</div>`;
-}
-
-function renderDisclosure(project) {
+function renderDisclosure(project, level) {
   if (!project.working.length && !project.remaining.length) return '';
-  return `<details class="stage-disclosure" data-disclosure>
-        <summary>Engineering detail: what's working, what's still in progress</summary>
+  const list = (items) => items.map((item) => `<li>${esc(item)}</li>`).join('');
+  return `
+      <details class="stage-disclosure">
+        <summary>What's working, and what's still in progress</summary>
         <p>${esc(project.engineeringNotes)}</p>
         <div class="stage-disclosure-grid">
-          <div>
-            <h4>What's working</h4>
-            <ul>${project.working.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>
-          </div>
-          <div>
-            <h4>Still in progress</h4>
-            <ul>${project.remaining.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>
-          </div>
+          <div><h${level}>What's working</h${level}><ul>${list(project.working)}</ul></div>
+          <div><h${level}>Still in progress</h${level}><ul>${list(project.remaining)}</ul></div>
         </div>
       </details>`;
 }
 
-function renderPendingStage(project) {
-  const links = project.publicLinks
-    .map((link) => `<a class="text-link" href="${esc(link.href)}"${/^https?:/.test(link.href) ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(link.label)} <span aria-hidden="true">→</span></a>`)
-    .join('');
-  return `<div class="explorer-stage" data-explorer-stage data-default-chapter="">
-      <header class="stage-header">
-        <div>
-          <h2 class="stage-name">${esc(project.name)}</h2>
-          <p class="stage-purpose">${esc(project.purpose)}</p>
+// The gallery, its capture note and the engineering disclosure.
+export function renderStage(project, { level = 2 } = {}) {
+  const layout = project.chapters[0]?.layout ?? 'portrait';
+  const labels = [...new Set(project.chapters.map((chapter) => chapter.syntheticLabel))].join(', ');
+  return `      <div class="stage plate--${project.id}" data-explorer-stage data-layout="${layout}">
+        <div class="stage-track" role="region" aria-label="${esc(project.name)} screens" tabindex="0">
+${project.chapters.map(renderChapter).join('\n')}
         </div>
-        <span class="stage-status">${esc(project.status)}</span>
-      </header>
-      <div class="stage-pending">
-        <p><strong>Capture pending.</strong> ${esc(project.pendingNote)}</p>
-        ${links ? `<div class="stage-actions">${links}</div>` : ''}
+        <div class="stage-controls" hidden>
+          <span class="stage-count meta" aria-live="polite"></span>
+          <button type="button" data-stage-prev aria-label="Previous screen">←</button>
+          <button type="button" data-stage-next aria-label="Next screen">→</button>
+        </div>
       </div>
-    </div>`;
+      <p class="stage-scope meta">${esc(project.demoScope)} ${esc(labels)}, captured ${esc(project.capturedAt)}.</p>${renderDisclosure(project, level)}`;
 }
 
-export function renderStage(project) {
-  if (project.pending && !project.chapters.length) return renderPendingStage(project);
-
-  const chapters = project.chapters.map(renderChapter).join('');
-  const tabs = renderTabs(project.chapters, project.defaultChapter);
-  const pendingBanner = project.pending
-    ? `<p class="stage-scope"><strong>Partial capture.</strong> ${esc(project.pendingNote)}</p>`
-    : '';
-
-  return `<div class="explorer-stage" data-explorer-stage data-default-chapter="${esc(project.defaultChapter)}">
-      <header class="stage-header">
-        <div>
-          <h2 class="stage-name">${esc(project.name)}</h2>
-          <p class="stage-purpose">${esc(project.purpose)}</p>
-        </div>
-        <span class="stage-status">${esc(project.status)}</span>
-      </header>
-      <div class="stage-viewer">
-        ${chapters}
-      </div>
-      ${tabs}
-      <div class="stage-caption-row">
-        <p class="stage-scope">${esc(project.demoScope)}</p>
-        <div class="stage-actions">
-          <button type="button" class="stage-open-full" data-open-full-size>Open full size</button>
-        </div>
-      </div>
-      ${pendingBanner}
-      ${renderDisclosure(project)}
-      <dialog data-stage-dialog aria-label="${esc(project.name)} full-size view">
-        <button type="button" class="dialog-close" data-dialog-close aria-label="Close full-size view" formmethod="dialog">Close</button>
-        <div data-dialog-body></div>
-      </dialog>
-    </div>`;
-}
-
-async function injectMarkers(relativePath, replacements) {
-  const filePath = resolve(root, relativePath);
-  let html = await readFile(filePath, 'utf8');
-  for (const [name, content] of Object.entries(replacements)) {
-    const pattern = new RegExp(`<!-- explorer:${name}:start -->[\\s\\S]*?<!-- explorer:${name}:end -->`);
-    const replacement = `<!-- explorer:${name}:start -->\n${content}\n<!-- explorer:${name}:end -->`;
-    if (!pattern.test(html)) throw new Error(`${relativePath}: missing marker explorer:${name}`);
-    html = html.replace(pattern, replacement);
+// The product's way in: a store or page link, or a notify form that posts to
+// the LOJIK contact proxy and works without JavaScript.
+export function renderWayIn(project) {
+  const wayIn = project.wayIn;
+  if (!wayIn.enabled) {
+    return `<div class="stage-actions" data-way-in="${wayIn.kind}"><p class="way-note">${esc(wayIn.note)}</p></div>`;
   }
-  // Template literals indent their blank lines, which lands trailing whitespace in
-  // the generated HTML and trips `git diff --check`. Strip it at the write seam so
-  // every generated route stays clean no matter how a chapter template is written.
-  html = html.replace(/[ \t]+$/gm, '');
-  await writeFile(filePath, html);
-}
-
-async function main() {
-  const projects = JSON.parse(await readFile(resolve(root, 'assets/data/projects.json'), 'utf8'));
-  const byId = new Map(projects.map((project) => [project.id, project]));
-
-  await injectMarkers('index.html', {
-    picker: renderPicker(projects, 'maestro'),
-    stage: renderStage(byId.get('maestro')),
-  });
-
-  await injectMarkers('projects/index.html', {
-    picker: renderPicker(projects, 'maestro'),
-    stage: renderStage(byId.get('maestro')),
-  });
-
-  for (const project of projects) {
-    const route = project.id === 'pazz' ? 'work/pazz/index.html' : `demos/${project.id}/index.html`;
-    await injectMarkers(route, {
-      picker: renderPicker(projects, project.id),
-      stage: renderStage(project),
-    });
+  if (FORM_KINDS.has(wayIn.kind)) {
+    const id = project.id;
+    return `<form class="stage-actions" data-way-in="${wayIn.kind}" method="post" action="${esc(wayIn.href)}">
+      <p class="way-note">${esc(wayIn.note)}</p>
+      <input type="hidden" name="intent" value="hi">
+      <input type="hidden" name="redirect" value="${THANKS_URL}">
+      <input type="hidden" name="message" value="${esc(wayIn.message)}">
+      <p hidden><label for="${id}-website">Leave this field empty</label><input id="${id}-website" name="website" type="text" tabindex="-1" autocomplete="off"></p>
+      <div class="notify-fields">
+        <label class="visually-hidden" for="${id}-name">Name</label><input id="${id}-name" name="name" type="text" required maxlength="120" autocomplete="name" placeholder="Name">
+        <label class="visually-hidden" for="${id}-email">Email</label><input id="${id}-email" name="email" type="email" required maxlength="200" autocomplete="email" placeholder="Email">
+        <button class="button" type="submit">${esc(wayIn.label)}</button>
+      </div>
+    </form>`;
   }
-
-  console.log(`Explorer generated for ${projects.length} projects.`);
+  const external = /^https?:/.test(wayIn.href);
+  const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+  return `<div class="stage-actions" data-way-in="${wayIn.kind}"><a class="button" href="${esc(wayIn.href)}"${attrs}>${esc(wayIn.label)}${external ? ' <span aria-hidden="true">↗</span>' : ''}</a></div>`;
 }
 
-const isCli = process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
-if (isCli) {
-  await main();
+function renderProductPage(project, work) {
+  const canonical = `${ORIGIN}${routeFor(project)}`;
+  const firstImage = project.chapters.find((chapter) => chapter.mediaType === 'image');
+  const { head, footer } = chrome({
+    title: project.page.title,
+    description: project.page.description,
+    canonical,
+    current: '/projects/',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${canonical}#page`,
+      url: canonical,
+      name: project.page.title,
+      description: project.page.description,
+      inLanguage: 'en',
+      isPartOf: { '@id': WEBSITE_ID },
+      author: { '@id': PERSON_ID },
+      primaryImageOfPage: firstImage ? `${ORIGIN}${firstImage.src}` : undefined,
+      about: {
+        ...project.app,
+        name: project.name,
+        description: project.purpose,
+        creator: { '@id': PERSON_ID },
+      },
+    },
+  });
+  return `${head}
+    <header class="page-head shell">
+${backLink('/projects/', 'Work')}
+      <h1>${esc(project.name)}</h1>
+      <p class="lede">${esc(project.purpose)}</p>
+      <p class="page-meta meta">${esc(project.category)} · ${esc(project.status)}</p>
+      ${renderWayIn(project)}
+    </header>
+
+    <section class="product-gallery shell" aria-label="${esc(project.name)} screens">
+${renderStage(project)}
+    </section>
+
+${renderMoreWork(work, project.id)}
+${footer}`;
 }
+
+const projects = JSON.parse(await readFile(join(root, 'assets/data/projects.json'), 'utf8'));
+const work = await loadWork();
+
+for (const project of projects) {
+  if (project.id === 'pazz') {
+    const path = 'work/pazz/index.html';
+    let html = await readFile(join(root, path), 'utf8');
+    html = injectBlock(html, 'explorer', 'stage', renderStage(project, { level: 3 }), path);
+    html = injectBlock(html, 'explorer', 'picker', renderMoreWork(work, project.id), path);
+    await writeFile(join(root, path), html.replace(/[ \t]+$/gm, ''));
+    continue;
+  }
+  const target = join(root, 'demos', project.id, 'index.html');
+  await mkdir(dirname(target), { recursive: true });
+  // Template literals indent blank lines; strip trailing whitespace so the
+  // generated HTML stays clean under `git diff --check`.
+  await writeFile(target, renderProductPage(project, work).replace(/[ \t]+$/gm, ''));
+}
+
+console.log(`Product pages generated for ${projects.length} projects.`);

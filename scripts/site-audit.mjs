@@ -22,6 +22,7 @@ const REQUIRED_PAGES = [
   'demos/temper/index.html',
   'demos/maestro/index.html',
   'now/index.html',
+  'writing/index.html',
 ];
 
 const REQUIRED_ASSETS = [
@@ -31,10 +32,14 @@ const REQUIRED_ASSETS = [
   'assets/css/base.css',
   'assets/css/components.css',
   'assets/css/pages.css',
-  'assets/css/demos.css',
   'assets/css/explorer.css',
-  'assets/css/projects.css',
   'assets/data/projects.json',
+  'assets/data/writing.json',
+  'assets/data/work.json',
+  'assets/data/workflow.json',
+  'feed.xml',
+  'robots.txt',
+  'sitemap.xml',
   'assets/js/site.js',
   'assets/fonts/instrument-sans-latin.woff2',
   'assets/fonts/newsreader-roman-latin.woff2',
@@ -48,10 +53,8 @@ const REQUIRED_ASSETS = [
   'assets/brand/favicon.svg',
   'assets/brand/favicon-32.png',
   'assets/brand/apple-touch-icon.png',
-  'assets/graphics/system-trace.svg',
   'assets/graphics/pazz-handoff.svg',
   'assets/graphics/lojik-evidence.svg',
-  'assets/graphics/operating-range.svg',
   'assets/media/diego-headshot.webp',
   'assets/social/home.png',
   'assets/social/pazz.png',
@@ -347,12 +350,23 @@ export async function auditProductWayIn(root, errors) {
   }
 }
 
+// Every post listed in assets/data/writing.json is a page the audit must cover.
+async function writingPages(root) {
+  let posts;
+  try {
+    posts = JSON.parse(await readFile(join(root, 'assets/data/writing.json'), 'utf8'));
+  } catch {
+    return [];
+  }
+  return posts.map((post) => `writing/${post.slug}/index.html`);
+}
+
 export async function auditSite(rootDir, options = {}) {
   const root = resolve(rootDir);
   const errors = [];
   const pages = [];
 
-  for (const relativePath of REQUIRED_PAGES) {
+  for (const relativePath of [...REQUIRED_PAGES, ...(await writingPages(root))]) {
     const absolutePath = join(root, relativePath);
     let html;
     try {

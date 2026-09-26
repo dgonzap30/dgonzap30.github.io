@@ -1,398 +1,219 @@
-.explorer {
-  display: grid;
-  grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
-  gap: var(--space-6);
-  align-items: start;
+/* The product gallery: every captured screen in one scrollable row on the
+   product's own plate, the way the App Store shows screenshots. It needs no
+   JavaScript; site.js only adds previous/next buttons and a counter. */
+
+.stage {
+  --slide: clamp(12.5rem, 20vw, 16.5rem);
+  --inset: clamp(1.25rem, 4vw, 3rem);
+  padding-block: clamp(1.75rem, 4vw, 3rem) clamp(1.25rem, 2.5vw, 1.75rem);
+  border-radius: var(--radius);
+  background: var(--plate);
 }
 
-.explorer-picker {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  background: var(--paper-deep);
-  border: 1px solid var(--rule);
+.stage[data-layout="desktop"] {
+  --slide: min(86%, 58rem);
 }
 
-.explorer-picker a {
-  min-height: 44px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
-  padding: var(--space-3) var(--space-4);
-  color: var(--ink);
-  border-left: 3px solid transparent;
-  text-decoration: none;
-}
-
-.explorer-picker strong {
-  font-size: 0.94rem;
-}
-
-.explorer-picker .picker-category {
-  color: var(--ink-soft);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.explorer-picker a:hover,
-.explorer-picker a[aria-current="page"] {
-  background: var(--paper-bright);
-  border-left-color: var(--vermilion);
-}
-
-.explorer-picker a[aria-current="page"] strong {
-  color: var(--vermilion);
-}
-
-.explorer-picker a[data-pending="true"] .picker-category::after {
-  content: " · pending capture";
-}
-
-.explorer-stage {
-  background: var(--paper-bright);
-  border: 1px solid var(--rule);
-}
-
-.stage-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: start;
-  justify-content: space-between;
-  gap: var(--space-4);
-  padding: var(--space-5) var(--space-6);
-  border-bottom: 1px solid var(--rule);
-}
-
-.stage-header h2,
-.stage-header .stage-name {
-  margin: 0;
-  font-family: var(--font-sans);
-  font-size: var(--step-2);
-  font-weight: 750;
-  letter-spacing: -0.01em;
-}
-
-.stage-status {
-  min-height: 1.6rem;
-  display: inline-flex;
-  align-items: center;
-  padding-inline: var(--space-3);
-  color: var(--vermilion);
-  border: 1px solid var(--vermilion);
-  font-size: 0.7rem;
-  font-weight: 750;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.stage-purpose {
-  max-width: 46ch;
-  margin: var(--space-2) 0 0;
-  color: var(--ink-soft);
-}
-
-.stage-viewer {
+.stage-track {
   position: relative;
-  background: var(--paper-deep);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--slide);
+  gap: clamp(1rem, 2.4vw, 2rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--inset);
+  padding: 0 var(--inset) 0.75rem;
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0% 0 0 / 0.22) transparent;
+}
+
+.stage-track:focus-visible {
+  outline-offset: -2px;
 }
 
 .stage-chapter {
-  padding: var(--space-6);
+  scroll-snap-align: start;
+  min-width: 0;
 }
 
-.js .stage-chapter[hidden] {
-  display: none;
-}
-
-.chapter-kicker {
-  margin: 0 0 var(--space-3);
-  color: var(--ink-soft);
-  font-size: 0.72rem;
-  font-weight: 750;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.chapter-kicker .synthetic-label {
-  color: var(--vermilion);
+.stage-media {
+  display: block;
 }
 
 .stage-chapter img,
 .stage-chapter video {
-  display: block;
-  margin-inline: auto;
-  background: var(--carbon);
-}
-
-.stage-chapter[data-layout="desktop"] img,
-.stage-chapter[data-layout="desktop"] video {
   width: 100%;
-  max-width: 62rem;
-  height: auto;
-  max-height: 42rem;
-  object-fit: contain;
+  background: oklch(0% 0 0);
 }
 
-.stage-chapter[data-layout="portrait"] img,
-.stage-chapter[data-layout="portrait"] video {
-  width: auto;
-  max-width: 100%;
-  max-height: 36rem;
-  height: auto;
+.stage[data-layout="portrait"] .stage-chapter img,
+.stage[data-layout="portrait"] .stage-chapter video {
+  border-radius: 13% / 6%;
+  box-shadow: 0 0 0 1px oklch(0% 0 0 / 0.08);
 }
 
-.stage-chapter figcaption {
-  margin-top: var(--space-4);
-  color: var(--ink-soft);
-  font-size: 0.9rem;
+.stage[data-layout="desktop"] .stage-chapter img,
+.stage[data-layout="desktop"] .stage-chapter video {
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px oklch(0% 0 0 / 0.07), 0 24px 50px -30px oklch(0% 0 0 / 0.5);
+}
+
+.chapter-caption {
+  margin-top: 0.9rem;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.chapter-caption strong {
+  color: var(--ink);
+  font-weight: 500;
 }
 
 .chapter-transcript {
-  max-width: 46rem;
-  margin: var(--space-4) auto 0;
-  padding: var(--space-4);
-  background: var(--paper);
-  border-left: 3px solid var(--vermilion);
-  color: var(--ink-soft);
-  font-size: 0.88rem;
+  margin-top: 0.6rem;
+  font-size: var(--text-sm);
+  color: var(--ink-2);
 }
 
-.chapter-tabs {
+.chapter-transcript summary {
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.chapter-transcript p {
+  margin-top: 0.5rem;
+}
+
+.stage-controls {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1);
-  padding: var(--space-2) var(--space-6);
-  background: var(--paper-bright);
-  border-top: 1px solid var(--rule);
-}
-
-.chapter-tabs a {
-  min-height: 44px;
-  display: inline-flex;
   align-items: center;
-  padding-inline: var(--space-3);
-  color: var(--ink-soft);
-  border-bottom: 2px solid transparent;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-decoration: none;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-inline: var(--inset);
 }
 
-.chapter-tabs a[aria-selected="true"] {
-  color: var(--vermilion);
-  border-bottom-color: var(--vermilion);
+.stage-controls[hidden] {
+  display: none;
 }
 
-.chapter-tabs a:hover {
-  color: var(--ink);
+.stage-count {
+  margin-right: auto;
 }
 
-.stage-caption-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: start;
-  justify-content: space-between;
-  gap: var(--space-4);
-  padding: var(--space-4) var(--space-6);
-  border-top: 1px solid var(--rule);
-}
-
-.stage-caption {
-  max-width: 52ch;
-  margin: 0;
-  color: var(--ink);
-}
-
-.stage-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-}
-
-.stage-open-full {
-  min-height: 44px;
-  padding-inline: var(--space-4);
-  color: var(--ink);
+.stage-controls button {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid oklch(0% 0 0 / 0.18);
+  border-radius: 50%;
   background: transparent;
-  border: 1px solid var(--ink);
+  color: inherit;
   font: inherit;
-  font-weight: 700;
   cursor: pointer;
 }
 
-.stage-open-full:hover {
-  color: var(--paper-bright);
-  background: var(--ink);
+.stage-controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Intertitle's plate is dark: flip the captions and controls. */
+.stage.plate--intertitle {
+  color: var(--on-dark);
+}
+
+.stage.plate--intertitle .chapter-caption,
+.stage.plate--intertitle .chapter-transcript,
+.stage.plate--intertitle .stage-count {
+  color: var(--on-dark-2);
+}
+
+.stage.plate--intertitle .chapter-caption strong,
+.stage.plate--intertitle .chapter-transcript summary {
+  color: var(--on-dark);
+}
+
+.stage.plate--intertitle .stage-track {
+  scrollbar-color: oklch(100% 0 0 / 0.25) transparent;
+}
+
+.stage.plate--intertitle .stage-controls button {
+  border-color: oklch(100% 0 0 / 0.25);
+}
+
+.stage.plate--intertitle .stage-chapter img {
+  box-shadow: 0 0 0 1px oklch(100% 0 0 / 0.1);
 }
 
 .stage-scope {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-6);
-  align-items: center;
-  padding: var(--space-4) var(--space-6);
-  color: var(--ink-soft);
-  font-size: 0.85rem;
-  border-top: 1px solid var(--rule);
+  max-width: 46rem;
+  margin-top: 1.25rem;
 }
 
+/* Engineering detail stays one click away instead of stacked around the proof. */
 .stage-disclosure {
-  margin: 0 var(--space-6) var(--space-6);
-  padding-top: var(--space-4);
+  max-width: 52rem;
+  margin-top: 2.5rem;
   border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
 
 .stage-disclosure summary {
-  min-height: 44px;
   display: flex;
-  align-items: center;
-  color: var(--ink);
-  font-weight: 700;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1rem;
+  font-weight: 500;
+  list-style: none;
   cursor: pointer;
+}
+
+.stage-disclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.stage-disclosure summary::after {
+  content: "+";
+  color: var(--ink-2);
+}
+
+.stage-disclosure[open] summary::after {
+  content: "−";
+}
+
+.stage-disclosure > p {
+  color: var(--ink-2);
 }
 
 .stage-disclosure-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-6);
-  margin-top: var(--space-3);
+  gap: 1.5rem 2.5rem;
+  padding-block: 1.5rem;
 }
 
-.stage-disclosure h4 {
-  margin: 0 0 var(--space-2);
-  color: var(--ink-soft);
-  font-size: 0.75rem;
-  font-weight: 750;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.stage-disclosure h2 {
+  font: 500 var(--text-sm) / 1.4 var(--font-sans);
 }
 
 .stage-disclosure ul {
-  margin: 0;
+  margin-top: 0.5rem;
   padding-left: 1.1em;
-  color: var(--ink-soft);
+  font-size: 0.95rem;
+  color: var(--ink-2);
 }
 
 .stage-disclosure li + li {
-  margin-top: var(--space-2);
+  margin-top: 0.35em;
 }
 
-.stage-pending {
-  padding: var(--space-10) var(--space-6);
-  color: var(--ink-soft);
-}
-
-.stage-pending strong {
-  color: var(--ink);
-}
-
-.stage-pending .stage-actions {
-  margin-top: var(--space-5);
-}
-
-dialog[data-stage-dialog] {
-  position: fixed;
-  max-width: 96vw;
-  max-height: 92vh;
-  padding: var(--space-6);
-  background: var(--carbon);
-  border: 0;
-}
-
-dialog[data-stage-dialog]::backdrop {
-  background: color-mix(in oklch, var(--carbon) 82%, transparent);
-}
-
-[data-dialog-body] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 90vw;
-  max-height: 84vh;
-}
-
-[data-dialog-body] img,
-[data-dialog-body] video {
-  max-width: 90vw;
-  max-height: 84vh;
-  width: auto;
-  height: auto;
-}
-
-.dialog-close {
-  position: absolute;
-  top: var(--space-3);
-  right: var(--space-3);
-  min-width: 44px;
-  min-height: 44px;
-  color: var(--ink);
-  background: var(--paper);
-  border: 0;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-@media (max-width: 64rem) {
-  .explorer {
-    grid-template-columns: 1fr;
-  }
-
-  .explorer-picker {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0;
-  }
-
-  .explorer-picker a {
-    flex: 1 1 auto;
-    min-width: 8rem;
-    border-left: 0;
-    border-bottom: 3px solid transparent;
-  }
-
-  .explorer-picker a:hover,
-  .explorer-picker a[aria-current="page"] {
-    border-bottom-color: var(--vermilion);
-  }
-
+@media (max-width: 44rem) {
   .stage-disclosure-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 48rem) {
-  .stage-header {
-    padding: var(--space-4);
-  }
-
-  .stage-chapter {
-    padding: var(--space-4);
-  }
-
-  .chapter-tabs,
-  .stage-caption-row,
-  .stage-scope {
-    padding-inline: var(--space-4);
-  }
-
-  .stage-disclosure {
-    margin-inline: var(--space-4);
-  }
-
-  .stage-chapter[data-layout="desktop"] img,
-  .stage-chapter[data-layout="desktop"] video {
-    max-height: 24rem;
-  }
-
-  .stage-chapter[data-layout="portrait"] img,
-  .stage-chapter[data-layout="portrait"] video {
-    max-height: 28rem;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
