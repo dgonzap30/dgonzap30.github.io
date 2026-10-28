@@ -94,23 +94,36 @@ function oklchToLinearRgb([lightness, chroma, hue]) {
   ].map((channel) => Math.min(1, Math.max(0, channel)));
 }
 
+function hexToLinearRgb(hex) {
+  const value = hex.length === 3 ? hex.replace(/./g, "$&$&") : hex;
+  return [0, 2, 4].map((offset) => {
+    const channel = parseInt(value.slice(offset, offset + 2), 16) / 255;
+    return channel <= 0.04045
+      ? channel / 12.92
+      : ((channel + 0.055) / 1.055) ** 2.4;
+  });
+}
+
 function contrastRatio(first, second) {
   const luminance = (color) =>
     0.2126 * color[0] + 0.7152 * color[1] + 0.0722 * color[2];
-  const firstLuminance = luminance(oklchToLinearRgb(first));
-  const secondLuminance = luminance(oklchToLinearRgb(second));
+  const firstLuminance = luminance(first);
+  const secondLuminance = luminance(second);
   return (
     (Math.max(firstLuminance, secondLuminance) + 0.05) /
     (Math.min(firstLuminance, secondLuminance) + 0.05)
   );
 }
 
-function oklchToken(css, name) {
+// A colour token in tokens.css, as linear RGB. Tokens are hex or oklch.
+function colorToken(css, name) {
+  const hex = css.match(new RegExp(`--${name}: #([0-9a-f]{6}|[0-9a-f]{3});`, "i"));
+  if (hex) return hexToLinearRgb(hex[1]);
   const match = css.match(
     new RegExp(`--${name}: oklch\\(([\\d.]+)%\\s+([\\d.]+)\\s+([\\d.]+)\\)`),
   );
-  assert(match, `missing oklch token: ${name}`);
-  return [Number(match[1]) / 100, Number(match[2]), Number(match[3])];
+  assert(match, `missing colour token: ${name}`);
+  return oklchToLinearRgb([Number(match[1]) / 100, Number(match[2]), Number(match[3])]);
 }
 
 const validHead = `
@@ -276,18 +289,25 @@ test("palette keeps secondary text and the accent at WCAG AA on every surface", 
     "utf8",
   );
   const pairs = [
-    ["ink-2", "paper"],
-    ["ink-2", "wash"],
-    ["accent", "paper"],
+    ["ink", "ground"],
+    ["ink-2", "ground"],
+    ["ink-2", "surface"],
+    ["ink-2", "fill"],
+    ["seal", "ground"],
+    ["seal", "surface"],
+    ["seal", "fill"],
+    ["accent", "ground"],
+    ["accent", "surface"],
     ["ink-2", "plate-pazz"],
     ["ink-2", "plate-lojik"],
     ["ink-2", "plate-maestro"],
     ["ink-2", "plate-temper"],
     ["ink-2", "plate-mimo"],
+    ["on-dark", "plate-intertitle"],
     ["on-dark-2", "plate-intertitle"],
   ];
   for (const [text, surface] of pairs) {
-    const ratio = contrastRatio(oklchToken(tokens, text), oklchToken(tokens, surface));
+    const ratio = contrastRatio(colorToken(tokens, text), colorToken(tokens, surface));
     assert(ratio >= 4.5, `${text} on ${surface} is ${ratio.toFixed(2)}:1, below 4.5`);
   }
 });
