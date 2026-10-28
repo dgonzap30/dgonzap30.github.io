@@ -51,7 +51,7 @@ const cards = {
     'intertitle',
     `<div class="phones"><img src="${M}/intertitle-tonight.webp" alt=""><img src="${M}/intertitle-film.webp" alt=""></div>`,
     '<span class="nowrap">Founder-engineer</span> in Mexico&nbsp;City<span class="dot">.</span>',
-    'Co-founder of Lojik Labs, maker of Intertitle, Technical Lead at PAZZ.',
+    'Co-founder of LOJIK, maker of Intertitle, Technical Lead at PAZZ.',
   ),
   pazz: page(
     'pazz',
@@ -62,8 +62,8 @@ const cards = {
   lojik: page(
     'lojik',
     `<img class="screen" src="${M}/lojik-site.webp" alt="">`,
-    'Lojik Labs<span class="dot">.</span>',
-    'Co-Founder &amp; Technical Lead. Workflow software for businesses.',
+    'LOJIK<span class="dot">.</span>',
+    'Co-Founder &amp; Technical Lead. Custom apps and automation for businesses.',
   ),
 };
 

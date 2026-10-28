@@ -1,6 +1,6 @@
 # dgonzap30.github.io
 
-The source for [dgonzap30.github.io](https://dgonzap30.github.io/), the personal site of Diego González Zapiain: founder-engineer in Mexico City, co-founder of Lojik Labs, maker of Intertitle, and Technical Lead at PAZZ.
+The source for [dgonzap30.github.io](https://dgonzap30.github.io/), the personal site of Diego González Zapiain: founder-engineer in Mexico City, co-founder of LOJIK, maker of Intertitle, and Technical Lead at PAZZ.
 
 The site is plain HTML, CSS and SVG with no runtime dependency. Every page reads and works without JavaScript; `assets/js/site.js` only adds previous/next buttons and a counter to product galleries.
 
@@ -14,6 +14,7 @@ The site is plain HTML, CSS and SVG with no runtime dependency. Every page reads
 | `/demos/<product>/` | Product pages for Intertitle, Maestro, Temper and Mimo, generated from `projects.json` |
 | `/writing/`, `/workflow/` | Posts, the seven-part workflow series, and `/feed.xml` |
 | `/now/` | What's being built this month, dated |
+| `/links/` | One-column link hub for profile bios (`noindex`) |
 | `/thanks/`, `/404.html` | Form confirmation and recovery (both `noindex`) |
 
 ## Design system
@@ -52,14 +53,14 @@ npm run serve   # http://127.0.0.1:4173 for browser QA
 ## Publication standards
 
 - One `h1` per route, a unique title and description, an absolute canonical, and Open Graph and Twitter metadata.
-- Person, WebSite and Blog JSON-LD share one `@id` graph with Lojik Labs' profile of Diego.
+- Person, WebSite and Blog JSON-LD share one `@id` graph with LOJIK's profile of Diego.
 - Keyboard-visible focus, reduced-motion support, and working no-JavaScript navigation.
 - HTML under 75 KB per page, SVG under 20 KB, JavaScript under 12 KB, portrait under 180 KB.
 - No third-party analytics, trackers, frameworks or runtime dependencies.
 
 ## Evidence boundary
 
-PAZZ and Lojik Labs production source remain private. The public case studies describe role, scope, selected decisions, and sanitized system boundaries. They intentionally omit customer and supplier data, credentials, private routes, security details, internal incidents, unfinished work, and commercial metrics without an approved measurement record.
+PAZZ and LOJIK production source remain private. The public case studies describe role, scope, selected decisions, and sanitized system boundaries. They intentionally omit customer and supplier data, credentials, private routes, security details, internal incidents, unfinished work, and commercial metrics without an approved measurement record.
 
 ## Deployment
 
