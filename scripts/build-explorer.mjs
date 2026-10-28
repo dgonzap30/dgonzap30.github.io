@@ -45,11 +45,13 @@ function renderDisclosure(project, level) {
       </details>`;
 }
 
-// The gallery, its capture note and the engineering disclosure.
+// The gallery, its capture note and the engineering disclosure. The stage
+// shares the product's view-transition name with its tile on home and the
+// work index, so the tile's plate morphs into it.
 export function renderStage(project, { level = 2 } = {}) {
   const layout = project.chapters[0]?.layout ?? 'portrait';
   const labels = [...new Set(project.chapters.map((chapter) => chapter.syntheticLabel))].join(', ');
-  return `      <div class="stage plate--${project.id}" data-explorer-stage data-layout="${layout}">
+  return `      <div class="stage plate--${project.id}" data-explorer-stage data-layout="${layout}" style="view-transition-name: media-${project.id}">
         <div class="stage-track" role="region" aria-label="${esc(project.name)} screens" tabindex="0">
 ${project.chapters.map(renderChapter).join('\n')}
         </div>
@@ -117,12 +119,18 @@ function renderProductPage(project, work) {
     },
   });
   return `${head}
-    <header class="page-head shell">
+    <header class="page-head page-head--product shell">
 ${backLink('/projects/', 'Work')}
-      <h1>${esc(project.name)}</h1>
-      <p class="lede">${esc(project.purpose)}</p>
-      <p class="page-meta meta">${esc(project.category)} · ${esc(project.status)}</p>
-      ${renderWayIn(project)}
+      <div class="page-head-grid">
+        <div class="page-head-main">
+          <h1>${esc(project.name)}</h1>
+          <p class="lede">${esc(project.purpose)}</p>
+        </div>
+        <div class="page-head-aside">
+          <p class="page-meta meta">${esc(project.category)} · ${esc(project.status)}</p>
+          ${renderWayIn(project)}
+        </div>
+      </div>
     </header>
 
     <section class="product-gallery shell" aria-label="${esc(project.name)} screens">

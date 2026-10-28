@@ -46,29 +46,47 @@ export async function loadWork() {
 const external = (href) => /^https?:/.test(href);
 const linkAttrs = (href) => (external(href) ? ' target="_blank" rel="noopener noreferrer"' : '');
 
-function image(work, name, className, alt, eager) {
+function image(work, name, className, alt, eager, style = '') {
   const [width, height] = work.sizes.get(name);
   const loading = eager ? 'fetchpriority="high"' : 'loading="lazy"';
-  return `<img class="${className}" src="${MEDIA}/${name}.webp" width="${width}" height="${height}" alt="${escape(alt)}" ${loading} decoding="async">`;
+  return `<img class="${className}" src="${MEDIA}/${name}.webp" width="${width}" height="${height}" alt="${escape(alt)}"${style} ${loading} decoding="async">`;
 }
 
+// The tile's media layer, which drifts with scroll inside its plate. Phones
+// fan out from the bottom edge (--k is each phone's place in the fan, centred
+// on zero); a screen sits in a browser frame, with its address when public.
+export function renderMedia(work, product, eager = false) {
+  const { kind, images, url } = product.media;
+  if (kind === 'phones') {
+    const phones = images
+      .map((name, index) => {
+        const k = index - (images.length - 1) / 2;
+        return image(work, name, 'phone', index === 0 ? product.alt : '', eager, ` style="--k: ${k}"`);
+      })
+      .join('\n            ');
+    return `<div class="plate-media media--phones">
+            ${phones}
+          </div>`;
+  }
+  const address = url ? `<span class="frame-url">${escape(url)}</span>` : '';
+  return `<div class="plate-media media--screen">
+            <div class="frame"><span class="frame-bar" aria-hidden="true"><span class="frame-dots"></span>${address}</span>${image(work, images[0], 'screen', product.alt, eager)}</div>
+          </div>`;
+}
+
+// A tile's plate carries the product's view-transition name, so it morphs
+// into the hero of the product's own page.
 export function renderTile(work, product, { level = 3, eager = false } = {}) {
-  const kind = product.media.kind === 'phones' ? 'phone' : 'screen';
-  const media = product.media.images
-    .map((name, index) => image(work, name, kind, index === 0 ? product.alt : '', eager))
-    .join('\n          ');
   const extra = product.extra
     ? ` · <a class="tile-extra" href="${escape(product.extra.href)}"${linkAttrs(product.extra.href)}>${escape(product.extra.label)} <span aria-hidden="true">↗</span></a>`
     : '';
-  return `      <article class="tile tile--${product.tile}">
-        <div class="plate plate--${product.plate}">
-          ${media}
+  return `      <article class="tile tile--${product.tile} reveal" data-tilt>
+        <div class="plate plate--${product.plate}" style="view-transition-name: media-${product.id}">
+          ${renderMedia(work, product, eager)}
         </div>
         <div class="tile-body">
-          <div class="tile-head">
-            <h${level} class="tile-title"><a href="${product.href}">${escape(product.name)}</a></h${level}>
-            <p class="meta">${escape(product.meta)}${extra}</p>
-          </div>
+          <h${level} class="tile-title"><a href="${product.href}">${escape(product.name)}</a></h${level}>
+          <p class="tile-meta meta">${escape(product.meta)}${extra}</p>
           <p class="tile-line">${escape(product.line)}</p>
         </div>
       </article>`;
@@ -103,7 +121,7 @@ ${items}
 export function renderMoreWork(work, currentId) {
   const others = work.products.filter((entry) => entry.id !== currentId).map((entry) => entry.id);
   return `    <nav class="more-work shell" aria-labelledby="more-work-title">
-      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work</a></div>
+      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work <span aria-hidden="true">→</span></a></div>
 ${renderPicker(work, others, 'More work')}
     </nav>`;
 }

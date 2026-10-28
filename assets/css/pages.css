@@ -1,119 +1,381 @@
-/* ---------- Home: who first, then the work ---------- */
+/* ---------- Home: the statement, then the work ---------- */
 
-.intro {
-  padding-block: clamp(3rem, 1.5rem + 7vw, 8.5rem) 0;
+/* The hero is type and the work itself. Each claim in the statement carries
+   a chip cut from its product's own screen; on hover or keyboard focus the
+   chip grows into a full preview of that screen. */
+.hero {
+  overflow-x: clip;
 }
 
-.intro-name {
+.hero-inner {
+  padding-top: clamp(3.5rem, 1.5rem + 6vw, 7.5rem);
+}
+
+.hero-name {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: var(--space-3);
   font: 500 var(--text-base) / 1.2 var(--font-sans);
   letter-spacing: -0.005em;
 }
 
-.intro-photo {
-  width: 2.75rem;
-  height: 2.75rem;
+.hero-photo {
+  flex: none;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   object-fit: cover;
+  box-shadow: 0 0 0 1px var(--rule);
 }
 
-/* The statement is the signature: each claim carries a thumbnail of its proof. */
-.statement {
-  max-width: 17em;
-  margin-top: clamp(1.5rem, 3vw, 2.25rem);
-  font: 400 var(--display-lg) / 1.13 var(--font-serif);
-  letter-spacing: -0.021em;
+.hero-statement {
+  max-width: 18.5em;
+  margin-top: var(--space-6);
+  font: 400 clamp(2.2rem, 1.15rem + 4.1vw, 5.25rem) / 1.08 var(--font-serif);
+  letter-spacing: -0.026em;
   text-wrap: pretty;
 }
 
-.statement a {
-  text-decoration-thickness: 0.045em;
-  text-underline-offset: 0.14em;
-}
-
-.statement em {
+.hero-statement em {
   font-style: italic;
 }
 
+/* Each word sits in its own window so it can rise into place. */
+.hero-statement .w {
+  display: inline-block;
+  white-space: nowrap;
+  clip-path: inset(-0.4em -0.6em -0.32em -0.6em);
+}
+
+.hero-statement .w > span {
+  display: inline-block;
+}
+
+.proof {
+  position: relative;
+  text-decoration: none;
+}
+
+.proof .w > span {
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.045em;
+  text-decoration-color: var(--rule-strong);
+  text-underline-offset: 0.14em;
+  transition: text-decoration-color 200ms ease;
+}
+
+.proof:hover .w > span,
+.proof:focus-visible .w > span {
+  text-decoration-color: currentColor;
+}
+
+.proof:focus-visible {
+  outline-offset: 0.08em;
+}
+
+/* The chip is a crop of the same full-size screen its preview shows. */
 .chip {
+  position: relative;
   display: inline-block;
   width: 1.2em;
   height: 0.8em;
-  margin-inline: 0.04em 0.2em;
+  margin-right: 0.16em;
+  overflow: hidden;
   border-radius: 0.14em;
-  object-fit: cover;
   vertical-align: -0.04em;
-  box-shadow: 0 0 0 1px oklch(0% 0 0 / 0.1);
-  transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  background: var(--fill);
+  box-shadow: 0 0 0 1px rgb(15 20 18 / 0.1);
+  transition: scale var(--dur-spring) var(--ease-spring), rotate var(--dur-spring) var(--ease-spring);
 }
 
-.statement a:hover .chip {
-  transform: rotate(-4deg) scale(1.08);
+.chip img {
+  position: absolute;
+  top: var(--zy, 0);
+  left: var(--zx, 0);
+  width: var(--zw, 100%);
+  max-width: none;
 }
 
-.intro-links {
+.peek {
+  position: absolute;
+  bottom: calc(100% + 0.12em);
+  left: 50%;
+  z-index: 40;
+  display: block;
+  width: min(25rem, 100vw - 2rem);
+  overflow: hidden;
+  border-radius: 22px;
+  background: var(--plate);
+  box-shadow: 0 0 0 1px rgb(15 20 18 / 0.07), 0 14px 28px -14px rgb(15 20 18 / 0.25), 0 44px 80px -36px rgb(15 20 18 / 0.5);
+  font-size: 1rem;
+  line-height: 1.4;
+  letter-spacing: 0;
+  white-space: normal;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  scale: 0.16;
+  translate: calc(-50% + var(--peek-dx, 0px)) 0;
+  transform-origin: var(--peek-ox, 50%) calc(100% + 0.6rem);
+  transition: scale 260ms var(--ease-roll), opacity 160ms ease 80ms, visibility 0s linear 340ms;
+}
+
+.proof[data-side="below"] .peek {
+  top: calc(100% + 0.12em);
+  bottom: auto;
+  transform-origin: var(--peek-ox, 50%) -0.6rem;
+}
+
+.proof:focus-visible .peek {
+  visibility: visible;
+  opacity: 1;
+  scale: var(--peek-fit, 1);
+  transition: scale 620ms var(--ease-pop), opacity 120ms ease, visibility 0s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .proof:hover .peek {
+    visibility: visible;
+    opacity: 1;
+    scale: var(--peek-fit, 1);
+    transition: scale 620ms var(--ease-pop), opacity 120ms ease, visibility 0s;
+  }
+
+  .proof:hover .chip {
+    scale: 1.08;
+    rotate: -4deg;
+  }
+}
+
+/* Escape closes an open preview until the pointer or focus comes back. */
+.proof[data-dismissed]:is(:hover, :focus-visible) .peek {
+  visibility: hidden;
+  opacity: 0;
+  scale: 0.16;
+  transition: none;
+}
+
+@media (max-width: 40rem) {
+  .peek {
+    display: none;
+  }
+}
+
+.peek-media {
+  display: block;
+}
+
+.peek .media--screen {
+  padding: 7% 7% 0;
+}
+
+.peek .frame {
+  display: block;
+  margin-bottom: -9%;
+}
+
+.peek .media--phones {
+  --w: 29%;
+  position: relative;
+  height: 17rem;
+  min-height: 0;
+}
+
+/* Words rise in order and each chip lands after its word. Without motion,
+   everything is simply there. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-statement .w > span {
+    animation: rise 1000ms var(--ease-roll) backwards;
+    animation-delay: calc(140ms + var(--i) * 34ms);
+  }
+
+  .hero-statement .chip {
+    animation: chip-in var(--dur-pop) var(--ease-pop) backwards;
+    animation-delay: calc(360ms + var(--i) * 34ms);
+  }
+
+  .hero-name {
+    animation: enter 900ms var(--ease-roll) backwards;
+  }
+
+  .hero-foot {
+    animation: enter 1000ms var(--ease-roll) backwards 1050ms;
+  }
+}
+
+@keyframes rise {
+  from {
+    translate: 0 120%;
+  }
+}
+
+@keyframes chip-in {
+  from {
+    scale: 0;
+    rotate: -14deg;
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    translate: 0 0.75rem;
+  }
+}
+
+.hero-foot {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin: clamp(1.75rem, 3.5vw, 2.75rem) 0 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5) var(--space-7);
+  margin-top: var(--space-7);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.hero-actions .button {
+  margin-right: var(--space-2);
 }
 
 @media (max-width: 30rem) {
-  .intro-links:not(.links-contact) {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .intro-links:not(.links-contact) .button {
-    width: 100%;
+  .hero-actions li:first-child {
+    flex-basis: 100%;
+    margin-bottom: var(--space-2);
   }
 }
 
-.intro-facts {
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  min-height: 2.75rem;
+  font-weight: 500;
+  text-decoration-color: transparent;
+}
+
+.hero-link:hover {
+  text-decoration-color: currentColor;
+}
+
+.hero-facts {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem 1.25rem;
-  margin: 1.25rem 0 0;
+  gap: var(--space-1) var(--space-5);
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.intro + .section {
-  margin-top: clamp(4rem, 2rem + 7vw, 8rem);
+/* The reel: the selected work follows the statement directly. */
+.reel {
+  margin-top: clamp(4rem, 2rem + 5vw, 7rem);
 }
 
 .also {
-  margin-top: clamp(2.75rem, 5vw, 4rem);
+  margin-top: var(--space-8);
 }
 
 .also-title {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
+}
+
+/* How I work: the heading holds still while the series fills beside it. */
+.how {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.how-head .section-lede {
+  margin: var(--space-4) 0 var(--space-2);
+}
+
+@media (min-width: 60rem) {
+  .how {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+    column-gap: var(--space-8);
+  }
+
+  .how-head {
+    position: sticky;
+    top: 7rem;
+  }
 }
 
 .split {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--section) clamp(2rem, 5vw, 5rem);
+  gap: var(--section) var(--space-8);
 }
 
-.split .section {
-  margin-top: 0;
-}
-
-@media (max-width: 52rem) {
+@media (min-width: 52rem) {
   .split {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* The close: the address itself, large. */
+.contact {
+  margin-top: var(--section);
+  padding-block: clamp(4rem, 2.5rem + 5vw, 7.5rem);
+  background: var(--surface);
+}
+
+main:has(> .contact:last-child) + .site-footer {
+  margin-top: 0;
+  border-top: 0;
+}
+
+.contact-title {
+  font: 500 var(--text-base) / 1.4 var(--font-sans);
+  color: var(--ink-2);
+}
+
+.contact-mail {
+  margin-top: var(--space-4);
+  font: 400 clamp(2rem, 0.75rem + 4.6vw, 5.25rem) / 1.04 var(--font-serif);
+  letter-spacing: var(--tracking-display);
+}
+
+.contact-mail a {
+  text-decoration-thickness: 0.04em;
+  text-underline-offset: 0.12em;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  min-height: 2.75rem;
+  font-weight: 500;
+  text-decoration-color: transparent;
+}
+
+.contact-links a:hover {
+  text-decoration-color: currentColor;
 }
 
 /* ---------- Product and case pages ---------- */
 
 .product-gallery {
-  margin-top: clamp(0.5rem, 2vw, 1.5rem);
+  margin-top: var(--space-2);
 }
 
 .gallery-head {
@@ -121,27 +383,37 @@
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: 0.25rem 1rem;
-  margin-bottom: 1rem;
+  gap: var(--space-1) var(--space-5);
+  margin-bottom: var(--space-5);
 }
 
 .gallery-head h2 {
-  font: 400 var(--display-sm) / 1.15 var(--font-serif);
-  letter-spacing: -0.012em;
+  max-width: 32rem;
+  font: 400 var(--display-sm) / 1.12 var(--font-serif);
+  letter-spacing: var(--tracking-title);
 }
 
-.case-body {
-  margin-top: clamp(3.5rem, 7vw, 6rem);
+/* The case hero's plate takes its height from the screen it holds. */
+.case-hero-plate .media--screen {
+  padding: 6% 12% 0;
 }
 
-.case-hero-plate {
-  aspect-ratio: 16 / 8;
+.case-hero-plate .frame {
+  margin-bottom: -5%;
 }
 
 @media (max-width: 44rem) {
-  .case-hero-plate {
-    aspect-ratio: 4 / 3;
+  .case-hero-plate .media--screen {
+    padding: 9% 6% 0;
   }
+}
+
+.case-hero figcaption {
+  margin-top: var(--space-3);
+}
+
+.case-body {
+  margin-top: var(--space-8);
 }
 
 .more-work {
@@ -154,39 +426,33 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  border-top: 1px solid var(--rule-strong);
 }
 
 .now-item {
   display: grid;
-  grid-template-columns: minmax(0, 14rem) minmax(0, var(--measure));
-  gap: 0.5rem 2rem;
-  padding-block: 1.5rem;
-  border-top: 1px solid var(--rule);
-}
-
-.now-item:last-child {
+  gap: var(--space-3) var(--space-6);
+  padding-block: var(--space-6);
   border-bottom: 1px solid var(--rule);
 }
 
 .now-item h2 {
-  font: 400 1.4rem / 1.2 var(--font-serif);
+  font: 400 var(--display-xs) / 1.2 var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+.now-item p {
+  max-width: var(--measure);
 }
 
 .now-item p + p {
-  margin-top: 0.5rem;
+  margin-top: var(--space-3);
 }
 
-@media (max-width: 44rem) {
+@media (min-width: 44rem) {
   .now-item {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
   }
-}
-
-/* ---------- Writing ---------- */
-
-.section-head + .lede {
-  margin: 0 0 clamp(1.5rem, 3vw, 2rem);
-  font-size: var(--text-base);
 }
 
 /* ---------- Small pages ---------- */
@@ -194,44 +460,53 @@
 .plain-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin: 2rem 0 0;
+  gap: var(--space-2) var(--space-6);
+  margin: var(--space-6) 0 0;
   padding: 0;
   list-style: none;
+}
+
+.plain-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  min-height: 2.75rem;
+  font-weight: 500;
 }
 
 /* ---------- /links/: one column of big tap targets, for profile bios ---------- */
 
 .links {
   max-width: 34rem;
-  padding-block: clamp(2rem, 1rem + 4vw, 4.5rem) 0;
+  padding-top: clamp(2.5rem, 1.5rem + 4vw, 5rem);
   text-align: center;
 }
 
 .links-photo {
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 6rem;
+  height: 6rem;
   margin-inline: auto;
   border-radius: 50%;
   object-fit: cover;
+  box-shadow: 0 0 0 1px var(--rule), 0 18px 36px -22px rgb(15 20 18 / 0.5);
 }
 
 .links-name {
-  margin-top: 1.1rem;
-  font: 400 var(--display-sm) / 1.15 var(--font-serif);
-  letter-spacing: -0.015em;
+  margin-top: var(--space-5);
+  font: 400 var(--display-sm) / 1.1 var(--font-serif);
+  letter-spacing: var(--tracking-title);
 }
 
 .links-line {
   max-width: 24em;
-  margin: 0.6rem auto 0;
+  margin: var(--space-3) auto 0;
   color: var(--ink-2);
 }
 
 .link-list {
   display: grid;
-  gap: 0.75rem;
-  margin: clamp(1.75rem, 4vw, 2.5rem) 0 0;
+  gap: var(--space-3);
+  margin: var(--space-7) 0 0;
   padding: 0;
   list-style: none;
   text-align: left;
@@ -240,44 +515,40 @@
 .link-card {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  min-height: 5.25rem;
-  padding: 0.65rem 1.1rem 0.65rem 0.65rem;
-  border-radius: calc(var(--radius) + 4px);
-  box-shadow: inset 0 0 0 1px var(--rule-strong);
+  gap: var(--space-4);
+  min-height: 5.75rem;
+  padding: var(--space-3) var(--space-5) var(--space-3) var(--space-3);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--rule), var(--shadow-card);
   text-decoration: none;
-  transition: box-shadow 160ms ease, background-color 160ms ease;
+  transition: translate var(--dur-spring) var(--ease-spring), box-shadow 250ms ease, scale var(--dur-spring) var(--ease-spring);
 }
 
 .link-card:hover {
-  background: var(--wash);
-  box-shadow: inset 0 0 0 1px var(--ink);
+  translate: 0 -2px;
+  box-shadow: 0 0 0 1px var(--rule-strong), 0 2px 4px rgb(15 20 18 / 0.04), 0 24px 44px -28px rgb(15 20 18 / 0.45);
 }
 
-/* Picker thumbs size their padding in %, which resolves against the parent;
-   here the parent is the whole card, so pin it to the 4rem tile instead. */
+.link-card:active {
+  scale: 0.98;
+  transition: scale var(--press-in) var(--ease-press);
+}
+
 .link-card .picker-thumb {
   flex: none;
 }
 
-.link-card .picker-thumb--phones {
-  padding-top: 0.72rem;
-}
-
-.link-card .picker-thumb--screen {
-  padding: 0.96rem 0.56rem 0 0;
-}
-
 .link-glyph {
-  --plate: var(--wash);
+  --plate: var(--fill);
   display: grid;
   flex: none;
   place-items: center;
-  width: 4rem;
-  height: 4rem;
-  border-radius: 10px;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 14px;
   background: var(--plate);
-  font: 500 1.4rem / 1 var(--font-sans);
+  font: 500 1.5rem / 1 var(--font-sans);
 }
 
 .link-glyph img {
@@ -286,7 +557,7 @@
 }
 
 .link-glyph--serif {
-  font: 400 2rem / 1 var(--font-serif);
+  font: 400 2.25rem / 1 var(--font-serif);
 }
 
 .link-text {
@@ -296,23 +567,39 @@
 
 .link-title {
   display: block;
-  font: 400 1.25rem / 1.2 var(--font-serif);
+  font: 400 1.35rem / 1.2 var(--font-serif);
+  letter-spacing: -0.01em;
 }
 
 .link-sub {
   display: block;
-  margin-top: 0.2rem;
+  margin-top: var(--space-1);
   font-size: var(--text-sm);
-  line-height: 1.4;
+  line-height: 1.45;
   color: var(--ink-2);
 }
 
 .link-arrow {
   flex: none;
   color: var(--ink-2);
+  transition: translate var(--dur-spring) var(--ease-spring), color 200ms ease;
+}
+
+.link-card:hover .link-arrow {
+  translate: 0.15rem 0;
+  color: var(--ink);
+}
+
+.intro-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .links-contact {
   justify-content: center;
-  margin-top: 1.5rem;
+  margin-top: var(--space-6);
 }

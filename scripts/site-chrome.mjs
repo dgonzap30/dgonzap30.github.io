@@ -26,6 +26,10 @@ const NAV = [
   ['/now/', 'Now'],
 ];
 
+// The DGZ trace mark, inline so it takes the header's ink. The route draws
+// itself again on hover.
+const MARK = `<svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg>`;
+
 const block = (name, content) => `<!-- chrome:${name}:start -->\n${content}\n<!-- chrome:${name}:end -->`;
 
 export function headAssets() {
@@ -58,8 +62,8 @@ export function siteHeader(current, { home = false } = {}) {
   return block(
     'header',
     `  <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header shell">
-    <a class="brand" href="/" aria-label="${NAME}, home"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt="">${name}</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="${NAME}, home">${MARK}${name}</a>
     <nav aria-label="Primary">
       <ul class="nav-links" role="list">
 ${items}
@@ -114,7 +118,7 @@ export function chrome(page) {
   <meta name="description" content="${escape(page.description)}">
   <link rel="canonical" href="${page.canonical}">${robots}
   <meta name="author" content="${NAME}">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#f2f4f3">
   <meta property="og:site_name" content="${NAME}">
   <meta property="og:title" content="${escape(page.ogTitle ?? title)}">
   <meta property="og:description" content="${escape(page.description)}">
@@ -144,12 +148,24 @@ ${siteFooter()}
   };
 }
 
+// A list whose every point opens with a bolded term ("<strong>Term</strong> —
+// what it means") is a set of definitions, so it renders as one: terms
+// beside their meanings, never as bold-lead bullets.
+const TERM = /^<strong>([^<]+)<\/strong>\s*[—–-]\s*([\s\S]+)$/;
+
 // One prose section: a serif h2, paragraphs, an optional list and an optional
 // note. Notes sit inline under the text, never in a side rail.
 export function renderSection(section) {
   const body = [`      <h2>${escape(section.heading)}</h2>`];
   for (const paragraph of section.body) body.push(`      <p>${paragraph}</p>`);
-  if (section.points?.length) {
+  if (section.points?.length && section.points.every((point) => TERM.test(point))) {
+    body.push('      <dl class="terms">');
+    for (const point of section.points) {
+      const [, term, meaning] = point.match(TERM);
+      body.push(`        <div><dt>${term}</dt><dd>${meaning}</dd></div>`);
+    }
+    body.push('      </dl>');
+  } else if (section.points?.length) {
     body.push('      <ul>');
     for (const point of section.points) body.push(`        <li>${point}</li>`);
     body.push('      </ul>');
@@ -160,6 +176,18 @@ export function renderSection(section) {
   return `    <section class="prose-section" id="${section.id}">
 ${body.join('\n')}
     </section>`;
+}
+
+// The workflow series as a numbered path: a rail that draws as you scroll,
+// one node per practice, each linking to its article and naming its source.
+export function renderSeries(pages, indent = '      ') {
+  const items = pages
+    .map(
+      (page, index) =>
+        `${indent}  <li class="series-item"><a class="series-link" href="/workflow/${page.slug}/"><span class="series-num" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><span class="series-title">${escape(page.title)}</span><span class="series-line">${escape(page.description)}</span></a></li>`,
+    )
+    .join('\n');
+  return `${indent}<ol class="series" role="list">\n${items}\n${indent}</ol>`;
 }
 
 // Breadcrumb back to a parent index.

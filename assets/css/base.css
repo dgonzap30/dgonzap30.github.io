@@ -4,9 +4,27 @@
   box-sizing: border-box;
 }
 
+/* Pages morph into each other: a product's tile media becomes its page's
+   hero. Names are set inline per page and are unique on each one. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+::view-transition-group(*) {
+  animation-duration: 460ms;
+  animation-timing-function: var(--ease-roll);
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  scroll-padding-top: 6rem;
 }
 
 body {
@@ -14,9 +32,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--paper);
+  background: var(--ground);
   color: var(--ink);
-  font: 400 var(--text-base) / 1.55 var(--font-sans);
+  font: 400 var(--text-base) / 1.6 var(--font-sans);
   font-kerning: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,6 +50,10 @@ video,
 svg {
   display: block;
   max-width: 100%;
+}
+
+img,
+video {
   height: auto;
 }
 
@@ -58,7 +80,8 @@ h4 {
 }
 
 p,
-li {
+li,
+dd {
   text-wrap: pretty;
 }
 
@@ -67,26 +90,26 @@ a {
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
   text-decoration-color: var(--rule-strong);
-  text-underline-offset: 0.22em;
-  transition: text-decoration-color 160ms ease, color 160ms ease;
+  text-underline-offset: 0.24em;
+  transition: text-decoration-color 180ms ease, color 180ms ease;
 }
 
 a:hover {
-  text-decoration-color: var(--accent);
+  text-decoration-color: currentColor;
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 ::selection {
-  background: oklch(90% 0.05 30.8);
+  background: rgb(15 20 18 / 0.14);
 }
 
 code {
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.86em;
   overflow-wrap: anywhere;
 }
@@ -97,20 +120,21 @@ code {
 }
 
 .skip-link {
-  position: absolute;
+  position: fixed;
   left: var(--gutter);
   top: 0.75rem;
-  z-index: 10;
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-pill);
   background: var(--ink);
-  color: var(--paper);
+  color: var(--surface);
   text-decoration: none;
   transform: translateY(-200%);
 }
 
 .skip-link:focus-visible {
   transform: none;
+  outline-color: var(--seal);
 }
 
 .nowrap {
@@ -129,14 +153,31 @@ code {
   border: 0;
 }
 
-/* Utility voice: the condensed cut of Instrument Sans with tabular figures,
-   for dates, roles and statuses. It never shouts; no uppercase eyebrows. */
+/* Small print: roles, dates, statuses. Figures line up. */
 .meta {
   font-size: var(--text-sm);
-  font-stretch: 84%;
+  line-height: 1.55;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.012em;
   color: var(--ink-2);
+}
+
+/* Section reveals ride the scroll itself. Without support, or with reduced
+   motion, everything is simply there. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal both var(--ease-roll);
+      animation-timeline: view();
+      animation-range: entry 0% entry 75%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 2rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -144,6 +185,16 @@ code {
   *::before,
   *::after {
     scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* A printout or PDF shows every section at rest, whatever the motion preference. */
+@media print {
+  *,
+  *::before,
+  *::after {
     transition: none !important;
     animation: none !important;
   }

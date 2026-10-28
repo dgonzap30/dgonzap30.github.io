@@ -5,8 +5,8 @@
 .stage {
   --slide: clamp(12.5rem, 20vw, 16.5rem);
   --inset: clamp(1.25rem, 4vw, 3rem);
-  padding-block: clamp(1.75rem, 4vw, 3rem) clamp(1.25rem, 2.5vw, 1.75rem);
-  border-radius: var(--radius);
+  padding-block: clamp(2rem, 4.5vw, 3.5rem) clamp(1.25rem, 2.5vw, 1.75rem);
+  border-radius: var(--radius-lg);
   background: var(--plate);
 }
 
@@ -26,7 +26,7 @@
   scroll-padding-inline: var(--inset);
   padding: 0 var(--inset) 0.75rem;
   scrollbar-width: thin;
-  scrollbar-color: oklch(0% 0 0 / 0.22) transparent;
+  scrollbar-color: rgb(15 20 18 / 0.22) transparent;
 }
 
 .stage-track:focus-visible {
@@ -45,23 +45,23 @@
 .stage-chapter img,
 .stage-chapter video {
   width: 100%;
-  background: oklch(0% 0 0);
+  background: #000;
 }
 
 .stage[data-layout="portrait"] .stage-chapter img,
 .stage[data-layout="portrait"] .stage-chapter video {
   border-radius: 13% / 6%;
-  box-shadow: 0 0 0 1px oklch(0% 0 0 / 0.08);
+  box-shadow: 0 0 0 1px rgb(15 20 18 / 0.08), 0 24px 44px -28px rgb(15 20 18 / 0.5);
 }
 
 .stage[data-layout="desktop"] .stage-chapter img,
 .stage[data-layout="desktop"] .stage-chapter video {
-  border-radius: 8px;
-  box-shadow: 0 0 0 1px oklch(0% 0 0 / 0.07), 0 24px 50px -30px oklch(0% 0 0 / 0.5);
+  border-radius: 10px;
+  box-shadow: var(--shadow-media);
 }
 
 .chapter-caption {
-  margin-top: 0.9rem;
+  margin-top: var(--space-4);
   font-size: var(--text-sm);
   line-height: 1.5;
   color: var(--ink-2);
@@ -91,8 +91,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
   padding-inline: var(--inset);
 }
 
@@ -107,14 +107,25 @@
 .stage-controls button {
   display: grid;
   place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 1px solid oklch(0% 0 0 / 0.18);
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
   border-radius: 50%;
-  background: transparent;
+  background: rgb(255 255 255 / 0.7);
+  box-shadow: inset 0 0 0 1px rgb(15 20 18 / 0.12);
   color: inherit;
   font: inherit;
   cursor: pointer;
+  transition: background-color 200ms ease, scale var(--dur-spring) var(--ease-spring);
+}
+
+.stage-controls button:hover:not(:disabled) {
+  background: var(--surface);
+}
+
+.stage-controls button:active:not(:disabled) {
+  scale: var(--press-scale);
+  transition: scale var(--press-in) var(--ease-press);
 }
 
 .stage-controls button:disabled {
@@ -139,35 +150,46 @@
 }
 
 .stage.plate--intertitle .stage-track {
-  scrollbar-color: oklch(100% 0 0 / 0.25) transparent;
+  scrollbar-color: rgb(255 255 255 / 0.25) transparent;
 }
 
 .stage.plate--intertitle .stage-controls button {
-  border-color: oklch(100% 0 0 / 0.25);
+  background: rgb(255 255 255 / 0.08);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.22);
+}
+
+.stage.plate--intertitle .stage-controls button:hover:not(:disabled) {
+  background: rgb(255 255 255 / 0.16);
+}
+
+.stage.plate--intertitle :focus-visible,
+.stage.plate--intertitle:focus-visible {
+  outline-color: var(--on-dark);
 }
 
 .stage.plate--intertitle .stage-chapter img {
-  box-shadow: 0 0 0 1px oklch(100% 0 0 / 0.1);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1), 0 24px 44px -28px rgb(0 0 0 / 0.8);
 }
 
 .stage-scope {
   max-width: 46rem;
-  margin-top: 1.25rem;
+  margin-top: var(--space-4);
 }
 
 /* Engineering detail stays one click away instead of stacked around the proof. */
 .stage-disclosure {
   max-width: 52rem;
-  margin-top: 2.5rem;
-  border-top: 1px solid var(--rule);
+  margin-top: var(--space-7);
+  border-top: 1px solid var(--rule-strong);
   border-bottom: 1px solid var(--rule);
 }
 
 .stage-disclosure summary {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  padding-block: 1rem;
+  gap: var(--space-4);
+  min-height: 2.75rem;
+  padding-block: var(--space-4);
   font-weight: 500;
   list-style: none;
   cursor: pointer;
@@ -180,10 +202,11 @@
 .stage-disclosure summary::after {
   content: "+";
   color: var(--ink-2);
+  transition: rotate var(--dur-spring) var(--ease-spring);
 }
 
 .stage-disclosure[open] summary::after {
-  content: "−";
+  rotate: 45deg;
 }
 
 .stage-disclosure > p {
@@ -193,8 +216,8 @@
 .stage-disclosure-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem 2.5rem;
-  padding-block: 1.5rem;
+  gap: var(--space-5) var(--space-7);
+  padding-block: var(--space-5);
 }
 
 .stage-disclosure h2 {

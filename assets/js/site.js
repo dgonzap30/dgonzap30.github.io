@@ -1,8 +1,16 @@
-// Progressive enhancement only. Every page reads and works without this file;
-// it adds previous/next buttons and a position counter to product galleries.
+// Progressive enhancement only. Every page reads and works without this file.
+// It adds previous/next buttons and a counter to product galleries, a sliding
+// indicator to the header nav, pointer tilt to work tiles, on-screen placement
+// for the home statement's product previews, and hands a clicked preview the
+// name its product page morphs from. Everything that moves is driven by CSS
+// from the variables set here.
 (() => {
   function motionAllowed() {
     return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  function finePointer() {
+    return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   }
 
   function enhanceGallery(stage) {
@@ -44,5 +52,143 @@
     update();
   }
 
+  // One pill slides between nav items on hover and focus, and rests on the
+  // current page. Without this, the current item carries its own pill.
+  function enhanceNav(list) {
+    const links = [...list.querySelectorAll('a')];
+    if (!links.length) return;
+    const current = links.find((link) => link.getAttribute('aria-current') === 'page');
+
+    function moveTo(link) {
+      if (!link) {
+        list.style.setProperty('--ind-o', '0');
+        return;
+      }
+      list.style.setProperty('--ind-x', `${link.offsetLeft}px`);
+      list.style.setProperty('--ind-w', `${link.offsetWidth}px`);
+      list.style.setProperty('--ind-o', '1');
+    }
+
+    for (const link of links) {
+      link.addEventListener('pointerenter', () => moveTo(link));
+      link.addEventListener('focus', () => moveTo(link));
+    }
+    list.addEventListener('pointerleave', () => moveTo(current));
+    list.addEventListener('focusout', (event) => {
+      if (!list.contains(event.relatedTarget)) moveTo(current);
+    });
+    window.addEventListener('resize', () => moveTo(current), { passive: true });
+    if (document.fonts) document.fonts.ready.then(() => moveTo(current));
+
+    moveTo(current);
+    list.classList.add('is-enhanced');
+    // Let the first position land before the indicator starts to glide.
+    window.setTimeout(() => list.classList.add('is-ready'), 60);
+  }
+
+  // A tile's plate leans toward the pointer by at most a few degrees. CSS
+  // eases it; leaving resets it.
+  function enhanceTilt(tile) {
+    const plate = tile.querySelector('.plate');
+    if (!plate) return;
+
+    tile.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'touch' || !motionAllowed()) return;
+      const box = plate.getBoundingClientRect();
+      const x = Math.min(1, Math.max(0, (event.clientX - box.left) / box.width));
+      const y = Math.min(1, Math.max(0, (event.clientY - box.top) / box.height));
+      tile.style.setProperty('--ry', `${((x - 0.5) * 7).toFixed(2)}deg`);
+      tile.style.setProperty('--rx', `${((0.5 - y) * 5).toFixed(2)}deg`);
+    });
+
+    tile.addEventListener('pointerleave', () => {
+      tile.style.setProperty('--ry', '0deg');
+      tile.style.setProperty('--rx', '0deg');
+    });
+  }
+
+  // A proof link's preview opens above its line when there is room, below
+  // otherwise, shifted to stay on screen, and grows out of the chip. When
+  // neither side has room it opens on the roomier side, scaled to fit.
+  function enhanceProof(link) {
+    const peek = link.querySelector('.peek');
+    const chip = link.querySelector('.chip');
+    if (!peek || !chip) return;
+
+    const shell = link.closest('.shell');
+
+    function place() {
+      const edge = Math.max(16, shell ? shell.getBoundingClientRect().left : 0);
+      const width = peek.offsetWidth;
+      const height = peek.offsetHeight;
+      const room = document.documentElement.clientWidth;
+      const box = link.getBoundingClientRect();
+      const dot = chip.getBoundingClientRect();
+      const centred = box.left + box.width / 2 - width / 2;
+      const left = Math.min(Math.max(centred, edge), room - edge - width);
+      const above = dot.top - 96;
+      const below = document.documentElement.clientHeight - dot.bottom - 16;
+      link.dataset.side = above >= height || above >= below ? 'above' : 'below';
+      const fit = Math.min(1, Math.max(above, below, 0) / height);
+      link.style.setProperty('--peek-fit', Math.max(fit, 0.35).toFixed(3));
+      link.style.setProperty('--peek-dx', `${(left - centred).toFixed(1)}px`);
+      link.style.setProperty('--peek-ox', `${(dot.left + dot.width / 2 - left).toFixed(1)}px`);
+    }
+
+    function open() {
+      delete link.dataset.dismissed;
+      place();
+    }
+
+    link.addEventListener('pointerenter', open);
+    link.addEventListener('focus', open);
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    document.querySelectorAll('a.proof').forEach((link) => {
+      link.dataset.dismissed = '';
+    });
+  });
+
+  // Product pages share view-transition names with the home tiles. When a
+  // proof link is followed, its open preview (or its chip) takes the name
+  // instead, so that is what morphs into the product page's hero.
+  let followed = null;
+  document.addEventListener('click', (event) => {
+    followed = event.target instanceof Element ? event.target.closest('a.proof') : null;
+  });
+
+  window.addEventListener('pageswap', (event) => {
+    const link = followed;
+    const url = event.activation && event.activation.entry && event.activation.entry.url;
+    if (!event.viewTransition || !link || link.href !== url) return;
+    const name = link.dataset.media;
+    const peek = link.querySelector('.peek');
+    const source = peek && getComputedStyle(peek).visibility === 'visible' ? peek : link.querySelector('.chip');
+    const owners = [...document.querySelectorAll('[style*="view-transition-name"]')].filter(
+      (element) => element.style.viewTransitionName === name,
+    );
+    owners.forEach((element) => element.style.setProperty('view-transition-name', 'none'));
+    source.style.setProperty('view-transition-name', name);
+    window.addEventListener(
+      'pageshow',
+      () => {
+        source.style.removeProperty('view-transition-name');
+        owners.forEach((element) => element.style.setProperty('view-transition-name', name));
+      },
+      { once: true },
+    );
+  });
+
   document.querySelectorAll('[data-explorer-stage]').forEach(enhanceGallery);
+  document.querySelectorAll('.site-header .nav-links').forEach(enhanceNav);
+  document.querySelectorAll('a.proof').forEach(enhanceProof);
+  if (finePointer()) document.querySelectorAll('[data-tilt]').forEach(enhanceTilt);
+  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
+    document.querySelectorAll('[data-tilt]').forEach((tile) => {
+      tile.style.setProperty('--ry', '0deg');
+      tile.style.setProperty('--rx', '0deg');
+    });
+  });
 })();
