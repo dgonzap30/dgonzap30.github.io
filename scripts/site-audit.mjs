@@ -113,6 +113,18 @@ function auditIds(relativePath, html, errors) {
   }
 }
 
+// Cross-document view transitions pair elements by name: a name used twice on
+// one page makes the browser skip the transition.
+function auditViewTransitionNames(relativePath, html, errors) {
+  const seen = new Set();
+  for (const match of matches(html, /view-transition-name\s*:\s*([\w-]+)/gi)) {
+    const name = match[1];
+    if (name === 'none') continue;
+    if (seen.has(name)) errors.push(`${relativePath}: duplicate view-transition-name: ${name}`);
+    seen.add(name);
+  }
+}
+
 function attribute(tag, name) {
   const match = tag.match(new RegExp(`\\b${name}\\s*=\\s*["']([^"']*)["']`, 'i'));
   return match?.[1] ?? null;
@@ -380,6 +392,7 @@ export async function auditSite(rootDir, options = {}) {
     pages.push(relativePath);
     auditHeadings(relativePath, html, errors);
     auditIds(relativePath, html, errors);
+    auditViewTransitionNames(relativePath, html, errors);
     await auditLinksAndAssets(root, relativePath, html, errors);
     auditMetadata(relativePath, html, errors);
     auditLanguage(relativePath, html, errors);

@@ -162,6 +162,19 @@ test("reports duplicate ids and multiple h1 elements", async (context) => {
   assert(result.errors.some((error) => error.includes("duplicate id: same")));
 });
 
+test("reports a view-transition name used twice on one page", async (context) => {
+  const root = await fixture(
+    '<h1>A</h1><div style="view-transition-name: media-a"></div><div style="view-transition-name: media-a"></div><div style="view-transition-name: none"></div><div style="view-transition-name: none"></div>',
+  );
+  context.after(() => rm(root, { recursive: true, force: true }));
+
+  const result = await auditSite(root, { requireAssets: false });
+
+  const duplicates = result.errors.filter((error) => error.includes("duplicate view-transition-name"));
+  assert.equal(duplicates.length, result.pages.length, "one report per page");
+  assert(duplicates.every((error) => error.endsWith("duplicate view-transition-name: media-a")));
+});
+
 test("reports unsafe blank targets and missing local assets", async (context) => {
   const root = await fixture(
     '<h1>A</h1><a target="_blank" href="https://example.com">X</a><img src="missing.svg" alt="">',
@@ -281,6 +294,23 @@ test("javascript is a small progressive enhancement", async () => {
   }
   assert.doesNotMatch(script, /\bsetInterval\s*\(/);
   assert.doesNotMatch(script, /\brequestAnimationFrame\s*\(/);
+});
+
+test("styles avoid one-sided accent rules and keep motion behind reduced-motion guards", async () => {
+  const sheets = ["tokens", "base", "components", "explorer", "pages"];
+  const css = (
+    await Promise.all(
+      sheets.map((name) => readFile(join(repoRoot, `assets/css/${name}.css`), "utf8")),
+    )
+  ).join("\n");
+  assert.doesNotMatch(css, /border-(?:left|inline-start)\s*:/);
+  assert.match(css, /@view-transition\s*\{\s*navigation:\s*auto;/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*animation: none !important/);
+  for (const match of css.matchAll(/animation-timeline:\s*view\(/g)) {
+    const before = css.slice(0, match.index);
+    const open = before.lastIndexOf("prefers-reduced-motion: no-preference");
+    assert(open !== -1, "a scroll-driven animation sits outside a no-preference guard");
+  }
 });
 
 test("palette keeps secondary text and the accent at WCAG AA on every surface", async () => {
