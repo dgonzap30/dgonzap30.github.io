@@ -350,7 +350,7 @@ form.stage-actions {
   --plate: var(--fill);
   position: relative;
   display: flex;
-  overflow: hidden;
+  overflow: clip;
   isolation: isolate;
   border-radius: var(--radius-lg);
   background: var(--plate);

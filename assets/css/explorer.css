@@ -162,6 +162,11 @@
   background: rgb(255 255 255 / 0.16);
 }
 
+.stage.plate--intertitle :focus-visible,
+.stage.plate--intertitle:focus-visible {
+  outline-color: var(--on-dark);
+}
+
 .stage.plate--intertitle .stage-chapter img {
   box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1), 0 24px 44px -28px rgb(0 0 0 / 0.8);
 }

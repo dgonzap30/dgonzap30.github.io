@@ -93,7 +93,7 @@
     if (!plate) return;
 
     tile.addEventListener('pointermove', (event) => {
-      if (event.pointerType === 'touch') return;
+      if (event.pointerType === 'touch' || !motionAllowed()) return;
       const box = plate.getBoundingClientRect();
       const x = Math.min(1, Math.max(0, (event.clientX - box.left) / box.width));
       const y = Math.min(1, Math.max(0, (event.clientY - box.top) / box.height));
@@ -179,5 +179,11 @@
   document.querySelectorAll('[data-explorer-stage]').forEach(enhanceGallery);
   document.querySelectorAll('.site-header .nav-links').forEach(enhanceNav);
   document.querySelectorAll('a.proof').forEach(enhanceProof);
-  if (motionAllowed() && finePointer()) document.querySelectorAll('[data-tilt]').forEach(enhanceTilt);
+  if (finePointer()) document.querySelectorAll('[data-tilt]').forEach(enhanceTilt);
+  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
+    document.querySelectorAll('[data-tilt]').forEach((tile) => {
+      tile.style.setProperty('--ry', '0deg');
+      tile.style.setProperty('--rx', '0deg');
+    });
+  });
 })();
