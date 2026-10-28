@@ -7,7 +7,7 @@
   <meta name="description" content="Why every branch gets its own working tree, where they are allowed to live, and the two-line helper that enforces it.">
   <link rel="canonical" href="https://dgonzap30.github.io/workflow/worktrees/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#f2f4f3">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="Worktrees — Diego González Zapiain">
   <meta property="og:description" content="Why every branch gets its own working tree, where they are allowed to live, and the two-line helper that enforces it.">
@@ -62,8 +62,8 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header shell">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt=""><span class="brand-name">Diego González Zapiain</span></a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
     <nav aria-label="Primary">
       <ul class="nav-links" role="list">
         <li><a href="/projects/">Work</a></li>
@@ -75,15 +75,15 @@
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <header class="page-head shell">
-    <p class="page-back meta"><a href="/workflow/">The workflow</a> /</p>
+    <div class="read-progress" aria-hidden="true"></div>
+    <header class="page-head page-head--article col">
+      <p class="page-back meta"><a href="/workflow/">The workflow</a> / Part 2 of 7</p>
       <h1>One checkout per branch, in one predictable place.</h1>
       <p class="lede">Agents and people edit the same repositories at the same time. A single checkout makes that a queue; a worktree per branch makes it parallel, and a fixed location makes it findable.</p>
-      <p class="page-meta meta">From <code>~/.claude/rules/project-inventory.md</code> · A rule file and a git alias · Verified 2026-09-11</p>
+      <p class="page-meta meta">From <code>~/.claude/rules/project-inventory.md</code> · A rule file and a git alias · <span class="verified">Verified 2026-09-11</span></p>
     </header>
 
-    <div class="shell">
-      <article class="prose">
+    <article class="prose col">
     <section class="prose-section" id="problem">
       <h2>A shared checkout serialises everything.</h2>
       <p>With one working tree, two pieces of work in the same repository cannot proceed at once. Switching branches disturbs whatever else is mid-edit, and uncommitted work becomes a reason not to start the next thing.</p>
@@ -129,14 +129,11 @@
       <p>Unregistered directories are surfaced daily rather than found by accident, which keeps the count honest in both directions.</p>
       <aside class="note"><strong>Boundary</strong> This page describes a personal layout policy. Nothing here is a claim about anyone else's repositories.</aside>
     </section>
-      </article>
-    </div>
+    </article>
 
-    <nav class="section shell" aria-labelledby="next-title">
+    <nav class="next-part col" aria-labelledby="next-title">
       <div class="section-head"><h2 class="section-title" id="next-title">Next in the series</h2><a class="section-link" href="/workflow/">All seven</a></div>
-      <ul class="rows rows--compact" role="list">
-        <li class="row"><a class="row-link" href="/workflow/the-fleet/"><span class="row-title">The fleet</span><span class="row-meta meta">→</span><span class="row-line">How a 132-line shell script keeps parallel agent sessions findable instead of scattered across terminal tabs.</span></a></li>
-      </ul>
+      <a class="next-link" href="/workflow/the-fleet/"><span class="meta">Part 3</span><span class="next-title">The fleet</span><span class="next-line">How a 132-line shell script keeps parallel agent sessions findable instead of scattered across terminal tabs.</span></a>
     </nav>
   </main>
 

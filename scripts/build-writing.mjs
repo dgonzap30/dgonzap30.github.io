@@ -8,7 +8,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { FEED_TITLE, NAME, ORIGIN, PERSON_ID, WEBSITE_ID, backLink, chrome, escape, renderSection } from './site-chrome.mjs';
+import { FEED_TITLE, NAME, ORIGIN, PERSON_ID, WEBSITE_ID, backLink, chrome, escape, renderSection, renderSeries } from './site-chrome.mjs';
 import { injectBlock } from './render-work.mjs';
 
 const BLOG_ID = `${ORIGIN}/writing/#blog`;
@@ -33,12 +33,6 @@ function postRow(post) {
 
 function seriesRow(count) {
   return `        <li class="row"><a class="row-link" href="/workflow/"><span class="row-title">The workflow</span><span class="row-meta meta">Series · ${count} parts</span><span class="row-line">${SERIES_LINE}</span></a></li>`;
-}
-
-// One row per essay in the series, so /writing/ lists real reading even
-// before the first standalone post exists.
-function partRow(part, index) {
-  return `        <li class="row"><a class="row-link" href="/workflow/${part.slug}/"><span class="row-title">${escape(part.title)}</span><span class="row-meta meta">Part ${index + 1}</span><span class="row-line">${escape(part.description)}</span></a></li>`;
 }
 
 function renderPost(post) {
@@ -68,18 +62,17 @@ function renderPost(post) {
   });
   const updated = post.dateModified !== post.datePublished ? ` · Updated ${time(post.dateModified)}` : '';
   return `${head}
-    <header class="page-head shell">
+    <div class="read-progress" aria-hidden="true"></div>
+    <header class="page-head page-head--article col">
 ${backLink('/writing/', 'Writing')}
       <h1>${escape(post.headline)}</h1>
       <p class="lede">${post.lede}</p>
       <p class="page-meta meta">${time(post.datePublished)}${updated}</p>
     </header>
 
-    <div class="shell">
-      <article class="prose">
+    <article class="prose col">
 ${post.sections.map(renderSection).join('\n\n')}
-      </article>
-    </div>
+    </article>
 ${footer}`;
 }
 
@@ -129,11 +122,9 @@ ${posts.map(postRow).join('\n')}
 
     <div class="shell">
 ${postsSection}      <section${seriesClass} aria-labelledby="series-title">
-        <div class="section-head"><h2 class="section-title" id="series-title">The workflow</h2><a class="section-link" href="/workflow/">The series</a></div>
-        <p class="lede">${SERIES_LINE}</p>
-      <ul class="rows rows--compact" role="list">
-${series.map(partRow).join('\n')}
-      </ul>
+        <div class="section-head"><h2 class="section-title" id="series-title">The workflow</h2><a class="section-link" href="/workflow/">The series <span aria-hidden="true">→</span></a></div>
+        <p class="section-lede">${SERIES_LINE}</p>
+${renderSeries(series, '        ')}
       </section>
     </div>
 ${footer}`;

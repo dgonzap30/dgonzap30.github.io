@@ -7,7 +7,7 @@
   <meta name="description" content="Temper connects the day's recovery, food and training to a week you can actually follow. In development by Diego González Zapiain; every number shown is synthetic fixture data.">
   <link rel="canonical" href="https://dgonzap30.github.io/demos/temper/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#f2f4f3">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="Temper, training and food planning for iPhone — Diego González Zapiain">
   <meta property="og:description" content="Temper connects the day's recovery, food and training to a week you can actually follow. In development by Diego González Zapiain; every number shown is synthetic fixture data.">
@@ -68,8 +68,8 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header shell">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt=""><span class="brand-name">Diego González Zapiain</span></a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
     <nav aria-label="Primary">
       <ul class="nav-links" role="list">
         <li><a href="/projects/" aria-current="page">Work</a></li>
@@ -81,12 +81,16 @@
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <header class="page-head shell">
+    <header class="page-head page-head--product shell">
     <p class="page-back meta"><a href="/projects/">Work</a> /</p>
-      <h1>Temper</h1>
-      <p class="lede">Connect the day's recovery, food and training to a plan you can actually follow.</p>
-      <p class="page-meta meta">Health &amp; training · In development</p>
-      <form class="stage-actions" data-way-in="notify" method="post" action="https://wearelojik.com/api/contact">
+      <div class="page-head-grid">
+        <div class="page-head-main">
+          <h1>Temper</h1>
+          <p class="lede">Connect the day's recovery, food and training to a plan you can actually follow.</p>
+        </div>
+        <div class="page-head-aside">
+          <p class="page-meta meta">Health &amp; training · In development</p>
+          <form class="stage-actions" data-way-in="notify" method="post" action="https://wearelojik.com/api/contact">
       <p class="way-note">Public TestFlight is the next step; no public link exists yet.</p>
       <input type="hidden" name="intent" value="hi">
       <input type="hidden" name="redirect" value="https://dgonzap30.github.io/thanks/">
@@ -98,10 +102,12 @@
         <button class="button" type="submit">Tell me when the TestFlight opens</button>
       </div>
     </form>
+        </div>
+      </div>
     </header>
 
     <section class="product-gallery shell" aria-label="Temper screens">
-      <div class="stage plate--temper" data-explorer-stage data-layout="portrait">
+      <div class="stage plate--temper" data-explorer-stage data-layout="portrait" style="view-transition-name: media-temper">
         <div class="stage-track" role="region" aria-label="Temper screens" tabindex="0">
           <figure class="stage-chapter" id="chapter-today-decision" data-chapter="today-decision">
             <a class="stage-media" href="/assets/media/demos/temper/01-today-decision.webp"><img src="/assets/media/demos/temper/01-today-decision.webp" width="1206" height="2622" alt="Temper Today tab showing a synthetic readiness score, check-in chips, logged meals and a coach brief" fetchpriority="high" decoding="async"></a>
@@ -161,10 +167,10 @@
     </section>
 
     <nav class="more-work shell" aria-labelledby="more-work-title">
-      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work</a></div>
+      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work <span aria-hidden="true">→</span></a></div>
       <ul class="explorer-picker" role="list" aria-label="More work">
-        <li><a href="/demos/intertitle/"><span class="picker-thumb picker-thumb--phones plate--intertitle"><img src="/assets/media/home/intertitle-tonight.webp" width="440" height="957" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Intertitle</span><span class="picker-line">Film app for iPhone · On the App Store</span></span></a></li>
         <li><a href="/work/lojik/"><span class="picker-thumb picker-thumb--screen plate--lojik"><img src="/assets/media/home/lojik-site.webp" width="1200" height="630" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">LOJIK</span><span class="picker-line">Custom apps and automation for businesses</span></span></a></li>
+        <li><a href="/demos/intertitle/"><span class="picker-thumb picker-thumb--phones plate--intertitle"><img src="/assets/media/home/intertitle-tonight.webp" width="440" height="957" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Intertitle</span><span class="picker-line">Film app for iPhone · On the App Store</span></span></a></li>
         <li><a href="/work/pazz/"><span class="picker-thumb picker-thumb--screen plate--pazz"><img src="/assets/media/home/pazz-quote.webp" width="1200" height="840" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">PAZZ</span><span class="picker-line">Vehicle leasing · Technical Lead</span></span></a></li>
         <li><a href="/demos/maestro/"><span class="picker-thumb picker-thumb--screen plate--maestro"><img src="/assets/media/home/maestro-mixer.webp" width="1000" height="637" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Maestro</span><span class="picker-line">Music production · Private beta</span></span></a></li>
         <li><a href="/demos/mimo/"><span class="picker-thumb picker-thumb--phones plate--mimo"><img src="/assets/media/home/mimo-home.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Mimo</span><span class="picker-line">Shared moments · In development</span></span></a></li>

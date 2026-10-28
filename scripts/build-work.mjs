@@ -9,12 +9,12 @@ const work = await loadWork();
 
 const pages = {
   'index.html': {
-    selected: renderTiles(work, ['intertitle', 'lojik', 'pazz'], { level: 3, eager: true }),
+    selected: renderTiles(work, ['lojik', 'intertitle', 'pazz'], { level: 3, eager: true }),
     also: renderPicker(work, ['maestro', 'temper', 'mimo'], 'Also building'),
     'open-source': renderOpenSource(work),
   },
   'projects/index.html': {
-    all: renderTiles(work, ['intertitle', 'lojik', 'pazz', 'maestro', 'temper', 'mimo'], { level: 2, eager: true }),
+    all: renderTiles(work, ['lojik', 'intertitle', 'pazz', 'maestro', 'temper', 'mimo'], { level: 2, eager: true }),
     'open-source': renderOpenSource(work),
   },
   'work/lojik/index.html': {

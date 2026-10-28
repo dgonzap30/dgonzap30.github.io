@@ -7,7 +7,7 @@
   <meta name="description" content="Screens from Intertitle, the free iPhone app by Diego González Zapiain that learns your film taste, picks something for tonight and explains why. Captured from a development preview with fixture data.">
   <link rel="canonical" href="https://dgonzap30.github.io/demos/intertitle/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#f2f4f3">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="Intertitle, a film app for iPhone — Diego González Zapiain">
   <meta property="og:description" content="Screens from Intertitle, the free iPhone app by Diego González Zapiain that learns your film taste, picks something for tonight and explains why. Captured from a development preview with fixture data.">
@@ -76,8 +76,8 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header shell">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt=""><span class="brand-name">Diego González Zapiain</span></a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
     <nav aria-label="Primary">
       <ul class="nav-links" role="list">
         <li><a href="/projects/" aria-current="page">Work</a></li>
@@ -89,16 +89,22 @@
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <header class="page-head shell">
+    <header class="page-head page-head--product shell">
     <p class="page-back meta"><a href="/projects/">Work</a> /</p>
-      <h1>Intertitle</h1>
-      <p class="lede">Find a film for tonight, explore your taste, and keep the conversation going.</p>
-      <p class="page-meta meta">Film &amp; taste · On the App Store</p>
-      <div class="stage-actions" data-way-in="app-store"><a class="button" href="https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124" target="_blank" rel="noopener noreferrer">Get Intertitle on the App Store <span aria-hidden="true">↗</span></a></div>
+      <div class="page-head-grid">
+        <div class="page-head-main">
+          <h1>Intertitle</h1>
+          <p class="lede">Find a film for tonight, explore your taste, and keep the conversation going.</p>
+        </div>
+        <div class="page-head-aside">
+          <p class="page-meta meta">Film &amp; taste · On the App Store</p>
+          <div class="stage-actions" data-way-in="app-store"><a class="button" href="https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124" target="_blank" rel="noopener noreferrer">Get Intertitle on the App Store <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
     </header>
 
     <section class="product-gallery shell" aria-label="Intertitle screens">
-      <div class="stage plate--intertitle" data-explorer-stage data-layout="portrait">
+      <div class="stage plate--intertitle" data-explorer-stage data-layout="portrait" style="view-transition-name: media-intertitle">
         <div class="stage-track" role="region" aria-label="Intertitle screens" tabindex="0">
           <figure class="stage-chapter" id="chapter-tonight" data-chapter="tonight">
             <a class="stage-media" href="/assets/media/demos/intertitle/01-tonight.webp"><img src="/assets/media/demos/intertitle/01-tonight.webp" width="1206" height="2622" alt="Intertitle Tonight tab showing Paris, Texas as tonight's pick with the Refine tonight sheet open" fetchpriority="high" decoding="async"></a>
@@ -147,7 +153,7 @@
     </section>
 
     <nav class="more-work shell" aria-labelledby="more-work-title">
-      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work</a></div>
+      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work <span aria-hidden="true">→</span></a></div>
       <ul class="explorer-picker" role="list" aria-label="More work">
         <li><a href="/work/lojik/"><span class="picker-thumb picker-thumb--screen plate--lojik"><img src="/assets/media/home/lojik-site.webp" width="1200" height="630" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">LOJIK</span><span class="picker-line">Custom apps and automation for businesses</span></span></a></li>
         <li><a href="/work/pazz/"><span class="picker-thumb picker-thumb--screen plate--pazz"><img src="/assets/media/home/pazz-quote.webp" width="1200" height="840" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">PAZZ</span><span class="picker-line">Vehicle leasing · Technical Lead</span></span></a></li>

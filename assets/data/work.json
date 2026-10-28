@@ -1,16 +1,26 @@
 {
   "products": [
     {
+      "id": "lojik",
+      "name": "LOJIK",
+      "href": "/work/lojik/",
+      "tile": "wide",
+      "plate": "lojik",
+      "meta": "Co-Founder & Technical Lead · 2026–",
+      "line": "The software company I started with my brother Mariano. We build custom apps, connected tools and automation for businesses in the US and Mexico.",
+      "pickerLine": "Custom apps and automation for businesses",
+      "media": { "kind": "screen", "images": ["lojik-site"], "url": "wearelojik.com" },
+      "alt": "The LOJIK website, asking what's slowing your business down.",
+      "thumb": "lojik-site"
+    },
+    {
       "id": "intertitle",
       "name": "Intertitle",
       "href": "/demos/intertitle/",
-      "tile": "feature",
+      "tile": "major",
       "plate": "intertitle",
       "meta": "Maker",
-      "extra": {
-        "href": "https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124",
-        "label": "On the App Store"
-      },
+      "extra": { "href": "https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124", "label": "On the App Store" },
       "line": "A film app for iPhone that learns your taste, picks something for tonight and tells you why. Free, no ads, in English and Spanish.",
       "pickerLine": "Film app for iPhone · On the App Store",
       "media": { "kind": "phones", "images": ["intertitle-tonight", "intertitle-discover", "intertitle-film", "intertitle-friends"] },
@@ -18,23 +28,10 @@
       "thumb": "intertitle-tonight"
     },
     {
-      "id": "lojik",
-      "name": "LOJIK",
-      "href": "/work/lojik/",
-      "tile": "half",
-      "plate": "lojik",
-      "meta": "Co-Founder & Technical Lead · 2026–",
-      "line": "The software company I started with my brother Mariano. We build custom apps, connected tools and automation for businesses in the US and Mexico.",
-      "pickerLine": "Custom apps and automation for businesses",
-      "media": { "kind": "screen", "images": ["lojik-site"] },
-      "alt": "The LOJIK website, asking what's slowing your business down.",
-      "thumb": "lojik-site"
-    },
-    {
       "id": "pazz",
       "name": "PAZZ",
       "href": "/work/pazz/",
-      "tile": "half",
+      "tile": "minor",
       "plate": "pazz",
       "meta": "Technical Lead · 2026–",
       "line": "A vehicle-leasing marketplace in Mexico. I lead the rebuild of its platform as an agentic AI stack.",

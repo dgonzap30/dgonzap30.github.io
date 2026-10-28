@@ -7,7 +7,7 @@
   <meta name="description" content="How a layered set of CLAUDE.md and AGENTS.md files gives every agent the rules for the directory it is standing in.">
   <link rel="canonical" href="https://dgonzap30.github.io/workflow/operating-manual/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#f2f4f3">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="The operating manual — Diego González Zapiain">
   <meta property="og:description" content="How a layered set of CLAUDE.md and AGENTS.md files gives every agent the rules for the directory it is standing in.">
@@ -62,8 +62,8 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header shell">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><img src="/assets/brand/dgz-trace.svg" width="48" height="48" alt=""><span class="brand-name">Diego González Zapiain</span></a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
     <nav aria-label="Primary">
       <ul class="nav-links" role="list">
         <li><a href="/projects/">Work</a></li>
@@ -75,15 +75,15 @@
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <header class="page-head shell">
-    <p class="page-back meta"><a href="/workflow/">The workflow</a> /</p>
+    <div class="read-progress" aria-hidden="true"></div>
+    <header class="page-head page-head--article col">
+      <p class="page-back meta"><a href="/workflow/">The workflow</a> / Part 1 of 7</p>
       <h1>The instructions live next to the code they govern.</h1>
       <p class="lede">An agent that has to be briefed by hand every session is a tool. An agent that reads the rules for wherever it happens to be working is a colleague. The difference is a file, placed where the work is.</p>
-      <p class="page-meta meta">From <code>~/.claude/CLAUDE.md and per-project CLAUDE.md / AGENTS.md</code> · Layered policy files, read at session start · Verified 2026-09-11</p>
+      <p class="page-meta meta">From <code>~/.claude/CLAUDE.md and per-project CLAUDE.md / AGENTS.md</code> · Layered policy files, read at session start · <span class="verified">Verified 2026-09-11</span></p>
     </header>
 
-    <div class="shell">
-      <article class="prose">
+    <article class="prose col">
     <section class="prose-section" id="layering">
       <h2>Three layers, nearest wins.</h2>
       <p>A global file carries what is true everywhere: authority, how to choose the size of a workflow, what counts as evidence, when to stop and ask. A workspace file describes the shape of the disk. A project file describes the stack, the entry points and the state files of one repository.</p>
@@ -128,14 +128,11 @@
       <p>The honest failure mode is length. Each added paragraph competes for attention with every other, and a manual nobody finishes is a manual nobody follows.</p>
       <aside class="note"><strong>Boundary</strong> This describes one person's setup. It is a working example, not a standard.</aside>
     </section>
-      </article>
-    </div>
+    </article>
 
-    <nav class="section shell" aria-labelledby="next-title">
+    <nav class="next-part col" aria-labelledby="next-title">
       <div class="section-head"><h2 class="section-title" id="next-title">Next in the series</h2><a class="section-link" href="/workflow/">All seven</a></div>
-      <ul class="rows rows--compact" role="list">
-        <li class="row"><a class="row-link" href="/workflow/worktrees/"><span class="row-title">Worktrees</span><span class="row-meta meta">→</span><span class="row-line">Why every branch gets its own working tree, where they are allowed to live, and the two-line helper that enforces it.</span></a></li>
-      </ul>
+      <a class="next-link" href="/workflow/worktrees/"><span class="meta">Part 2</span><span class="next-title">Worktrees</span><span class="next-line">Why every branch gets its own working tree, where they are allowed to live, and the two-line helper that enforces it.</span></a>
     </nav>
   </main>
 
