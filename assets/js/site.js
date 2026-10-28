@@ -108,7 +108,8 @@
   }
 
   // A proof link's preview opens above its line when there is room, below
-  // otherwise, shifted to stay on screen, and grows out of the chip.
+  // otherwise, shifted to stay on screen, and grows out of the chip. When
+  // neither side has room it opens on the roomier side, scaled to fit.
   function enhanceProof(link) {
     const peek = link.querySelector('.peek');
     const chip = link.querySelector('.chip');
@@ -125,7 +126,11 @@
       const dot = chip.getBoundingClientRect();
       const centred = box.left + box.width / 2 - width / 2;
       const left = Math.min(Math.max(centred, edge), room - edge - width);
-      link.dataset.side = dot.top - 96 >= height ? 'above' : 'below';
+      const above = dot.top - 96;
+      const below = document.documentElement.clientHeight - dot.bottom - 16;
+      link.dataset.side = above >= height || above >= below ? 'above' : 'below';
+      const fit = Math.min(1, Math.max(above, below, 0) / height);
+      link.style.setProperty('--peek-fit', Math.max(fit, 0.35).toFixed(3));
       link.style.setProperty('--peek-dx', `${(left - centred).toFixed(1)}px`);
       link.style.setProperty('--peek-ox', `${(dot.left + dot.width / 2 - left).toFixed(1)}px`);
     }

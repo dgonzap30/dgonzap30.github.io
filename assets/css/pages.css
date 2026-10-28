@@ -129,7 +129,7 @@
 .proof:focus-visible .peek {
   visibility: visible;
   opacity: 1;
-  scale: 1;
+  scale: var(--peek-fit, 1);
   transition: scale 620ms var(--ease-pop), opacity 120ms ease, visibility 0s;
 }
 
@@ -137,7 +137,7 @@
   .proof:hover .peek {
     visibility: visible;
     opacity: 1;
-    scale: 1;
+    scale: var(--peek-fit, 1);
     transition: scale 620ms var(--ease-pop), opacity 120ms ease, visibility 0s;
   }
 
