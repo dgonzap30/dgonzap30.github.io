@@ -189,3 +189,13 @@ code {
     animation: none !important;
   }
 }
+
+/* A printout or PDF shows every section at rest, whatever the motion preference. */
+@media print {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
