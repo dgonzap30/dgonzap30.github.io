@@ -17,6 +17,7 @@ const PAGES = [
   ['work/pazz/index.html', '/projects/'],
   ['work/lojik/index.html', '/projects/'],
   ['now/index.html', '/now/'],
+  ['links/index.html', null],
   ['thanks/index.html', null],
   ['404.html', null],
 ];

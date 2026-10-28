@@ -9,6 +9,7 @@ const REQUIRED_PAGES = [
   'work/lojik/index.html',
   'projects/index.html',
   'thanks/index.html',
+  'links/index.html',
   'workflow/index.html',
   'workflow/operating-manual/index.html',
   'workflow/worktrees/index.html',

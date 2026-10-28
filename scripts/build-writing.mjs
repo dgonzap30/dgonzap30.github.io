@@ -35,6 +35,12 @@ function seriesRow(count) {
   return `        <li class="row"><a class="row-link" href="/workflow/"><span class="row-title">The workflow</span><span class="row-meta meta">Series · ${count} parts</span><span class="row-line">${SERIES_LINE}</span></a></li>`;
 }
 
+// One row per essay in the series, so /writing/ lists real reading even
+// before the first standalone post exists.
+function partRow(part, index) {
+  return `        <li class="row"><a class="row-link" href="/workflow/${part.slug}/"><span class="row-title">${escape(part.title)}</span><span class="row-meta meta">Part ${index + 1}</span><span class="row-line">${escape(part.description)}</span></a></li>`;
+}
+
 function renderPost(post) {
   const canonical = `${ORIGIN}/writing/${post.slug}/`;
   const { head, footer } = chrome({
@@ -103,11 +109,17 @@ function renderIndex(posts, series) {
       })),
     },
   });
-  const list = posts.length
-    ? `      <ul class="rows rows--compact" role="list">
+  const postsSection = posts.length
+    ? `      <section aria-labelledby="posts-title">
+        <div class="section-head"><h2 class="section-title" id="posts-title">Posts</h2></div>
+      <ul class="rows rows--compact" role="list">
 ${posts.map(postRow).join('\n')}
-      </ul>`
-    : `      <p class="lede">The first post is in progress. Until then, <a href="/now/">Now</a> has what I'm building this month.</p>`;
+      </ul>
+      </section>
+
+`
+    : '';
+  const seriesClass = posts.length ? ' class="section"' : '';
   return `${head}
     <header class="page-head shell">
       <h1>Writing</h1>
@@ -116,15 +128,11 @@ ${posts.map(postRow).join('\n')}
     </header>
 
     <div class="shell">
-      <section aria-labelledby="posts-title">
-        <div class="section-head"><h2 class="section-title" id="posts-title">Posts</h2></div>
-${list}
-      </section>
-
-      <section class="section" aria-labelledby="series-title">
-        <div class="section-head"><h2 class="section-title" id="series-title">Series</h2></div>
+${postsSection}      <section${seriesClass} aria-labelledby="series-title">
+        <div class="section-head"><h2 class="section-title" id="series-title">The workflow</h2><a class="section-link" href="/workflow/">The series</a></div>
+        <p class="lede">${SERIES_LINE}</p>
       <ul class="rows rows--compact" role="list">
-${seriesRow(series.length)}
+${series.map(partRow).join('\n')}
       </ul>
       </section>
     </div>

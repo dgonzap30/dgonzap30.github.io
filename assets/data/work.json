@@ -19,15 +19,15 @@
     },
     {
       "id": "lojik",
-      "name": "Lojik Labs",
+      "name": "LOJIK",
       "href": "/work/lojik/",
       "tile": "half",
       "plate": "lojik",
       "meta": "Co-Founder & Technical Lead · 2026–",
-      "line": "The software company I started with my brother Mariano. We find where a recurring business workflow breaks and build the system that fixes it.",
-      "pickerLine": "Workflow software for businesses",
+      "line": "The software company I started with my brother Mariano. We build custom apps, connected tools and automation for businesses in the US and Mexico.",
+      "pickerLine": "Custom apps and automation for businesses",
       "media": { "kind": "screen", "images": ["lojik-site"] },
-      "alt": "The Lojik Labs website, asking what's slowing your business down.",
+      "alt": "The LOJIK website, asking what's slowing your business down.",
       "thumb": "lojik-site"
     },
     {

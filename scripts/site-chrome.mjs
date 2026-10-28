@@ -10,6 +10,8 @@ export const NAME = 'Diego González Zapiain';
 export const PERSON_ID = 'https://wearelojik.com/about#diego';
 export const WEBSITE_ID = `${ORIGIN}/#website`;
 export const FEED_TITLE = `${NAME} — Writing`;
+// Published on wearelojik.com/about too, so it is already public.
+export const EMAIL = 'diego.gonzap@wearelojik.com';
 
 export const escape = (value) =>
   String(value)
@@ -67,6 +69,8 @@ ${items}
   );
 }
 
+// LOJIK links keep the referrer (no noreferrer) so its lead attribution can
+// file these visits as referrals from this site instead of direct traffic.
 export function siteFooter() {
   return block(
     'footer',
@@ -74,10 +78,11 @@ export function siteFooter() {
     <div class="footer-inner shell">
       <p class="footer-name"><strong>${NAME}</strong> · Founder-engineer, Mexico City</p>
       <ul class="footer-links" role="list">
+        <li><a href="mailto:${EMAIL}">Email</a></li>
         <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
         <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
-        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener noreferrer">Lojik Labs</a></li>
-        <li><a href="/feed.xml">RSS</a></li>
+        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
+        <li><a href="/links/">Links</a></li>
       </ul>
     </div>
   </footer>`,
