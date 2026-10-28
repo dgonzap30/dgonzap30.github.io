@@ -130,9 +130,21 @@
       link.style.setProperty('--peek-ox', `${(dot.left + dot.width / 2 - left).toFixed(1)}px`);
     }
 
-    link.addEventListener('pointerenter', place);
-    link.addEventListener('focus', place);
+    function open() {
+      delete link.dataset.dismissed;
+      place();
+    }
+
+    link.addEventListener('pointerenter', open);
+    link.addEventListener('focus', open);
   }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    document.querySelectorAll('a.proof').forEach((link) => {
+      link.dataset.dismissed = '';
+    });
+  });
 
   // Product pages share view-transition names with the home tiles. When a
   // proof link is followed, its open preview (or its chip) takes the name

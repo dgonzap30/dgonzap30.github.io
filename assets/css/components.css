@@ -1098,6 +1098,34 @@ form.stage-actions {
   content: "✓ ";
 }
 
+/* The next part of the series: one row, set like the writing rows. */
+.next-part {
+  margin-top: var(--section);
+}
+
+.next-link {
+  display: grid;
+  gap: var(--space-1);
+  padding-block: var(--space-5);
+  border-block: 1px solid var(--rule-strong);
+  text-decoration: none;
+}
+
+.next-title {
+  font: 400 var(--display-xs) / 1.2 var(--font-serif);
+  letter-spacing: -0.01em;
+  transition: translate var(--dur-spring) var(--ease-spring);
+}
+
+.next-line {
+  max-width: 34rem;
+  color: var(--ink-2);
+}
+
+.next-link:hover .next-title {
+  translate: 0.25rem 0;
+}
+
 /* A thin ink line across the top of the viewport tracks how far you've read. */
 .read-progress {
   display: none;
