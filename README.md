@@ -19,7 +19,9 @@ The site is plain HTML, CSS and SVG with no runtime dependency. Every page reads
 
 ## Design system
 
-White paper, neutral ink and one accent, the vermilion dot from the DGZ mark. Each product has its own tinted plate, and every capture rises from the plate's bottom edge. Newsreader sets display type; Instrument Sans sets everything else. Tokens live in `assets/css/tokens.css`, and the contrast pairs are pinned by a test.
+LOJIK's family: a sage ground, near-black ink, one green that only marks proof (a verified date, a checked note), and the vermilion dot from the DGZ mark. Each product has its own tinted plate, and every capture rises from the plate's bottom edge, screens in a browser frame and phones in a fan. Newsreader sets display type; Instrument Sans sets everything else; mono is for code only. Tokens live in `assets/css/tokens.css`, and the contrast pairs are pinned by a test.
+
+Motion uses LOJIK's spring, pop, roll and press curves and stays in CSS: the home statement's words rise in place, each proof chip grows into a preview of its product, plates settle and drift with the scroll, the header pill narrows on a scroll timeline, the workflow series inks in as you read, and pages morph into each other with cross-document view transitions. `assets/js/site.js` only sets the variables CSS needs (nav indicator, tile tilt, preview placement) and hands an open preview its view-transition name. Reduced motion turns all of it off, and every page works without JavaScript.
 
 ## Generated pages
 
