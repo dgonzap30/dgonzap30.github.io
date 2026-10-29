@@ -9,9 +9,9 @@ The site is plain HTML, CSS and SVG with no runtime dependency. Every page reads
 | Route | Purpose |
 | --- | --- |
 | `/` | Who Diego is, selected work, writing and open source |
-| `/projects/` | Every product, with screens from current builds |
+| `/projects/` | Current products, dated app captures and labeled design work |
 | `/work/pazz/`, `/work/lojik/` | Case studies: role, decisions and evidence boundary |
-| `/demos/<product>/` | Product pages for Intertitle, Maestro, Temper and Mimo, generated from `projects.json` |
+| `/demos/<product>/` | Product pages generated from `projects.json`, including Pocket, Dicta, DreamMe, Ledger and Rundown |
 | `/writing/`, `/workflow/` | Posts, the seven-part workflow series, and `/feed.xml` |
 | `/now/` | What's being built this month, dated |
 | `/links/` | One-column link hub for profile bios (`noindex`) |
@@ -23,7 +23,7 @@ An index on paper: warm white ground, near-black ink, two greys, hairline rules 
 
 General Sans ships as the foundry's unmodified OpenType files under the ITF Free Font License (`assets/fonts/LICENSE-FFL.txt`); the FFL forbids converting or subsetting them, and a test pins their hashes. Inter ships under the SIL Open Font License (`assets/fonts/OFL-Inter.txt`). No font service is used.
 
-Motion stays in CSS: the home name rises in place, a hovered work row dims the others while its preview trails the pointer, and pages morph into each other with cross-document view transitions (a product's name in an index grows into its page's title). Reduced motion turns all of it off, and every page works without JavaScript.
+Motion stays in CSS: the home name rises in place, sections enter as they scroll into view, and pages morph into each other with cross-document view transitions. A work row's preview follows deliberate pointer movement and clears on scrolling or keyboard navigation; other rows keep their contrast. Reduced motion disables animation, and every page works without JavaScript.
 
 ## Generated pages
 
@@ -63,6 +63,8 @@ npm run serve   # http://127.0.0.1:4173 for browser QA
 - No third-party analytics, trackers, frameworks or runtime dependencies.
 
 ## Evidence boundary
+
+The committed capture ledger pins source and published-image hashes for 20 chapters. Maestro retains its explicit legacy exemption; an additional historical PAZZ check runs when the original private manifest is available.
 
 PAZZ and LOJIK production source remain private. The public case studies describe role, scope, selected decisions, and sanitized system boundaries. They intentionally omit customer and supplier data, credentials, private routes, security details, internal incidents, unfinished work, and commercial metrics without an approved measurement record.
 
