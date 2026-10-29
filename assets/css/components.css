@@ -290,15 +290,17 @@ a.row-go:hover {
   transition: opacity 260ms var(--ease), scale 420ms var(--ease), translate 640ms var(--ease);
 }
 
+/* Capped by width and by the window's height; the ratio holds either way. */
 .preview img {
-  width: 460px;
+  max-width: 460px;
+  max-height: calc(100vh - 32px);
   border-radius: var(--radius);
   box-shadow: 0 30px 80px -30px rgb(15 20 18 / 0.5);
   translate: 0 -50%;
 }
 
 .preview[data-kind="phone"] img {
-  width: 230px;
+  max-width: 230px;
   border-radius: 26px;
 }
 
