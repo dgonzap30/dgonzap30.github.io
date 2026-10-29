@@ -8,15 +8,17 @@
   font-size: var(--t-name);
 }
 
+/* The room for descenders sits on the rising span, so the rise's 105% start
+   still clears the mask and the g of Diego is never cut. */
 .name .line {
   display: block;
   overflow: clip;
-  padding-bottom: 0.06em;
-  margin-bottom: -0.06em;
+  margin-bottom: -0.22em;
 }
 
 .name .line > span {
   display: block;
+  padding-bottom: 0.22em;
 }
 
 .portrait {
