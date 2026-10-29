@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "note": "Source hashes identify accepted pre-conversion media; asset hashes identify published bytes. Prior-publication entries retain unchanged September PAZZ captures. Maestro remains the explicit legacy exemption because its original capture manifest was not recorded.",
+  "captures": [
+    {
+      "project": "intertitle",
+      "chapter": "intertitle-welcome",
+      "src": "/assets/media/demos/intertitle/2026-10-22-intertitle-welcome.webp",
+      "capturedAt": "2026-10-22",
+      "sourceSha256": "2e49525c59ca48c89738ddd7b36863bc62aa37aa64a7c89bf8b0c7f3107fc67e",
+      "assetSha256": "84dd3e84e353e637e44b7f349e26f818e494ddad2674a7991fdb2df52fa96f06",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "intertitle",
+      "chapter": "intertitle-film",
+      "src": "/assets/media/demos/intertitle/2026-10-22-intertitle-film.webp",
+      "capturedAt": "2026-10-22",
+      "sourceSha256": "635efcdb557bb9073245a8ad7942f92e6ac75b7fa118a3d7424fa6ac8bbd4fbe",
+      "assetSha256": "41f7ece4aed5817d8f7ee85758434dcfbd9537846b1f1eb44aaba41adbd5e606",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "intertitle",
+      "chapter": "intertitle-film-type",
+      "src": "/assets/media/demos/intertitle/2026-10-22-intertitle-film-type.webp",
+      "capturedAt": "2026-10-22",
+      "sourceSha256": "3f177e1dc8905b7515f438bd92bb47097b406f07e3d223ff394f6570bdd2daeb",
+      "assetSha256": "df5562df63f012c2231adf6f514a99881167cfd8e60965eafaed3fd3854c9085",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "pazz",
+      "chapter": "work-study",
+      "src": "/assets/media/demos/pazz/2026-10-28-work-study.webp",
+      "capturedAt": "2026-10-28",
+      "sourceSha256": "75d7b0d08fa818e4c6c7b15c99ded245867304f5b9208fde7bede4f47e3fe11e",
+      "assetSha256": "f330211e0a89523bb74b7b8835a682745c3acc155db11e3f32f6742d66122f71",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "pazz",
+      "chapter": "quote-composer",
+      "src": "/assets/media/demos/pazz/01-quote-composer.webp",
+      "capturedAt": "2026-09-09",
+      "sourceSha256": "bb412d1d00afcc02df61b6e81d2cf42e074389996e21f6d7044447adb5c9dd65",
+      "assetSha256": "2eab54a112b78d25eb03a7dcb4e48feb5776bdf214fc4a75ef13ef0e475a0c0b",
+      "provenance": "prior-publication"
+    },
+    {
+      "project": "pazz",
+      "chapter": "fiscal-regime",
+      "src": "/assets/media/demos/pazz/03-fiscal-regime.webp",
+      "capturedAt": "2026-09-09",
+      "sourceSha256": "3c8c886d2f599b5803caf55ef4e16851c06f850c34e18baa4f009213142d0c6a",
+      "assetSha256": "2262d2e9423e6b22cb2a71e6459e3b53b19311fe03aaaeb7f6b0a8bcebd2d1af",
+      "provenance": "prior-publication"
+    },
+    {
+      "project": "pazz",
+      "chapter": "estimate",
+      "src": "/assets/media/demos/pazz/04-estimate.webp",
+      "capturedAt": "2026-09-09",
+      "sourceSha256": "d413dc9a94e7a0e30e972cb373032249c4dbec87e691d1c554a49f331ceeba58",
+      "assetSha256": "01f224ecbc89175ec1fe0aaeb9a9e4f00fb8e5c25d44dbd27cb98d15e06138d0",
+      "provenance": "prior-publication"
+    },
+    {
+      "project": "pazz",
+      "chapter": "quote-result",
+      "src": "/assets/media/demos/pazz/06-quote-result.webp",
+      "capturedAt": "2026-09-09",
+      "sourceSha256": "2e3b21d855eb7253d9d6995c142b69c1a55383e82207f8a5004586a11f65bbd6",
+      "assetSha256": "a13021fa4f454c124e9f2d9dba2bcd5cfee808f7e9583123c2913a6feb033715",
+      "provenance": "prior-publication"
+    },
+    {
+      "project": "pazz",
+      "chapter": "claudio-opening",
+      "src": "/assets/media/demos/pazz/07-claudio-opening.webp",
+      "capturedAt": "2026-09-09",
+      "sourceSha256": "c7ec1d892ec24f18923fde203511a377773d89184031f997e9713a6bf8e98534",
+      "assetSha256": "4b09d24428806bd1bebe8c7d1caf4528f266fb45336b6628fdf457b16c0fb081",
+      "provenance": "prior-publication"
+    },
+    {
+      "project": "pazz",
+      "chapter": "guided-search",
+      "src": "/assets/media/demos/pazz/09-guided-search.webp",
+      "capturedAt": "2026-09-09",
+      "sourceSha256": "db018cfdf7a4394d1f7acaef8eb74213c1ef925b7e9fb81a83174a21831e9523",
+      "assetSha256": "a57c8b37d11712d81829fa719fd9495591a58c61833720b21de35b79e2930100",
+      "provenance": "prior-publication"
+    },
+    {
+      "project": "pazz",
+      "chapter": "partner-application",
+      "src": "/assets/media/demos/pazz/10-partner-application.webp",
+      "capturedAt": "2026-09-09",
+      "sourceSha256": "5973c18023ac2a726bbe05f8373199b90f3cd1d7a8a223020d09e2a8df10e8c2",
+      "assetSha256": "251bfe71e39281fb49da6ffd8520d9f268c1d6e5460347bd478d11904bffd89a",
+      "provenance": "prior-publication"
+    },
+    {
+      "project": "temper",
+      "chapter": "temper-today",
+      "src": "/assets/media/demos/temper/2026-10-28-temper-today.webp",
+      "capturedAt": "2026-10-28",
+      "sourceSha256": "a84d106e27e66b19874587926b2f7defddc179f0dbc968664aacfa8e4b6f7098",
+      "assetSha256": "a4a27984abd21e2f265783bae8c7feca306ad2a9dee97ebf78cfb08427e51b67",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "temper",
+      "chapter": "temper-train",
+      "src": "/assets/media/demos/temper/2026-10-28-temper-train.webp",
+      "capturedAt": "2026-10-28",
+      "sourceSha256": "43eb81ca23dd2564180544f4bf40eee6e3bfec1a5e9e3f4bdc9fe7b5c550a2a0",
+      "assetSha256": "1cec391036f2e4fe46ab6ef768a0592faa7a51b7417858fb366607cc86b1ba0d",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "temper",
+      "chapter": "temper-yoga-instructions",
+      "src": "/assets/media/demos/temper/2026-10-27-temper-yoga-instructions.webp",
+      "capturedAt": "2026-10-27",
+      "sourceSha256": "00555028cf1da41a7ffb0b567453cc38db4afaecb012affabc41f7f332b3befa",
+      "assetSha256": "926148d51410397d2b4ef3c274ad1fe25b38dbd2551ad6565739c3c612418ea6",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "mimo",
+      "chapter": "made-of-us-tonight",
+      "src": "/assets/media/demos/mimo/2026-10-14-made-of-us-tonight.webp",
+      "capturedAt": "2026-10-14",
+      "sourceSha256": "0555118897d5c1bad9471d92a1c241c5a3a774a4d19cf5680bf8dfe5bd30870c",
+      "assetSha256": "fb33abf1225eb608fad4cbef4c9a31d2559fa06e106b48f5cf831547a1ab7c7d",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "pocket",
+      "chapter": "pocket-piano-roll",
+      "src": "/assets/media/demos/pocket/2026-10-28-pocket-piano-roll.webp",
+      "capturedAt": "2026-10-28",
+      "sourceSha256": "33d94ea0441049319e6898716abc01e720925849830ecd7b35c3b9919c5929bf",
+      "assetSha256": "55550af163b83d9a3fc8189da402fe5a4d28e1a42ee27337f5e366a74e7e797b",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "dicta",
+      "chapter": "dicta-home",
+      "src": "/assets/media/demos/dicta/2026-10-28-dicta-home.webp",
+      "capturedAt": "2026-10-28",
+      "sourceSha256": "3a5d8fe4840d33fe1018285ce6f59ac3adf46ca5d7a479d90fc449b01475b385",
+      "assetSha256": "2d13e68fb710c7241800a5c96e54b53032128a7d5544bfb19d6f0cd12c7090de",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "dreamme",
+      "chapter": "dreamme-home-artwork",
+      "src": "/assets/media/demos/dreamme/2026-10-22-dreamme-home-artwork.webp",
+      "capturedAt": "2026-10-22",
+      "sourceSha256": "0884d4dfaefe62bf4ce4364979040fe723412c92a3d103313ecac695a0ca9e54",
+      "assetSha256": "0884d4dfaefe62bf4ce4364979040fe723412c92a3d103313ecac695a0ca9e54",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "ledger",
+      "chapter": "ledger-today",
+      "src": "/assets/media/demos/ledger/2026-10-28-ledger-today.webp",
+      "capturedAt": "2026-10-28",
+      "sourceSha256": "f1f646b12d3e4de0758122f3f8ca5e28d33586580cb61a6b43c398c4d6485665",
+      "assetSha256": "960237d965c1f9295108e31d4e200818c9b838457d2330c1ad6a80a323cd288d",
+      "provenance": "accepted-capture"
+    },
+    {
+      "project": "rundown",
+      "chapter": "rundown-preview",
+      "src": "/assets/media/demos/rundown/2026-10-28-rundown-preview.webp",
+      "capturedAt": "2026-10-28",
+      "sourceSha256": "447516c8e674cd3235492774fc90920f30342554d8d24b0412812c428276458a",
+      "assetSha256": "ce874cf409d6a74031d12af05cd5c05ac02585c9ce9a3fb114c8fba6a775fa3a",
+      "provenance": "accepted-capture"
+    }
+  ]
+}

@@ -64,6 +64,8 @@ npm run serve   # http://127.0.0.1:4173 for browser QA
 
 ## Evidence boundary
 
+The committed capture ledger pins source and published-image hashes for 20 chapters. Maestro retains its explicit legacy exemption; an additional historical PAZZ check runs when the original private manifest is available.
+
 PAZZ and LOJIK production source remain private. The public case studies describe role, scope, selected decisions, and sanitized system boundaries. They intentionally omit customer and supplier data, credentials, private routes, security details, internal incidents, unfinished work, and commercial metrics without an approved measurement record.
 
 ## Deployment

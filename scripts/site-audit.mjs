@@ -40,6 +40,7 @@ const REQUIRED_ASSETS = [
   'assets/css/pages.css',
   'assets/css/explorer.css',
   'assets/data/projects.json',
+  'assets/data/capture-manifest.json',
   'assets/data/writing.json',
   'assets/data/work.json',
   'assets/data/workflow.json',
