@@ -10,9 +10,9 @@ import { headAssets, siteFooter, siteHeader } from './site-chrome.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
-// Page → the nav item it sits under (null for none), and whether it is home.
+// Page → the nav item it sits under (null for none).
 const PAGES = [
-  ['index.html', null, true],
+  ['index.html', null],
   ['projects/index.html', '/projects/'],
   ['work/pazz/index.html', '/projects/'],
   ['work/lojik/index.html', '/projects/'],
@@ -28,11 +28,11 @@ function replaceBlock(html, name, content, path) {
   return html.replace(pattern, () => content);
 }
 
-for (const [path, current, home] of PAGES) {
+for (const [path, current] of PAGES) {
   const file = resolve(root, path);
   let html = await readFile(file, 'utf8');
   html = replaceBlock(html, 'assets', headAssets(), path);
-  html = replaceBlock(html, 'header', siteHeader(current, { home }), path);
+  html = replaceBlock(html, 'header', siteHeader(current), path);
   html = replaceBlock(html, 'footer', siteFooter(), path);
   await writeFile(file, html);
 }

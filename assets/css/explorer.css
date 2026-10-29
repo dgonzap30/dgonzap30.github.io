@@ -1,32 +1,36 @@
-/* The product gallery: every captured screen in one scrollable row on the
-   product's own plate, the way the App Store shows screenshots. It needs no
-   JavaScript; site.js only adds previous/next buttons and a counter. */
+/* The product gallery: every captured screen in one row that scrolls to the
+   page edge, the way the App Store shows screenshots. It needs no JavaScript;
+   site.js only adds previous/next buttons and a counter. */
+
+.gallery {
+  padding-bottom: var(--section);
+}
+
+.gallery .head {
+  margin-inline: var(--margin);
+}
 
 .stage {
-  --slide: clamp(12.5rem, 20vw, 16.5rem);
-  --inset: clamp(1.25rem, 4vw, 3rem);
-  padding-block: clamp(2rem, 4.5vw, 3.5rem) clamp(1.25rem, 2.5vw, 1.75rem);
-  border-radius: var(--radius-lg);
-  background: var(--plate);
+  --slide: clamp(208px, 20vw, 280px);
+  padding-top: var(--s4);
 }
 
 .stage[data-layout="desktop"] {
-  --slide: min(86%, 58rem);
+  --slide: min(86vw, 1040px);
 }
 
 .stage-track {
-  position: relative;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: var(--slide);
-  gap: clamp(1rem, 2.4vw, 2rem);
+  gap: clamp(16px, 2.4vw, 32px);
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--inset);
-  padding: 0 var(--inset) 0.75rem;
+  scroll-padding-inline: var(--margin);
+  padding: 0 var(--margin) var(--s2);
   scrollbar-width: thin;
-  scrollbar-color: rgb(15 20 18 / 0.22) transparent;
+  scrollbar-color: var(--rule-strong) transparent;
 }
 
 .stage-track:focus-visible {
@@ -34,8 +38,8 @@
 }
 
 .stage-chapter {
-  scroll-snap-align: start;
   min-width: 0;
+  scroll-snap-align: start;
 }
 
 .stage-media {
@@ -45,55 +49,55 @@
 .stage-chapter img,
 .stage-chapter video {
   width: 100%;
-  background: #000;
+  background: var(--night);
 }
 
 .stage[data-layout="portrait"] .stage-chapter img,
 .stage[data-layout="portrait"] .stage-chapter video {
   border-radius: 13% / 6%;
-  box-shadow: 0 0 0 1px rgb(15 20 18 / 0.08), 0 24px 44px -28px rgb(15 20 18 / 0.5);
+  box-shadow: 0 0 0 1px var(--rule);
 }
 
 .stage[data-layout="desktop"] .stage-chapter img,
 .stage[data-layout="desktop"] .stage-chapter video {
-  border-radius: 10px;
-  box-shadow: var(--shadow-media);
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 1px var(--rule);
 }
 
 .chapter-caption {
-  margin-top: var(--space-4);
-  font-size: var(--text-sm);
+  max-width: 60ch;
+  margin-top: var(--s2);
+  font-size: var(--t-small);
   line-height: 1.5;
   color: var(--ink-2);
 }
 
 .chapter-caption strong {
+  font-weight: 600;
   color: var(--ink);
-  font-weight: 500;
 }
 
 .chapter-transcript {
-  margin-top: 0.6rem;
-  font-size: var(--text-sm);
+  margin-top: var(--s1);
+  font-size: var(--t-small);
   color: var(--ink-2);
 }
 
 .chapter-transcript summary {
-  cursor: pointer;
   color: var(--ink);
+  cursor: pointer;
 }
 
 .chapter-transcript p {
-  margin-top: 0.5rem;
+  margin-top: var(--s1);
 }
 
 .stage-controls {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: var(--space-2);
-  margin-top: var(--space-3);
-  padding-inline: var(--inset);
+  gap: var(--s1);
+  margin-top: var(--s2);
+  padding-inline: var(--margin);
 }
 
 .stage-controls[hidden] {
@@ -102,30 +106,28 @@
 
 .stage-count {
   margin-right: auto;
+  font-size: var(--t-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
 }
 
 .stage-controls button {
   display: grid;
   place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--rule-strong);
   border-radius: 50%;
-  background: rgb(255 255 255 / 0.7);
-  box-shadow: inset 0 0 0 1px rgb(15 20 18 / 0.12);
+  background: transparent;
   color: inherit;
   font: inherit;
   cursor: pointer;
-  transition: background-color 200ms ease, scale var(--dur-spring) var(--ease-spring);
+  transition: background-color 200ms var(--ease), border-color 200ms var(--ease);
 }
 
 .stage-controls button:hover:not(:disabled) {
-  background: var(--surface);
-}
-
-.stage-controls button:active:not(:disabled) {
-  scale: var(--press-scale);
-  transition: scale var(--press-in) var(--ease-press);
+  border-color: var(--ink);
+  background: var(--bone);
 }
 
 .stage-controls button:disabled {
@@ -133,64 +135,32 @@
   cursor: default;
 }
 
-/* Intertitle's plate is dark: flip the captions and controls. */
-.stage.plate--intertitle {
-  color: var(--on-dark);
-}
-
-.stage.plate--intertitle .chapter-caption,
-.stage.plate--intertitle .chapter-transcript,
-.stage.plate--intertitle .stage-count {
-  color: var(--on-dark-2);
-}
-
-.stage.plate--intertitle .chapter-caption strong,
-.stage.plate--intertitle .chapter-transcript summary {
-  color: var(--on-dark);
-}
-
-.stage.plate--intertitle .stage-track {
-  scrollbar-color: rgb(255 255 255 / 0.25) transparent;
-}
-
-.stage.plate--intertitle .stage-controls button {
-  background: rgb(255 255 255 / 0.08);
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.22);
-}
-
-.stage.plate--intertitle .stage-controls button:hover:not(:disabled) {
-  background: rgb(255 255 255 / 0.16);
-}
-
-.stage.plate--intertitle :focus-visible,
-.stage.plate--intertitle:focus-visible {
-  outline-color: var(--on-dark);
-}
-
-.stage.plate--intertitle .stage-chapter img {
-  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1), 0 24px 44px -28px rgb(0 0 0 / 0.8);
+.stage-notes {
+  margin-top: var(--s5);
+  row-gap: var(--s4);
 }
 
 .stage-scope {
-  max-width: 46rem;
-  margin-top: var(--space-4);
+  grid-column: 1 / 7;
+  font-size: var(--t-small);
+  line-height: 1.55;
+  color: var(--ink-2);
 }
 
 /* Engineering detail stays one click away instead of stacked around the proof. */
 .stage-disclosure {
-  max-width: 52rem;
-  margin-top: var(--space-7);
-  border-top: 1px solid var(--rule-strong);
-  border-bottom: 1px solid var(--rule);
+  grid-column: 8 / 13;
+  align-self: start;
+  border-block: 1px solid var(--rule);
 }
 
 .stage-disclosure summary {
   display: flex;
   justify-content: space-between;
-  gap: var(--space-4);
-  min-height: 2.75rem;
-  padding-block: var(--space-4);
-  font-weight: 500;
+  gap: var(--s2);
+  padding-block: var(--s2);
+  font-size: var(--t-small);
+  font-weight: 600;
   list-style: none;
   cursor: pointer;
 }
@@ -202,41 +172,43 @@
 .stage-disclosure summary::after {
   content: "+";
   color: var(--ink-2);
-  transition: rotate var(--dur-spring) var(--ease-spring);
+  transition: rotate 320ms var(--ease);
 }
 
 .stage-disclosure[open] summary::after {
   rotate: 45deg;
 }
 
-.stage-disclosure > p {
+.stage-disclosure > p,
+.stage-disclosure ul {
+  font-size: var(--t-small);
+  line-height: 1.5;
   color: var(--ink-2);
 }
 
 .stage-disclosure-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-5) var(--space-7);
-  padding-block: var(--space-5);
+  gap: var(--s3);
+  padding-block: var(--s3);
 }
 
-.stage-disclosure h2 {
-  font: 500 var(--text-sm) / 1.4 var(--font-sans);
+.stage-disclosure h2,
+.stage-disclosure h3 {
+  font: 600 var(--t-small) / 1.4 var(--text);
 }
 
 .stage-disclosure ul {
-  margin-top: 0.5rem;
+  margin-top: var(--s1);
   padding-left: 1.1em;
-  font-size: 0.95rem;
-  color: var(--ink-2);
 }
 
 .stage-disclosure li + li {
   margin-top: 0.35em;
 }
 
-@media (max-width: 44rem) {
-  .stage-disclosure-grid {
-    grid-template-columns: minmax(0, 1fr);
+@media (max-width: 760px) {
+  .stage-scope,
+  .stage-disclosure {
+    grid-column: 1 / -1;
   }
 }

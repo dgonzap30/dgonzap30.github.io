@@ -2,7 +2,7 @@
 
 The source for [dgonzap30.github.io](https://dgonzap30.github.io/), the personal site of Diego González Zapiain: founder-engineer in Mexico City, co-founder of LOJIK, maker of Intertitle, and Technical Lead at PAZZ.
 
-The site is plain HTML, CSS and SVG with no runtime dependency. Every page reads and works without JavaScript; `assets/js/site.js` only adds previous/next buttons and a counter to product galleries.
+The site is plain HTML, CSS and SVG with no runtime dependency. Every page reads and works without JavaScript; `assets/js/site.js` only keeps the bar's clock current, adds previous/next buttons and a counter to product galleries, and shows a work row's preview beside the pointer.
 
 ## Routes
 
@@ -19,9 +19,11 @@ The site is plain HTML, CSS and SVG with no runtime dependency. Every page reads
 
 ## Design system
 
-LOJIK's family: a sage ground, near-black ink, one green that only marks proof (a verified date, a checked note), and the vermilion dot from the DGZ mark. Each product has its own tinted plate, and every capture rises from the plate's bottom edge, screens in a browser frame and phones in a fan. Newsreader sets display type; Instrument Sans sets everything else; mono is for code only. Tokens live in `assets/css/tokens.css`, and the contrast pairs are pinned by a test.
+An index on paper: warm white ground, near-black ink, two greys, hairline rules and one green that only marks proof (a verified date). Everything sits on a twelve-column grid with an 8px spacing scale. General Sans sets display type at size; Inter sets text at 13, 14 and 17px; mono is for code only. Tokens live in `assets/css/tokens.css`, and the contrast pairs are pinned by a test.
 
-Motion uses LOJIK's spring, pop, roll and press curves and stays in CSS: the home statement's words rise in place, each proof chip grows into a preview of its product, plates settle and drift with the scroll, the header pill narrows on a scroll timeline, the workflow series inks in as you read, and pages morph into each other with cross-document view transitions. `assets/js/site.js` only sets the variables CSS needs (nav indicator, tile tilt, preview placement) and hands an open preview its view-transition name. Reduced motion turns all of it off, and every page works without JavaScript.
+General Sans ships as the foundry's unmodified OpenType files under the ITF Free Font License (`assets/fonts/LICENSE-FFL.txt`); the FFL forbids converting or subsetting them, and a test pins their hashes. Inter ships under the SIL Open Font License (`assets/fonts/OFL-Inter.txt`). No font service is used.
+
+Motion stays in CSS: the home name rises in place, a hovered work row dims the others while its preview trails the pointer, and pages morph into each other with cross-document view transitions (a product's name in an index grows into its page's title). Reduced motion turns all of it off, and every page works without JavaScript.
 
 ## Generated pages
 
@@ -34,7 +36,7 @@ npm run build
 | Script | Writes |
 | --- | --- |
 | `build-chrome.mjs` | Shared head, header and footer into hand-written pages (between `chrome:*` markers) |
-| `build-work.mjs` | Work tiles, the "Also building" picker, "More work" and open source from `assets/data/work.json` |
+| `build-work.mjs` | The work index, "More work" and open source from `assets/data/work.json` |
 | `build-explorer.mjs` | `/demos/<product>/` pages and the PAZZ gallery from `assets/data/projects.json` |
 | `build-writing.mjs` | `/writing/`, `/feed.xml` and the home writing rows from `assets/data/writing.json` |
 | `build-workflow-pages.mjs` | `/workflow/` from `assets/data/workflow.json` |

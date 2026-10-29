@@ -7,7 +7,7 @@
   <meta name="description" content="A loop that edits an agent skill, measures the change against a held-out eval set, and refuses to promote it without a statistical margin and an independent verdict.">
   <link rel="canonical" href="https://dgonzap30.github.io/workflow/eval-gated-skills/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#f2f4f3">
+  <meta name="theme-color" content="#faf8f5">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="Eval-gated skills — Diego González Zapiain">
   <meta property="og:description" content="A loop that edits an agent skill, measures the change against a held-out eval set, and refuses to promote it without a statistical margin and an independent verdict.">
@@ -22,8 +22,8 @@
   <meta name="twitter:description" content="A loop that edits an agent skill, measures the change against a held-out eval set, and refuses to promote it without a statistical margin and an independent verdict.">
   <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
 <!-- chrome:assets:start -->
-  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/GeneralSans-Semibold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -62,28 +62,26 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav-links" role="list">
-        <li><a href="/projects/">Work</a></li>
-        <li><a href="/writing/" aria-current="page">Writing</a></li>
-        <li><a href="/now/">Now</a></li>
-      </ul>
-    </nav>
+  <header class="bar grid wrap">
+    <a class="who" href="/">Diego González Zapiain</a>
+    <p class="clock">Mexico City<span data-clock></span></p>
+    <nav class="nav" aria-label="Primary"><a href="/projects/">Work</a>, <a href="/writing/" aria-current="page">Writing</a>, <a href="/now/">Now</a></nav>
+    <a class="mail" href="mailto:diego.gonzap@wearelojik.com">Email</a>
   </header>
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <div class="read-progress" aria-hidden="true"></div>
-    <header class="page-head page-head--article col">
-      <p class="page-back meta"><a href="/workflow/">The workflow</a> / Part 6 of 7</p>
-      <h1>A prompt change ships only if a held-out set says it helped.</h1>
-      <p class="lede">Agent instructions are edited by feel. Someone reads a bad output, rewrites a paragraph, and the change ships because it sounds better. Nobody measures whether it helped, and nobody notices when it hurt.</p>
-      <p class="page-meta meta">From <code>~/dev/_tools/skillopt</code> · A cycle workflow with a fail-closed precheck · <span class="verified">Verified 2026-09-11</span></p>
+    <header class="page-head wrap">
+      <div class="col">
+    <p class="crumb label"><a href="/workflow/">The workflow</a> / Part 6 of 7</p>
+        <h1 class="h2">A prompt change ships only if a held-out set says it helped.</h1>
+        <p class="lede">Agent instructions are edited by feel. Someone reads a bad output, rewrites a paragraph, and the change ships because it sounds better. Nobody measures whether it helped, and nobody notices when it hurt.</p>
+        <p class="meta">From <code>~/dev/_tools/skillopt</code> · A cycle workflow with a fail-closed precheck · <span class="verified">Verified 2026-09-11</span></p>
+      </div>
     </header>
 
-    <article class="prose col">
+    <div class="wrap">
+      <article class="prose col">
     <section class="prose-section" id="problem">
       <h2>Prompt edits are unmeasured by default.</h2>
       <p>A skill is a document that changes how an agent behaves. Editing one is a behavioural change to production, with none of the machinery a code change would get: no test, no baseline, no way to tell improvement from a change of mood.</p>
@@ -128,26 +126,30 @@
       <p>Those are decisions with no eval set. Handing them to a loop that optimises a number is how you get a number that improves while the thing it measures gets worse.</p>
       <aside class="note"><strong>Boundary</strong> Optimise within a defined target. Never let the loop choose the target.</aside>
     </section>
-    </article>
+      </article>
+    </div>
 
-    <nav class="next-part col" aria-labelledby="next-title">
-      <div class="section-head"><h2 class="section-title" id="next-title">Next in the series</h2><a class="section-link" href="/workflow/">All seven</a></div>
-      <a class="next-link" href="/workflow/attention-ledger/"><span class="meta">Part 7</span><span class="next-title">The attention ledger</span><span class="next-line">One file defines every metric, three reporters read it, and the hardest work was removing the automation from its own numbers.</span></a>
+    <nav class="next wrap" aria-labelledby="next-title">
+      <div class="col">
+        <div class="head grid label"><h2 class="label" id="next-title">Next in the series</h2><span></span><a href="/workflow/">All seven</a></div>
+        <ol class="table" role="list">
+          <li><a class="grid" href="/workflow/attention-ledger/"><span class="n label" aria-hidden="true">07</span><span class="h3">The attention ledger</span><span class="small">One file defines every metric, and the automation is removed from its own numbers.</span><span class="go" aria-hidden="true">→</span></a></li>
+        </ol>
+      </div>
     </nav>
   </main>
 
 <!-- chrome:footer:start -->
-  <footer class="site-footer">
-    <div class="footer-inner shell">
-      <p class="footer-name"><strong>Diego González Zapiain</strong> · Founder-engineer, Mexico City</p>
-      <ul class="footer-links" role="list">
-        <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
-        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
-        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
-        <li><a href="/links/">Links</a></li>
-      </ul>
-    </div>
+  <footer class="foot grid wrap">
+    <p class="foot-name">Diego González Zapiain · Mexico City</p>
+    <p class="foot-lang">English and Spanish</p>
+    <ul class="foot-links" role="list">
+      <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
+      <li><a href="/links/">Links</a></li>
+    </ul>
   </footer>
 <!-- chrome:footer:end -->
 </body>

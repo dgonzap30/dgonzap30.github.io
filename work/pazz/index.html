@@ -7,7 +7,7 @@
   <meta name="description" content="Diego González Zapiain is Technical Lead at PAZZ, a vehicle-leasing marketplace in Mexico, rebuilding its platform as an agentic AI stack. His role, the decisions behind it, and screens from the development build.">
   <link rel="canonical" href="https://dgonzap30.github.io/work/pazz/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#f2f4f3">
+  <meta name="theme-color" content="#faf8f5">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="PAZZ: leading a leasing-platform rebuild">
   <meta property="og:description" content="Technical Lead at PAZZ, a vehicle-leasing marketplace in Mexico: role, decisions, and screens from the development build.">
@@ -22,8 +22,8 @@
   <meta name="twitter:description" content="Technical Lead at PAZZ, a vehicle-leasing marketplace in Mexico: role, decisions, and screens from the development build.">
   <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/pazz.png">
 <!-- chrome:assets:start -->
-  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/GeneralSans-Semibold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -61,30 +61,33 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav-links" role="list">
-        <li><a href="/projects/" aria-current="page">Work</a></li>
-        <li><a href="/writing/">Writing</a></li>
-        <li><a href="/now/">Now</a></li>
-      </ul>
-    </nav>
+  <header class="bar grid wrap">
+    <a class="who" href="/">Diego González Zapiain</a>
+    <p class="clock">Mexico City<span data-clock></span></p>
+    <nav class="nav" aria-label="Primary"><a href="/projects/" aria-current="page">Work</a>, <a href="/writing/">Writing</a>, <a href="/now/">Now</a></nav>
+    <a class="mail" href="mailto:diego.gonzap@wearelojik.com">Email</a>
   </header>
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <header class="page-head shell">
-      <p class="page-back meta"><a href="/projects/">Work</a> /</p>
-      <h1>PAZZ Marketplace</h1>
-      <p class="lede">A vehicle-leasing marketplace in Mexico. As Technical Lead, I'm rebuilding its platform as an agentic AI stack, so discovery, quoting, qualification and partner handoffs work as one path.</p>
-      <p class="page-meta meta">Technical Lead · May 2026–present · Mexico · Private commercial platform</p>
+    <header class="page-head wrap">
+      <p class="crumb label"><a href="/projects/">Work</a> /</p>
+      <h1 class="title display"><span style="view-transition-name: title-pazz">PAZZ Marketplace</span></h1>
+      <div class="intro grid">
+        <p class="lede">A vehicle-leasing marketplace in Mexico. As Technical Lead, I'm rebuilding its platform as an agentic AI stack, so discovery, quoting, qualification and partner handoffs work as one path.</p>
+        <dl class="facts">
+          <div><dt>Role</dt><dd>Technical Lead</dd></div>
+          <div><dt>Since</dt><dd>May 2026</dd></div>
+          <div><dt>Where</dt><dd>Mexico</dd></div>
+          <div><dt>Platform</dt><dd>Private commercial platform</dd></div>
+        </dl>
+      </div>
     </header>
 
-    <section class="portfolio-explorer product-gallery shell" aria-labelledby="gallery-title">
-      <div class="gallery-head"><h2 id="gallery-title">Follow a vehicle from discovery into a lease application.</h2><p class="meta">In development</p></div>
+    <section class="portfolio-explorer gallery" aria-labelledby="gallery-title">
+      <div class="gallery-intro grid wrap"><h2 class="h3" id="gallery-title">Follow a vehicle from discovery into a lease application.</h2><p class="small">In development</p></div>
 <!-- explorer:stage:start -->
-      <div class="stage plate--pazz" data-explorer-stage data-layout="desktop" style="view-transition-name: media-pazz">
+      <div class="stage" data-explorer-stage data-layout="desktop">
         <div class="stage-track" role="region" aria-label="PAZZ Marketplace screens" tabindex="0">
           <figure class="stage-chapter" id="chapter-quote-composer" data-chapter="quote-composer">
             <a class="stage-media" href="/assets/media/demos/pazz/01-quote-composer.webp"><img src="/assets/media/demos/pazz/01-quote-composer.webp" width="2880" height="1800" alt="PAZZ quote composer with an Audi A5 Coupé TFSI Quattro spec and a four-step progress bar" fetchpriority="high" decoding="async"></a>
@@ -116,12 +119,13 @@
           </figure>
         </div>
         <div class="stage-controls" hidden>
-          <span class="stage-count meta" aria-live="polite"></span>
+          <span class="stage-count" aria-live="polite"></span>
           <button type="button" data-stage-prev aria-label="Previous screen">←</button>
           <button type="button" data-stage-next aria-label="Next screen">→</button>
         </div>
       </div>
-      <p class="stage-scope meta">Seven current captures from an isolated local dev ring: the quoting flow from vehicle spec to a real-cost estimate and term comparison, Claudio's guided search, and a flag-gated partner-application intake. All amounts, applicant and contact details are synthetic, and every estimate is illustrative, not a lessor offer. Synthetic demo data, captured 2026-09-09.</p>
+      <div class="stage-notes grid wrap">
+        <p class="stage-scope">Seven current captures from an isolated local dev ring: the quoting flow from vehicle spec to a real-cost estimate and term comparison, Claudio's guided search, and a flag-gated partner-application intake. All amounts, applicant and contact details are synthetic, and every estimate is illustrative, not a lessor offer. Synthetic demo data, captured 2026-09-09.</p>
       <details class="stage-disclosure">
         <summary>What's working, and what's still in progress</summary>
         <p>Shared domain rules and recoverable document handoffs keep operating decisions consistent.</p>
@@ -130,10 +134,11 @@
           <div><h3>Still in progress</h3><ul><li>Every amount is a local illustrative estimate, not a lessor offer — the product itself labels it &quot;Estimación, no oferta&quot;</li><li>Claudio runs on a deterministic scripted mock (USE_REAL_AGENT_MODEL off); no live model call and no autonomous decision</li><li>The partner application sits behind USE_PARTNER_PORTAL_V2, off by default while the partner program stays intentionally dark</li><li>The vehicle catalog itself isn't shown here: its cards currently render an &quot;Imagen en validación&quot; placeholder because licensed vehicle media doesn't exist yet</li></ul></div>
         </div>
       </details>
+      </div>
 <!-- explorer:stage:end -->
     </section>
 
-    <div class="shell">
+    <div class="block wrap">
       <article class="prose case-body">
         <section class="prose-section" id="problem">
           <h2>One goal, many systems</h2>
@@ -157,7 +162,7 @@
 
         <figure class="figure">
           <img src="/assets/graphics/pazz-handoff.svg" width="760" height="420" alt="Discovery, quoting, prequalification, routing and operations share one rule authority, and failures return to an owned recovery lane." loading="lazy">
-          <figcaption class="meta">A sanitized handoff map: one rule authority, recoverable handoffs.</figcaption>
+          <figcaption>A sanitized handoff map: one rule authority, recoverable handoffs.</figcaption>
         </figure>
 
         <section class="prose-section" id="decisions">
@@ -186,31 +191,30 @@
     </div>
 
 <!-- explorer:picker:start -->
-    <nav class="more-work shell" aria-labelledby="more-work-title">
-      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work <span aria-hidden="true">→</span></a></div>
-      <ul class="explorer-picker" role="list" aria-label="More work">
-        <li><a href="/work/lojik/"><span class="picker-thumb picker-thumb--screen plate--lojik"><img src="/assets/media/home/lojik-site.webp" width="1200" height="630" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">LOJIK</span><span class="picker-line">Custom apps and automation for businesses</span></span></a></li>
-        <li><a href="/demos/intertitle/"><span class="picker-thumb picker-thumb--phones plate--intertitle"><img src="/assets/media/home/intertitle-tonight.webp" width="440" height="957" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Intertitle</span><span class="picker-line">Film app for iPhone · On the App Store</span></span></a></li>
-        <li><a href="/demos/maestro/"><span class="picker-thumb picker-thumb--screen plate--maestro"><img src="/assets/media/home/maestro-mixer.webp" width="1000" height="637" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Maestro</span><span class="picker-line">Music production · Private beta</span></span></a></li>
-        <li><a href="/demos/temper/"><span class="picker-thumb picker-thumb--phones plate--temper"><img src="/assets/media/home/temper-today.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Temper</span><span class="picker-line">Health &amp; training · In development</span></span></a></li>
-        <li><a href="/demos/mimo/"><span class="picker-thumb picker-thumb--phones plate--mimo"><img src="/assets/media/home/mimo-home.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Mimo</span><span class="picker-line">Shared moments · In development</span></span></a></li>
-      </ul>
+    <nav class="more wrap" aria-labelledby="more-work-title">
+      <div class="head grid label"><h2 class="label" id="more-work-title">More work</h2><span></span><a href="/projects/">All work →</a></div>
+      <ol class="table" role="list">
+        <li><a class="grid" href="/work/lojik/"><span class="n label" aria-hidden="true">01</span><h3 class="h3">LOJIK</h3><span class="small">Custom apps and automation for businesses</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/intertitle/"><span class="n label" aria-hidden="true">02</span><h3 class="h3">Intertitle</h3><span class="small">Film app for iPhone · On the App Store</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/maestro/"><span class="n label" aria-hidden="true">04</span><h3 class="h3">Maestro</h3><span class="small">Music production · Private beta</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/temper/"><span class="n label" aria-hidden="true">05</span><h3 class="h3">Temper</h3><span class="small">Health &amp; training · In development</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/mimo/"><span class="n label" aria-hidden="true">06</span><h3 class="h3">Mimo</h3><span class="small">Shared moments · In development</span><span class="go" aria-hidden="true">→</span></a></li>
+      </ol>
     </nav>
 <!-- explorer:picker:end -->
   </main>
 
 <!-- chrome:footer:start -->
-  <footer class="site-footer">
-    <div class="footer-inner shell">
-      <p class="footer-name"><strong>Diego González Zapiain</strong> · Founder-engineer, Mexico City</p>
-      <ul class="footer-links" role="list">
-        <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
-        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
-        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
-        <li><a href="/links/">Links</a></li>
-      </ul>
-    </div>
+  <footer class="foot grid wrap">
+    <p class="foot-name">Diego González Zapiain · Mexico City</p>
+    <p class="foot-lang">English and Spanish</p>
+    <ul class="foot-links" role="list">
+      <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
+      <li><a href="/links/">Links</a></li>
+    </ul>
   </footer>
 <!-- chrome:footer:end -->
 </body>

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import {
   access,
   mkdir,
@@ -319,22 +320,15 @@ test("palette keeps secondary text and the accent at WCAG AA on every surface", 
     "utf8",
   );
   const pairs = [
-    ["ink", "ground"],
-    ["ink-2", "ground"],
-    ["ink-2", "surface"],
-    ["ink-2", "fill"],
-    ["seal", "ground"],
-    ["seal", "surface"],
-    ["seal", "fill"],
-    ["accent", "ground"],
-    ["accent", "surface"],
-    ["ink-2", "plate-pazz"],
-    ["ink-2", "plate-lojik"],
-    ["ink-2", "plate-maestro"],
-    ["ink-2", "plate-temper"],
-    ["ink-2", "plate-mimo"],
-    ["on-dark", "plate-intertitle"],
-    ["on-dark-2", "plate-intertitle"],
+    ["ink", "paper"],
+    ["ink-2", "paper"],
+    ["ink-3", "paper"],
+    ["ink-2", "bone"],
+    ["ink-3", "bone"],
+    ["seal", "paper"],
+    ["seal", "bone"],
+    ["paper", "ink"],
+    ["paper", "forest"],
   ];
   for (const [text, surface] of pairs) {
     const ratio = contrastRatio(colorToken(tokens, text), colorToken(tokens, surface));
@@ -343,32 +337,37 @@ test("palette keeps secondary text and the accent at WCAG AA on every surface", 
 });
 
 test("fonts are self-hosted, licensed, and bounded", async () => {
-  const fontPaths = [
-    "assets/fonts/instrument-sans-latin.woff2",
-    "assets/fonts/newsreader-roman-latin.woff2",
-    "assets/fonts/newsreader-italic-latin.woff2",
-  ];
-
-  for (const relativePath of fontPaths) {
+  // General Sans ships as the foundry's unmodified OpenType files (the ITF
+  // Free Font License forbids converting or subsetting them), pinned by hash.
+  const generalSans = {
+    "assets/fonts/GeneralSans-Medium.otf":
+      "a4c6067d3415ab1ec2e17e6bd0406c0d3f7a28c707c5ddd85ca6458cabd3dbf0",
+    "assets/fonts/GeneralSans-Semibold.otf":
+      "6ad3ed9661df911b511135f494805704dea322dc2ae10a9620764f56df39c30b",
+  };
+  for (const [relativePath, sha256] of Object.entries(generalSans)) {
     const font = await readFile(join(repoRoot, relativePath));
-    assert.equal(font.subarray(0, 4).toString("ascii"), "wOF2");
+    assert.equal(font.subarray(0, 4).toString("ascii"), "OTTO");
     assert(font.length < 160 * 1024, `${relativePath} exceeds 160 KB`);
+    assert.equal(createHash("sha256").update(font).digest("hex"), sha256, `${relativePath} was modified`);
   }
 
-  for (const name of ["OFL-Instrument-Sans.txt", "OFL-Newsreader.txt"]) {
-    const license = await readFile(
-      join(repoRoot, `assets/fonts/${name}`),
-      "utf8",
-    );
-    assert.match(license, /SIL OPEN FONT LICENSE Version 1\.1/);
-  }
+  const inter = await readFile(join(repoRoot, "assets/fonts/inter.woff2"));
+  assert.equal(inter.subarray(0, 4).toString("ascii"), "wOF2");
+  assert(inter.length < 160 * 1024, "inter.woff2 exceeds 160 KB");
+
+  const ffl = await readFile(join(repoRoot, "assets/fonts/LICENSE-FFL.txt"), "utf8");
+  assert.match(ffl, /ITF Free Font License/);
+  const ofl = await readFile(join(repoRoot, "assets/fonts/OFL-Inter.txt"), "utf8");
+  assert.match(ofl, /SIL OPEN FONT LICENSE Version 1\.1/);
+  assert.match(ofl, /Copyright 2020 The Inter Project Authors/);
 
   const fontCss = await readFile(
     join(repoRoot, "assets/css/fonts.css"),
     "utf8",
   );
-  assert.match(fontCss, /font-family: "Instrument Sans"/);
-  assert.match(fontCss, /font-family: "Newsreader"/);
+  assert.match(fontCss, /font-family: "General Sans"/);
+  assert.match(fontCss, /font-family: "Inter"/);
   assert.doesNotMatch(fontCss, /https?:\/\//);
 
   for (const relativePath of REQUIRED_PAGES) {

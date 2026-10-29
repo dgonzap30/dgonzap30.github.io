@@ -1,85 +1,56 @@
-/* LOJIK's family: a sage ground, near-black ink, and one green that only ever
-   means proof (a verified date, a checked note). The vermilion from the DGZ
-   mark stays on the mark. Everything else colourful on the page is the work,
-   each product on its own plate. Contrast pairs are pinned by
+/* One system for every page: warm paper, near-black ink, ruled lines, and the
+   work itself as the only colour. Contrast pairs are pinned by
    scripts/site-audit.test.mjs. */
 :root {
   color-scheme: light;
 
-  /* Ground and ink */
-  --ground: #f2f4f3;
-  --surface: #ffffff;
-  --fill: #e9edeb;
+  /* Paper and ink */
+  --paper: #faf8f5;
+  --bone: #f3f1ec;
   --ink: #0f1412;
-  --ink-2: #5e6763;
-  --icon: #9aa39f;
-  --rule: rgb(15 20 18 / 0.09);
-  --rule-strong: rgb(15 20 18 / 0.16);
+  --ink-2: #565d5a;
+  --ink-3: #686e6b;
+  --rule: rgb(15 20 18 / 0.12);
+  --rule-strong: rgb(15 20 18 / 0.32);
 
-  /* Proof only: a verified date, a checked note. Never decoration. */
-  --seal: #287658;
+  /* Proof only: a verified date. Never decoration. */
+  --seal: #14503a;
 
-  /* The DGZ mark and its dot, nothing else */
-  --accent: oklch(53.7% 0.16 30.8);
+  /* Behind captures: forest for screens, night for phones. */
+  --forest: #0b3325;
+  --night: #060607;
 
-  /* Product plates, tuned a step deeper than the ground so they read on sage.
-     Intertitle's is dark, after the silent-film title cards it is named for. */
-  --plate-intertitle: oklch(18.3% 0.009 43);
-  --plate-pazz: oklch(93% 0.024 70);
-  --plate-lojik: oklch(92.6% 0.02 160);
-  --plate-maestro: oklch(92.6% 0.016 286);
-  --plate-temper: oklch(92.6% 0.016 240);
-  --plate-mimo: oklch(93% 0.026 78);
-  --on-dark: oklch(95.4% 0.011 76.6);
-  --on-dark-2: oklch(70.2% 0.019 67.5);
+  /* Type: General Sans for display, Inter for text. Platform mono is for
+     code and file names only. */
+  --display: "General Sans", "Inter", system-ui, sans-serif;
+  --text: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Type: Newsreader is the voice, Instrument Sans the interface. Platform
-     mono is for code and file names only. */
-  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-serif: "Newsreader", "Iowan Old Style", Georgia, serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --t-label: 13px;
+  --t-small: 14px;
+  --t-body: 17px;
+  --t-read: clamp(17px, 15.4px + 0.25vw, 19px);
+  --t-lede: clamp(20px, 1.9vw, 26px);
+  --t-h3: clamp(20px, 1.7vw, 24px);
+  --t-h2: clamp(36px, 4.4vw, 64px);
+  --t-title: clamp(56px, 10vw, 184px);
+  --t-name: clamp(48px, 11.4vw, 210px);
 
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1.0625rem;
-  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
-  --display-xs: clamp(1.3rem, 1.2rem + 0.45vw, 1.6rem);
-  --display-sm: clamp(1.6rem, 1.35rem + 1vw, 2.25rem);
-  --display-md: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
-  --display-lg: clamp(2.75rem, 1.6rem + 4.6vw, 5.25rem);
-  --display-xl: clamp(2.6rem, 1.2rem + 5.6vw, 6rem);
-  --tracking-display: -0.03em;
-  --tracking-title: -0.018em;
+  /* An 8px scale, one section rhythm and one page margin. */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s5: 48px;
+  --s6: 64px;
+  --s7: 96px;
+  --s8: 160px;
+  --section: clamp(96px, 11vw, 160px);
+  --margin: clamp(16px, 3.4vw, 48px);
+  --gap: clamp(16px, 1.7vw, 24px);
+  --top: clamp(56px, 9vw, 136px);
+  --measure: 66ch;
 
-  /* One spacing scale. Prose sections sit three paragraph gaps apart. */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: clamp(2.5rem, 2rem + 2vw, 3.25rem);
-  --space-8: clamp(3.5rem, 2.5rem + 4vw, 5.5rem);
-  --section: clamp(5rem, 3rem + 7vw, 9.5rem);
-
-  --shell: 84rem;
-  --measure: 40rem;
-  --gutter: clamp(1rem, 4vw, 4.5rem);
-  --radius-sm: 10px;
-  --radius: 18px;
-  --radius-lg: 28px;
-  --radius-pill: 999px;
-  --shadow-card: 0 1px 2px rgb(15 20 18 / 0.04), 0 18px 40px -28px rgb(15 20 18 / 0.3);
-  --shadow-media: 0 0 0 1px rgb(15 20 18 / 0.07), 0 30px 60px -34px rgb(15 20 18 / 0.55);
-
-  /* Motion, from LOJIK. Spring for state, pop for delight, roll for travel,
-     press for touch. */
-  --ease-spring: linear(0, 0.06, 0.19, 0.341, 0.487, 0.614, 0.718, 0.801, 0.863, 0.908, 0.941, 0.963, 0.978, 0.988, 0.994, 0.998, 1);
-  --dur-spring: 370ms;
-  --ease-pop: linear(0, 0.096, 0.301, 0.527, 0.725, 0.874, 0.972, 1.027, 1.05, 1.054, 1.046, 1.034, 1.022, 1.012, 1.005, 1, 0.998, 0.997, 0.997, 0.998, 1);
-  --dur-pop: 720ms;
-  --ease-roll: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-press: cubic-bezier(0.2, 0.9, 0.25, 1);
-  --press-scale: 0.96;
-  --press-in: 120ms;
+  --radius: 8px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }

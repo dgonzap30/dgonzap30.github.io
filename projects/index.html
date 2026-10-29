@@ -7,7 +7,7 @@
   <meta name="description" content="Everything Diego González Zapiain is building: Intertitle on the App Store, LOJIK, the PAZZ leasing platform, Maestro, Temper and Mimo, plus open-source tools for AI agents.">
   <link rel="canonical" href="https://dgonzap30.github.io/projects/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#f2f4f3">
+  <meta name="theme-color" content="#faf8f5">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="Work — Diego González Zapiain">
   <meta property="og:description" content="Intertitle, LOJIK, PAZZ, Maestro, Temper and Mimo, with screens from current builds.">
@@ -22,8 +22,8 @@
   <meta name="twitter:description" content="Intertitle, LOJIK, PAZZ, Maestro, Temper and Mimo, with screens from current builds.">
   <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
 <!-- chrome:assets:start -->
-  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/GeneralSans-Semibold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -63,131 +63,89 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav-links" role="list">
-        <li><a href="/projects/" aria-current="page">Work</a></li>
-        <li><a href="/writing/">Writing</a></li>
-        <li><a href="/now/">Now</a></li>
-      </ul>
-    </nav>
+  <header class="bar grid wrap">
+    <a class="who" href="/">Diego González Zapiain</a>
+    <p class="clock">Mexico City<span data-clock></span></p>
+    <nav class="nav" aria-label="Primary"><a href="/projects/" aria-current="page">Work</a>, <a href="/writing/">Writing</a>, <a href="/now/">Now</a></nav>
+    <a class="mail" href="mailto:diego.gonzap@wearelojik.com">Email</a>
   </header>
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <header class="page-head shell">
-      <h1>Work</h1>
-      <p class="lede">What I've made and what I lead, shown with screens from current builds. Product screens use demo data.</p>
+    <header class="page-head wrap">
+      <h1 class="title display">Work</h1>
+      <div class="intro grid">
+        <p class="lede">What I've made and what I lead, shown with screens from current builds. Product screens use demo data.</p>
+      </div>
     </header>
 
-    <section class="shell" aria-label="Products">
-<!-- work:all:start -->
-    <div class="work-grid">
-      <article class="tile tile--wide reveal" data-tilt>
-        <div class="plate plate--lojik" style="view-transition-name: media-lojik">
-          <div class="plate-media media--screen">
-            <div class="frame"><span class="frame-bar" aria-hidden="true"><span class="frame-dots"></span><span class="frame-url">wearelojik.com</span></span><img class="screen" src="/assets/media/home/lojik-site.webp" width="1200" height="630" alt="The LOJIK website, asking what's slowing your business down." fetchpriority="high" decoding="async"></div>
-          </div>
-        </div>
-        <div class="tile-body">
-          <h2 class="tile-title"><a href="/work/lojik/">LOJIK</a></h2>
-          <p class="tile-meta meta">Co-Founder &amp; Technical Lead · 2026–</p>
-          <p class="tile-line">The software company I started with my brother Mariano. We build custom apps, connected tools and automation for businesses in the US and Mexico.</p>
-        </div>
-      </article>
-      <article class="tile tile--major reveal" data-tilt>
-        <div class="plate plate--intertitle" style="view-transition-name: media-intertitle">
-          <div class="plate-media media--phones">
-            <img class="phone" src="/assets/media/home/intertitle-tonight.webp" width="440" height="957" alt="Four Intertitle screens: tonight's pick, Discover, a film page and friends' activity." style="--k: -1.5" loading="lazy" decoding="async">
-            <img class="phone" src="/assets/media/home/intertitle-discover.webp" width="440" height="957" alt="" style="--k: -0.5" loading="lazy" decoding="async">
-            <img class="phone" src="/assets/media/home/intertitle-film.webp" width="440" height="957" alt="" style="--k: 0.5" loading="lazy" decoding="async">
-            <img class="phone" src="/assets/media/home/intertitle-friends.webp" width="440" height="957" alt="" style="--k: 1.5" loading="lazy" decoding="async">
-          </div>
-        </div>
-        <div class="tile-body">
-          <h2 class="tile-title"><a href="/demos/intertitle/">Intertitle</a></h2>
-          <p class="tile-meta meta">Maker · <a class="tile-extra" href="https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124" target="_blank" rel="noopener noreferrer">On the App Store <span aria-hidden="true">↗</span></a></p>
-          <p class="tile-line">A film app for iPhone that learns your taste, picks something for tonight and tells you why. Free, no ads, in English and Spanish.</p>
-        </div>
-      </article>
-      <article class="tile tile--minor reveal" data-tilt>
-        <div class="plate plate--pazz" style="view-transition-name: media-pazz">
-          <div class="plate-media media--screen">
-            <div class="frame"><span class="frame-bar" aria-hidden="true"><span class="frame-dots"></span></span><img class="screen" src="/assets/media/home/pazz-quote.webp" width="1200" height="840" alt="A PAZZ lease quote for an Audi A5 Coupé, with illustrative amounts." loading="lazy" decoding="async"></div>
-          </div>
-        </div>
-        <div class="tile-body">
-          <h2 class="tile-title"><a href="/work/pazz/">PAZZ</a></h2>
-          <p class="tile-meta meta">Technical Lead · 2026–</p>
-          <p class="tile-line">A vehicle-leasing marketplace in Mexico. I lead the rebuild of its platform as an agentic AI stack.</p>
-        </div>
-      </article>
-      <article class="tile tile--small reveal" data-tilt>
-        <div class="plate plate--maestro" style="view-transition-name: media-maestro">
-          <div class="plate-media media--screen">
-            <div class="frame"><span class="frame-bar" aria-hidden="true"><span class="frame-dots"></span></span><img class="screen" src="/assets/media/home/maestro-mixer.webp" width="1000" height="637" alt="Maestro's mixer view with three live tracks." loading="lazy" decoding="async"></div>
-          </div>
-        </div>
-        <div class="tile-body">
-          <h2 class="tile-title"><a href="/demos/maestro/">Maestro</a></h2>
-          <p class="tile-meta meta">Private beta</p>
-          <p class="tile-line">A copilot that reads a live music session.</p>
-        </div>
-      </article>
-      <article class="tile tile--small reveal" data-tilt>
-        <div class="plate plate--temper" style="view-transition-name: media-temper">
-          <div class="plate-media media--phones">
-            <img class="phone" src="/assets/media/home/temper-today.webp" width="320" height="696" alt="Two Temper screens: today's read and the progress trend." style="--k: -0.5" loading="lazy" decoding="async">
-            <img class="phone" src="/assets/media/home/temper-progress.webp" width="320" height="696" alt="" style="--k: 0.5" loading="lazy" decoding="async">
-          </div>
-        </div>
-        <div class="tile-body">
-          <h2 class="tile-title"><a href="/demos/temper/">Temper</a></h2>
-          <p class="tile-meta meta">In development</p>
-          <p class="tile-line">Recovery, food and training, planned into a week you can follow.</p>
-        </div>
-      </article>
-      <article class="tile tile--small reveal" data-tilt>
-        <div class="plate plate--mimo" style="view-transition-name: media-mimo">
-          <div class="plate-media media--phones">
-            <img class="phone" src="/assets/media/home/mimo-home.webp" width="320" height="696" alt="Two Mimo screens: a saved moment and a photo being imported." style="--k: -0.5" loading="lazy" decoding="async">
-            <img class="phone" src="/assets/media/home/mimo-import.webp" width="320" height="696" alt="" style="--k: 0.5" loading="lazy" decoding="async">
-          </div>
-        </div>
-        <div class="tile-body">
-          <h2 class="tile-title"><a href="/demos/mimo/">Mimo</a></h2>
-          <p class="tile-meta meta">In development</p>
-          <p class="tile-line">Everyday photos, turned into small keepsakes.</p>
-        </div>
-      </article>
-    </div>
-<!-- work:all:end -->
+    <section class="block wrap" aria-label="Products">
+<!-- work:index:start -->
+      <div class="head grid label"><p class="label">Products (6)</p><span>Role</span><span>Open</span></div>
+      <ol class="index" role="list">
+        <li class="row grid" data-preview="/assets/media/home/lojik-site.webp" data-kind="screen">
+          <img class="row-img" src="/assets/media/home/lojik-site.webp" width="1600" height="1000" alt="" loading="lazy" decoding="async">
+          <h2 class="row-t display"><a class="row-link" href="/work/lojik/"><span class="row-name" style="view-transition-name: title-lojik">LOJIK</span></a><sup aria-hidden="true">01</sup></h2>
+          <p class="row-r"><b>Co-Founder &amp; Technical Lead</b> <span>The software company I started with my brother Mariano. We build custom apps, connected tools and automation for businesses in the US and Mexico.</span></p>
+          <a class="row-go" href="https://wearelojik.com/" target="_blank" rel="noopener">wearelojik.com <span aria-hidden="true">↗</span></a>
+        </li>
+        <li class="row grid" data-preview="/assets/media/home/intertitle-tonight.webp" data-kind="phone">
+          <img class="row-img phone" src="/assets/media/home/intertitle-tonight.webp" width="440" height="957" alt="" loading="lazy" decoding="async">
+          <h2 class="row-t display"><a class="row-link" href="/demos/intertitle/"><span class="row-name" style="view-transition-name: title-intertitle">Intertitle</span></a><sup aria-hidden="true">02</sup></h2>
+          <p class="row-r"><b>Maker</b> <span>A film app for iPhone that learns your taste, picks something for tonight and tells you why. Free, no ads, in English and Spanish.</span></p>
+          <a class="row-go" href="https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124" target="_blank" rel="noopener noreferrer">App Store <span aria-hidden="true">↗</span></a>
+        </li>
+        <li class="row grid" data-preview="/assets/media/home/pazz-quote.webp" data-kind="screen">
+          <img class="row-img" src="/assets/media/home/pazz-quote.webp" width="1200" height="840" alt="" loading="lazy" decoding="async">
+          <h2 class="row-t display"><a class="row-link" href="/work/pazz/"><span class="row-name" style="view-transition-name: title-pazz">PAZZ</span></a><sup aria-hidden="true">03</sup></h2>
+          <p class="row-r"><b>Technical Lead</b> <span>A vehicle-leasing marketplace in Mexico. I lead the rebuild of its platform as an agentic AI stack.</span></p>
+          <span class="row-go" aria-hidden="true">Case study →</span>
+        </li>
+        <li class="row grid" data-preview="/assets/media/home/maestro-mixer.webp" data-kind="screen">
+          <img class="row-img" src="/assets/media/home/maestro-mixer.webp" width="1000" height="637" alt="" loading="lazy" decoding="async">
+          <h2 class="row-t display"><a class="row-link" href="/demos/maestro/"><span class="row-name" style="view-transition-name: title-maestro">Maestro</span></a><sup aria-hidden="true">04</sup></h2>
+          <p class="row-r"><b>Private beta</b> <span>A copilot that reads a live music session.</span></p>
+          <span class="row-go" aria-hidden="true">Demo →</span>
+        </li>
+        <li class="row grid" data-preview="/assets/media/home/temper-today.webp" data-kind="phone">
+          <img class="row-img phone" src="/assets/media/home/temper-today.webp" width="320" height="696" alt="" loading="lazy" decoding="async">
+          <h2 class="row-t display"><a class="row-link" href="/demos/temper/"><span class="row-name" style="view-transition-name: title-temper">Temper</span></a><sup aria-hidden="true">05</sup></h2>
+          <p class="row-r"><b>In development</b> <span>Recovery, food and training, planned into a week you can follow.</span></p>
+          <span class="row-go" aria-hidden="true">Demo →</span>
+        </li>
+        <li class="row grid" data-preview="/assets/media/home/mimo-home.webp" data-kind="phone">
+          <img class="row-img phone" src="/assets/media/home/mimo-home.webp" width="320" height="696" alt="" loading="lazy" decoding="async">
+          <h2 class="row-t display"><a class="row-link" href="/demos/mimo/"><span class="row-name" style="view-transition-name: title-mimo">Mimo</span></a><sup aria-hidden="true">06</sup></h2>
+          <p class="row-r"><b>In development</b> <span>Everyday photos, turned into small keepsakes.</span></p>
+          <span class="row-go" aria-hidden="true">Demo →</span>
+        </li>
+      </ol>
+      <div class="preview" aria-hidden="true"><img src="/assets/media/home/lojik-site.webp" alt="" loading="lazy" decoding="async"></div>
+<!-- work:index:end -->
     </section>
 
-    <section class="section shell" aria-labelledby="oss-title">
-      <div class="section-head"><h2 class="section-title" id="oss-title">Open source</h2><a class="section-link" href="https://github.com/dgonzap30" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+    <section class="block wrap" aria-labelledby="oss-title">
 <!-- work:open-source:start -->
-      <ul class="rows rows--compact" role="list">
-        <li class="row"><a class="row-link" href="https://github.com/dgonzap30/claims-mcp" target="_blank" rel="noopener noreferrer"><span class="row-title">claims-mcp</span><span class="row-meta meta">GitHub <span aria-hidden="true">↗</span></span><span class="row-line">Claims memory for AI agents, as an MCP server and a CLI.</span></a></li>
-        <li class="row"><a class="row-link" href="https://github.com/dgonzap30/agent-workflows-kit" target="_blank" rel="noopener noreferrer"><span class="row-title">agent-workflows-kit</span><span class="row-meta meta">GitHub <span aria-hidden="true">↗</span></span><span class="row-line">A portable Claude Code and Codex setup.</span></a></li>
-      </ul>
+      <div class="head grid label"><h2 class="label" id="oss-title">Open source (2)</h2><span></span><a href="https://github.com/dgonzap30" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+      <ol class="table" role="list">
+        <li><a class="grid" href="https://github.com/dgonzap30/claims-mcp" target="_blank" rel="noopener noreferrer"><span class="n label" aria-hidden="true">↗</span><h3 class="h3">claims-mcp</h3><span class="small">Claims memory for AI agents, as an MCP server and a CLI.</span><span class="go" aria-hidden="true">↗</span></a></li>
+        <li><a class="grid" href="https://github.com/dgonzap30/agent-workflows-kit" target="_blank" rel="noopener noreferrer"><span class="n label" aria-hidden="true">↗</span><h3 class="h3">agent-workflows-kit</h3><span class="small">A portable Claude Code and Codex setup.</span><span class="go" aria-hidden="true">↗</span></a></li>
+      </ol>
 <!-- work:open-source:end -->
     </section>
   </main>
 
 <!-- chrome:footer:start -->
-  <footer class="site-footer">
-    <div class="footer-inner shell">
-      <p class="footer-name"><strong>Diego González Zapiain</strong> · Founder-engineer, Mexico City</p>
-      <ul class="footer-links" role="list">
-        <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
-        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
-        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
-        <li><a href="/links/">Links</a></li>
-      </ul>
-    </div>
+  <footer class="foot grid wrap">
+    <p class="foot-name">Diego González Zapiain · Mexico City</p>
+    <p class="foot-lang">English and Spanish</p>
+    <ul class="foot-links" role="list">
+      <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
+      <li><a href="/links/">Links</a></li>
+    </ul>
   </footer>
 <!-- chrome:footer:end -->
 </body>
