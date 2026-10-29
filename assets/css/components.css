@@ -182,6 +182,8 @@
   content: "";
   position: absolute;
   inset: 0;
+  /* Scroll animations create stacking contexts on the row’s content. */
+  z-index: 1;
 }
 
 .row-link:focus-visible {
@@ -246,7 +248,7 @@
 
 a.row-go {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   color: var(--ink);
 }
 
