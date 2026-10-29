@@ -119,16 +119,17 @@
       {
         "id": "work-study",
         "title": "Operations workspace",
-        "caption": "An interface study for asking a question with operational context. Example data; this is a design preview, not a deployed product screen.",
+        "caption": "A detail of the October Work composer study, shown with example data. This is an interface proposal, not a deployed product.",
         "mediaType": "image",
         "layout": "desktop",
         "src": "/assets/media/demos/pazz/2026-10-28-work-study.webp",
-        "width": 1440,
-        "height": 1000,
+        "width": 1180,
+        "height": 540,
         "capturedAt": "2026-10-28",
         "syntheticLabel": "Interface study and synthetic demo data",
-        "alt": "PAZZ operations workspace interface study with a question composer and example user",
-        "sourceSha256": "75d7b0d08fa818e4c6c7b15c99ded245867304f5b9208fde7bede4f47e3fe11e"
+        "alt": "PAZZ Work composer interface study with an empty example question field",
+        "sourceSha256": "e44bbb5bf65e67c49de69ade098293723204988f0768f026aed31e5655984ce5",
+        "assetSha256": "d7e4bd6217b6c6aa1c3080cd8e308c1a013a76d80dffa21c713b82e55b333c1d"
       },
       {
         "id": "quote-composer",
