@@ -7,7 +7,7 @@
   <meta name="description" content="Diego González Zapiain co-founded LOJIK with his brother Mariano. As Co-Founder &amp; Technical Lead he designs how the company finds where a business workflow breaks and builds the system that fixes it.">
   <link rel="canonical" href="https://dgonzap30.github.io/work/lojik/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#f2f4f3">
+  <meta name="theme-color" content="#faf8f5">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="LOJIK: building an accountable software company">
   <meta property="og:description" content="Co-Founder &amp; Technical Lead at LOJIK: the delivery model, the decisions behind it, and what it does not claim.">
@@ -22,8 +22,8 @@
   <meta name="twitter:description" content="Co-Founder &amp; Technical Lead at LOJIK: the delivery model, the decisions behind it, and what it does not claim.">
   <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/lojik.png">
 <!-- chrome:assets:start -->
-  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/GeneralSans-Semibold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -61,36 +61,34 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav-links" role="list">
-        <li><a href="/projects/" aria-current="page">Work</a></li>
-        <li><a href="/writing/">Writing</a></li>
-        <li><a href="/now/">Now</a></li>
-      </ul>
-    </nav>
+  <header class="bar grid wrap">
+    <a class="who" href="/">Diego González Zapiain</a>
+    <p class="clock">Mexico City<span data-clock></span></p>
+    <nav class="nav" aria-label="Primary"><a href="/projects/" aria-current="page">Work</a>, <a href="/writing/">Writing</a>, <a href="/now/">Now</a></nav>
+    <a class="mail" href="mailto:diego.gonzap@wearelojik.com">Email</a>
   </header>
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <header class="page-head shell">
-      <p class="page-back meta"><a href="/projects/">Work</a> /</p>
-      <h1>LOJIK</h1>
-      <p class="lede">The software company I started with my brother Mariano. We build custom apps, connected tools and automation for businesses in the US and Mexico, starting from the one workflow that slows the business down.</p>
-      <p class="page-meta meta">Co-Founder &amp; Technical Lead · 2026–present · <a href="https://wearelojik.com/" target="_blank" rel="noopener">wearelojik.com <span aria-hidden="true">↗</span></a></p>
+    <header class="page-head wrap">
+      <p class="crumb label"><a href="/projects/">Work</a> /</p>
+      <h1 class="title display"><span style="view-transition-name: title-lojik">LOJIK</span></h1>
+      <div class="intro grid">
+        <p class="lede">The software company I started with my brother Mariano. We build custom apps, connected tools and automation for businesses in the US and Mexico, starting from the one workflow that slows the business down.</p>
+        <dl class="facts">
+          <div><dt>Role</dt><dd>Co-Founder &amp; Technical Lead</dd></div>
+          <div><dt>Since</dt><dd>2026</dd></div>
+          <div><dt>Site</dt><dd><a href="https://wearelojik.com/" target="_blank" rel="noopener">wearelojik.com <span aria-hidden="true">↗</span></a></dd></div>
+        </dl>
+      </div>
     </header>
 
-    <figure class="case-hero shell">
-      <div class="plate plate--lojik case-hero-plate" style="view-transition-name: media-lojik">
-        <div class="plate-media media--screen">
-          <div class="frame"><span class="frame-bar" aria-hidden="true"><span class="frame-dots"></span><span class="frame-url">wearelojik.com</span></span><img class="screen" src="/assets/media/home/lojik-site.webp" width="1200" height="630" alt="The LOJIK public website, asking what's slowing your business down." fetchpriority="high"></div>
-        </div>
-      </div>
-      <figcaption class="meta stage-scope">The public website. Private internal systems are not shown.</figcaption>
+    <figure class="case-hero wrap">
+      <img src="/assets/media/home/lojik-site.webp" width="1200" height="630" alt="The LOJIK public website, asking what's slowing your business down." fetchpriority="high">
+      <figcaption>The public website. Private internal systems are not shown.</figcaption>
     </figure>
 
-    <div class="shell">
+    <div class="block wrap">
       <article class="prose case-body">
         <section class="prose-section" id="problem">
           <h2>Work that breaks between tools</h2>
@@ -113,7 +111,7 @@
 
         <figure class="figure">
           <img src="/assets/graphics/lojik-evidence.svg" width="720" height="460" alt="An evidence ladder from source facts to local, hosted, runtime and production proof, stopping short of any claimed commercial outcome." loading="lazy">
-          <figcaption class="meta">The evidence ladder: each level proves a different claim, and technical evidence never becomes commercial proof by itself.</figcaption>
+          <figcaption>The evidence ladder: each level proves a different claim, and technical evidence never becomes commercial proof by itself.</figcaption>
         </figure>
 
         <section class="prose-section" id="decisions">
@@ -144,31 +142,30 @@
     </div>
 
 <!-- work:more:start -->
-    <nav class="more-work shell" aria-labelledby="more-work-title">
-      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work <span aria-hidden="true">→</span></a></div>
-      <ul class="explorer-picker" role="list" aria-label="More work">
-        <li><a href="/demos/intertitle/"><span class="picker-thumb picker-thumb--phones plate--intertitle"><img src="/assets/media/home/intertitle-tonight.webp" width="440" height="957" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Intertitle</span><span class="picker-line">Film app for iPhone · On the App Store</span></span></a></li>
-        <li><a href="/work/pazz/"><span class="picker-thumb picker-thumb--screen plate--pazz"><img src="/assets/media/home/pazz-quote.webp" width="1200" height="840" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">PAZZ</span><span class="picker-line">Vehicle leasing · Technical Lead</span></span></a></li>
-        <li><a href="/demos/maestro/"><span class="picker-thumb picker-thumb--screen plate--maestro"><img src="/assets/media/home/maestro-mixer.webp" width="1000" height="637" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Maestro</span><span class="picker-line">Music production · Private beta</span></span></a></li>
-        <li><a href="/demos/temper/"><span class="picker-thumb picker-thumb--phones plate--temper"><img src="/assets/media/home/temper-today.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Temper</span><span class="picker-line">Health &amp; training · In development</span></span></a></li>
-        <li><a href="/demos/mimo/"><span class="picker-thumb picker-thumb--phones plate--mimo"><img src="/assets/media/home/mimo-home.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Mimo</span><span class="picker-line">Shared moments · In development</span></span></a></li>
-      </ul>
+    <nav class="more wrap" aria-labelledby="more-work-title">
+      <div class="head grid label"><h2 class="label" id="more-work-title">More work</h2><span></span><a href="/projects/">All work →</a></div>
+      <ol class="table" role="list">
+        <li><a class="grid" href="/demos/intertitle/"><span class="n label" aria-hidden="true">02</span><h3 class="h3">Intertitle</h3><span class="small">Film app for iPhone · On the App Store</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/work/pazz/"><span class="n label" aria-hidden="true">03</span><h3 class="h3">PAZZ</h3><span class="small">Vehicle leasing · Technical Lead</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/maestro/"><span class="n label" aria-hidden="true">04</span><h3 class="h3">Maestro</h3><span class="small">Music production · Private beta</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/temper/"><span class="n label" aria-hidden="true">05</span><h3 class="h3">Temper</h3><span class="small">Health &amp; training · In development</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/mimo/"><span class="n label" aria-hidden="true">06</span><h3 class="h3">Mimo</h3><span class="small">Shared moments · In development</span><span class="go" aria-hidden="true">→</span></a></li>
+      </ol>
     </nav>
 <!-- work:more:end -->
   </main>
 
 <!-- chrome:footer:start -->
-  <footer class="site-footer">
-    <div class="footer-inner shell">
-      <p class="footer-name"><strong>Diego González Zapiain</strong> · Founder-engineer, Mexico City</p>
-      <ul class="footer-links" role="list">
-        <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
-        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
-        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
-        <li><a href="/links/">Links</a></li>
-      </ul>
-    </div>
+  <footer class="foot grid wrap">
+    <p class="foot-name">Diego González Zapiain · Mexico City</p>
+    <p class="foot-lang">English and Spanish</p>
+    <ul class="foot-links" role="list">
+      <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
+      <li><a href="/links/">Links</a></li>
+    </ul>
   </footer>
 <!-- chrome:footer:end -->
 </body>

@@ -7,7 +7,7 @@
   <meta name="description" content="Seven practices for running a fleet of AI coding agents, each derived from a working artifact rather than written as advice.">
   <link rel="canonical" href="https://dgonzap30.github.io/workflow/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#f2f4f3">
+  <meta name="theme-color" content="#faf8f5">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="The workflow — Diego González Zapiain">
   <meta property="og:description" content="Seven practices for running a fleet of AI coding agents, each derived from a working artifact rather than written as advice.">
@@ -22,8 +22,8 @@
   <meta name="twitter:description" content="Seven practices for running a fleet of AI coding agents, each derived from a working artifact rather than written as advice.">
   <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
 <!-- chrome:assets:start -->
-  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/GeneralSans-Semibold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -106,51 +106,52 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav-links" role="list">
-        <li><a href="/projects/">Work</a></li>
-        <li><a href="/writing/" aria-current="page">Writing</a></li>
-        <li><a href="/now/">Now</a></li>
-      </ul>
-    </nav>
+  <header class="bar grid wrap">
+    <a class="who" href="/">Diego González Zapiain</a>
+    <p class="clock">Mexico City<span data-clock></span></p>
+    <nav class="nav" aria-label="Primary"><a href="/projects/">Work</a>, <a href="/writing/" aria-current="page">Writing</a>, <a href="/now/">Now</a></nav>
+    <a class="mail" href="mailto:diego.gonzap@wearelojik.com">Email</a>
   </header>
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <header class="page-head shell">
-    <p class="page-back meta"><a href="/writing/">Writing</a> /</p>
-      <h1>Seven practices, each derived from something that runs.</h1>
-      <p class="lede">Seven practices for running a fleet of AI coding agents, each derived from a working artifact rather than written as advice. Every page names the file it comes from and, where it counts something, the command that recounts it.</p>
-      <p class="page-meta meta">7 practices · Last verified 2026-09-11</p>
+    <header class="page-head wrap">
+    <p class="crumb label"><a href="/writing/">Writing</a> /</p>
+      <h1 class="title title--sentence display">Seven practices, each derived from something that runs.</h1>
+      <div class="intro grid">
+        <p class="lede">Seven practices for running a fleet of AI coding agents, each derived from a working artifact rather than written as advice. Every page names the file it comes from and, where it counts something, the command that recounts it.</p>
+        <dl class="facts">
+          <div><dt>Practices</dt><dd>7</dd></div>
+          <div><dt>Last verified</dt><dd><span class="verified">2026-09-11</span></dd></div>
+        </dl>
+      </div>
     </header>
 
-    <div class="shell">
-      <ol class="series" role="list">
-        <li class="series-item"><a class="series-link" href="/workflow/operating-manual/"><span class="series-num" aria-hidden="true">01</span><span class="series-title">The operating manual</span><span class="series-line">How a layered set of CLAUDE.md and AGENTS.md files gives every agent the rules for the directory it is standing in.</span></a></li>
-        <li class="series-item"><a class="series-link" href="/workflow/worktrees/"><span class="series-num" aria-hidden="true">02</span><span class="series-title">Worktrees</span><span class="series-line">Why every branch gets its own working tree, where they are allowed to live, and the two-line helper that enforces it.</span></a></li>
-        <li class="series-item"><a class="series-link" href="/workflow/the-fleet/"><span class="series-num" aria-hidden="true">03</span><span class="series-title">The fleet</span><span class="series-line">How a 132-line shell script keeps parallel agent sessions findable instead of scattered across terminal tabs.</span></a></li>
-        <li class="series-item"><a class="series-link" href="/workflow/session-catalog/"><span class="series-num" aria-hidden="true">04</span><span class="series-title">The session catalog</span><span class="series-line">A local Swift daemon that indexes agent transcripts into a read-only catalog and serves six search tools back to the agents that wrote them.</span></a></li>
-        <li class="series-item"><a class="series-link" href="/workflow/verification/"><span class="series-num" aria-hidden="true">05</span><span class="series-title">Verification</span><span class="series-line">An adversarial review layer that attacks findings on four fixed lenses and fails closed when it cannot reach a verdict.</span></a></li>
-        <li class="series-item"><a class="series-link" href="/workflow/eval-gated-skills/"><span class="series-num" aria-hidden="true">06</span><span class="series-title">Eval-gated skills</span><span class="series-line">A loop that edits an agent skill, measures the change against a held-out eval set, and refuses to promote it without a statistical margin and an independent verdict.</span></a></li>
-        <li class="series-item"><a class="series-link" href="/workflow/attention-ledger/"><span class="series-num" aria-hidden="true">07</span><span class="series-title">The attention ledger</span><span class="series-line">One file defines every metric, three reporters read it, and the hardest work was removing the automation from its own numbers.</span></a></li>
+    <section class="block wrap" aria-labelledby="series-title">
+      <div class="head grid label"><h2 class="label" id="series-title">The series (7)</h2><span></span><span>Read</span></div>
+      <ol class="table" role="list">
+        <li><a class="grid" href="/workflow/operating-manual/"><span class="n label" aria-hidden="true">01</span><span class="h3">The operating manual</span><span class="small">How layered CLAUDE.md and AGENTS.md files give every agent the rules for the directory it is standing in.</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/workflow/worktrees/"><span class="n label" aria-hidden="true">02</span><span class="h3">Worktrees</span><span class="small">Why every branch gets its own working tree, and the two-line helper that enforces it.</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/workflow/the-fleet/"><span class="n label" aria-hidden="true">03</span><span class="h3">The fleet</span><span class="small">How a 132-line shell script keeps parallel agent sessions findable.</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/workflow/session-catalog/"><span class="n label" aria-hidden="true">04</span><span class="h3">The session catalog</span><span class="small">A local Swift daemon that indexes agent transcripts and serves search back to the agents.</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/workflow/verification/"><span class="n label" aria-hidden="true">05</span><span class="h3">Verification</span><span class="small">An adversarial review layer that fails closed when it cannot reach a verdict.</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/workflow/eval-gated-skills/"><span class="n label" aria-hidden="true">06</span><span class="h3">Eval-gated skills</span><span class="small">Skill edits are promoted only past a held-out eval and an independent verdict.</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/workflow/attention-ledger/"><span class="n label" aria-hidden="true">07</span><span class="h3">The attention ledger</span><span class="small">One file defines every metric, and the automation is removed from its own numbers.</span><span class="go" aria-hidden="true">→</span></a></li>
       </ol>
-    </div>
+    </section>
   </main>
 
 <!-- chrome:footer:start -->
-  <footer class="site-footer">
-    <div class="footer-inner shell">
-      <p class="footer-name"><strong>Diego González Zapiain</strong> · Founder-engineer, Mexico City</p>
-      <ul class="footer-links" role="list">
-        <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
-        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
-        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
-        <li><a href="/links/">Links</a></li>
-      </ul>
-    </div>
+  <footer class="foot grid wrap">
+    <p class="foot-name">Diego González Zapiain · Mexico City</p>
+    <p class="foot-lang">English and Spanish</p>
+    <ul class="foot-links" role="list">
+      <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
+      <li><a href="/links/">Links</a></li>
+    </ul>
   </footer>
 <!-- chrome:footer:end -->
 </body>

@@ -7,7 +7,7 @@
   <meta name="description" content="Screens from Intertitle, the free iPhone app by Diego González Zapiain that learns your film taste, picks something for tonight and explains why. Captured from a development preview with fixture data.">
   <link rel="canonical" href="https://dgonzap30.github.io/demos/intertitle/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#f2f4f3">
+  <meta name="theme-color" content="#faf8f5">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="Intertitle, a film app for iPhone — Diego González Zapiain">
   <meta property="og:description" content="Screens from Intertitle, the free iPhone app by Diego González Zapiain that learns your film taste, picks something for tonight and explains why. Captured from a development preview with fixture data.">
@@ -22,8 +22,8 @@
   <meta name="twitter:description" content="Screens from Intertitle, the free iPhone app by Diego González Zapiain that learns your film taste, picks something for tonight and explains why. Captured from a development preview with fixture data.">
   <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
 <!-- chrome:assets:start -->
-  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/GeneralSans-Semibold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -76,35 +76,33 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav-links" role="list">
-        <li><a href="/projects/" aria-current="page">Work</a></li>
-        <li><a href="/writing/">Writing</a></li>
-        <li><a href="/now/">Now</a></li>
-      </ul>
-    </nav>
+  <header class="bar grid wrap">
+    <a class="who" href="/">Diego González Zapiain</a>
+    <p class="clock">Mexico City<span data-clock></span></p>
+    <nav class="nav" aria-label="Primary"><a href="/projects/" aria-current="page">Work</a>, <a href="/writing/">Writing</a>, <a href="/now/">Now</a></nav>
+    <a class="mail" href="mailto:diego.gonzap@wearelojik.com">Email</a>
   </header>
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <header class="page-head page-head--product shell">
-    <p class="page-back meta"><a href="/projects/">Work</a> /</p>
-      <div class="page-head-grid">
-        <div class="page-head-main">
-          <h1>Intertitle</h1>
-          <p class="lede">Find a film for tonight, explore your taste, and keep the conversation going.</p>
-        </div>
-        <div class="page-head-aside">
-          <p class="page-meta meta">Film &amp; taste · On the App Store</p>
+    <header class="page-head wrap">
+    <p class="crumb label"><a href="/projects/">Work</a> /</p>
+      <h1 class="title display"><span style="view-transition-name: title-intertitle">Intertitle</span></h1>
+      <div class="intro grid">
+        <p class="lede">Find a film for tonight, explore your taste, and keep the conversation going.</p>
+        <div class="aside">
+          <dl class="facts">
+            <div><dt>Product</dt><dd>Film &amp; taste</dd></div>
+            <div><dt>Status</dt><dd>On the App Store</dd></div>
+          </dl>
           <div class="stage-actions" data-way-in="app-store"><a class="button" href="https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124" target="_blank" rel="noopener noreferrer">Get Intertitle on the App Store <span aria-hidden="true">↗</span></a></div>
         </div>
       </div>
     </header>
 
-    <section class="product-gallery shell" aria-label="Intertitle screens">
-      <div class="stage plate--intertitle" data-explorer-stage data-layout="portrait" style="view-transition-name: media-intertitle">
+    <section class="gallery" aria-labelledby="gallery-title">
+      <div class="head grid label"><h2 class="label" id="gallery-title">Screens (7)</h2><span></span><span>2026-09-08</span></div>
+      <div class="stage" data-explorer-stage data-layout="portrait">
         <div class="stage-track" role="region" aria-label="Intertitle screens" tabindex="0">
           <figure class="stage-chapter" id="chapter-tonight" data-chapter="tonight">
             <a class="stage-media" href="/assets/media/demos/intertitle/01-tonight.webp"><img src="/assets/media/demos/intertitle/01-tonight.webp" width="1206" height="2622" alt="Intertitle Tonight tab showing Paris, Texas as tonight's pick with the Refine tonight sheet open" fetchpriority="high" decoding="async"></a>
@@ -136,12 +134,13 @@
           </figure>
         </div>
         <div class="stage-controls" hidden>
-          <span class="stage-count meta" aria-live="polite"></span>
+          <span class="stage-count" aria-live="polite"></span>
           <button type="button" data-stage-prev aria-label="Previous screen">←</button>
           <button type="button" data-stage-next aria-label="Next screen">→</button>
         </div>
       </div>
-      <p class="stage-scope meta">Seven current stills from a source-owned presentation fixture, captured in an isolated development build. Every film, person, rating, match percentile and taste explanation is fixture data — this demonstrates presentation, not a live recommender or real taste inference. A development preview, not the public App Store release. Fixture demo data, captured 2026-09-08.</p>
+      <div class="stage-notes grid wrap">
+        <p class="stage-scope">Seven current stills from a source-owned presentation fixture, captured in an isolated development build. Every film, person, rating, match percentile and taste explanation is fixture data — this demonstrates presentation, not a live recommender or real taste inference. A development preview, not the public App Store release. Fixture demo data, captured 2026-09-08.</p>
       <details class="stage-disclosure">
         <summary>What's working, and what's still in progress</summary>
         <p>Recommendation constraints and retry-safe conversation state make the choice easier to revise.</p>
@@ -150,32 +149,32 @@
           <div><h2>Still in progress</h2><ul><li>No live recommendation model — every match percentile and &quot;why this one&quot; explanation comes from the fixture, not real taste inference</li><li>Reely makes no live model call in this build; external services are hard-disabled under the fixture</li><li>The people and friends shown are fixture profiles, not a real community</li><li>A development preview, not the public App Store release</li></ul></div>
         </div>
       </details>
+      </div>
     </section>
 
-    <nav class="more-work shell" aria-labelledby="more-work-title">
-      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work <span aria-hidden="true">→</span></a></div>
-      <ul class="explorer-picker" role="list" aria-label="More work">
-        <li><a href="/work/lojik/"><span class="picker-thumb picker-thumb--screen plate--lojik"><img src="/assets/media/home/lojik-site.webp" width="1200" height="630" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">LOJIK</span><span class="picker-line">Custom apps and automation for businesses</span></span></a></li>
-        <li><a href="/work/pazz/"><span class="picker-thumb picker-thumb--screen plate--pazz"><img src="/assets/media/home/pazz-quote.webp" width="1200" height="840" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">PAZZ</span><span class="picker-line">Vehicle leasing · Technical Lead</span></span></a></li>
-        <li><a href="/demos/maestro/"><span class="picker-thumb picker-thumb--screen plate--maestro"><img src="/assets/media/home/maestro-mixer.webp" width="1000" height="637" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Maestro</span><span class="picker-line">Music production · Private beta</span></span></a></li>
-        <li><a href="/demos/temper/"><span class="picker-thumb picker-thumb--phones plate--temper"><img src="/assets/media/home/temper-today.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Temper</span><span class="picker-line">Health &amp; training · In development</span></span></a></li>
-        <li><a href="/demos/mimo/"><span class="picker-thumb picker-thumb--phones plate--mimo"><img src="/assets/media/home/mimo-home.webp" width="320" height="696" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">Mimo</span><span class="picker-line">Shared moments · In development</span></span></a></li>
-      </ul>
+    <nav class="more wrap" aria-labelledby="more-work-title">
+      <div class="head grid label"><h2 class="label" id="more-work-title">More work</h2><span></span><a href="/projects/">All work →</a></div>
+      <ol class="table" role="list">
+        <li><a class="grid" href="/work/lojik/"><span class="n label" aria-hidden="true">01</span><h3 class="h3">LOJIK</h3><span class="small">Custom apps and automation for businesses</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/work/pazz/"><span class="n label" aria-hidden="true">03</span><h3 class="h3">PAZZ</h3><span class="small">Vehicle leasing · Technical Lead</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/maestro/"><span class="n label" aria-hidden="true">04</span><h3 class="h3">Maestro</h3><span class="small">Music production · Private beta</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/temper/"><span class="n label" aria-hidden="true">05</span><h3 class="h3">Temper</h3><span class="small">Health &amp; training · In development</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/mimo/"><span class="n label" aria-hidden="true">06</span><h3 class="h3">Mimo</h3><span class="small">Shared moments · In development</span><span class="go" aria-hidden="true">→</span></a></li>
+      </ol>
     </nav>
   </main>
 
 <!-- chrome:footer:start -->
-  <footer class="site-footer">
-    <div class="footer-inner shell">
-      <p class="footer-name"><strong>Diego González Zapiain</strong> · Founder-engineer, Mexico City</p>
-      <ul class="footer-links" role="list">
-        <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
-        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
-        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
-        <li><a href="/links/">Links</a></li>
-      </ul>
-    </div>
+  <footer class="foot grid wrap">
+    <p class="foot-name">Diego González Zapiain · Mexico City</p>
+    <p class="foot-lang">English and Spanish</p>
+    <ul class="foot-links" role="list">
+      <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
+      <li><a href="/links/">Links</a></li>
+    </ul>
   </footer>
 <!-- chrome:footer:end -->
 </body>

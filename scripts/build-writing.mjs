@@ -1,6 +1,6 @@
-// Generates /writing/, one page per post, /feed.xml, and the writing rows on
-// the home page, from assets/data/writing.json (plus the workflow series from
-// assets/data/workflow.json).
+// Generates /writing/, one page per post, /feed.xml, and the newest posts on
+// the home page (folded into "How I work"), from assets/data/writing.json,
+// plus the workflow series from assets/data/workflow.json.
 //
 // Posts here are the canonical versions; LinkedIn and X link back to them.
 // Run `node scripts/build-sitemap.mjs` afterwards so the sitemap lists new posts.
@@ -8,14 +8,13 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { FEED_TITLE, NAME, ORIGIN, PERSON_ID, WEBSITE_ID, backLink, chrome, escape, renderSection, renderSeries } from './site-chrome.mjs';
+import { FEED_TITLE, NAME, ORIGIN, PERSON_ID, WEBSITE_ID, backLink, chrome, escape, renderSection, renderSeries, sectionHead, tableRow } from './site-chrome.mjs';
 import { injectBlock } from './render-work.mjs';
 
 const BLOG_ID = `${ORIGIN}/writing/#blog`;
 const FEED_DESCRIPTION =
   'Long posts on building software with a fleet of AI agents, the products that come out of it, and taste.';
 const AUTHOR = { '@type': 'Person', '@id': PERSON_ID, name: NAME, url: `${ORIGIN}/` };
-const SERIES_LINE = 'Seven practices for running a fleet of AI coding agents, each taken from something that runs.';
 
 const longDate = (iso) =>
   new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', {
@@ -27,12 +26,18 @@ const longDate = (iso) =>
 
 const time = (iso) => `<time datetime="${iso}">${escape(longDate(iso))}</time>`;
 
+const shortDate = (iso) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+
 function postRow(post) {
-  return `        <li class="row"><a class="row-link" href="/writing/${post.slug}/"><span class="row-title">${escape(post.headline)}</span><span class="row-meta meta">${time(post.datePublished)}</span><span class="row-line">${escape(post.description)}</span></a></li>`;
+  return tableRow({ n: escape(shortDate(post.datePublished)), title: post.headline, line: escape(post.description), href: `/writing/${post.slug}/` });
 }
 
-function seriesRow(count) {
-  return `        <li class="row"><a class="row-link" href="/workflow/"><span class="row-title">The workflow</span><span class="row-meta meta">Series · ${count} parts</span><span class="row-line">${SERIES_LINE}</span></a></li>`;
+function postsTable(posts, label, indent = '      ') {
+  return `${indent}${sectionHead(`<h2 class="label" id="posts-title">${label} (${posts.length})</h2>`, '', '<a href="/writing/">All writing →</a>')}
+${indent}<ol class="table" role="list">
+${posts.map((post) => `${indent}  ${postRow(post)}`).join('\n')}
+${indent}</ol>`;
 }
 
 function renderPost(post) {
@@ -62,17 +67,20 @@ function renderPost(post) {
   });
   const updated = post.dateModified !== post.datePublished ? ` · Updated ${time(post.dateModified)}` : '';
   return `${head}
-    <div class="read-progress" aria-hidden="true"></div>
-    <header class="page-head page-head--article col">
+    <header class="page-head wrap">
+      <div class="col">
 ${backLink('/writing/', 'Writing')}
-      <h1>${escape(post.headline)}</h1>
-      <p class="lede">${post.lede}</p>
-      <p class="page-meta meta">${time(post.datePublished)}${updated}</p>
+        <h1 class="h2">${escape(post.headline)}</h1>
+        <p class="lede">${post.lede}</p>
+        <p class="meta">${time(post.datePublished)}${updated}</p>
+      </div>
     </header>
 
-    <article class="prose col">
+    <div class="wrap">
+      <article class="prose col">
 ${post.sections.map(renderSection).join('\n\n')}
-    </article>
+      </article>
+    </div>
 ${footer}`;
 }
 
@@ -102,31 +110,23 @@ function renderIndex(posts, series) {
       })),
     },
   });
-  const postsSection = posts.length
-    ? `      <section aria-labelledby="posts-title">
-        <div class="section-head"><h2 class="section-title" id="posts-title">Posts</h2></div>
-      <ul class="rows rows--compact" role="list">
-${posts.map(postRow).join('\n')}
-      </ul>
-      </section>
-
-`
-    : '';
-  const seriesClass = posts.length ? ' class="section"' : '';
+  const postsSection = posts.length ? `${postsTable(posts, 'Posts')}\n` : '';
   return `${head}
-    <header class="page-head shell">
-      <h1>Writing</h1>
-      <p class="lede">${escape(FEED_DESCRIPTION)}</p>
-      <p class="page-meta meta">Also as <a href="/feed.xml">RSS</a></p>
+    <header class="page-head wrap">
+      <h1 class="title display">Writing</h1>
+      <div class="intro grid">
+        <p class="lede">${escape(FEED_DESCRIPTION)}</p>
+        <dl class="facts">
+          <div><dt>Series</dt><dd><a href="/workflow/">The workflow</a>, ${series.length} parts</dd></div>
+          <div><dt>Feed</dt><dd><a href="/feed.xml">RSS</a></dd></div>
+        </dl>
+      </div>
     </header>
 
-    <div class="shell">
-${postsSection}      <section${seriesClass} aria-labelledby="series-title">
-        <div class="section-head"><h2 class="section-title" id="series-title">The workflow</h2><a class="section-link" href="/workflow/">The series <span aria-hidden="true">→</span></a></div>
-        <p class="section-lede">${SERIES_LINE}</p>
-${renderSeries(series, '        ')}
-      </section>
-    </div>
+    <section class="block wrap" aria-labelledby="series-title">
+${postsSection}      ${sectionHead(`<h2 class="label" id="series-title">The workflow (${series.length})</h2>`, '', '<a href="/workflow/">The series →</a>')}
+${renderSeries(series)}
+    </section>
 ${footer}`;
 }
 
@@ -179,11 +179,9 @@ written.push('writing/index.html');
 await writeFile(join(root, 'feed.xml'), renderFeed(posts));
 written.push('feed.xml');
 
-// Home shows the three newest posts and the workflow series.
+// Home folds the three newest posts into "How I work", under the series.
 const homePath = join(root, 'index.html');
-const homeRows = `      <ul class="rows rows--compact" role="list">
-${[...posts.slice(0, 3).map(postRow), seriesRow(series.length)].join('\n')}
-      </ul>`;
+const homeRows = posts.length ? postsTable(posts.slice(0, 3), 'Writing') : '';
 await writeFile(homePath, injectBlock(await readFile(homePath, 'utf8'), 'writing', 'home', homeRows, 'index.html'));
 written.push('index.html (writing rows)');
 

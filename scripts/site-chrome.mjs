@@ -26,17 +26,13 @@ const NAV = [
   ['/now/', 'Now'],
 ];
 
-// The DGZ trace mark, inline so it takes the header's ink. The route draws
-// itself again on hover.
-const MARK = `<svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg>`;
-
 const block = (name, content) => `<!-- chrome:${name}:start -->\n${content}\n<!-- chrome:${name}:end -->`;
 
 export function headAssets() {
   return block(
     'assets',
-    `  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+    `  <link rel="preload" href="/assets/fonts/GeneralSans-Semibold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -51,24 +47,20 @@ export function headAssets() {
   );
 }
 
-// `current` is the nav href this page belongs under; `home` drops the name
-// from the header because the home page's h1 already says it.
-export function siteHeader(current, { home = false } = {}) {
+// The bar: name, a Mexico City clock (site.js fills in the time), the nav and
+// Email. `current` is the nav href this page belongs under.
+export function siteHeader(current) {
   const items = NAV.map(
-    ([href, label]) =>
-      `        <li><a href="${href}"${current === href ? ' aria-current="page"' : ''}>${label}</a></li>`,
-  ).join('\n');
-  const name = home ? '' : `<span class="brand-name">${NAME}</span>`;
+    ([href, label]) => `<a href="${href}"${current === href ? ' aria-current="page"' : ''}>${label}</a>`,
+  ).join(', ');
   return block(
     'header',
     `  <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="${NAME}, home">${MARK}${name}</a>
-    <nav aria-label="Primary">
-      <ul class="nav-links" role="list">
-${items}
-      </ul>
-    </nav>
+  <header class="bar grid wrap">
+    <a class="who" href="/">${NAME}</a>
+    <p class="clock">Mexico City<span data-clock></span></p>
+    <nav class="nav" aria-label="Primary">${items}</nav>
+    <a class="mail" href="mailto:${EMAIL}">Email</a>
   </header>`,
   );
 }
@@ -78,17 +70,16 @@ ${items}
 export function siteFooter() {
   return block(
     'footer',
-    `  <footer class="site-footer">
-    <div class="footer-inner shell">
-      <p class="footer-name"><strong>${NAME}</strong> · Founder-engineer, Mexico City</p>
-      <ul class="footer-links" role="list">
-        <li><a href="mailto:${EMAIL}">Email</a></li>
-        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
-        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
-        <li><a href="/links/">Links</a></li>
-      </ul>
-    </div>
+    `  <footer class="foot grid wrap">
+    <p class="foot-name">${NAME} · Mexico City</p>
+    <p class="foot-lang">English and Spanish</p>
+    <ul class="foot-links" role="list">
+      <li><a href="mailto:${EMAIL}">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
+      <li><a href="/links/">Links</a></li>
+    </ul>
   </footer>`,
   );
 }
@@ -101,7 +92,7 @@ export function jsonLdScript(data) {
   return `  <script type="application/ld+json">\n${body}\n  </script>`;
 }
 
-// page: { title, description, canonical, current?, home?, ogType?, ogImage?,
+// page: { title, description, canonical, current?, ogType?, ogImage?,
 //         ogImageAlt?, noindex?, fullTitle?, jsonLd, extraHead? }
 export function chrome(page) {
   const title = page.fullTitle ?? `${page.title} — ${NAME}`;
@@ -118,7 +109,7 @@ export function chrome(page) {
   <meta name="description" content="${escape(page.description)}">
   <link rel="canonical" href="${page.canonical}">${robots}
   <meta name="author" content="${NAME}">
-  <meta name="theme-color" content="#f2f4f3">
+  <meta name="theme-color" content="#faf8f5">
   <meta property="og:site_name" content="${NAME}">
   <meta property="og:title" content="${escape(page.ogTitle ?? title)}">
   <meta property="og:description" content="${escape(page.description)}">
@@ -136,7 +127,7 @@ ${headAssets()}
 ${page.extraHead ?? ''}${jsonLdScript(page.jsonLd)}
 </head>
 <body>
-${siteHeader(page.current, { home: page.home })}
+${siteHeader(page.current)}
 
   <main id="main-content">`,
     footer: `  </main>
@@ -153,7 +144,7 @@ ${siteFooter()}
 // beside their meanings, never as bold-lead bullets.
 const TERM = /^<strong>([^<]+)<\/strong>\s*[—–-]\s*([\s\S]+)$/;
 
-// One prose section: a serif h2, paragraphs, an optional list and an optional
+// One prose section: an h2, paragraphs, an optional list and an optional
 // note. Notes sit inline under the text, never in a side rail.
 export function renderSection(section) {
   const body = [`      <h2>${escape(section.heading)}</h2>`];
@@ -178,17 +169,30 @@ ${body.join('\n')}
     </section>`;
 }
 
-// The workflow series as a numbered path: a rail that draws as you scroll,
-// one node per practice, each linking to its article and naming its source.
+// A ruled table row: number, name, one line, arrow. `href` may be external.
+export function tableRow({ n, title, line, href, go = '→', level = 0 }) {
+  const external = /^https?:/.test(href);
+  const rel = external ? (/^https:\/\/wearelojik\.com\//.test(href) ? ' target="_blank" rel="noopener"' : ' target="_blank" rel="noopener noreferrer"') : '';
+  const name = level ? `<h${level} class="h3">${escape(title)}</h${level}>` : `<span class="h3">${escape(title)}</span>`;
+  return `<li><a class="grid" href="${escape(href)}"${rel}><span class="n label" aria-hidden="true">${n}</span>${name}<span class="small">${line}</span><span class="go" aria-hidden="true">${go}</span></a></li>`;
+}
+
+// The workflow series as a ruled table, one row per practice, each linking to
+// its article with the practice's short line.
 export function renderSeries(pages, indent = '      ') {
   const items = pages
     .map(
       (page, index) =>
-        `${indent}  <li class="series-item"><a class="series-link" href="/workflow/${page.slug}/"><span class="series-num" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><span class="series-title">${escape(page.title)}</span><span class="series-line">${escape(page.description)}</span></a></li>`,
+        `${indent}  ${tableRow({ n: String(index + 1).padStart(2, '0'), title: page.title, line: escape(page.short), href: `/workflow/${page.slug}/` })}`,
     )
     .join('\n');
-  return `${indent}<ol class="series" role="list">\n${items}\n${indent}</ol>`;
+  return `${indent}<ol class="table" role="list">\n${items}\n${indent}</ol>`;
 }
 
+// Section head: one rule, a label, a column label and an optional link.
+export const sectionHead = (first, second = '', third = '') =>
+  `<div class="head grid label">${first}<span>${second}</span>${third || '<span></span>'}</div>`;
+
 // Breadcrumb back to a parent index.
-export const backLink = (href, label) => `    <p class="page-back meta"><a href="${href}">${escape(label)}</a> /</p>`;
+export const backLink = (href, label, rest = '') =>
+  `    <p class="crumb label"><a href="${href}">${escape(label)}</a> /${rest ? ` ${rest}` : ''}</p>`;

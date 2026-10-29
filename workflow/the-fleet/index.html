@@ -7,7 +7,7 @@
   <meta name="description" content="How a 132-line shell script keeps parallel agent sessions findable instead of scattered across terminal tabs.">
   <link rel="canonical" href="https://dgonzap30.github.io/workflow/the-fleet/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#f2f4f3">
+  <meta name="theme-color" content="#faf8f5">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="The fleet — Diego González Zapiain">
   <meta property="og:description" content="How a 132-line shell script keeps parallel agent sessions findable instead of scattered across terminal tabs.">
@@ -22,8 +22,8 @@
   <meta name="twitter:description" content="How a 132-line shell script keeps parallel agent sessions findable instead of scattered across terminal tabs.">
   <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
 <!-- chrome:assets:start -->
-  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/GeneralSans-Semibold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -62,28 +62,26 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav-links" role="list">
-        <li><a href="/projects/">Work</a></li>
-        <li><a href="/writing/" aria-current="page">Writing</a></li>
-        <li><a href="/now/">Now</a></li>
-      </ul>
-    </nav>
+  <header class="bar grid wrap">
+    <a class="who" href="/">Diego González Zapiain</a>
+    <p class="clock">Mexico City<span data-clock></span></p>
+    <nav class="nav" aria-label="Primary"><a href="/projects/">Work</a>, <a href="/writing/" aria-current="page">Writing</a>, <a href="/now/">Now</a></nav>
+    <a class="mail" href="mailto:diego.gonzap@wearelojik.com">Email</a>
   </header>
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <div class="read-progress" aria-hidden="true"></div>
-    <header class="page-head page-head--article col">
-      <p class="page-back meta"><a href="/workflow/">The workflow</a> / Part 3 of 7</p>
-      <h1>Many sessions, one named place each.</h1>
-      <p class="lede">Running several agent sessions at once is easy. Finding the one you want twenty minutes later is the actual problem, and it is a naming problem before it is a tooling problem.</p>
-      <p class="page-meta meta">From <code>~/.local/bin/work</code> · A 132-line bash launcher over a terminal multiplexer · <span class="verified">Verified 2026-09-11</span></p>
+    <header class="page-head wrap">
+      <div class="col">
+    <p class="crumb label"><a href="/workflow/">The workflow</a> / Part 3 of 7</p>
+        <h1 class="h2">Many sessions, one named place each.</h1>
+        <p class="lede">Running several agent sessions at once is easy. Finding the one you want twenty minutes later is the actual problem, and it is a naming problem before it is a tooling problem.</p>
+        <p class="meta">From <code>~/.local/bin/work</code> · A 132-line bash launcher over a terminal multiplexer · <span class="verified">Verified 2026-09-11</span></p>
+      </div>
     </header>
 
-    <article class="prose col">
+    <div class="wrap">
+      <article class="prose col">
     <section class="prose-section" id="sprawl">
       <h2>Tabs are not a session model.</h2>
       <p>Parallel work in a terminal tends to sprawl: one window per thought, no names, no way back. The state you want is in a pane you closed, or in one of nine that look identical.</p>
@@ -128,26 +126,30 @@
       <p>Those are separate problems, solved by a worktree per branch and by review that the author does not perform on themselves.</p>
       <aside class="note"><strong>Boundary</strong> Naming is coordination's floor, not its ceiling.</aside>
     </section>
-    </article>
+      </article>
+    </div>
 
-    <nav class="next-part col" aria-labelledby="next-title">
-      <div class="section-head"><h2 class="section-title" id="next-title">Next in the series</h2><a class="section-link" href="/workflow/">All seven</a></div>
-      <a class="next-link" href="/workflow/session-catalog/"><span class="meta">Part 4</span><span class="next-title">The session catalog</span><span class="next-line">A local Swift daemon that indexes agent transcripts into a read-only catalog and serves six search tools back to the agents that wrote them.</span></a>
+    <nav class="next wrap" aria-labelledby="next-title">
+      <div class="col">
+        <div class="head grid label"><h2 class="label" id="next-title">Next in the series</h2><span></span><a href="/workflow/">All seven</a></div>
+        <ol class="table" role="list">
+          <li><a class="grid" href="/workflow/session-catalog/"><span class="n label" aria-hidden="true">04</span><span class="h3">The session catalog</span><span class="small">A local Swift daemon that indexes agent transcripts and serves search back to the agents.</span><span class="go" aria-hidden="true">→</span></a></li>
+        </ol>
+      </div>
     </nav>
   </main>
 
 <!-- chrome:footer:start -->
-  <footer class="site-footer">
-    <div class="footer-inner shell">
-      <p class="footer-name"><strong>Diego González Zapiain</strong> · Founder-engineer, Mexico City</p>
-      <ul class="footer-links" role="list">
-        <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
-        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
-        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
-        <li><a href="/links/">Links</a></li>
-      </ul>
-    </div>
+  <footer class="foot grid wrap">
+    <p class="foot-name">Diego González Zapiain · Mexico City</p>
+    <p class="foot-lang">English and Spanish</p>
+    <ul class="foot-links" role="list">
+      <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
+      <li><a href="/links/">Links</a></li>
+    </ul>
   </footer>
 <!-- chrome:footer:end -->
 </body>

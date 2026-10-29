@@ -4,80 +4,87 @@
       "id": "lojik",
       "name": "LOJIK",
       "href": "/work/lojik/",
-      "tile": "wide",
-      "plate": "lojik",
-      "meta": "Co-Founder & Technical Lead · 2026–",
+      "role": "Co-Founder & Technical Lead",
       "line": "The software company I started with my brother Mariano. We build custom apps, connected tools and automation for businesses in the US and Mexico.",
+      "short": "Custom apps, connected tools and automation for businesses in the US and Mexico.",
       "pickerLine": "Custom apps and automation for businesses",
-      "media": { "kind": "screen", "images": ["lojik-site"], "url": "wearelojik.com" },
-      "alt": "The LOJIK website, asking what's slowing your business down.",
-      "thumb": "lojik-site"
+      "image": "lojik-site",
+      "kind": "screen",
+      "go": {
+        "label": "wearelojik.com",
+        "href": "https://wearelojik.com/"
+      }
     },
     {
       "id": "intertitle",
       "name": "Intertitle",
       "href": "/demos/intertitle/",
-      "tile": "major",
-      "plate": "intertitle",
-      "meta": "Maker",
-      "extra": { "href": "https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124", "label": "On the App Store" },
+      "role": "Maker",
       "line": "A film app for iPhone that learns your taste, picks something for tonight and tells you why. Free, no ads, in English and Spanish.",
+      "short": "A film app that learns your taste, picks something for tonight and tells you why.",
       "pickerLine": "Film app for iPhone · On the App Store",
-      "media": { "kind": "phones", "images": ["intertitle-tonight", "intertitle-discover", "intertitle-film", "intertitle-friends"] },
-      "alt": "Four Intertitle screens: tonight's pick, Discover, a film page and friends' activity.",
-      "thumb": "intertitle-tonight"
+      "image": "intertitle-tonight",
+      "kind": "phone",
+      "go": {
+        "label": "App Store",
+        "href": "https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124"
+      }
     },
     {
       "id": "pazz",
       "name": "PAZZ",
       "href": "/work/pazz/",
-      "tile": "minor",
-      "plate": "pazz",
-      "meta": "Technical Lead · 2026–",
+      "role": "Technical Lead",
       "line": "A vehicle-leasing marketplace in Mexico. I lead the rebuild of its platform as an agentic AI stack.",
+      "short": "A vehicle-leasing marketplace in Mexico, rebuilt as an agentic AI stack.",
       "pickerLine": "Vehicle leasing · Technical Lead",
-      "media": { "kind": "screen", "images": ["pazz-quote"] },
-      "alt": "A PAZZ lease quote for an Audi A5 Coupé, with illustrative amounts.",
-      "thumb": "pazz-quote"
+      "image": "pazz-quote",
+      "kind": "screen",
+      "go": {
+        "label": "Case study"
+      }
     },
     {
       "id": "maestro",
       "name": "Maestro",
       "href": "/demos/maestro/",
-      "tile": "small",
-      "plate": "maestro",
-      "meta": "Private beta",
+      "role": "Private beta",
       "line": "A copilot that reads a live music session.",
+      "short": "A copilot that reads a live music session.",
       "pickerLine": "Music production · Private beta",
-      "media": { "kind": "screen", "images": ["maestro-mixer"] },
-      "alt": "Maestro's mixer view with three live tracks.",
-      "thumb": "maestro-mixer"
+      "image": "maestro-mixer",
+      "kind": "screen",
+      "go": {
+        "label": "Demo"
+      }
     },
     {
       "id": "temper",
       "name": "Temper",
       "href": "/demos/temper/",
-      "tile": "small",
-      "plate": "temper",
-      "meta": "In development",
+      "role": "In development",
       "line": "Recovery, food and training, planned into a week you can follow.",
+      "short": "Recovery, food and training, planned into a week you can follow.",
       "pickerLine": "Health & training · In development",
-      "media": { "kind": "phones", "images": ["temper-today", "temper-progress"] },
-      "alt": "Two Temper screens: today's read and the progress trend.",
-      "thumb": "temper-today"
+      "image": "temper-today",
+      "kind": "phone",
+      "go": {
+        "label": "Demo"
+      }
     },
     {
       "id": "mimo",
       "name": "Mimo",
       "href": "/demos/mimo/",
-      "tile": "small",
-      "plate": "mimo",
-      "meta": "In development",
+      "role": "In development",
       "line": "Everyday photos, turned into small keepsakes.",
+      "short": "Everyday photos, turned into small keepsakes.",
       "pickerLine": "Shared moments · In development",
-      "media": { "kind": "phones", "images": ["mimo-home", "mimo-import"] },
-      "alt": "Two Mimo screens: a saved moment and a photo being imported.",
-      "thumb": "mimo-home"
+      "image": "mimo-home",
+      "kind": "phone",
+      "go": {
+        "label": "Demo"
+      }
     }
   ],
   "openSource": [

@@ -7,7 +7,7 @@
   <meta name="description" content="How a layered set of CLAUDE.md and AGENTS.md files gives every agent the rules for the directory it is standing in.">
   <link rel="canonical" href="https://dgonzap30.github.io/workflow/operating-manual/">
   <meta name="author" content="Diego González Zapiain">
-  <meta name="theme-color" content="#f2f4f3">
+  <meta name="theme-color" content="#faf8f5">
   <meta property="og:site_name" content="Diego González Zapiain">
   <meta property="og:title" content="The operating manual — Diego González Zapiain">
   <meta property="og:description" content="How a layered set of CLAUDE.md and AGENTS.md files gives every agent the rules for the directory it is standing in.">
@@ -22,8 +22,8 @@
   <meta name="twitter:description" content="How a layered set of CLAUDE.md and AGENTS.md files gives every agent the rules for the directory it is standing in.">
   <meta name="twitter:image" content="https://dgonzap30.github.io/assets/social/home.png">
 <!-- chrome:assets:start -->
-  <link rel="preload" href="/assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/newsreader-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/GeneralSans-Semibold.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -62,28 +62,26 @@
 <body>
 <!-- chrome:header:start -->
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <a class="brand" href="/" aria-label="Diego González Zapiain, home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><path pathLength="1" d="M8 8h16c10 0 16 6 16 16s-6 16-16 16H8V8h24L16 32h16v-8h8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="square" stroke-linejoin="round"/><circle class="brand-dot" cx="40" cy="24" r="2.5"/></svg><span class="brand-name">Diego González Zapiain</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav-links" role="list">
-        <li><a href="/projects/">Work</a></li>
-        <li><a href="/writing/" aria-current="page">Writing</a></li>
-        <li><a href="/now/">Now</a></li>
-      </ul>
-    </nav>
+  <header class="bar grid wrap">
+    <a class="who" href="/">Diego González Zapiain</a>
+    <p class="clock">Mexico City<span data-clock></span></p>
+    <nav class="nav" aria-label="Primary"><a href="/projects/">Work</a>, <a href="/writing/" aria-current="page">Writing</a>, <a href="/now/">Now</a></nav>
+    <a class="mail" href="mailto:diego.gonzap@wearelojik.com">Email</a>
   </header>
 <!-- chrome:header:end -->
 
   <main id="main-content">
-    <div class="read-progress" aria-hidden="true"></div>
-    <header class="page-head page-head--article col">
-      <p class="page-back meta"><a href="/workflow/">The workflow</a> / Part 1 of 7</p>
-      <h1>The instructions live next to the code they govern.</h1>
-      <p class="lede">An agent that has to be briefed by hand every session is a tool. An agent that reads the rules for wherever it happens to be working is a colleague. The difference is a file, placed where the work is.</p>
-      <p class="page-meta meta">From <code>~/.claude/CLAUDE.md and per-project CLAUDE.md / AGENTS.md</code> · Layered policy files, read at session start · <span class="verified">Verified 2026-09-11</span></p>
+    <header class="page-head wrap">
+      <div class="col">
+    <p class="crumb label"><a href="/workflow/">The workflow</a> / Part 1 of 7</p>
+        <h1 class="h2">The instructions live next to the code they govern.</h1>
+        <p class="lede">An agent that has to be briefed by hand every session is a tool. An agent that reads the rules for wherever it happens to be working is a colleague. The difference is a file, placed where the work is.</p>
+        <p class="meta">From <code>~/.claude/CLAUDE.md and per-project CLAUDE.md / AGENTS.md</code> · Layered policy files, read at session start · <span class="verified">Verified 2026-09-11</span></p>
+      </div>
     </header>
 
-    <article class="prose col">
+    <div class="wrap">
+      <article class="prose col">
     <section class="prose-section" id="layering">
       <h2>Three layers, nearest wins.</h2>
       <p>A global file carries what is true everywhere: authority, how to choose the size of a workflow, what counts as evidence, when to stop and ask. A workspace file describes the shape of the disk. A project file describes the stack, the entry points and the state files of one repository.</p>
@@ -128,26 +126,30 @@
       <p>The honest failure mode is length. Each added paragraph competes for attention with every other, and a manual nobody finishes is a manual nobody follows.</p>
       <aside class="note"><strong>Boundary</strong> This describes one person's setup. It is a working example, not a standard.</aside>
     </section>
-    </article>
+      </article>
+    </div>
 
-    <nav class="next-part col" aria-labelledby="next-title">
-      <div class="section-head"><h2 class="section-title" id="next-title">Next in the series</h2><a class="section-link" href="/workflow/">All seven</a></div>
-      <a class="next-link" href="/workflow/worktrees/"><span class="meta">Part 2</span><span class="next-title">Worktrees</span><span class="next-line">Why every branch gets its own working tree, where they are allowed to live, and the two-line helper that enforces it.</span></a>
+    <nav class="next wrap" aria-labelledby="next-title">
+      <div class="col">
+        <div class="head grid label"><h2 class="label" id="next-title">Next in the series</h2><span></span><a href="/workflow/">All seven</a></div>
+        <ol class="table" role="list">
+          <li><a class="grid" href="/workflow/worktrees/"><span class="n label" aria-hidden="true">02</span><span class="h3">Worktrees</span><span class="small">Why every branch gets its own working tree, and the two-line helper that enforces it.</span><span class="go" aria-hidden="true">→</span></a></li>
+        </ol>
+      </div>
     </nav>
   </main>
 
 <!-- chrome:footer:start -->
-  <footer class="site-footer">
-    <div class="footer-inner shell">
-      <p class="footer-name"><strong>Diego González Zapiain</strong> · Founder-engineer, Mexico City</p>
-      <ul class="footer-links" role="list">
-        <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
-        <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
-        <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
-        <li><a href="/links/">Links</a></li>
-      </ul>
-    </div>
+  <footer class="foot grid wrap">
+    <p class="foot-name">Diego González Zapiain · Mexico City</p>
+    <p class="foot-lang">English and Spanish</p>
+    <ul class="foot-links" role="list">
+      <li><a href="mailto:diego.gonzap@wearelojik.com">Email</a></li>
+      <li><a href="https://www.linkedin.com/in/diego-gonzap/" target="_blank" rel="me noopener noreferrer">LinkedIn</a></li>
+      <li><a href="https://github.com/dgonzap30" target="_blank" rel="me noopener noreferrer">GitHub</a></li>
+      <li><a href="https://wearelojik.com/" target="_blank" rel="noopener">LOJIK</a></li>
+      <li><a href="/links/">Links</a></li>
+    </ul>
   </footer>
 <!-- chrome:footer:end -->
 </body>

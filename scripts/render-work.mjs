@@ -1,11 +1,11 @@
-// Renderers for the work tiles, the compact product picker and the open-source
-// rows, all from assets/data/work.json. Used by build-work.mjs (home and the
-// work index) and build-explorer.mjs (the "More work" row on product pages).
+// Renderers for the work index, the "More work" table and the open-source
+// table, all from assets/data/work.json. Used by build-work.mjs (home and the
+// work index) and build-explorer.mjs (the "More work" table on product pages).
 import { readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { escape } from './site-chrome.mjs';
+import { escape, sectionHead, tableRow } from './site-chrome.mjs';
 
 export const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const MEDIA = '/assets/media/home';
@@ -36,106 +36,73 @@ export async function loadWork() {
   const work = JSON.parse(await readFile(join(root, 'assets/data/work.json'), 'utf8'));
   const sizes = new Map();
   for (const product of work.products) {
-    for (const name of [...product.media.images, product.thumb]) {
-      if (!sizes.has(name)) sizes.set(name, webpSize(await readFile(join(root, `${MEDIA.slice(1)}/${name}.webp`))));
-    }
+    sizes.set(product.image, webpSize(await readFile(join(root, `${MEDIA.slice(1)}/${product.image}.webp`))));
   }
   return { ...work, sizes };
 }
 
-const external = (href) => /^https?:/.test(href);
-const linkAttrs = (href) => (external(href) ? ' target="_blank" rel="noopener noreferrer"' : '');
+const find = (work, id) => {
+  const product = work.products.find((entry) => entry.id === id);
+  if (!product) throw new Error(`work.json has no product ${id}`);
+  return product;
+};
 
-function image(work, name, className, alt, eager, style = '') {
-  const [width, height] = work.sizes.get(name);
-  const loading = eager ? 'fetchpriority="high"' : 'loading="lazy"';
-  return `<img class="${className}" src="${MEDIA}/${name}.webp" width="${width}" height="${height}" alt="${escape(alt)}"${style} ${loading} decoding="async">`;
+// LOJIK links keep the referrer so its lead attribution files the visit.
+const linkAttrs = (href) =>
+  /^https:\/\/wearelojik\.com\//.test(href) ? ' target="_blank" rel="noopener"' : ' target="_blank" rel="noopener noreferrer"';
+
+// One row of the index. The name links to the product's page and that link
+// covers the row; an outside link (the App Store, the company site) sits on
+// top as the row's last column. On a fine pointer the row's image follows the
+// pointer as a preview; on touch or narrow screens it shows inline.
+function renderRow(work, product, index, { level, long }) {
+  const [width, height] = work.sizes.get(product.image);
+  const src = `${MEDIA}/${product.image}.webp`;
+  const go = product.go.href
+    ? `<a class="row-go" href="${escape(product.go.href)}"${linkAttrs(product.go.href)}>${escape(product.go.label)} <span aria-hidden="true">↗</span></a>`
+    : `<span class="row-go" aria-hidden="true">${escape(product.go.label)} →</span>`;
+  return `        <li class="row grid" data-preview="${src}" data-kind="${product.kind}">
+          <img class="row-img${product.kind === 'phone' ? ' phone' : ''}" src="${src}" width="${width}" height="${height}" alt="" loading="lazy" decoding="async">
+          <h${level} class="row-t display"><a class="row-link" href="${product.href}"><span class="row-name" style="view-transition-name: title-${product.id}">${escape(product.name)}</span></a><sup aria-hidden="true">${String(index + 1).padStart(2, '0')}</sup></h${level}>
+          <p class="row-r"><b>${escape(product.role)}</b> <span>${escape(long ? product.line : product.short)}</span></p>
+          ${go}
+        </li>`;
 }
 
-// The tile's media layer, which drifts with scroll inside its plate. Phones
-// fan out from the bottom edge (--k is each phone's place in the fan, centred
-// on zero); a screen sits in a browser frame, with its address when public.
-export function renderMedia(work, product, eager = false) {
-  const { kind, images, url } = product.media;
-  if (kind === 'phones') {
-    const phones = images
-      .map((name, index) => {
-        const k = index - (images.length - 1) / 2;
-        return image(work, name, 'phone', index === 0 ? product.alt : '', eager, ` style="--k: ${k}"`);
-      })
-      .join('\n            ');
-    return `<div class="plate-media media--phones">
-            ${phones}
-          </div>`;
-  }
-  const address = url ? `<span class="frame-url">${escape(url)}</span>` : '';
-  return `<div class="plate-media media--screen">
-            <div class="frame"><span class="frame-bar" aria-hidden="true"><span class="frame-dots"></span>${address}</span>${image(work, images[0], 'screen', product.alt, eager)}</div>
-          </div>`;
+// The work index: a ruled head, one row per product, and the shared preview.
+export function renderIndex(work, ids, { label, level = 3, long = false }) {
+  const rows = ids.map((id, index) => renderRow(work, find(work, id), index, { level, long })).join('\n');
+  const tag = level > 2 ? `h${level - 1}` : 'p';
+  return `      ${sectionHead(`<${tag} class="label">${label} (${ids.length})</${tag}>`, 'Role', '<span>Open</span>')}
+      <ol class="index" role="list">
+${rows}
+      </ol>
+      <div class="preview" aria-hidden="true"><img src="${MEDIA}/${find(work, ids[0]).image}.webp" alt="" loading="lazy" decoding="async"></div>`;
 }
 
-// A tile's plate carries the product's view-transition name, so it morphs
-// into the hero of the product's own page.
-export function renderTile(work, product, { level = 3, eager = false } = {}) {
-  const extra = product.extra
-    ? ` · <a class="tile-extra" href="${escape(product.extra.href)}"${linkAttrs(product.extra.href)}>${escape(product.extra.label)} <span aria-hidden="true">↗</span></a>`
-    : '';
-  return `      <article class="tile tile--${product.tile} reveal" data-tilt>
-        <div class="plate plate--${product.plate}" style="view-transition-name: media-${product.id}">
-          ${renderMedia(work, product, eager)}
-        </div>
-        <div class="tile-body">
-          <h${level} class="tile-title"><a href="${product.href}">${escape(product.name)}</a></h${level}>
-          <p class="tile-meta meta">${escape(product.meta)}${extra}</p>
-          <p class="tile-line">${escape(product.line)}</p>
-        </div>
-      </article>`;
-}
-
-export function renderTiles(work, ids, options) {
-  const products = ids.map((id) => {
-    const product = work.products.find((entry) => entry.id === id);
-    if (!product) throw new Error(`work.json has no product ${id}`);
-    return product;
-  });
-  return `    <div class="work-grid">
-${products.map((product, index) => renderTile(work, product, { ...options, eager: options?.eager && index === 0 })).join('\n')}
-    </div>`;
-}
-
-// A compact list of products with a thumbnail, linking to each product page.
-export function renderPicker(work, ids, label) {
-  const items = ids
-    .map((id) => {
-      const product = work.products.find((entry) => entry.id === id);
-      const [width, height] = work.sizes.get(product.thumb);
-      return `        <li><a href="${product.href}"><span class="picker-thumb picker-thumb--${product.media.kind} plate--${product.plate}"><img src="${MEDIA}/${product.thumb}.webp" width="${width}" height="${height}" alt="" loading="lazy" decoding="async"></span><span><span class="picker-name">${escape(product.name)}</span><span class="picker-line">${escape(product.pickerLine)}</span></span></a></li>`;
-    })
-    .join('\n');
-  return `      <ul class="explorer-picker" role="list" aria-label="${escape(label)}">
-${items}
-      </ul>`;
-}
-
-// The "More work" row at the foot of a product or case page.
+// The "More work" table at the foot of a product or case page.
 export function renderMoreWork(work, currentId) {
-  const others = work.products.filter((entry) => entry.id !== currentId).map((entry) => entry.id);
-  return `    <nav class="more-work shell" aria-labelledby="more-work-title">
-      <div class="section-head"><h2 class="section-title" id="more-work-title">More work</h2><a class="section-link" href="/projects/">All work <span aria-hidden="true">→</span></a></div>
-${renderPicker(work, others, 'More work')}
+  const rows = work.products
+    .map((product, index) => ({ product, n: String(index + 1).padStart(2, '0') }))
+    .filter(({ product }) => product.id !== currentId)
+    .map(({ product, n }) => `        ${tableRow({ n, title: product.name, line: escape(product.pickerLine), href: product.href, level: 3 })}`)
+    .join('\n');
+  return `    <nav class="more wrap" aria-labelledby="more-work-title">
+      ${sectionHead('<h2 class="label" id="more-work-title">More work</h2>', '', '<a href="/projects/">All work →</a>')}
+      <ol class="table" role="list">
+${rows}
+      </ol>
     </nav>`;
 }
 
-export function renderOpenSource(work) {
+export function renderOpenSource(work, level = 3) {
   const rows = work.openSource
-    .map(
-      (repo) =>
-        `        <li class="row"><a class="row-link" href="${escape(repo.href)}"${linkAttrs(repo.href)}><span class="row-title">${escape(repo.name)}</span><span class="row-meta meta">GitHub <span aria-hidden="true">↗</span></span><span class="row-line">${escape(repo.line)}</span></a></li>`,
-    )
+    .map((repo) => `        ${tableRow({ n: '↗', title: repo.name, line: escape(repo.line), href: repo.href, go: '↗', level })}`)
     .join('\n');
-  return `      <ul class="rows rows--compact" role="list">
+  return `      ${sectionHead(`<h${level - 1} class="label" id="oss-title">Open source (${work.openSource.length})</h${level - 1}>`, '', '<a href="https://github.com/dgonzap30" target="_blank" rel="noopener noreferrer">GitHub ↗</a>')}
+      <ol class="table" role="list">
 ${rows}
-      </ul>`;
+      </ol>`;
 }
 
 // Swap the content between <!-- PREFIX:NAME:start --> and <!-- PREFIX:NAME:end -->.

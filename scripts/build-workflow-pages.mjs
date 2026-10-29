@@ -8,7 +8,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { NAME, ORIGIN, PERSON_ID, WEBSITE_ID, backLink, chrome, escape, renderSection, renderSeries } from './site-chrome.mjs';
+import { NAME, ORIGIN, PERSON_ID, WEBSITE_ID, backLink, chrome, escape, renderSection, renderSeries, sectionHead, tableRow } from './site-chrome.mjs';
 import { injectBlock } from './render-work.mjs';
 
 const SERIES_ID = `${ORIGIN}/workflow/#series`;
@@ -20,8 +20,8 @@ const INDEX = {
   headline: 'Seven practices, each derived from something that runs.',
 };
 
-// One article: a centred reading column, a mono line naming the file the
-// practice comes from, and a reading-progress bar driven by the scroll.
+// One article: a reading column on the grid, a mono line naming the file the
+// practice comes from, and the next part as a ruled row.
 function renderPage(page, index, total, next) {
   const canonical = `${ORIGIN}/workflow/${page.slug}/`;
   const { head, footer } = chrome({
@@ -45,23 +45,30 @@ function renderPage(page, index, total, next) {
   });
   const nextLink = next
     ? `
-    <nav class="next-part col" aria-labelledby="next-title">
-      <div class="section-head"><h2 class="section-title" id="next-title">Next in the series</h2><a class="section-link" href="/workflow/">All seven</a></div>
-      <a class="next-link" href="/workflow/${next.slug}/"><span class="meta">Part ${index + 2}</span><span class="next-title">${escape(next.title)}</span><span class="next-line">${escape(next.description)}</span></a>
+    <nav class="next wrap" aria-labelledby="next-title">
+      <div class="col">
+        ${sectionHead('<h2 class="label" id="next-title">Next in the series</h2>', '', '<a href="/workflow/">All seven</a>')}
+        <ol class="table" role="list">
+          ${tableRow({ n: String(index + 2).padStart(2, '0'), title: next.title, line: escape(next.short), href: `/workflow/${next.slug}/` })}
+        </ol>
+      </div>
     </nav>`
     : '';
   return `${head}
-    <div class="read-progress" aria-hidden="true"></div>
-    <header class="page-head page-head--article col">
-      <p class="page-back meta"><a href="/workflow/">The workflow</a> / Part ${index + 1} of ${total}</p>
-      <h1>${escape(page.headline)}</h1>
-      <p class="lede">${page.lede}</p>
-      <p class="page-meta meta">From <code>${escape(page.artifact)}</code> · ${escape(page.shape)} · <span class="verified">Verified ${escape(page.dateModified)}</span></p>
+    <header class="page-head wrap">
+      <div class="col">
+${backLink('/workflow/', 'The workflow', `Part ${index + 1} of ${total}`)}
+        <h1 class="h2">${escape(page.headline)}</h1>
+        <p class="lede">${page.lede}</p>
+        <p class="meta">From <code>${escape(page.artifact)}</code> · ${escape(page.shape)} · <span class="verified">Verified ${escape(page.dateModified)}</span></p>
+      </div>
     </header>
 
-    <article class="prose col">
+    <div class="wrap">
+      <article class="prose col">
 ${page.sections.map(renderSection).join('\n\n')}
-    </article>
+      </article>
+    </div>
 ${nextLink}
 ${footer}`;
 }
@@ -95,16 +102,22 @@ function renderIndex(pages) {
     },
   });
   return `${head}
-    <header class="page-head shell">
+    <header class="page-head wrap">
 ${backLink('/writing/', 'Writing')}
-      <h1>${escape(INDEX.headline)}</h1>
-      <p class="lede">${escape(INDEX.description)} Every page names the file it comes from and, where it counts something, the command that recounts it.</p>
-      <p class="page-meta meta">${pages.length} practices · Last verified ${escape(dateModified)}</p>
+      <h1 class="title title--sentence display">${escape(INDEX.headline)}</h1>
+      <div class="intro grid">
+        <p class="lede">${escape(INDEX.description)} Every page names the file it comes from and, where it counts something, the command that recounts it.</p>
+        <dl class="facts">
+          <div><dt>Practices</dt><dd>${pages.length}</dd></div>
+          <div><dt>Last verified</dt><dd><span class="verified">${escape(dateModified)}</span></dd></div>
+        </dl>
+      </div>
     </header>
 
-    <div class="shell">
+    <section class="block wrap" aria-labelledby="series-title">
+      ${sectionHead(`<h2 class="label" id="series-title">The series (${pages.length})</h2>`, '', '<span>Read</span>')}
 ${renderSeries(pages)}
-    </div>
+    </section>
 ${footer}`;
 }
 
@@ -125,7 +138,9 @@ await writeFile(indexTarget, renderIndex(spec));
 written.push('workflow/index.html');
 
 const homePath = join(root, 'index.html');
-await writeFile(homePath, injectBlock(await readFile(homePath, 'utf8'), 'workflow', 'home', renderSeries(spec), 'index.html'));
+const homeSeries = `      ${sectionHead(`<span><a href="/workflow/">The series (${spec.length})</a></span>`, '', '<span>Read</span>')}
+${renderSeries(spec)}`;
+await writeFile(homePath, injectBlock(await readFile(homePath, 'utf8'), 'workflow', 'home', homeSeries, 'index.html'));
 written.push('index.html (workflow series)');
 
 console.log(`Generated ${written.length} workflow pages:`);

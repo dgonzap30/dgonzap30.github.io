@@ -1,21 +1,22 @@
-// Renders the work tiles, the "Also building" picker and the open-source rows
-// into the home page and the work index from assets/data/work.json.
+// Renders the work index and the open-source table into the home page and the
+// work index, and the "More work" table into the LOJIK case study, from
+// assets/data/work.json.
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { injectBlock, loadWork, renderMoreWork, renderOpenSource, renderPicker, renderTiles, root } from './render-work.mjs';
+import { injectBlock, loadWork, renderIndex, renderMoreWork, renderOpenSource, root } from './render-work.mjs';
 
 const work = await loadWork();
+const all = work.products.map((product) => product.id);
 
 const pages = {
   'index.html': {
-    selected: renderTiles(work, ['lojik', 'intertitle', 'pazz'], { level: 3, eager: true }),
-    also: renderPicker(work, ['maestro', 'temper', 'mimo'], 'Also building'),
-    'open-source': renderOpenSource(work),
+    index: renderIndex(work, all, { label: 'Work', level: 3 }),
+    'open-source': renderOpenSource(work, 3),
   },
   'projects/index.html': {
-    all: renderTiles(work, ['lojik', 'intertitle', 'pazz', 'maestro', 'temper', 'mimo'], { level: 2, eager: true }),
-    'open-source': renderOpenSource(work),
+    index: renderIndex(work, all, { label: 'Products', level: 2, long: true }),
+    'open-source': renderOpenSource(work, 3),
   },
   'work/lojik/index.html': {
     more: renderMoreWork(work, 'lojik'),

@@ -1,13 +1,13 @@
 // Product pages from assets/data/projects.json.
 //
-// Each product's captured screens render as one scrollable gallery on the
-// product's own plate. The four /demos/<id>/ pages are generated whole; the
+// Each product's captured screens render as one gallery that scrolls to the
+// page edge. The four /demos/<id>/ pages are generated whole; the
 // PAZZ case study is hand-written, so its gallery and "More work" row are
 // injected between <!-- explorer:NAME:start/end --> markers instead.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
-import { ORIGIN, PERSON_ID, WEBSITE_ID, backLink, chrome, escape as esc } from './site-chrome.mjs';
+import { ORIGIN, PERSON_ID, WEBSITE_ID, backLink, chrome, escape as esc, sectionHead } from './site-chrome.mjs';
 import { injectBlock, loadWork, renderMoreWork, root } from './render-work.mjs';
 
 const THANKS_URL = `${ORIGIN}/thanks/`;
@@ -45,23 +45,23 @@ function renderDisclosure(project, level) {
       </details>`;
 }
 
-// The gallery, its capture note and the engineering disclosure. The stage
-// shares the product's view-transition name with its tile on home and the
-// work index, so the tile's plate morphs into it.
+// The gallery, its capture note and the engineering disclosure.
 export function renderStage(project, { level = 2 } = {}) {
   const layout = project.chapters[0]?.layout ?? 'portrait';
   const labels = [...new Set(project.chapters.map((chapter) => chapter.syntheticLabel))].join(', ');
-  return `      <div class="stage plate--${project.id}" data-explorer-stage data-layout="${layout}" style="view-transition-name: media-${project.id}">
+  return `      <div class="stage" data-explorer-stage data-layout="${layout}">
         <div class="stage-track" role="region" aria-label="${esc(project.name)} screens" tabindex="0">
 ${project.chapters.map(renderChapter).join('\n')}
         </div>
         <div class="stage-controls" hidden>
-          <span class="stage-count meta" aria-live="polite"></span>
+          <span class="stage-count" aria-live="polite"></span>
           <button type="button" data-stage-prev aria-label="Previous screen">←</button>
           <button type="button" data-stage-next aria-label="Next screen">→</button>
         </div>
       </div>
-      <p class="stage-scope meta">${esc(project.demoScope)} ${esc(labels)}, captured ${esc(project.capturedAt)}.</p>${renderDisclosure(project, level)}`;
+      <div class="stage-notes grid wrap">
+        <p class="stage-scope">${esc(project.demoScope)} ${esc(labels)}, captured ${esc(project.capturedAt)}.</p>${renderDisclosure(project, level)}
+      </div>`;
 }
 
 // The product's way in: a store or page link, or a notify form that posts to
@@ -119,21 +119,23 @@ function renderProductPage(project, work) {
     },
   });
   return `${head}
-    <header class="page-head page-head--product shell">
+    <header class="page-head wrap">
 ${backLink('/projects/', 'Work')}
-      <div class="page-head-grid">
-        <div class="page-head-main">
-          <h1>${esc(project.name)}</h1>
-          <p class="lede">${esc(project.purpose)}</p>
-        </div>
-        <div class="page-head-aside">
-          <p class="page-meta meta">${esc(project.category)} · ${esc(project.status)}</p>
+      <h1 class="title display"><span style="view-transition-name: title-${project.id}">${esc(project.name)}</span></h1>
+      <div class="intro grid">
+        <p class="lede">${esc(project.purpose)}</p>
+        <div class="aside">
+          <dl class="facts">
+            <div><dt>Product</dt><dd>${esc(project.category)}</dd></div>
+            <div><dt>Status</dt><dd>${esc(project.status)}</dd></div>
+${project.role ? `            <div><dt>Role</dt><dd>${esc(project.role)}</dd></div>\n` : ''}          </dl>
           ${renderWayIn(project)}
         </div>
       </div>
     </header>
 
-    <section class="product-gallery shell" aria-label="${esc(project.name)} screens">
+    <section class="gallery" aria-labelledby="gallery-title">
+      ${sectionHead(`<h2 class="label" id="gallery-title">Screens (${project.chapters.length})</h2>`, '', `<span>${esc(project.capturedAt)}</span>`)}
 ${renderStage(project)}
     </section>
 
