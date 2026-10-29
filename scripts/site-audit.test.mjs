@@ -15,6 +15,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { auditProductWayIn, auditSite } from "./site-audit.mjs";
+import { loadWork } from "./render-work.mjs";
 
 async function exists(path) {
   try {
@@ -555,14 +556,14 @@ function routeForProject(project) {
   return project.id === "pazz" ? "work/pazz/index.html" : `demos/${project.id}/index.html`;
 }
 
-test("product registry has five projects with a stable, honest editorial order", async () => {
+test("product registry includes current projects with stable, honest identities", async () => {
   const registry = JSON.parse(
     await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"),
   );
-  assert.equal(registry.length, 5);
+  assert.equal(registry.length, 10);
   assert.deepEqual(
     registry.map((project) => project.id),
-    ["intertitle", "pazz", "maestro", "temper", "mimo"],
+    ["intertitle", "pazz", "maestro", "temper", "mimo", "pocket", "dicta", "dreamme", "ledger", "rundown"],
   );
   assert.equal(
     new Set(registry.map((project) => project.id)).size,
@@ -597,8 +598,14 @@ test("product registry has five projects with a stable, honest editorial order",
       );
       const { size } = await stat(join(repoRoot, chapter.src.slice(1)));
       assert(size > 0, `${project.id}/${chapter.id} media is empty`);
+      if (chapter.assetSha256) {
+        const bytes = await readFile(join(repoRoot, chapter.src.slice(1)));
+        assert.equal(createHash('sha256').update(bytes).digest('hex'), chapter.assetSha256, `${project.id}/${chapter.id} selected capture changed`);
+      }
     }
   }
+  assert.equal(registry.find((project) => project.id === 'mimo').name, 'Mimo: Made of Us');
+  assert.equal(registry.find((project) => project.id === 'dreamme').galleryLabel, 'Design artwork');
 });
 
 test("forbidden internal-only Intertitle fixtures are not published", async () => {
@@ -802,6 +809,27 @@ test("home and the work index link to every product route", async () => {
         html.includes(`href="${href}"`),
         `${routePath} picker is missing a link to ${href}`,
       );
+    }
+  }
+});
+
+test("both work indexes use the gallery's selected capture and retain its date", async () => {
+  const registry = JSON.parse(await readFile(join(repoRoot, "assets/data/projects.json"), "utf8"));
+  const work = await loadWork();
+  for (const project of registry) {
+    const product = work.products.find((entry) => entry.id === project.id);
+    const selected = project.chapters.find((entry) => entry.id === project.defaultChapter && entry.mediaType === 'image')
+      ?? project.chapters.find((entry) => entry.mediaType === 'image');
+    assert(selected, `${project.id} needs a real image for its work preview`);
+    assert.equal(product.previewSrc, selected.src, `${project.id} preview has drifted from its gallery`);
+    for (const path of ['index.html', 'projects/index.html']) {
+      const html = await readFile(join(repoRoot, path), 'utf8');
+      assert(html.includes(`data-preview="${selected.src}"`), `${path} has a stale ${project.id} preview`);
+    }
+    const html = await readFile(join(repoRoot, routeForProject(project)), 'utf8');
+    for (const chapter of project.chapters) {
+      assert.match(chapter.capturedAt, /^\d{4}-\d{2}-\d{2}$/);
+      assert(html.includes(`<time datetime="${chapter.capturedAt}">${chapter.capturedAt}</time>`));
     }
   }
 });

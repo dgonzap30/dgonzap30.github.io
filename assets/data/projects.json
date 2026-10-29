@@ -8,120 +8,62 @@
     "status": "On the App Store",
     "purpose": "Find a film for tonight, explore your taste, and keep the conversation going.",
     "description": "A film companion grounded in personal taste — separate from the public App Store release.",
-    "capturedAt": "2026-09-08",
+    "capturedAt": "2026-10-22",
     "sourceLabel": "Native iOS build, isolated Simulator, fixture data",
-    "demoScope": "Seven current stills from a source-owned presentation fixture, captured in an isolated development build. Every film, person, rating, match percentile and taste explanation is fixture data — this demonstrates presentation, not a live recommender or real taste inference. A development preview, not the public App Store release.",
+    "demoScope": "The October native interface: guest entry, a film detail and a taste profile. All ratings, diary entries and taste values are fixture data. A development preview, not the public App Store release.",
     "engineeringNotes": "Recommendation constraints and retry-safe conversation state make the choice easier to revise.",
     "working": [
-      "A film-detail view that pairs a fixture match percentile with a stated reason",
-      "A film-anchored Reely thread that carries prior context into a refinement",
-      "Diary, People and Friends surfaces populated with fixture data"
+      "Guest-first entry, a film detail with saved state, and a taste-profile presentation."
     ],
     "remaining": [
-      "No live recommendation model — every match percentile and \"why this one\" explanation comes from the fixture, not real taste inference",
-      "Reely makes no live model call in this build; external services are hard-disabled under the fixture",
-      "The people and friends shown are fixture profiles, not a real community",
-      "A development preview, not the public App Store release"
+      "These fixtures do not demonstrate live recommendation or social behavior."
     ],
-    "defaultChapter": "film-detail",
+    "defaultChapter": "intertitle-film",
     "chapters": [
       {
-        "id": "tonight",
-        "title": "Tonight's pick",
-        "caption": "Tonight's pick, Paris, Texas (1984, 145 min), with the Refine tonight sheet open on \"What are you in the mood for?\"",
+        "id": "intertitle-welcome",
+        "title": "Guest-first welcome",
+        "caption": "A guest-first welcome for trying the film app before creating an account.",
         "mediaType": "image",
         "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/01-tonight.webp",
+        "src": "/assets/media/demos/intertitle/2026-10-22-intertitle-welcome.webp",
         "width": 1206,
         "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Tonight tab showing Paris, Texas as tonight's pick with the Refine tonight sheet open",
-        "sourceSha256": "288cbe43def2124f0aebf4293063127fec461368b729d49aeb00acc95a348c39"
+        "capturedAt": "2026-10-22",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Intertitle welcome with a film-poster wall and Try as guest action",
+        "sourceSha256": "2e49525c59ca48c89738ddd7b36863bc62aa37aa64a7c89bf8b0c7f3107fc67e",
+        "assetSha256": "84dd3e84e353e637e44b7f349e26f818e494ddad2674a7991fdb2df52fa96f06"
       },
       {
-        "id": "discover",
-        "title": "Discover",
-        "caption": "A populated discovery grid — Portrait of a Lady on Fire, Parasite, Eternal Sunshine, Moonlight — from the source-owned fixture.",
+        "id": "intertitle-film",
+        "title": "A film, and your place in it",
+        "caption": "The current film-detail layout, with a sample diary entry and saved-film state. Ratings and the entry are fixture data.",
         "mediaType": "image",
         "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/02-discover.webp",
+        "src": "/assets/media/demos/intertitle/2026-10-22-intertitle-film.webp",
         "width": 1206,
         "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Discover tab showing a populated grid of fixture films",
-        "sourceSha256": "f1ee1e420355652f4eb2f96a2139ba6198ac8d9253b4154c66e99f9be30cab85"
+        "capturedAt": "2026-10-22",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Intertitle film detail for Paris, Texas with a synthetic diary entry and saved state",
+        "sourceSha256": "635efcdb557bb9073245a8ad7942f92e6ac75b7fa118a3d7424fa6ac8bbd4fbe",
+        "assetSha256": "41f7ece4aed5817d8f7ee85758434dcfbd9537846b1f1eb44aaba41adbd5e606"
       },
       {
-        "id": "film-detail",
-        "title": "Why this one",
-        "caption": "Paris, Texas's detail screen: a fixture match percentile, a \"why this one\" taste explanation, social proof, synopsis, and the Talk with Reely action — presentation only, not a live recommendation.",
+        "id": "intertitle-film-type",
+        "title": "Your film type",
+        "caption": "A taste profile based on twelve synthetic ratings, with its basis stated above the profile.",
         "mediaType": "image",
         "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/06-film-detail.webp",
+        "src": "/assets/media/demos/intertitle/2026-10-22-intertitle-film-type.webp",
         "width": 1206,
         "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle film detail screen for Paris, Texas showing a fixture match percentile and why-this-one explanation",
-        "sourceSha256": "6b4533f242e12d5575df654af262d25ccf2b9b125f2bdc7b0a7169ff29a566e1"
-      },
-      {
-        "id": "reely-refine",
-        "title": "Refine with Reely",
-        "caption": "A film-anchored thread on Paris, Texas with a prior turn. Reely runs on a fixture client in this build; no live model call is made.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/05-reely-refine.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Reely thread anchored on Paris, Texas with a prior conversational turn",
-        "sourceSha256": "36f578c3e9afcb70e97358f5e0566f372826d26fadf7b91442711db1e0a0b7d4"
-      },
-      {
-        "id": "diary",
-        "title": "Your diary",
-        "caption": "Six fixture log entries with ratings and posters.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/03-diary.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Diary tab showing six fixture log entries with ratings",
-        "sourceSha256": "4bd7fe96e23fa736cc1a0c600cfb45b57baf62d5202212df92a2aefdd4447d9d"
-      },
-      {
-        "id": "people",
-        "title": "Your film circle",
-        "caption": "A fixture film circle and recently-watching rows. The people shown are fixture profiles, not real users.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/04-people.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle People tab showing a fixture film circle and follow rows",
-        "sourceSha256": "202dea4d7c290e6503e658858eab0fb011a49408f86de27196dcd2f9fb6bbd32"
-      },
-      {
-        "id": "friends-activity",
-        "title": "What friends are watching",
-        "caption": "A fixture friends-activity feed — no real community or friend activity.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/intertitle/07-friends-activity.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Fixture demo data",
-        "alt": "Intertitle Friends tab showing a fixture activity feed",
-        "sourceSha256": "104380b545594683c81cc1857b8020af4b70a2a7b6fe2c14963836d34b4acf64"
+        "capturedAt": "2026-10-22",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Intertitle Your Film Type panel with a fixture taste profile and rating basis",
+        "sourceSha256": "3f177e1dc8905b7515f438bd92bb47097b406f07e3d223ff394f6570bdd2daeb",
+        "assetSha256": "df5562df63f012c2231adf6f514a99881167cfd8e60965eafaed3fd3854c9085"
       }
     ],
     "publicLinks": [],
@@ -156,11 +98,11 @@
     "category": "Vehicle leasing",
     "role": "Technical Lead",
     "status": "In development",
-    "purpose": "Follow a vehicle from discovery into a lease application.",
+    "purpose": "From a customer quote to the operations workspace.",
     "description": "A Mexican vehicle-leasing marketplace that brings discovery, qualification, and partner handoffs into one path.",
     "capturedAt": "2026-09-09",
     "sourceLabel": "Isolated local dev build, browser captures",
-    "demoScope": "Seven current captures from an isolated local dev ring: the quoting flow from vehicle spec to a real-cost estimate and term comparison, Claudio's guided search, and a flag-gated partner-application intake. All amounts, applicant and contact details are synthetic, and every estimate is illustrative, not a lessor offer.",
+    "demoScope": "The operations workspace is an interface study with example data. The earlier quoting and guided-search screens come from an isolated development build; amounts and applicant details are synthetic, and estimates are illustrative.",
     "engineeringNotes": "Shared domain rules and recoverable document handoffs keep operating decisions consistent.",
     "working": [
       "A quoting flow that turns a vehicle spec into a real-cost estimate — rent, estimated ISR deduction, creditable IVA — compared across terms",
@@ -168,13 +110,26 @@
       "A partner-application intake, gated behind a feature flag rather than live"
     ],
     "remaining": [
-      "Every amount is a local illustrative estimate, not a lessor offer — the product itself labels it \"Estimación, no oferta\"",
-      "Claudio runs on a deterministic scripted mock (USE_REAL_AGENT_MODEL off); no live model call and no autonomous decision",
-      "The partner application sits behind USE_PARTNER_PORTAL_V2, off by default while the partner program stays intentionally dark",
-      "The vehicle catalog itself isn't shown here: its cards currently render an \"Imagen en validación\" placeholder because licensed vehicle media doesn't exist yet"
+      "Quoting screens show illustrative estimates from the earlier development fixture, not a partner offer.",
+      "The operations workspace is an interface study; it does not demonstrate production access or actions.",
+      "The guided-search example uses a scripted mock; no live model call is made in these captures. Partner intake is flag-gated."
     ],
-    "defaultChapter": "quote-composer",
+    "defaultChapter": "work-study",
     "chapters": [
+      {
+        "id": "work-study",
+        "title": "Operations workspace",
+        "caption": "An interface study for asking a question with operational context. Example data; this is a design preview, not a deployed product screen.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/pazz/2026-10-28-work-study.webp",
+        "width": 1440,
+        "height": 1000,
+        "capturedAt": "2026-10-28",
+        "syntheticLabel": "Interface study and synthetic demo data",
+        "alt": "PAZZ operations workspace interface study with a question composer and example user",
+        "sourceSha256": "75d7b0d08fa818e4c6c7b15c99ded245867304f5b9208fde7bede4f47e3fe11e"
+      },
       {
         "id": "quote-composer",
         "title": "Specify the vehicle",
@@ -298,7 +253,7 @@
     "description": "A music-production workspace that turns session signals into inspectable evidence before you act on them.",
     "capturedAt": "2026-09-08",
     "sourceLabel": "Local Rust/Tauri build, synthetic telemetry",
-    "demoScope": "Synthetic session data traveling through the real local WebSocket server, session aggregation, and the real React/Tauri interface. No real audio, DAW, or coaching API is used.",
+    "demoScope": "The local music workspace with synthetic session data. These September captures show the current interface; no real recording or connected DAW is used in this gallery.",
     "engineeringNotes": "Missing or stale audio evidence stays visible in the UI instead of being papered over with a confident guess.",
     "working": [
       "Synthetic session registration and track ingest through the real local server",
@@ -306,9 +261,7 @@
       "Mixer and spectrum views rendered by the real local application"
     ],
     "remaining": [
-      "No AU/VST or FFT extraction from real PCM audio",
-      "No Logic Pro or other DAW bridge — the bridge process is a safety stub",
-      "No coaching API; the assistant panel is not wired to a model"
+      "These captures demonstrate the interface with synthetic telemetry, not live audio analysis or coaching."
     ],
     "defaultChapter": "mixer",
     "chapters": [
@@ -393,151 +346,65 @@
     "category": "Health & training",
     "role": null,
     "status": "In development",
-    "purpose": "Connect the day's recovery, food and training to a plan you can actually follow.",
+    "purpose": "Training, recovery and food, with room for more than one activity in a day.",
     "description": "A training week that fits real constraints before it becomes an active plan.",
-    "capturedAt": "2026-09-08",
+    "capturedAt": "2026-10-28",
     "sourceLabel": "Native iOS build, isolated Simulator",
-    "demoScope": "Eight current stills — Today, Food, the active meal plan, this week's training, the progress trend, a Coach proposal, the active plan review, and its full revision history — plus a 58-second recorded tour. Every readiness, food, training and weight number is synthetic fixture data; no HealthKit or WHOOP sync.",
+    "demoScope": "Current Today and Train screens, plus yoga instructions. Synthetic health, food and training data; no HealthKit or WHOOP data is read for these captures.",
     "engineeringNotes": "Local drafts and commit-time validation keep an impossible schedule visible instead of silently starting it. Every plan revision carries who changed it and why, and a pending Coach proposal is shown as a proposal to accept or decline, never an already-applied change.",
     "working": [
-      "A day view that ties readiness, check-ins, meals and training into one read",
-      "A meal plan accepted for the week, tracked meal by meal against its targets",
-      "A Coach proposal — three concrete setting deltas with reasoning — shown for review, not auto-applied",
-      "A full revision ledger: every plan setting shows who changed it and why (Coach vs. you), not just its current value"
+      "A planned workout alongside an independent Add activity action.",
+      "Illustrated exercise lists and individual exercise instructions."
     ],
     "remaining": [
-      "No HealthKit or WHOOP sync — readiness, sleep, weight, food and training numbers are synthetic fixture data",
-      "Captured in an isolated iOS Simulator build; physical-device acceptance is incomplete",
-      "Coach is a scripted plan/proposal surface, not an autonomous or AI-powered agent"
+      "A local development preview; public access is not available here."
     ],
-    "defaultChapter": "today-decision",
+    "defaultChapter": "temper-today",
     "chapters": [
       {
-        "id": "today-decision",
-        "title": "The day's read",
-        "caption": "Readiness, check-ins, and today's meals and training in one place — all synthetic fixture data, not a real health sync.",
+        "id": "temper-today",
+        "title": "Today",
+        "caption": "Recovery, a planned session, and a separate Add activity action. All health and food values are synthetic.",
         "mediaType": "image",
         "layout": "portrait",
-        "src": "/assets/media/demos/temper/01-today-decision.webp",
+        "src": "/assets/media/demos/temper/2026-10-28-temper-today.webp",
         "width": 1206,
         "height": 2622,
-        "capturedAt": "2026-09-08",
+        "capturedAt": "2026-10-28",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper Today tab showing a synthetic readiness score, check-in chips, logged meals and a coach brief",
-        "sourceSha256": "b408c4897cc1e3b033721e23441c5123359697047d8c3e5031890ff5387dd291"
+        "alt": "Temper Today with recovery guidance, a planned workout and Add activity",
+        "sourceSha256": "a84d106e27e66b19874587926b2f7defddc179f0dbc968664aacfa8e4b6f7098",
+        "assetSha256": "a4a27984abd21e2f265783bae8c7feca306ad2a9dee97ebf78cfb08427e51b67"
       },
       {
-        "id": "food-log",
-        "title": "What you actually ate",
-        "caption": "1,240 calories left of 2,500, protein/carb/fat bars, three logged meals with times and macros, and an open dinner slot.",
+        "id": "temper-train",
+        "title": "Training, illustrated",
+        "caption": "The current training layout with exercise pictures, sets, repetitions and Customize. All training history is synthetic.",
         "mediaType": "image",
         "layout": "portrait",
-        "src": "/assets/media/demos/temper/02-food-log.webp",
+        "src": "/assets/media/demos/temper/2026-10-28-temper-train.webp",
         "width": 1206,
         "height": 2622,
-        "capturedAt": "2026-09-08",
+        "capturedAt": "2026-10-28",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper Food tab showing a populated daily log with macro bars and three logged meals",
-        "sourceSha256": "43ae3c1e1c865f8b39e4244ec19efcddb60473f73bb4ab3582444959be16955d"
+        "alt": "Temper Train with illustrated exercises and workout controls",
+        "sourceSha256": "43eb81ca23dd2564180544f4bf40eee6e3bfec1a5e9e3f4bdc9fe7b5c550a2a0",
+        "assetSha256": "1cec391036f2e4fe46ab6ef768a0592faa7a51b7417858fb366607cc86b1ba0d"
       },
       {
-        "id": "active-meal-plan",
-        "title": "The active meal plan",
-        "caption": "The accepted week's meal plan with day-by-day macro targets, tracked against meals already logged.",
+        "id": "temper-yoga-instructions",
+        "title": "How to do it",
+        "caption": "The yoga detail sheet, with instructions and the muscles and equipment involved.",
         "mediaType": "image",
         "layout": "portrait",
-        "src": "/assets/media/demos/temper/03-active-meal-plan.webp",
+        "src": "/assets/media/demos/temper/2026-10-27-temper-yoga-instructions.webp",
         "width": 1206,
         "height": 2622,
-        "capturedAt": "2026-09-08",
+        "capturedAt": "2026-10-27",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper active meal plan showing accepted day-by-day macro targets",
-        "sourceSha256": "df46d815d9ade25d9e1aa833f041b1b72f2359347155ab760f216240b512de12"
-      },
-      {
-        "id": "training-week",
-        "title": "This week's training",
-        "caption": "A seven-day training strip, with Tuesday's session broken into exercises, sets, reps and rest.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/temper/04-training-week.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper Train tab showing a seven-day training week and one day's exercise list",
-        "sourceSha256": "080992031327cb9c4f53ef7a531026c6b1fc0a6ea2d81fe4ff5193c3271c0c46"
-      },
-      {
-        "id": "progress-trend",
-        "title": "Where the trend is going",
-        "caption": "A weekly digest of workouts, nutrition and weight change, with a seven-day average weight trend chart.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/temper/05-progress-trend.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper Progress tab showing a weekly digest and a synthetic weight trend chart",
-        "sourceSha256": "fdf6be013ff68f86f042e6948e5c0388e0da1f7a75647efe539bddd984856a22"
-      },
-      {
-        "id": "coach-conversation",
-        "title": "The coach's read",
-        "caption": "A plan summary, a proposal with three concrete setting deltas and its reasoning, and a dated brief — a proposal to accept or decline, not a live chat.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/temper/06-coach-conversation.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper Coach tab showing a plan summary, a pending recalibration proposal, and a dated brief",
-        "sourceSha256": "7a972b083f3a6c6f5f0b8160e1a769e3c9b4c334fd2fb6e0446f74b18eac9726"
-      },
-      {
-        "id": "active-plan-review",
-        "title": "Reviewing the active plan",
-        "caption": "The active plan's goal, origin and review cadence, alongside nutrition, weekly rhythm, limits and coach-access settings.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/temper/07-active-plan-review.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper active plan review showing goal, cadence, and rule settings",
-        "sourceSha256": "374ffa4212ead3ee5cf5a26e8b648f9c95cc6765f353f298b0a76ef9d7f750fc"
-      },
-      {
-        "id": "plan-history",
-        "title": "Who changed what",
-        "caption": "Every setting's revision history — \"Coach · Sep 6\" with its reasoning next to \"You · Sep 2\" — a full attribution ledger, not just a before/after.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/temper/08-plan-history.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "Temper plan history showing per-setting attribution between Coach and the user",
-        "sourceSha256": "5c9708d43ffad03f45bb6395c7a293d93d64d0013581c0fefb78c0f92041cdf8"
-      },
-      {
-        "id": "walkthrough",
-        "title": "Walkthrough",
-        "caption": "A recorded tour across Today, Food, Train, Progress and Coach, all populated with synthetic fixture data.",
-        "mediaType": "video",
-        "layout": "portrait",
-        "src": "/assets/media/demos/temper/five-tab-tour.mp4",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "Recorded tour of the Temper native app across Today, Food, Train, Progress, and Coach tabs",
-        "transcript": "The recording moves through Today's recovery summary, Food's daily log, Train's training week, Progress's trend view, and Coach's plan brief and pending proposal, all populated with synthetic fixture data. No HealthKit or WHOOP data is read.",
-        "sourceSha256": "96a3aa01527baf6e60dac588689922f3689d30348a92b6a88a6c217fc979480b"
+        "alt": "Temper yoga exercise detail with Child’s Pose instructions",
+        "sourceSha256": "00555028cf1da41a7ffb0b567453cc38db4afaecb012affabc41f7f332b3befa",
+        "assetSha256": "926148d51410397d2b4ef3c274ad1fe25b38dbd2551ad6565739c3c612418ea6"
       }
     ],
     "publicLinks": [],
@@ -561,103 +428,304 @@
   },
   {
     "id": "mimo",
-    "name": "Mimo",
-    "shortLabel": "Mimo",
-    "category": "Shared moments",
+    "name": "Mimo: Made of Us",
+    "shortLabel": "Mimo: Made of Us",
+    "category": "Movie nights & shared moments",
     "role": null,
     "status": "In development",
-    "purpose": "Turn everyday photos into little keepsakes you can make your own.",
-    "description": "Made of Us — a personal scrapbook for photos, marks, and small kept moments.",
-    "capturedAt": "2026-09-08",
+    "purpose": "Plan a movie night together, keep a watch list, and save the moments around it.",
+    "description": "Plan a movie night together, keep a watch list, and save the moments around it.",
+    "capturedAt": "2026-10-14",
     "sourceLabel": "Preview build 3, Simulator",
-    "demoScope": "A current Made of Us preview: importing a fictional sample photo, marking it, saving it, and reaching the Home Screen widgets. Captured in Simulator.",
+    "demoScope": "The current Tonight interface with a fictional movie-night plan in an isolated Simulator.",
     "engineeringNotes": "Editable marks persist with the moment they belong to, and saved content can reach both native widget sizes.",
     "working": [
-      "System photo import into the real moment editor",
-      "A mark that saves and persists with its moment",
-      "Small and medium WidgetKit views on the Home Screen"
+      "A Tonight ticket, count-in controls, a watch list and shared-moments navigation."
     ],
     "remaining": [
-      "Full physical-device interaction is unverified beyond an owner-confirmed install and launch",
-      "User-added Home Screen widgets on a real device are unverified",
-      "Real partner synchronization between two people is not delivered"
+      "This one-device fixture does not demonstrate synchronization between two people."
     ],
-    "defaultChapter": "home",
+    "defaultChapter": "made-of-us-tonight",
     "chapters": [
       {
-        "id": "home",
-        "title": "Your moments",
-        "caption": "A saved sample moment on the Made of Us home screen. The cafe photo is fictional sample content, not a real photo.",
+        "id": "made-of-us-tonight",
+        "title": "Tonight, together",
+        "caption": "A ticket for a fictional Past Lives movie night, with an on-screen count-in and the shared-list navigation.",
         "mediaType": "image",
         "layout": "portrait",
-        "src": "/assets/media/demos/mimo/home-final.webp",
+        "src": "/assets/media/demos/mimo/2026-10-14-made-of-us-tonight.webp",
         "width": 1206,
         "height": 2622,
-        "capturedAt": "2026-09-08",
+        "capturedAt": "2026-10-14",
         "syntheticLabel": "Synthetic demo data",
-        "alt": "Mimo Made of Us home screen showing a saved fictional sample moment",
-        "sourceSha256": "81c5155ef3c54a8ba6b6a405dd45991d16c15a5d43aee25d7f7f3220d74269d4"
-      },
-      {
-        "id": "import",
-        "title": "Make it yours",
-        "caption": "The system PhotosPicker importing a fictional sample photo into the real moment editor.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/mimo/photo-import.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "Mimo photo import screen using the system PhotosPicker with a fictional sample cafe photo",
-        "sourceSha256": "50b7b2e49f51d92f434af976fd408df695e836924f60666bee102bd3b6c1ddd8"
-      },
-      {
-        "id": "mark",
-        "title": "A mark that stays",
-        "caption": "A saved, editable mark on a synthetic test image, kept with its moment rather than overwriting it.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/mimo/marked-moment.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "Mimo editor showing a saved mark on a synthetic test moment",
-        "sourceSha256": "a02b5a55e60901a9539949d610d7fb6d6fb5d80062af9b8f9631e40d27882e6b"
-      },
-      {
-        "id": "widgets",
-        "title": "On your Home Screen",
-        "caption": "Small and medium WidgetKit views on the Simulator Home Screen, showing a fictional sample moment.",
-        "mediaType": "image",
-        "layout": "portrait",
-        "src": "/assets/media/demos/mimo/widgets.webp",
-        "width": 1206,
-        "height": 2622,
-        "capturedAt": "2026-09-08",
-        "syntheticLabel": "Synthetic demo data",
-        "alt": "iOS Simulator Home Screen showing small and medium Mimo widgets with a fictional sample moment",
-        "sourceSha256": "3d517d91c1d8da3125e1b05aff2906e6834697158fd40cd2e60eee4b80e9044a"
+        "alt": "Mimo: Made of Us Tonight ticket for a fictional movie-night plan",
+        "sourceSha256": "0555118897d5c1bad9471d92a1c241c5a3a774a4d19cf5680bf8dfe5bd30870c",
+        "assetSha256": "fb33abf1225eb608fad4cbef4c9a31d2559fa06e106b48f5cf831547a1ab7c7d"
       }
     ],
     "publicLinks": [],
     "wayIn": {
       "kind": "notify",
-      "label": "Tell me when Mimo opens up",
+      "label": "Tell me when Mimo: Made of Us opens up",
       "href": "https://wearelojik.com/api/contact",
       "enabled": true,
       "note": "In development; no public build exists yet.",
       "message": "Please let me know when Mimo opens up to try."
     },
     "page": {
-      "title": "Mimo, photo keepsakes for iPhone",
-      "description": "Mimo turns everyday photos into small keepsakes you can mark, save and put on your Home Screen. In development by Diego González Zapiain."
+      "title": "Mimo: Made of Us, movie nights and shared moments",
+      "description": "Mimo: Made of Us, a shared movie-night app by Diego González Zapiain. A development preview with fictional sample content."
     },
     "app": {
       "@type": "MobileApplication",
       "operatingSystem": "iOS",
       "applicationCategory": "LifestyleApplication"
+    }
+  },
+  {
+    "id": "pocket",
+    "name": "Pocket",
+    "shortLabel": "Pocket",
+    "category": "Music creation",
+    "role": "Maker",
+    "status": "In development",
+    "purpose": "Edit notes, shape a mix, and try an idea on iPhone or Mac.",
+    "description": "A music workbench for notes, mixes and auditioning an edit.",
+    "capturedAt": "2026-10-28",
+    "sourceLabel": "Native app, synthetic preview",
+    "demoScope": "The current iPhone piano roll, captured against a local fixture with generated sounds.",
+    "engineeringNotes": "",
+    "working": [],
+    "remaining": [],
+    "defaultChapter": "pocket-piano-roll",
+    "chapters": [
+      {
+        "id": "pocket-piano-roll",
+        "title": "Shape a phrase",
+        "caption": "The iPhone piano roll with a short generated bass pattern, note tools, and undo and redo.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/pocket/2026-10-28-pocket-piano-roll.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-10-28",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Pocket piano roll showing a generated bass pattern and editing controls",
+        "sourceSha256": "33d94ea0441049319e6898716abc01e720925849830ecd7b35c3b9919c5929bf",
+        "assetSha256": "55550af163b83d9a3fc8189da402fe5a4d28e1a42ee27337f5e366a74e7e797b"
+      }
+    ],
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "none",
+      "enabled": false,
+      "note": "Private working app."
+    },
+    "page": {
+      "title": "Pocket, music creation",
+      "description": "Pocket by Diego González Zapiain. A music workbench for notes, mixes and auditioning an edit. A local development preview."
+    },
+    "app": {
+      "@type": "SoftwareApplication",
+      "operatingSystem": "iOS and macOS",
+      "applicationCategory": "MultimediaApplication"
+    }
+  },
+  {
+    "id": "dicta",
+    "name": "Dicta",
+    "shortLabel": "Dicta",
+    "category": "Dictation",
+    "role": "Maker",
+    "status": "Personal tool",
+    "purpose": "Speak into the apps where you write, with modes, corrections and a local history.",
+    "description": "A native Mac dictation app with modes, corrections and local history.",
+    "capturedAt": "2026-10-28",
+    "sourceLabel": "Native app, synthetic preview",
+    "demoScope": "The native Home preview with synthetic usage figures and app breakdowns.",
+    "engineeringNotes": "",
+    "working": [],
+    "remaining": [],
+    "defaultChapter": "dicta-home",
+    "chapters": [
+      {
+        "id": "dicta-home",
+        "title": "Dictation at a glance",
+        "caption": "The native Mac home screen. Every usage number and app breakdown shown here is synthetic demo data.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/dicta/2026-10-28-dicta-home.webp",
+        "width": 2308,
+        "height": 1630,
+        "capturedAt": "2026-10-28",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Dicta Mac home screen showing synthetic dictation usage",
+        "sourceSha256": "3a5d8fe4840d33fe1018285ce6f59ac3adf46ca5d7a479d90fc449b01475b385",
+        "assetSha256": "2d13e68fb710c7241800a5c96e54b53032128a7d5544bfb19d6f0cd12c7090de"
+      }
+    ],
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "none",
+      "enabled": false,
+      "note": "Personal Mac app."
+    },
+    "page": {
+      "title": "Dicta, dictation",
+      "description": "Dicta by Diego González Zapiain. A native Mac dictation app with modes, corrections and local history. A local development preview."
+    },
+    "app": {
+      "@type": "SoftwareApplication",
+      "operatingSystem": "macOS",
+      "applicationCategory": "ProductivityApplication"
+    }
+  },
+  {
+    "id": "dreamme",
+    "name": "DreamMe",
+    "shortLabel": "DreamMe",
+    "category": "Bedtime stories",
+    "role": "Maker",
+    "status": "In development",
+    "purpose": "Illustrated bedtime stories starring your child.",
+    "description": "Personalized bedtime stories, in a world made of paper, moonlight and imagination.",
+    "capturedAt": "2026-10-22",
+    "sourceLabel": "Design artwork",
+    "demoScope": "Artwork from the Paper Moon redesign. This is a design asset, not an app screenshot.",
+    "engineeringNotes": "",
+    "working": [],
+    "remaining": [],
+    "defaultChapter": "dreamme-home-artwork",
+    "chapters": [
+      {
+        "id": "dreamme-home-artwork",
+        "title": "Paper Moon",
+        "caption": "An illustration from the current Paper Moon design. This is a design asset, not an app screenshot.",
+        "mediaType": "image",
+        "layout": "desktop",
+        "src": "/assets/media/demos/dreamme/2026-10-22-dreamme-home-artwork.webp",
+        "width": 1074,
+        "height": 600,
+        "capturedAt": "2026-10-22",
+        "syntheticLabel": "Design artwork",
+        "alt": "DreamMe Paper Moon design artwork of a teddy bear on a crescent moon",
+        "sourceSha256": "0884d4dfaefe62bf4ce4364979040fe723412c92a3d103313ecac695a0ca9e54",
+        "assetSha256": "0884d4dfaefe62bf4ce4364979040fe723412c92a3d103313ecac695a0ca9e54"
+      }
+    ],
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "none",
+      "enabled": false,
+      "note": "In development. A design preview is shown here."
+    },
+    "page": {
+      "title": "DreamMe, bedtime stories",
+      "description": "DreamMe by Diego González Zapiain. Personalized bedtime stories, in a world made of paper, moonlight and imagination. Current Paper Moon design artwork."
+    },
+    "app": {
+      "@type": "SoftwareApplication",
+      "operatingSystem": "iOS and Web",
+      "applicationCategory": "EntertainmentApplication"
+    },
+    "galleryLabel": "Design artwork"
+  },
+  {
+    "id": "ledger",
+    "name": "Ledger",
+    "shortLabel": "Ledger",
+    "category": "Personal finance",
+    "role": "Maker",
+    "status": "Personal tool",
+    "purpose": "See your transactions, the day’s spending and the money ahead in one place.",
+    "description": "A personal iPhone app for transactions, daily spending and money.",
+    "capturedAt": "2026-10-28",
+    "sourceLabel": "Native app, synthetic preview",
+    "demoScope": "The current Today interface with a freshly seeded fictional ledger. All merchants, amounts and totals are demo data.",
+    "engineeringNotes": "",
+    "working": [],
+    "remaining": [],
+    "defaultChapter": "ledger-today",
+    "chapters": [
+      {
+        "id": "ledger-today",
+        "title": "The day’s spending",
+        "caption": "A Today view with fictional purchases and totals, seeded only for this preview. No real account or transaction data is shown.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/ledger/2026-10-28-ledger-today.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-10-28",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Ledger Today screen with fictional merchants, purchases and totals",
+        "sourceSha256": "f1f646b12d3e4de0758122f3f8ca5e28d33586580cb61a6b43c398c4d6485665",
+        "assetSha256": "960237d965c1f9295108e31d4e200818c9b838457d2330c1ad6a80a323cd288d"
+      }
+    ],
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "none",
+      "enabled": false,
+      "note": "Personal app."
+    },
+    "page": {
+      "title": "Ledger, personal finance",
+      "description": "Ledger by Diego González Zapiain. A personal iPhone app for transactions, daily spending and money. A local development preview."
+    },
+    "app": {
+      "@type": "SoftwareApplication",
+      "operatingSystem": "iOS",
+      "applicationCategory": "FinanceApplication"
+    }
+  },
+  {
+    "id": "rundown",
+    "name": "Rundown",
+    "shortLabel": "Rundown",
+    "category": "Video creation",
+    "role": "Maker",
+    "status": "In development",
+    "purpose": "Take a prepared script through rehearsal, recording and review.",
+    "description": "A script-to-take workspace for rehearsing and recording video.",
+    "capturedAt": "2026-10-28",
+    "sourceLabel": "Native app, synthetic preview",
+    "demoScope": "The current native interface with the bundled sample workspace; no live connection or personal scripts.",
+    "engineeringNotes": "",
+    "working": [],
+    "remaining": [],
+    "defaultChapter": "rundown-preview",
+    "chapters": [
+      {
+        "id": "rundown-preview",
+        "title": "From script to take",
+        "caption": "The bundled preview workspace, with a sample script ready to rehearse and record.",
+        "mediaType": "image",
+        "layout": "portrait",
+        "src": "/assets/media/demos/rundown/2026-10-28-rundown-preview.webp",
+        "width": 1206,
+        "height": 2622,
+        "capturedAt": "2026-10-28",
+        "syntheticLabel": "Synthetic demo data",
+        "alt": "Rundown preview workspace with a sample script ready to record",
+        "sourceSha256": "447516c8e674cd3235492774fc90920f30342554d8d24b0412812c428276458a",
+        "assetSha256": "ce874cf409d6a74031d12af05cd5c05ac02585c9ce9a3fb114c8fba6a775fa3a"
+      }
+    ],
+    "publicLinks": [],
+    "wayIn": {
+      "kind": "none",
+      "enabled": false,
+      "note": "Private working app."
+    },
+    "page": {
+      "title": "Rundown, video creation",
+      "description": "Rundown by Diego González Zapiain. A script-to-take workspace for rehearsing and recording video. A local development preview."
+    },
+    "app": {
+      "@type": "SoftwareApplication",
+      "operatingSystem": "iOS",
+      "applicationCategory": "MultimediaApplication"
     }
   }
 ]

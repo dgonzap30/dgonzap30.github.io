@@ -34,9 +34,18 @@ function webpSize(buffer) {
 
 export async function loadWork() {
   const work = JSON.parse(await readFile(join(root, 'assets/data/work.json'), 'utf8'));
+  const projects = JSON.parse(await readFile(join(root, 'assets/data/projects.json'), 'utf8'));
+  // Index previews follow the gallery's selected image so a gallery refresh
+  // cannot leave an unrelated old thumbnail on the home page.
+  work.products = work.products.map((product) => {
+    const project = projects.find((entry) => entry.id === product.id);
+    const chapter = project?.chapters.find((entry) => entry.id === project.defaultChapter && entry.mediaType === 'image')
+      ?? project?.chapters.find((entry) => entry.mediaType === 'image');
+    return { ...product, previewSrc: product.previewSrc ?? chapter?.src ?? `${MEDIA}/${product.image}.webp` };
+  });
   const sizes = new Map();
   for (const product of work.products) {
-    sizes.set(product.image, webpSize(await readFile(join(root, `${MEDIA.slice(1)}/${product.image}.webp`))));
+    sizes.set(product.id, webpSize(await readFile(join(root, product.previewSrc.slice(1)))));
   }
   return { ...work, sizes };
 }
@@ -56,15 +65,15 @@ const linkAttrs = (href) =>
 // top as the row's last column. On a fine pointer the row's image follows the
 // pointer as a preview; on touch or narrow screens it shows inline.
 function renderRow(work, product, index, { level, long }) {
-  const [width, height] = work.sizes.get(product.image);
-  const src = `${MEDIA}/${product.image}.webp`;
+  const [width, height] = work.sizes.get(product.id);
+  const src = product.previewSrc;
   const go = product.go.href
     ? `<a class="row-go" href="${escape(product.go.href)}"${linkAttrs(product.go.href)}>${escape(product.go.label)} <span aria-hidden="true">↗</span></a>`
     : `<span class="row-go" aria-hidden="true">${escape(product.go.label)} →</span>`;
   return `        <li class="row grid" data-preview="${src}" data-kind="${product.kind}">
           <img class="row-img${product.kind === 'phone' ? ' phone' : ''}" src="${src}" width="${width}" height="${height}" alt="" loading="lazy" decoding="async">
           <h${level} class="row-t display"><a class="row-link" href="${product.href}"><span class="row-name" style="view-transition-name: title-${product.id}">${escape(product.name)}</span></a><sup aria-hidden="true">${String(index + 1).padStart(2, '0')}</sup></h${level}>
-          <p class="row-r"><b>${escape(product.role)}</b> <span>${escape(long ? product.line : product.short)}</span></p>
+          <p class="row-r"><b>${escape(product.role)}</b> <span>${escape(long ? product.line : product.short)}</span>${product.mediaNote ? `<small class="row-note">${escape(product.mediaNote)}</small>` : ''}</p>
           ${go}
         </li>`;
 }
@@ -77,7 +86,7 @@ export function renderIndex(work, ids, { label, level = 3, long = false }) {
       <ol class="index" role="list">
 ${rows}
       </ol>
-      <div class="preview" aria-hidden="true"><img src="${MEDIA}/${find(work, ids[0]).image}.webp" alt="" loading="lazy" decoding="async"></div>`;
+      <div class="preview" aria-hidden="true"><img src="${find(work, ids[0]).previewSrc}" alt="" loading="lazy" decoding="async"></div>`;
 }
 
 // The "More work" table at the foot of a product or case page.

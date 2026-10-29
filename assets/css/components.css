@@ -163,7 +163,7 @@
   align-items: end;
   padding-block: clamp(14px, 1.6vw, 22px);
   border-bottom: 1px solid var(--rule);
-  transition: opacity 360ms var(--ease);
+  transition: background-color 300ms var(--ease);
 }
 
 .row-t {
@@ -227,6 +227,13 @@
   color: var(--ink-2);
 }
 
+.row-note {
+  display: block;
+  margin-top: var(--s1);
+  font-size: var(--t-label);
+  color: var(--ink-3);
+}
+
 .row-go {
   grid-column: 11 / 13;
   justify-self: end;
@@ -251,22 +258,15 @@ a.row-go:hover {
   display: none;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .index:hover:not(:has(:focus-visible)) .row:not(:hover) {
-    opacity: 0.2;
-  }
-
-  .row:hover .row-name,
-  .row:hover .row-t sup {
-    translate: var(--nudge) 0;
-  }
+/* Only an intentional pointer move activates a row; a stationary pointer
+   during scrolling does not dim the list or move its type. */
+.row.is-active,
+.row:has(:focus-visible) {
+  background-color: rgb(15 20 18 / 0.035);
 }
 
-/* Keyboard focus dims the same way the pointer does, and wins over it. */
-.index:has(:focus-visible) .row:not(:focus-within) {
-  opacity: 0.2;
-}
-
+.row.is-active .row-name,
+.row.is-active .row-t sup,
 .row:has(:focus-visible) .row-name,
 .row:has(:focus-visible) .row-t sup {
   translate: var(--nudge) 0;
@@ -279,7 +279,7 @@ a.row-go:hover {
   z-index: 30;
   pointer-events: none;
   opacity: 0;
-  scale: 0.86;
+  scale: 0.96;
   transition: opacity 260ms var(--ease), scale 420ms var(--ease);
 }
 
@@ -287,20 +287,20 @@ a.row-go:hover {
 .preview.on {
   opacity: 1;
   scale: 1;
-  transition: opacity 260ms var(--ease), scale 420ms var(--ease), translate 640ms var(--ease);
+  transition: opacity 260ms var(--ease), scale 420ms var(--ease), translate 180ms var(--ease);
 }
 
 /* Capped by width and by the window's height; the ratio holds either way. */
 .preview img {
-  max-width: 460px;
-  max-height: calc(100vh - 32px);
+  max-width: min(380px, calc(100vw - 40px));
+  max-height: min(440px, calc(100vh - 40px));
   border-radius: var(--radius);
   box-shadow: 0 30px 80px -30px rgb(15 20 18 / 0.5);
   translate: 0 -50%;
 }
 
 .preview[data-kind="phone"] img {
-  max-width: 230px;
+  max-width: min(190px, calc(100vw - 40px));
   border-radius: 26px;
 }
 
@@ -339,8 +339,9 @@ a.row-go:hover {
   }
 
   .row-img.phone {
+    aspect-ratio: 4 / 5;
     object-fit: contain;
-    padding-top: 16px;
+    padding: 16px;
     background: var(--night);
   }
 

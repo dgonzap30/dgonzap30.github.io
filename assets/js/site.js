@@ -60,74 +60,74 @@
     update();
   }
 
-  // The preview trails the pointer: each move sets a new position and the
-  // CSS translate transition eases toward it. Near the right edge it flips to
-  // the pointer's left, and it is clamped inside the window, also once a new
-  // image loads. Escape hides it until a row is entered again. It is hidden
-  // from assistive technology and never takes focus.
+  // Only deliberate mouse movement selects a preview. Scroll-driven pointer
+  // entry must never leave an old product floating over the next row.
   function enhanceIndex(list) {
     const preview = list.parentElement.querySelector('.preview');
     const image = preview && preview.querySelector('img');
     if (!image) return;
-    const rows = [...list.querySelectorAll('.row[data-preview]')];
     const pointer = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 761px)');
-    let shown = false;
-    let preloaded = false;
-    let x = 0;
-    let y = 0;
+    let active = null;
+    let x = null;
+    let y = null;
 
     function place() {
       const width = image.offsetWidth;
       const half = image.offsetHeight / 2;
-      const gap = 32;
-      const side = x + gap + width > window.innerWidth - 16 ? x - gap - width : x + gap;
-      const left = Math.min(Math.max(side, 16), window.innerWidth - width - 16);
-      const top = Math.min(Math.max(y, half + 16), window.innerHeight - half - 16);
+      const gap = 40;
+      const side = x + gap + width > window.innerWidth - 20 ? x - gap - width : x + gap;
+      const left = Math.max(20, Math.min(side, window.innerWidth - width - 20));
+      const top = Math.max(half + 20, Math.min(y, window.innerHeight - half - 20));
       preview.style.translate = `${Math.round(left)}px ${Math.round(top)}px`;
     }
 
-    function show(row) {
-      if (!pointer.matches) return;
-      if (!preloaded) {
-        rows.forEach((entry) => {
-          new Image().src = entry.dataset.preview;
-        });
-        preloaded = true;
-      }
-      preview.dataset.kind = row.dataset.kind;
-      if (image.getAttribute('src') !== row.dataset.preview) image.src = row.dataset.preview;
-      if (shown) return;
+    function reveal() {
+      if (!active || !image.complete || !image.naturalWidth) return;
       place();
-      preview.getBoundingClientRect();
       preview.classList.add('on');
-      shown = true;
     }
 
     function hide() {
       preview.classList.remove('on');
-      shown = false;
+      if (active) active.classList.remove('is-active');
+      active = null;
     }
 
-    rows.forEach((row) => {
-      row.addEventListener('pointerenter', (event) => {
-        if (event.pointerType !== 'mouse') return;
-        x = event.clientX;
-        y = event.clientY;
-        show(row);
-      });
-    });
+    function select(row) {
+      if (active !== row) {
+        hide();
+        active = row;
+        active.classList.add('is-active');
+        preview.dataset.kind = row.dataset.kind;
+        // Hide the previous product until this image has actually loaded.
+        if (image.getAttribute('src') !== row.dataset.preview) image.src = row.dataset.preview;
+      }
+      reveal();
+    }
+
     list.addEventListener('pointermove', (event) => {
+      if (event.pointerType !== 'mouse' || !pointer.matches) return;
+      if (event.clientX === x && event.clientY === y) return;
       x = event.clientX;
       y = event.clientY;
-      if (shown) place();
+      const row = event.target.closest('.row[data-preview]');
+      if (!row || !list.contains(row) || list.querySelector(':focus-visible')) {
+        hide();
+        return;
+      }
+      select(row);
     });
-    image.addEventListener('load', () => {
-      if (shown) place();
-    });
+    image.addEventListener('load', reveal);
+    image.addEventListener('error', hide);
     list.addEventListener('pointerleave', hide);
+    list.addEventListener('focusin', hide);
+    window.addEventListener('scroll', hide, { passive: true, capture: true });
+    window.addEventListener('resize', hide, { passive: true });
     window.addEventListener('pagehide', hide);
+    window.addEventListener('blur', hide);
+    pointer.addEventListener('change', hide);
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') hide();
+      if (event.key === 'Escape' || event.key === 'Tab') hide();
     });
   }
 

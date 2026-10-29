@@ -22,6 +22,11 @@ const REQUIRED_PAGES = [
   'demos/intertitle/index.html',
   'demos/temper/index.html',
   'demos/maestro/index.html',
+  'demos/pocket/index.html',
+  'demos/dicta/index.html',
+  'demos/dreamme/index.html',
+  'demos/ledger/index.html',
+  'demos/rundown/index.html',
   'now/index.html',
   'writing/index.html',
 ];
