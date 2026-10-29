@@ -62,7 +62,8 @@
 
   // The preview trails the pointer: each move sets a new position and the
   // CSS translate transition eases toward it. Near the right edge it flips to
-  // the pointer's left; it never covers the edge of the window. It is hidden
+  // the pointer's left, and it is clamped inside the window, also once a new
+  // image loads. Escape hides it until a row is entered again. It is hidden
   // from assistive technology and never takes focus.
   function enhanceIndex(list) {
     const preview = list.parentElement.querySelector('.preview');
@@ -79,7 +80,8 @@
       const width = image.offsetWidth;
       const half = image.offsetHeight / 2;
       const gap = 32;
-      const left = x + gap + width > window.innerWidth - 16 ? x - gap - width : x + gap;
+      const side = x + gap + width > window.innerWidth - 16 ? x - gap - width : x + gap;
+      const left = Math.min(Math.max(side, 16), window.innerWidth - width - 16);
       const top = Math.min(Math.max(y, half + 16), window.innerHeight - half - 16);
       preview.style.translate = `${Math.round(left)}px ${Math.round(top)}px`;
     }
@@ -119,8 +121,14 @@
       y = event.clientY;
       if (shown) place();
     });
+    image.addEventListener('load', () => {
+      if (shown) place();
+    });
     list.addEventListener('pointerleave', hide);
     window.addEventListener('pagehide', hide);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') hide();
+    });
   }
 
   document.querySelectorAll('[data-clock]').forEach(startClock);
