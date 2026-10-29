@@ -252,7 +252,7 @@ a.row-go:hover {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .index:hover .row:not(:hover) {
+  .index:hover:not(:has(:focus-visible)) .row:not(:hover) {
     opacity: 0.2;
   }
 
@@ -262,7 +262,7 @@ a.row-go:hover {
   }
 }
 
-/* Keyboard focus dims the same way the pointer does. */
+/* Keyboard focus dims the same way the pointer does, and wins over it. */
 .index:has(:focus-visible) .row:not(:focus-within) {
   opacity: 0.2;
 }
@@ -525,6 +525,11 @@ a.row-go:hover {
 
 .button:hover {
   background: var(--forest);
+}
+
+/* The ring sits outside the filled pill, on the page, so it takes the ink. */
+.button:focus-visible {
+  outline-color: var(--ink);
 }
 
 .stage-actions {
