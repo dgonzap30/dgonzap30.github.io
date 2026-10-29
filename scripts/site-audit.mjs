@@ -42,11 +42,11 @@ const REQUIRED_ASSETS = [
   'robots.txt',
   'sitemap.xml',
   'assets/js/site.js',
-  'assets/fonts/instrument-sans-latin.woff2',
-  'assets/fonts/newsreader-roman-latin.woff2',
-  'assets/fonts/newsreader-italic-latin.woff2',
-  'assets/fonts/OFL-Instrument-Sans.txt',
-  'assets/fonts/OFL-Newsreader.txt',
+  'assets/fonts/GeneralSans-Medium.otf',
+  'assets/fonts/GeneralSans-Semibold.otf',
+  'assets/fonts/LICENSE-FFL.txt',
+  'assets/fonts/inter.woff2',
+  'assets/fonts/OFL-Inter.txt',
   'assets/brand/dgz-trace.svg',
   'assets/brand/dgz-lockup.svg',
   'assets/brand/dgz-compact.svg',
@@ -252,7 +252,7 @@ async function auditRequiredAssets(root, errors) {
     const { size } = await stat(absolutePath);
     const extension = extname(relativePath).toLowerCase();
     if (extension === '.svg') auditBudget(relativePath, size, SVG_BUDGET, errors);
-    if (extension === '.woff2') auditBudget(relativePath, size, FONT_BUDGET, errors);
+    if (extension === '.woff2' || extension === '.otf') auditBudget(relativePath, size, FONT_BUDGET, errors);
     if (relativePath === 'assets/js/site.js') auditBudget(relativePath, size, SCRIPT_BUDGET, errors);
     if (relativePath === 'assets/media/diego-headshot.webp') auditBudget(relativePath, size, HEADSHOT_BUDGET, errors);
   }
