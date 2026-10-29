@@ -17,52 +17,49 @@ const M = '/assets/media/home';
 const style = `
   * { box-sizing: border-box; margin: 0; }
   html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--paper); color: var(--ink); }
-  body { display: grid; grid-template-columns: 600px 1fr; font-family: var(--font-sans); }
-  .copy { display: flex; flex-direction: column; padding: 64px 0 60px 72px; }
-  .brand { display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 500; }
-  .brand img { width: 40px; height: 40px; }
-  h1 { margin-top: auto; font: 400 76px/1.02 var(--font-serif); letter-spacing: -0.02em; }
-  h1 em { font-style: italic; }
-  p { margin-top: 22px; max-width: 30ch; font-size: 26px; line-height: 1.35; color: var(--ink-2); }
-  .dot { color: var(--accent); }
+  body { display: grid; grid-template-columns: 600px 1fr; font-family: var(--text); }
+  .copy { display: flex; flex-direction: column; padding: 60px 56px 60px 64px; }
+  .who { padding-bottom: 18px; border-bottom: 1px solid var(--ink); font-size: 22px; font-weight: 600; }
+  h1 { margin-top: auto; font: 600 84px/0.94 var(--display); letter-spacing: -0.045em; }
+  .h-sm { font-size: 60px; }
+  p { margin-top: 26px; max-width: 30ch; font-size: 25px; line-height: 1.4; color: var(--ink-2); }
   .nowrap { white-space: nowrap; }
-  .h-sm { font-size: 64px; }
-  .plate { position: relative; margin: 48px 48px 0 0; border-radius: 22px 22px 0 0; overflow: hidden; background: var(--plate); }
-  .phones { position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-start; gap: 22px; padding-top: 90px; }
-  .phones img { width: 232px; border-radius: 26px / 12px; box-shadow: 0 0 0 1px oklch(100% 0 0 / 0.12); }
+  .plate { position: relative; margin: 60px 60px 0 0; border-radius: 12px 12px 0 0; overflow: hidden; background: var(--plate); }
+  .phones { position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-start; gap: 22px; padding-top: 72px; }
+  .phones img { width: 220px; border-radius: 26px / 12px; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.12); }
   .phones img:nth-child(2) { margin-top: 52px; }
-  .screen { position: absolute; left: 44px; top: 72px; width: 760px; border-radius: 10px 0 0 0;
-    box-shadow: 0 0 0 1px oklch(0% 0 0 / 0.08), 0 30px 60px -30px oklch(0% 0 0 / 0.5); }
+  .screen { position: absolute; left: 44px; top: 64px; width: 760px; border-radius: 8px 0 0 0;
+    box-shadow: 0 0 0 1px var(--rule), 0 30px 60px -30px rgb(15 20 18 / 0.5); }
 `;
 
 const page = (plate, visual, title, line) => `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <link rel="stylesheet" href="/assets/css/fonts.css"><link rel="stylesheet" href="/assets/css/tokens.css">
 <style>${style}</style></head><body>
 <div class="copy">
-  <div class="brand"><img src="/assets/brand/dgz-trace.svg" alt="">Diego González Zapiain</div>
-  <h1${title.length > 60 ? ' class="h-sm"' : ''}>${title}</h1>
+  <div class="who">Diego González Zapiain</div>
+  <h1${title.replace(/<[^>]+>/g, '').length > 20 ? ' class="h-sm"' : ''}>${title}</h1>
   <p>${line}</p>
 </div>
-<div class="plate" style="--plate: var(--plate-${plate})">${visual}</div>
+<div class="plate" style="--plate: var(--${plate})">${visual}</div>
 </body></html>`;
 
 const cards = {
   home: page(
-    'intertitle',
+    'night',
     `<div class="phones"><img src="${M}/intertitle-tonight.webp" alt=""><img src="${M}/intertitle-film.webp" alt=""></div>`,
-    '<span class="nowrap">Founder-engineer</span> in Mexico&nbsp;City<span class="dot">.</span>',
+    '<span class="nowrap">Founder-engineer</span> in Mexico&nbsp;City',
     'Co-founder of LOJIK, maker of Intertitle, Technical Lead at PAZZ.',
   ),
   pazz: page(
-    'pazz',
+    'bone',
     `<img class="screen" src="${M}/pazz-quote.webp" alt="">`,
-    'PAZZ Marketplace<span class="dot">.</span>',
+    'PAZZ Marketplace',
     'Technical Lead on the rebuild of a <span class="nowrap">vehicle-leasing</span> platform in Mexico.',
   ),
   lojik: page(
-    'lojik',
+    'bone',
     `<img class="screen" src="${M}/lojik-site.webp" alt="">`,
-    'LOJIK<span class="dot">.</span>',
+    'LOJIK',
     'Co-Founder &amp; Technical Lead. Custom apps and automation for businesses.',
   ),
 };
