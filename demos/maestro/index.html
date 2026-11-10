@@ -109,21 +109,21 @@
         <div class="stage-track" role="region" aria-label="Maestro screens" tabindex="0">
           <figure class="stage-chapter" id="chapter-session" data-chapter="session">
             <a class="stage-media" href="/assets/media/demos/maestro/session.webp"><img src="/assets/media/demos/maestro/session.webp" width="2696" height="1776" alt="Maestro session view showing three synthetic tracks registering with a live masking finding" fetchpriority="high" decoding="async"></a>
-            <figcaption class="chapter-caption"><strong>Session.</strong> Live session state as tracks register, before anything is named or saved.</figcaption>
+            <figcaption class="chapter-caption"><strong>Session.</strong> Live session state as tracks register, before anything is named or saved. <time datetime="2026-09-08">2026-09-08</time></figcaption>
           </figure>
           <figure class="stage-chapter" id="chapter-mixer" data-chapter="mixer">
             <a class="stage-media" href="/assets/media/demos/maestro/poster.webp"><img src="/assets/media/demos/maestro/poster.webp" width="2784" height="1864" alt="Maestro mixer showing synthetic track meters and a masking issue between Synthetic Bass and Synthetic Pulse" fetchpriority="high" decoding="async"></a>
-            <figcaption class="chapter-caption"><strong>Mixer.</strong> 3 of 3 tracks live, with a masking issue between two synthetic tracks called out for review.</figcaption>
+            <figcaption class="chapter-caption"><strong>Mixer.</strong> 3 of 3 tracks live, with a masking issue between two synthetic tracks called out for review. <time datetime="2026-09-08">2026-09-08</time></figcaption>
           </figure>
           <figure class="stage-chapter" id="chapter-spectrum" data-chapter="spectrum">
             <a class="stage-media" href="/assets/media/demos/maestro/spectrum.webp"><img src="/assets/media/demos/maestro/spectrum.webp" width="2784" height="1864" alt="Maestro spectrum panel showing a synthetic integrated post-fader signal chart" loading="lazy" decoding="async"></a>
-            <figcaption class="chapter-caption"><strong>Spectrum.</strong> Integrated post-fader spectrum, captured at 124 BPM, four bars back.</figcaption>
+            <figcaption class="chapter-caption"><strong>Spectrum.</strong> Integrated post-fader spectrum, captured at 124 BPM, four bars back. <time datetime="2026-09-08">2026-09-08</time></figcaption>
           </figure>
           <figure class="stage-chapter" id="chapter-walkthrough" data-chapter="walkthrough">
             <video controls playsinline preload="none" poster="/assets/media/demos/maestro/poster.webp" width="1392" height="932" aria-label="Recorded walkthrough of the real local Maestro application with synthetic telemetry">
               <source src="/assets/media/demos/maestro/demo.mp4" type="video/mp4">
             </video>
-            <figcaption class="chapter-caption"><strong>Walkthrough.</strong> 26.5 seconds of the real local application: session registration, the mixer with its masking finding, then spectrum.</figcaption>
+            <figcaption class="chapter-caption"><strong>Walkthrough.</strong> 26.5 seconds of the real local application: session registration, the mixer with its masking finding, then spectrum. <time datetime="2026-09-08">2026-09-08</time></figcaption>
             <details class="chapter-transcript"><summary>Transcript</summary><p>A title card establishes the recording scope. The local Maestro UI shows three generic tracks registering, the mixer view with a visible masking finding, and the spectrum view. The &quot;Logic Pro connected&quot; badge stays visible as recorded — it reflects synthetic plugin registration, not a real Logic Pro connection.</p></details>
           </figure>
         </div>
@@ -134,13 +134,13 @@
         </div>
       </div>
       <div class="stage-notes grid wrap">
-        <p class="stage-scope">Synthetic session data traveling through the real local WebSocket server, session aggregation, and the real React/Tauri interface. No real audio, DAW, or coaching API is used. Synthetic demo data, captured 2026-09-08.</p>
+        <p class="stage-scope">The local music workspace with synthetic session data. These September captures show the current interface; no real recording or connected DAW is used in this gallery. Synthetic demo data. Captures: 2026-09-08.</p>
       <details class="stage-disclosure">
         <summary>What's working, and what's still in progress</summary>
         <p>Missing or stale audio evidence stays visible in the UI instead of being papered over with a confident guess.</p>
         <div class="stage-disclosure-grid">
           <div><h2>What's working</h2><ul><li>Synthetic session registration and track ingest through the real local server</li><li>Masking analysis surfaced per track, with the finding kept visible in the UI</li><li>Mixer and spectrum views rendered by the real local application</li></ul></div>
-          <div><h2>Still in progress</h2><ul><li>No AU/VST or FFT extraction from real PCM audio</li><li>No Logic Pro or other DAW bridge — the bridge process is a safety stub</li><li>No coaching API; the assistant panel is not wired to a model</li></ul></div>
+          <div><h2>Still in progress</h2><ul><li>These captures demonstrate the interface with synthetic telemetry, not live audio analysis or coaching.</li></ul></div>
         </div>
       </details>
       </div>
@@ -151,9 +151,14 @@
       <ol class="table" role="list">
         <li><a class="grid" href="/work/lojik/"><span class="n label" aria-hidden="true">01</span><h3 class="h3">LOJIK</h3><span class="small">Custom apps and automation for businesses</span><span class="go" aria-hidden="true">→</span></a></li>
         <li><a class="grid" href="/demos/intertitle/"><span class="n label" aria-hidden="true">02</span><h3 class="h3">Intertitle</h3><span class="small">Film app for iPhone · On the App Store</span><span class="go" aria-hidden="true">→</span></a></li>
-        <li><a class="grid" href="/work/pazz/"><span class="n label" aria-hidden="true">03</span><h3 class="h3">PAZZ</h3><span class="small">Vehicle leasing · Technical Lead</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/pocket/"><span class="n label" aria-hidden="true">03</span><h3 class="h3">Pocket</h3><span class="small">Music creation · In development</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/dicta/"><span class="n label" aria-hidden="true">04</span><h3 class="h3">Dicta</h3><span class="small">Dictation · Personal tool</span><span class="go" aria-hidden="true">→</span></a></li>
         <li><a class="grid" href="/demos/temper/"><span class="n label" aria-hidden="true">05</span><h3 class="h3">Temper</h3><span class="small">Health &amp; training · In development</span><span class="go" aria-hidden="true">→</span></a></li>
-        <li><a class="grid" href="/demos/mimo/"><span class="n label" aria-hidden="true">06</span><h3 class="h3">Mimo</h3><span class="small">Shared moments · In development</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/mimo/"><span class="n label" aria-hidden="true">06</span><h3 class="h3">Mimo: Made of Us</h3><span class="small">Movie nights &amp; shared moments · In development</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/work/pazz/"><span class="n label" aria-hidden="true">07</span><h3 class="h3">PAZZ</h3><span class="small">Vehicle leasing · Technical Lead</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/dreamme/"><span class="n label" aria-hidden="true">09</span><h3 class="h3">DreamMe</h3><span class="small">Bedtime stories · In development</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/ledger/"><span class="n label" aria-hidden="true">10</span><h3 class="h3">Ledger</h3><span class="small">Personal finance · Personal tool</span><span class="go" aria-hidden="true">→</span></a></li>
+        <li><a class="grid" href="/demos/rundown/"><span class="n label" aria-hidden="true">11</span><h3 class="h3">Rundown</h3><span class="small">Video creation · In development</span><span class="go" aria-hidden="true">→</span></a></li>
       </ol>
     </nav>
   </main>

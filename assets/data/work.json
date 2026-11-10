@@ -13,7 +13,8 @@
       "go": {
         "label": "wearelojik.com",
         "href": "https://wearelojik.com/"
-      }
+      },
+      "mediaNote": "Live site · October 2026"
     },
     {
       "id": "intertitle",
@@ -28,7 +29,66 @@
       "go": {
         "label": "App Store",
         "href": "https://apps.apple.com/us/app/intertitle-film-diary-picks/id6775606124"
-      }
+      },
+      "mediaNote": "Native preview · October 2026"
+    },
+    {
+      "id": "pocket",
+      "name": "Pocket",
+      "href": "/demos/pocket/",
+      "role": "Maker",
+      "line": "A music workbench for notes, mixes and auditioning an edit.",
+      "short": "A music workbench for notes, mixes and auditioning an edit.",
+      "pickerLine": "Music creation · In development",
+      "kind": "phone",
+      "go": {
+        "label": "Preview"
+      },
+      "mediaNote": "Native preview · October 2026"
+    },
+    {
+      "id": "dicta",
+      "name": "Dicta",
+      "href": "/demos/dicta/",
+      "role": "Maker",
+      "line": "A native Mac dictation app with modes, corrections and local history.",
+      "short": "A native Mac dictation app with modes, corrections and local history.",
+      "pickerLine": "Dictation · Personal tool",
+      "kind": "screen",
+      "go": {
+        "label": "Preview"
+      },
+      "mediaNote": "Native preview · October 2026"
+    },
+    {
+      "id": "temper",
+      "name": "Temper",
+      "href": "/demos/temper/",
+      "role": "In development",
+      "line": "Recovery, food and training, with independent daily activities.",
+      "short": "Recovery, food and training, with independent daily activities.",
+      "pickerLine": "Health & training · In development",
+      "image": "temper-today",
+      "kind": "phone",
+      "go": {
+        "label": "Demo"
+      },
+      "mediaNote": "Native preview · October 2026"
+    },
+    {
+      "id": "mimo",
+      "name": "Mimo: Made of Us",
+      "href": "/demos/mimo/",
+      "role": "In development",
+      "line": "Movie nights, a shared watch list, and the moments around them.",
+      "short": "Movie nights, a shared watch list, and the moments around them.",
+      "pickerLine": "Movie nights & shared moments · In development",
+      "image": "mimo-home",
+      "kind": "phone",
+      "go": {
+        "label": "Demo"
+      },
+      "mediaNote": "Native preview · October 2026"
     },
     {
       "id": "pazz",
@@ -42,7 +102,8 @@
       "kind": "screen",
       "go": {
         "label": "Case study"
-      }
+      },
+      "mediaNote": "Interface study · October 2026"
     },
     {
       "id": "maestro",
@@ -59,32 +120,46 @@
       }
     },
     {
-      "id": "temper",
-      "name": "Temper",
-      "href": "/demos/temper/",
-      "role": "In development",
-      "line": "Recovery, food and training, planned into a week you can follow.",
-      "short": "Recovery, food and training, planned into a week you can follow.",
-      "pickerLine": "Health & training · In development",
-      "image": "temper-today",
-      "kind": "phone",
+      "id": "dreamme",
+      "name": "DreamMe",
+      "href": "/demos/dreamme/",
+      "role": "Maker",
+      "line": "Personalized bedtime stories, in a world made of paper, moonlight and imagination.",
+      "short": "Personalized bedtime stories, in a world made of paper, moonlight and imagination.",
+      "pickerLine": "Bedtime stories · In development",
+      "kind": "screen",
       "go": {
-        "label": "Demo"
-      }
+        "label": "Design preview"
+      },
+      "mediaNote": "Design artwork · October 2026"
     },
     {
-      "id": "mimo",
-      "name": "Mimo",
-      "href": "/demos/mimo/",
-      "role": "In development",
-      "line": "Everyday photos, turned into small keepsakes.",
-      "short": "Everyday photos, turned into small keepsakes.",
-      "pickerLine": "Shared moments · In development",
-      "image": "mimo-home",
+      "id": "ledger",
+      "name": "Ledger",
+      "href": "/demos/ledger/",
+      "role": "Maker",
+      "line": "A personal iPhone app for transactions, daily spending and money.",
+      "short": "A personal iPhone app for transactions, daily spending and money.",
+      "pickerLine": "Personal finance · Personal tool",
       "kind": "phone",
       "go": {
-        "label": "Demo"
-      }
+        "label": "Preview"
+      },
+      "mediaNote": "Native preview · October 2026"
+    },
+    {
+      "id": "rundown",
+      "name": "Rundown",
+      "href": "/demos/rundown/",
+      "role": "Maker",
+      "line": "A script-to-take workspace for rehearsing and recording video.",
+      "short": "A script-to-take workspace for rehearsing and recording video.",
+      "pickerLine": "Video creation · In development",
+      "kind": "phone",
+      "go": {
+        "label": "Preview"
+      },
+      "mediaNote": "Native preview · October 2026"
     }
   ],
   "openSource": [

@@ -27,7 +27,7 @@ function renderChapter(chapter, index) {
     : '';
   return `          <figure class="stage-chapter" id="chapter-${chapter.id}" data-chapter="${chapter.id}">
             ${media}
-            <figcaption class="chapter-caption"><strong>${esc(chapter.title)}.</strong> ${esc(chapter.caption)}</figcaption>${transcript}
+            <figcaption class="chapter-caption"><strong>${esc(chapter.title)}.</strong> ${esc(chapter.caption)} <time datetime="${esc(chapter.capturedAt)}">${esc(chapter.capturedAt)}</time></figcaption>${transcript}
           </figure>`;
 }
 
@@ -50,7 +50,7 @@ export function renderStage(project, { level = 2 } = {}) {
   const layout = project.chapters[0]?.layout ?? 'portrait';
   const labels = [...new Set(project.chapters.map((chapter) => chapter.syntheticLabel))].join(', ');
   return `      <div class="stage" data-explorer-stage data-layout="${layout}">
-        <div class="stage-track" role="region" aria-label="${esc(project.name)} screens" tabindex="0">
+        <div class="stage-track" role="region" aria-label="${esc(project.name)} ${esc(project.galleryLabel?.toLowerCase() ?? 'screens')}" tabindex="0">
 ${project.chapters.map(renderChapter).join('\n')}
         </div>
         <div class="stage-controls" hidden>
@@ -60,8 +60,13 @@ ${project.chapters.map(renderChapter).join('\n')}
         </div>
       </div>
       <div class="stage-notes grid wrap">
-        <p class="stage-scope">${esc(project.demoScope)} ${esc(labels)}, captured ${esc(project.capturedAt)}.</p>${renderDisclosure(project, level)}
+        <p class="stage-scope">${esc(project.demoScope)} ${esc(labels)}. Captures: ${esc(captureRange(project))}.</p>${renderDisclosure(project, level)}
       </div>`;
+}
+
+function captureRange(project) {
+  const dates = [...new Set(project.chapters.map((chapter) => chapter.capturedAt))].sort();
+  return dates.length > 1 ? `${dates[0]} – ${dates.at(-1)}` : dates[0] ?? project.capturedAt;
 }
 
 // The product's way in: a store or page link, or a notify form that posts to
@@ -135,7 +140,7 @@ ${project.role ? `            <div><dt>Role</dt><dd>${esc(project.role)}</dd></d
     </header>
 
     <section class="gallery" aria-labelledby="gallery-title">
-      ${sectionHead(`<h2 class="label" id="gallery-title">Screens (${project.chapters.length})</h2>`, '', `<span>${esc(project.capturedAt)}</span>`)}
+      ${sectionHead(`<h2 class="label" id="gallery-title">${esc(project.galleryLabel ?? 'Screens')} (${project.chapters.length})</h2>`, '', `<span>${esc(captureRange(project))}</span>`)}
 ${renderStage(project)}
     </section>
 
